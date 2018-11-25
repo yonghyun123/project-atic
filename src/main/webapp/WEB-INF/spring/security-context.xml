@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+<!-- Spring Security(Interceptor) 설정 -->
+<security:http>
+
+	<security:intercept-url pattern="/" access="permitAll"/>
+	<security:intercept-url pattern="/login/some" access="hasRole('ROLE_MEMBER')"/>
+	
+	<security:form-login/>
+	
+	<!-- 나중에 로그인 페이지 만들어서 쓸 것 -->
+	<!--
+	 <security:form-login login-page="/loginPage"/>
+	 -->
+</security:http>
+
+
+<!-- 사용자 인증(authentication)과 권한부여(authorization)를 담당하는 Authentication Manager 설정 -->
+<security:authentication-manager>
+	<security:authentication-provider>
+		<security:user-service>
+			<security:user name="admin" password="{noop}a1234" authorities="ROLE_MEMBER" />
+		</security:user-service>
+	</security:authentication-provider>
+</security:authentication-manager>
+
+</beans>
