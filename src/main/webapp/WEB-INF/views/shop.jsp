@@ -26,7 +26,7 @@
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
-        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/24.jpg);">
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/bg-img/24.jpg);">
             <h2>Shop</h2>
         </div>
 
@@ -458,8 +458,8 @@
     <!-- ##### Shop Area End ##### -->
 
     <!-- ##### All Javascript Files ##### -->
-    <!-- jQuery-3.3.1 js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- jQuery-2.2.4 js -->
+    <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="/resources/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
