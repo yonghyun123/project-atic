@@ -18,9 +18,6 @@
     <!-- Core Stylesheet -->
     <link href="/resources/css/style.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/resources/css/common.css">
-    
 </head>
 
 <body>
