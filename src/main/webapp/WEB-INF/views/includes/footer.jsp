@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<script>
+$(document).ready(function(){
+  $("#login").on("click", function(e) {
+    $("#login-modal").modal('show');
+  })
+});
+</script>
+    
 <!-- ##### Footer Area Start ##### -->
 <footer class="footer-area bg-img" style="background-image: url(/resources/img/bg-img/3.jpg);">
     <!-- Main Footer Area -->
