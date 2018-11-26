@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!-- Preloader -->
 <div class="preloader d-flex align-items-center justify-content-center">
     <div class="preloader-circle"></div>
@@ -8,50 +11,6 @@
 
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
-
-    <!-- ***** Top Header Area ***** -->
-    <div class="top-header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="top-header-content d-flex align-items-center justify-content-between">
-                        <!-- Top Header Content -->
-                        <div class="top-header-meta">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: infodeercreative@gmail.com</span></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +1 234 122 122</span></a>
-                        </div>
-
-                        <!-- Top Header Content -->
-                        <div class="top-header-meta d-flex">
-                            <!-- Language Dropdown -->
-                            <div class="language-dropdown">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">USA</a>
-                                        <a class="dropdown-item" href="#">UK</a>
-                                        <a class="dropdown-item" href="#">Bangla</a>
-                                        <a class="dropdown-item" href="#">Hindi</a>
-                                        <a class="dropdown-item" href="#">Spanish</a>
-                                        <a class="dropdown-item" href="#">Latin</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Login -->
-                            <div class="login">
-                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
-                            </div>
-                            <!-- Cart -->
-                            <div class="cart">
-                                <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity">(1)</span></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ***** Navbar Area ***** -->
     <div class="alazea-main-menu">
         <div class="classy-nav-container breakpoint-off">
@@ -79,37 +38,17 @@
                         <div class="classynav">
                             <ul>
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/about">About</a></li>
-                                <li><a href="#">Pages</a>
+                                <li><a href="/about">A-Tic?</a></li>
+                                <li><a href="#">이용 가이드</a></li>
+                                <li><a href="#">투자 하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="/">Home</a></li>
-                                        <li><a href="/about">About</a></li>
-                                        <li><a href="/shop">Shop</a>
-                                            <ul class="dropdown">
-                                                <li><a href="/shop">Shop</a></li>
-                                                <li><a href="/shop-details">Shop Details</a></li>
-                                                <li><a href="/cart">Shopping Cart</a></li>
-                                                <li><a href="/checkout">Checkout</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/portfolio">Portfolio</a>
-                                            <ul class="dropdown">
-                                                <li><a href="/portfolio">Portfolio</a></li>
-                                                <li><a href="/single-portfolio">Portfolio Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/blog">Blog</a>
-                                            <ul class="dropdown">
-                                                <li><a href="/blog">Blog</a></li>
-                                                <li><a href="/single-post">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/contact">Contact</a></li>
+                                        <li><a href="/shop">투자 홈</a></li>
+                                        <li><a href="#">오픈예정</a></li>
+                                        <li><a href="#">오픈된 상품</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/shop">Shop</a></li>
-                                <li><a href="/portfolio">Portfolio</a></li>
-                                <li><a href="/contact">Contact</a></li>
+                                <li><a href="/portfolio">공지사항</a></li>
+                                <li><a href="/contact">로그인</a></li>
                             </ul>
 
                             <!-- Search Icon -->
@@ -125,7 +64,7 @@
                 <!-- Search Form -->
                 <div class="search-form">
                     <form action="#" method="get">
-                        <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                        <input type="search" name="search" id="search" placeholder="상품을 검색해보세요!">
                         <button type="submit" class="d-none"></button>
                     </form>
                     <!-- Close Icon -->
