@@ -48,7 +48,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="/portfolio">공지사항</a></li>
-                                <li><a href="/contact">로그인</a></li>
+                                <li><a href="" id="login">로그인</a></li>
                             </ul>
 
                             <!-- Search Icon -->
@@ -73,5 +73,7 @@
             </div>
         </div>
     </div>
+    <!-- Modal Area -->
+    <%@ include file="/WEB-INF/views/modal/login.jsp"%>
 </header>
 <!-- ##### Header Area End ##### -->

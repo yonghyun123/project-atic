@@ -457,11 +457,9 @@
     </section>
     <!-- ##### Shop Area End ##### -->
 
-    <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-
     <!-- ##### All Javascript Files ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- jQuery-3.3.1 js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Popper js -->
     <script src="/resources/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -470,6 +468,8 @@
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/js/active.js"></script>
+
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 
 </html>
