@@ -11,7 +11,7 @@ import lombok.extern.log4j.Log4j;
  */
 @Controller
 @Log4j
-@RequestMapping("/login/*")
+@RequestMapping("/login")
 public class LoginController {
 	@GetMapping("/some")
 	public String goSome() {

@@ -17,6 +17,9 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/resources/css/style.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/resources/css/common.css">
 
 </head>
 

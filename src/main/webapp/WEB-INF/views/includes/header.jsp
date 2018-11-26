@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
+<!-- Modal Area Start -->
+<%@ include file="/WEB-INF/views/modal/login.jsp"%>
+<!-- Modal Area End -->
+
 <!-- Preloader -->
 <div class="preloader d-flex align-items-center justify-content-center">
     <div class="preloader-circle"></div>
@@ -48,7 +53,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="/portfolio">공지사항</a></li>
-                                <li><a href="" id="login">로그인</a></li>
+                                <li><a id="login">로그인</a></li>
                             </ul>
 
                             <!-- Search Icon -->
@@ -73,7 +78,5 @@
             </div>
         </div>
     </div>
-    <!-- Modal Area -->
-    <%@ include file="/WEB-INF/views/modal/login.jsp"%>
 </header>
 <!-- ##### Header Area End ##### -->
