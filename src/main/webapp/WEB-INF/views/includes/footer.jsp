@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!-- ##### Footer Area Start ##### -->
 <footer class="footer-area bg-img" style="background-image: url(/resources/img/bg-img/3.jpg);">
     <!-- Main Footer Area -->
@@ -11,14 +14,7 @@
                         <div class="footer-logo mb-30">
                             <a href="#"><img src="/resources/img/core-img/logo.png" alt=""></a>
                         </div>
-                        <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
-                        <div class="social-info">
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </div>
+                        <p>A-Tic는 스타트업 투자 활성화를 위한 <br/>적금 플랫폼입니다.</p>
                     </div>
                 </div>
 
@@ -30,16 +26,13 @@
                         </div>
                         <nav class="widget-nav">
                             <ul>
-                                <li><a href="#">Purchase</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Payment</a></li>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Return</a></li>
-                                <li><a href="#">Advertise</a></li>
-                                <li><a href="#">Shipping</a></li>
-                                <li><a href="#">Career</a></li>
-                                <li><a href="#">Orders</a></li>
-                                <li><a href="#">Policities</a></li>
+                                <li><a href="/about">A-Tic?</a></li>
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="/shop">투자 홈</a></li>
+                                <li><a href="#">이용 가이드</a></li>
+                                <li><a href="#">오픈 예정</a></li>
+                                <li><a href="#"> </a></li>
+                                <li><a href="#">오픈한 상품</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -84,11 +77,10 @@
                         </div>
 
                         <div class="contact-information">
-                            <p><span>Address:</span> 505 Silk Rd, New York</p>
-                            <p><span>Phone:</span> +1 234 122 122</p>
-                            <p><span>Email:</span> info.deercreative@gmail.com</p>
+                            <p><span>Address:</span> 성남시 분당구 정자동 80-17</p>
+                            <p><span>Phone:</span> 02-123-1234</p>
+                            <p><span>Email:</span> lcw9206@gmail.com</p>
                             <p><span>Open hours:</span> Mon - Sun: 8 AM to 9 PM</p>
-                            <p><span>Happy hours:</span> Sat: 2 PM to 4 PM</p>
                         </div>
                     </div>
                 </div>
@@ -117,12 +109,11 @@
                     <div class="footer-nav">
                         <nav>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Service</a></li>
-                                <li><a href="#">Portfolio</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">A-Tic?</a></li>
+                                <li><a href="#">이용 가이드</a></li>
+                                <li><a href="/shop">투자 홈</a></li>
+                                <li><a href="#">공지사항</a></li>
                             </ul>
                         </nav>
                     </div>
