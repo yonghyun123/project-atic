@@ -4,6 +4,7 @@
     
 <!-- Modal Area Start -->
 <%@ include file="/WEB-INF/views/modal/login.jsp"%>
+<%@ include file="/WEB-INF/views/modal/deposit.jsp"%>
 <!-- Modal Area End -->
 
 <!-- Preloader -->
