@@ -3,62 +3,62 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.keb.atic.userStatus.mapper.UserStatusMapper">
 
-<!-- To. 용현 id 값 next.val 로!!!!!!! -->
+	<!-- To. 용현 id 값 next.val 로!!!!!!! -->
 	<insert id="createUserStatus">
-	INSERT INTO at_user_status 
-            (id, 
-             user_id, 
-             year, 
-             month, 
-             total_profit, 
-             cur_profit, 
-             total_money, 
-             cur_money) 
-	VALUES     (#{user_status_id_seq.nextval}, 
-            #{user_id}, 
-            TO_char(sysdate,'yyyy'), 
-            to_char(sysdate,'mm'), 
-            #{total_profit}, 
-            #{cur_profit}, 
-            #{total_money}, 
-            #{cur_money}) 
+		INSERT INTO at_user_status
+		(id,
+		user_id,
+		year,
+		month,
+		total_profit,
+		cur_profit,
+		total_money,
+		cur_money)
+		VALUES (#{user_status_id_seq.nextval},
+		#{user_id},
+		TO_char(sysdate,'yyyy'),
+		to_char(sysdate,'mm'),
+		#{total_profit},
+		#{cur_profit},
+		#{total_money},
+		#{cur_money})
 	</insert>
-	
+
 	<select id="readUserStatus" resultType="com.keb.atic.userStatus.domain.UserStatus">
-	
+
 	</select>
 	<!-- User상태 가장 최신화 데이터 읽기 -->
 	<select id="getMaxStatus" resultType="com.keb.atic.userStatus.domain.UserStatus">
-	SELECT user_id as "userId", 
-       year as "year", 
-       month as "month", 
-       total_profit as "totalProfit", 
-       cur_profit as "curProfit", 
-       total_money as "totalMoney", 
-       cur_money as "curMoney" 
-	FROM  at_user_status 
-	where id = (select max(id)
-            	from AT_user_status
-            	where user_id = #{userId})
+		SELECT user_id as "userId",
+		year as "year",
+		month as "month",
+		total_profit as "totalProfit",
+		cur_profit as "curProfit",
+		total_money as "totalMoney",
+		cur_money as "curMoney"
+		FROM at_user_status
+		where id = (select max(id)
+		from AT_user_status
+		where user_id = #{userId})
 	</select>
-	
+
 	<select id="userStatusListByUser" resultType="com.keb.atic.userStatus.domain.UserStatus">
-	SELECT user_id, 
-       year as "year", 
-       month as "month", 
-       total_profit as "totalProfit", 
-       cur_profit as "curProfit", 
-       total_money as "totalMoney", 
-       cur_money as "curMoney" 
-	FROM   at_user_status 
-	WHERE  user_id = #{userId}
+		SELECT user_id as userId,
+		year as "year",
+		month as "month",
+		total_profit as "totalProfit",
+		cur_profit as "curProfit",
+		total_money as "totalMoney",
+		cur_money as "curMoney"
+		FROM at_user_status
+		WHERE user_id = #{userId}
 	</select>
-	
+
 	<delete id="deleteUserStatus">
-	
+
 	</delete>
 
 	<update id="updateUserStatus">
-	
+
 	</update>
 </mapper>
