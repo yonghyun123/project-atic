@@ -24,4 +24,6 @@ public interface UserEvalMapper {
 	public void deleteUserEvalByCondition(Map<String, String> condition);
 	//userEval 업데이트
 	public void updateUserEval(UserEval userEval);
+	//사업별 평균 userEval 조회
+	public UserEval readUserEvalAvg(String product_id);
 }
