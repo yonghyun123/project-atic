@@ -3,19 +3,44 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.keb.atic.userStatus.mapper.UserStatusMapper">
 
-	<select id="createUserStatus">
+<!-- To. 용현 id 값 next.val 로!!!!!!! -->
+	<insert id="createUserStatus">
+	INSERT INTO at_user_status 
+            (id, 
+             user_id, 
+             year, 
+             month, 
+             total_profit, 
+             cur_profit, 
+             total_money, 
+             cur_money) 
+	VALUES     (7, 
+            #{user_id}, 
+            TO_char(sysdate,'yyyy'), 
+            to_char(sysdate,'mm'), 
+            #{total_profit}, 
+            #{cur_profit}, 
+            #{total_money}, 
+            #{cur_money}) 
+	</insert>
+	
+	<select id="readUserStatus" resultType="com.keb.atic.userStatus.domain.UserStatus">
 	
 	</select>
 	
-	<select id="readUserStatus" resultType="com.keb.atic.userProject.domain.UserProject">
-	
+	<select id="userStatusListByUser" resultType="com.keb.atic.userStatus.domain.UserStatus">
+	SELECT user_id, 
+       year, 
+       month, 
+       total_profit, 
+       cur_profit, 
+       total_money, 
+       cur_money 
+	FROM   at_user_status 
+	WHERE  user_id = #{user_id}
 	</select>
 	
-	<select id="userStatusListByUser" resultType="com.keb.atic.userProject.domain.UserProject">
-	
-	</select>
-	
-	<delete id="deleteUserStatus" >
+	<delete id="deleteUserStatus">
 	
 	</delete>
 

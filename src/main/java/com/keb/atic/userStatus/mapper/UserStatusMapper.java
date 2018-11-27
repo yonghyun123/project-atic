@@ -14,7 +14,7 @@ public interface UserStatusMapper {
 	//개별 userStatus 읽기
 	public UserStatus readUserStatus(String id);
 	// 사용자 별 userStatus 조회
-	public List<UserStatus> userStatusListByUser();
+	public List<UserStatus> userStatusListByUser(String user_id);
 	//사용자 별 userStatus 삭제
 	public void deleteUserStatus(String user_id);
 	//userStatus 업데이트
