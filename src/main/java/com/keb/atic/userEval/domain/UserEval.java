@@ -26,6 +26,8 @@ public class UserEval {
 	private String favor_grade;
 	//성장성
 	private String growth_grade;
+	//전체 카테고리 평균 평점
+	private String total_avg;
 	
 	public UserEval(String user_id, String project_id, String stable_grade, String market_grade, String favor_grade,
 			String growth_grade) {
