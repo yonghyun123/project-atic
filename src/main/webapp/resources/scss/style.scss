@@ -511,7 +511,7 @@ img {
             font-weight: 500;
             text-transform: capitalize;
             font-size: 20px;
-            color: $white-color;
+            color: #44484b;
             @media #{$breakpoint-lg} {
                 font-size: 18px;
                 padding: 0 20px;
@@ -519,21 +519,21 @@ img {
             @media #{$breakpoint-md} {
                 background-color: $dark-color;
                 font-size: 16px;
-                color: $white-color;
+                color: #44484b;
                 border-bottom: none;
             }
             @media #{$breakpoint-xs} {
                 background-color: $dark-color;
                 font-size: 16px;
-                color: $white-color;
+                color: #44484b;
                 border-bottom: none;
             }
             &:hover,
             &:focus {
-                color: $hover-color;
+                color: #44484b;
             }
             &::after {
-                color: $white-color;
+                color: #44484b;
             }
         }
         .classynav ul li ul li a {
@@ -544,35 +544,35 @@ img {
             &::after {
                 color: $heading-color;
                 @media #{$breakpoint-md} {
-                    color: $white-color;
+                    color: $#44484b;
                 }
                 @media #{$breakpoint-xs} {
-                    color: $white-color;
+                    color: $#44484b;
                 }
             }
             @media #{$breakpoint-md} {
                 padding: 0 45px;
-                color: $white-color;
+                color: $#44484b;
             }
             @media #{$breakpoint-xs} {
                 padding: 0 45px;
-                color: $white-color;
+                color: $#44484b;
             }
         }
         .classy-navbar-toggler .navbarToggler span {
             @media #{$breakpoint-md} {
-                background-color: $white-color;
+                background-color: $#44484b;
             }
             @media #{$breakpoint-xs} {
-                background-color: $white-color;
+                background-color: $#44484b;
             }
         }
         .classycloseIcon .cross-wrap span {
             @media #{$breakpoint-md} {
-                background: $white-color;
+                background: $#44484b;
             }
             @media #{$breakpoint-xs} {
-                background: $white-color;
+                background: $#44484b;
             }
         }
         .search-form {
