@@ -33,7 +33,7 @@ public class ProjectController {
 			rttr.addFlashAttribute("list", service.readProjectsByGoal());
 		} else if(condition.equals("달성률 순")) {
 			rttr.addFlashAttribute("list", service.readProjectsByPercent());
-		} else {
+		} else if(condition.equals("예비 평점 순")){
 			rttr.addFlashAttribute("list", service.readProjectsByEval());
 		}
 		return "redirect:/shop" ;

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -63,10 +64,10 @@
                         <div class="search_by_terms">
                             <form action="#" method="post" class="form-inline">
                                 <select class="custom-select widget-title">
-                                  <option selected>Short by Popularity</option>
-                                  <option value="1">Short by Newest</option>
-                                  <option value="2">Short by Sales</option>
-                                  <option value="3">Short by Ratings</option>
+                                  <option selected>정렬</option>
+                                  <option value="1">목표 금액 순</option>
+                                  <option value="2">달성률 순</option>
+                                  <option value="3">예비 평점 순</option>
                                 </select>
                             </form>
                         </div>
@@ -79,7 +80,8 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row">
-
+                            <c:forEach var="list" items="${list }" varStatus="status">
+<%--                             ${list } --%>
                             <!-- Single Product Area -->
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-area mb-50">
@@ -94,23 +96,15 @@
                                     <!-- Product Info -->
                                     <div class="product-info mt-15 text-center">
                                         <a href="/shop-details">
-                                            <h6>Title</h6>
+                                            <h6>${list.name }</h6>
                                         </a>
-                                        <h6>업종 목표금액</h6>
+                                        <h6>업종 : ${list.category } / 목표금액 : ${list.goal }</h6>
                                     </div>
                                 </div>
                             </div>
-
+                          </c:forEach>
                         </div>
 
-                        <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -132,5 +126,8 @@
 
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
+<script type="text/javascript">
 
+
+</script>
 </html>
