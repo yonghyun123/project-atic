@@ -10,36 +10,37 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.keb.atic.user.domain.User;
-import com.keb.atic.user.mapper.UserMapper;
+import com.keb.atic.userStatus.domain.UserStatus;
+import com.keb.atic.userStatus.mapper.UserStatusMapper;
 
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class UserMapperTest {
+public class UserStatusMapperTest {
 	@Inject
-	private UserMapper userMapper;
+	private UserStatusMapper userStatusMapper;
+	
+
 	
 //	@Test
 	public void testCreate() {
-		User user = new User("hee","1111","희지니","흐딘","test","1111-1111-2222","1111","9999-9999-9999","01058837760","0","10000");
-		userMapper.createUser(user);
-		log.info("성공");
+		UserStatus userStatus = new UserStatus("test2","0.031","0.001","100000","10000");
+		userStatusMapper.createUserStatus(userStatus);
+		log.info("생성완료!");
 	}
 	
 //	@Test
 	public void testListAll() {
-		List<User> list = userMapper.userListAll();
-		for (User user : list) {
+		List<UserStatus> list = userStatusMapper.userStatusListByUser("test2");
+		for (UserStatus user : list) {
 			log.info(user);
 		}
 	}
 	
 //	@Test
 	public void testRead() {
-		log.info(userMapper.readUser("test1"));
 	}
 	
 }

@@ -29,7 +29,7 @@
       <!-- 인터셉터 설정 -->
 	<interceptors>
 		<interceptor>
-			<mapping path="/"></mapping>
+			<mapping path="/*"></mapping>
 			<beans:ref bean="loggerInterceptor"/>
 		</interceptor>
 	</interceptors> 
