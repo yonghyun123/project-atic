@@ -63,12 +63,6 @@ public class CommonController {
 		return "shop-details";
 	}
 	
-	@RequestMapping(value = "/shop", method = RequestMethod.GET)
-	public String shop(Locale locale, Model model) {
-		log.info("Welcome ShopPage");		
-		return "shop";
-	}
-	
 	@RequestMapping(value = "/single-portfolio", method = RequestMethod.GET)
 	public String singlePortfolio(Locale locale, Model model) {
 		log.info("Welcome Single-PortfolioPage");		

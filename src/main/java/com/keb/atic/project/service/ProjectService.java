@@ -1,15 +1,11 @@
-package com.keb.atic.project.mapper;
+package com.keb.atic.project.service;
 
 import java.util.List;
 import java.util.Map;
 
 import com.keb.atic.project.domain.Project;
 
-/**Project 관련 Mapper 
- * @author 권현우
- *
- */
-public interface ProjectMapper {
+public interface ProjectService {
 	//프로젝트 등록
 	public void createProject(Project project);
 	// 단일 프로젝트 조회
