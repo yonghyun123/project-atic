@@ -182,9 +182,62 @@
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
     
     <script type="text/javascript">
-    
-    
-    /* chart.js chart examples */
+     
+	 /*
+	 javascript AJAX Service(read, put, post...)
+	 created by yonghyun
+	 */
+	 var userStatusService = (function() {
+			function add(reply, callback, error) {
+				console.log("add reply...............");
+				$.ajax({
+					type : 'post',
+					url : '/replies/new',
+					data : JSON.stringify(reply),
+					contentType : "application/json; charset=utf-8",
+					success : function(result, status, xhr) {
+						if (callback) {
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+						}
+					}
+				})
+			}
+
+			function get(userId, callback, error) {
+				$.get("/users/mypage/graph/"+userId, function(result) {
+					if (callback) {
+						callback(result);
+					}
+
+				}).fail(function(xhr, status, err) {
+					if (error) {
+						error();
+					}
+				});
+			}
+
+			return {
+				add : add,
+				get : get,
+				getList : getList,
+			};
+
+		})();
+	 
+	 /* AJAX 사용 */
+	 userStatusService.get("test1", function(list){
+		 list.forEach(function(v) {
+		 	
+		 })
+	 })
+	 
+	 
+	     /* chart.js chart examples */
 	 // chart colors
 	 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
 	
@@ -229,6 +282,7 @@
 	   });
 	 }
 	 
+	 /* 수평 바 chart 이윤 증가율 */
 	 new Chart(document.getElementById("bar-chart-horizontal"), {
 	    type: 'horizontalBar',
 	    data: {
@@ -249,9 +303,6 @@
 	      }
 	    }
 	});
-
-
-    
     
     
     </script>
