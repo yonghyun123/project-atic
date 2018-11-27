@@ -7,6 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.keb.atic.project.service.ProjectService;
+
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -14,10 +17,12 @@ import lombok.extern.log4j.Log4j;
  */
 @Controller
 @Log4j
+@AllArgsConstructor
 public class CommonController {
-
+	private ProjectService projectService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		model.addAttribute("hotList",projectService.readProjectsByGoal());
 		log.info("Welcome IndexPage");		
 		return "index";
 	}
