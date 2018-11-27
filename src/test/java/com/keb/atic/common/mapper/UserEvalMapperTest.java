@@ -46,13 +46,13 @@ public class UserEvalMapperTest {
 			log.info(userEval);
 		}
 	}
-//	@Test
+	@Test
 	public void testRead() {
 		UserEval userEval = userEvalMapper.readUserEvalAvg("34");
 		log.info(userEval);
 	}
 	
-	@Test
+//	@Test
 	public void testReadId() {
 		List<UserEval> list = userEvalMapper.readUserEvalByUser("test1");
 		for (UserEval userEval : list) {
