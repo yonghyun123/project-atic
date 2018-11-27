@@ -19,10 +19,10 @@ public interface UserService {
 	public User readUser(String id) throws Exception;
 
 	/* 회원 정보 수정 */
-	public void updateUser(User user) throws Exception;
+	public int updateUser(User user) throws Exception;
 
 	/* 회원 정보 삭제 */
-	public void deleteUser(String userId) throws Exception;
+	public int deleteUser(String userId) throws Exception;
 	
 	/* 회원 리스트 전체 조회 */
 	public List<User> userListAll() throws Exception;
