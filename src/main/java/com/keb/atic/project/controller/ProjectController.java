@@ -30,11 +30,11 @@ public class ProjectController {
 	public String listByConditon(String condition, RedirectAttributes rttr) {
 		log.info("list ");
 		if(condition.equals("목표 금액 순")) {
-			rttr.addFlashAttribute("list", service.projectListAll());
+			rttr.addFlashAttribute("list", service.readProjectsByGoal());
 		} else if(condition.equals("달성률 순")) {
-			rttr.addFlashAttribute("list", service.projectListAll());
+			rttr.addFlashAttribute("list", service.readProjectsByPercent());
 		} else {
-			rttr.addFlashAttribute("list", service.projectListAll());
+			rttr.addFlashAttribute("list", service.readProjectsByEval());
 		}
 		return "redirect:/shop" ;
 	}
