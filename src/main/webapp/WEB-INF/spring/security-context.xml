@@ -5,18 +5,27 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+<!-- Spring Security SuccessHandler 설정 -->
+<bean id="customLoginSuccessHandler" class="com.keb.atic.common.security.CustomLoginSuccessHandler" />
+<!-- Spring Security AccessDeniedHandler 설정 -->
+<bean id="customAccessDeniedHandler" class="com.keb.atic.common.security.CustomAccessDeniedHandler" />
+<!-- Custom UserDetailsService 설정 -->
+<!-- <bean id="customUserDetailsService" class="com.keb.atic.common.security.CustomUserDetailsService" /> -->
+
 <!-- Spring Security(Interceptor) 설정 -->
 <security:http>
 
 	<security:intercept-url pattern="/" access="permitAll"/>
-	<security:intercept-url pattern="/login/some" access="hasRole('ROLE_MEMBER')"/>
+	<security:intercept-url pattern="/mypage" access="hasRole('ROLE_MEMBER')"/>
+	<security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 	
-	<security:form-login/>
-	
-	<!-- 나중에 로그인 페이지 만들어서 쓸 것 -->
-	<!--
-	 <security:form-login login-page="/loginPage"/>
-	 -->
+	<!-- 로그인 페이지 -->
+	<security:form-login login-page="/customLogin"  authentication-success-handler-ref="customLoginSuccessHandler"/>
+	<!-- 로그아웃 시 자동 로그인 관련 쿠키 삭제 -->
+	<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me, JSESSION_ID"/>
+	 
+	<!-- <security:access-denied-handler error-page="/error/error_403"/> -->
+	<security:access-denied-handler ref="customAccessDeniedHandler"/>
 </security:http>
 
 
@@ -24,7 +33,7 @@
 <security:authentication-manager>
 	<security:authentication-provider>
 		<security:user-service>
-			<security:user name="admin" password="{noop}a1234" authorities="ROLE_MEMBER" />
+			<security:user name="admin" password="{noop}a1234" authorities="ROLE_MEMBER, ROLE_ADMIN" />
 		</security:user-service>
 	</security:authentication-provider>
 </security:authentication-manager>
