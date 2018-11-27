@@ -34,15 +34,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateUser(User user) throws Exception {
+	public int updateUser(User user) throws Exception {
 		log.info("유저 수정");
-		userMapper.updateUser(user);
+		return userMapper.updateUser(user);
 	}
 
 	@Override
-	public void deleteUser(String userId) throws Exception {
+	public int deleteUser(String userId) throws Exception {
 		log.info("유저 삭제");
-		userMapper.deleteUser(userId);
+		return userMapper.deleteUser(userId);
 	}
 
 	@Override
