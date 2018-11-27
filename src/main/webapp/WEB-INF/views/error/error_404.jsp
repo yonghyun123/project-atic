@@ -21,13 +21,13 @@
 </head>
 <body>
 <div id="error_content">
-	<h2><img height="22" width="227" alt="페이지를 찾을 수 없습니다" src="http://static.naver.com/common/error/h2_notfound_s.gif"/></h2>
+	<h2><img height="22" width="227" alt="잘못된 접근입니다." src="http://static.naver.com/common/error/h2_notfound_s.gif"/></h2>
 	<div>
-		<p style="color:blue">죄송합니다. 유효하지 않은 요청입니다(404).<br/>주소를 확인해 주세요.</p>
+		<p style="color:blue">죄송합니다. 접근이 불가능한 페이지입니다.</p>
 	</div>
 	<p class="btn">
 	<input type="submit" value="이전 페이지" style="padding: 3px; color: #333333; border: 1px solid #ddd; margin: 5px 5px" onclick="history.back();"/>
-	<input type="button" value="홈 페이지" style="padding: 3px; color: #333333; border: 1px solid #ddd;" onclick="location.href='/index.jsp'"/>
+	<input type="button" value="홈 페이지" style="padding: 3px; color: #333333; border: 1px solid #ddd;" onclick="location.href='/'"/>
 	</p>
 </div>
 </body>

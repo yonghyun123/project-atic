@@ -34,4 +34,9 @@ public class Project {
 	private String goal_flag;
 	//project 카테고리 식별자
 	private String category_id;
+	//project 카테고리 이름
+	private String category;
+	//project 이미지 이름
+	private String file_name;
+	//project 이미지 타입
 }

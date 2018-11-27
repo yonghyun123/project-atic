@@ -1,7 +1,6 @@
 package com.keb.atic.project.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import com.keb.atic.project.domain.Project;
 
@@ -14,8 +13,12 @@ public interface ProjectMapper {
 	public void createProject(Project project);
 	// 단일 프로젝트 조회
 	public Project readProject(String id);
-	// 조건별 프로젝트 조회(condition key:category_id or goal_flag or regDate)
-	public List<Project> readProjectsByCondition(Map<String, String> condition);
+	// 조건별 프로젝트 조회(condition key: 목표 금액 순)
+	public List<Project> readProjectsByGoal();
+	// 조건별 프로젝트 조회(condition key: 달성률 순)
+	public List<Project> readProjectsByPercent();
+	// 조건별 프로젝트 조회(condition key: 매력도 순)
+	public List<Project> readProjectsByEval();
 	// 전체 프로젝트 조회
 	public List<Project> projectListAll();
 	//프로젝트 삭제

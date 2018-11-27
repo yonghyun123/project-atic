@@ -3,22 +3,71 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.keb.atic.user.mapper.UserMapper">
 
-	<select id="createUser">
+	<insert id="createUser">
+	INSERT INTO at_user 
+	VALUES      (#{id}, 
+             #{name}, 
+             #{nickname}, 
+             #{profile}, 
+             #{acc_num}, 
+             #{acc_pw}, 
+             #{vt_acc_num}, 
+             #{phone}, 
+             0, 
+             #{total_money}) 
+	</insert>
 	
-	</select>
 	<select id="readUser" resultType="com.keb.atic.user.domain.User">
-	
+	SELECT id,
+	   password, 
+       name, 
+       nickname, 
+       PROFILE, 
+       acc_num, 
+       acc_pw, 
+       vt_acc_num, 
+       phone, 
+       total_money
+	FROM   at_user
+	WHERE id = #{id}
 	</select>
+	
 	<select id="userListAll" resultType="com.keb.atic.user.domain.User">
-	
+	SELECT id,
+	   password, 
+       name, 
+       nickname, 
+       PROFILE, 
+       acc_num, 
+       acc_pw, 
+       vt_acc_num, 
+       phone, 
+       total_money
+	FROM   at_user
 	</select>
+	
 	<delete id="deleteUser" >
-	
+	delete from at_user where id=#{id}
 	</delete>
+	
 	<select id="certifyBankUser" resultType="com.keb.atic.user.domain.BankUser">
-	
+	SELECT id, 
+       NAME, 
+       acc_num, 
+       acc_pw 
+	FROM   at_bank_user 
+	WHERE  id = #{id}
 	</select>
-	<update id="updateUser">
 	
+	<update id="updateUser">
+	UPDATE at_user
+		<set>
+			<if test="password != null">password = #{password},</if>
+			<if test="nickname != null">nickname = #{nickname},</if>
+			<if test="profile != null">profile = #{profile},</if>
+			<if test="acc_pw != null">acc_pw = #{acc_pw},</if>
+			<if test="total_money != null">total_money = #{total_money}</if>
+		</set>
+		WHERE id=#{id}
 	</update>
 </mapper>
