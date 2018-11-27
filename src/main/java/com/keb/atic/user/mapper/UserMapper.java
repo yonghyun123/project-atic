@@ -19,7 +19,7 @@ public interface UserMapper {
 	//사용자 삭제
 	public void deleteUser(String id);
 	//기존 은행 회원 유무 확인
-	public BankUser certifyBankUser(BankUser user);
+	public BankUser certifyBankUser(String id);
 	//사용자 정보 업데이트
 	public void updateUser(User user);
 }

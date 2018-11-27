@@ -1,5 +1,6 @@
 package com.keb.atic.common.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,17 +14,28 @@ import lombok.extern.log4j.Log4j;
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
 
     private long start, end; 
-
+    private String loginId = null;
+    
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
     throws Exception {
-         if (log.isDebugEnabled()) {
-              log.debug("-------------------------------------- Controller Start --------------------------------------");
-              start = System.currentTimeMillis();
-              log.debug("Request URI  :  " + request.getRequestURI());
-              log.debug("Controller   :  " + ((HandlerMethod)handler).getBeanType());
-          }
-          return super.preHandle(request, response, handler);
+         
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("loginId")) {
+				loginId = cookie.getValue();
+			}
+		}
+		if (loginId != null) {
+			request.setAttribute("loginId", loginId);
+		}
+		log.debug("-------------------------------------- Controller Start --------------------------------------");
+		start = System.currentTimeMillis();
+		log.debug("Request URI  :  " + request.getRequestURI());
+		log.debug("Controller   :  " + ((HandlerMethod) handler).getBeanType());
+		System.out.println("loginId : " + loginId);
+
+		return super.preHandle(request, response, handler);
     }
 
     @Override
