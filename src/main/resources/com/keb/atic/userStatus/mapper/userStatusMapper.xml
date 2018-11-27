@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keb.atic.userStatus.mapper.UserStatusMapper">
+
+	<select id="createUserStatus">
+	
+	</select>
+	
+	<select id="readUserStatus" resultType="com.keb.atic.userProject.domain.UserProject">
+	
+	</select>
+	
+	<select id="userStatusListByUser" resultType="com.keb.atic.userProject.domain.UserProject">
+	
+	</select>
+	
+	<delete id="deleteUserStatus" >
+	
+	</delete>
+
+	<update id="updateUserStatus">
+	
+	</update>
+</mapper>
