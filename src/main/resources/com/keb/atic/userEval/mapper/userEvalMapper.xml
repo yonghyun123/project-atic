@@ -63,12 +63,20 @@
 	</update>
 	
 	<select id="readUserEvalAvg" resultType="com.keb.atic.userEval.domain.UserEval">
-	SELECT project_id, 
-       Avg(stable_grade) AS stable_grade, 
-       Avg(favor_grade)  AS favor_grade, 
-       Avg(growth_grade) AS growth_grade 
-	FROM   at_user_eval 
-	WHERE  project_id = #{project_id} 
-	GROUP  BY project_id
+	SELECT ( stable_grade + favor_grade + market_grade 
+         + growth_grade ) / 4 AS total_avg, 
+       stable_grade, 
+       favor_grade, 
+       market_grade, 
+       growth_grade, 
+       project_id 
+	FROM   (SELECT Avg(stable_grade) AS stable_grade, 
+               Avg(favor_grade)  AS favor_grade, 
+               Avg(market_grade) AS market_grade, 
+               Avg(growth_grade) AS growth_grade, 
+               project_id 
+        FROM   at_user_eval 
+        WHERE  project_id = #{project_id} 
+        GROUP  BY project_id) 
 	</select>
 </mapper>
