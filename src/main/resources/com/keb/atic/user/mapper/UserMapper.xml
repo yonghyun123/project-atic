@@ -26,8 +26,7 @@
        acc_num, 
        acc_pw, 
        vt_acc_num, 
-       phone, 
-       total_money
+       phone
 	FROM   at_user
 	WHERE id = #{id}
 	</select>

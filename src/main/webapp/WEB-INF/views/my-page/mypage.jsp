@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 <head>
@@ -53,35 +53,32 @@
 				<img class="card-img-top" src="/resources/img/project-image/1_et_1.png" alt="Card image cap">
 				  <div class="card-body">
 				    <h5 class="card-title">내 정보</h5>
-				    <h6 class="card-subtitle mb-2 text-muted">{nickname}</h6>
+				    <h6 class="card-subtitle mb-2 text-muted">${user.nickname}</h6>
 				  </div>
 				</div>
             
                 <div class="card"  style="width: 30rem; margin:20px;">
-
 				  <div class="card-body">
 				    <h5 class="card-title">상세 정보</h5>
-				    <p class="card-text">{name}</p>
-				    <p class="card-text">{tel}</p>
-
+				    <p class="card-text">${user.name}</p>
+				    <p class="card-text">${user.phone}</p>
 				  </div>
 				  <ul class="list-group list-group-flush">
 				  	<li class="list-group-item">실 계좌</li>
-				    <li class="list-group-item">{vt-account-num}</li>
+				    <li class="list-group-item">${user.acc_num}</li>
 				    <li class="list-group-item">가상 계좌</li>
-				    <li class="list-group-item">{vt-account-num}</li>
+				    <li class="list-group-item">${user.vt_acc_num}</li>
 				  </ul>
-
 				</div>
 
 				<div class="card" style="width: 30rem; margin:20px;">
 				  <div class="card-body">
 				    <h5 class="card-title">총 이자률</h5>
-				    <h6 class="card-subtitle mb-2 text-muted">{interest}</h6>
+				    <p class="card-text">${userStatus.totalProfit}</p>
 				    </div>
 				    <div class="card-body">
 				  	<h5 class="card-title">총 적금액</h5>
-				  	<p class="card-text">{total-money}</p>
+				  	<p class="card-text">${userStatus.totalMoney}</p>
 					</div>				  
 				</div>		
             </div>
@@ -185,6 +182,8 @@
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
     
     <script type="text/javascript">
+    
+    
     /* chart.js chart examples */
 	 // chart colors
 	 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
