@@ -17,6 +17,9 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/resources/css/style.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/resources/css/common.css">
 
 </head>
 
@@ -138,8 +141,6 @@
     </div>
     <!-- ##### Cart Area End ##### -->
 
-    <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-
     <!-- ##### All Javascript Files ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
@@ -151,6 +152,8 @@
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/js/active.js"></script>
+
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 
 </html>
