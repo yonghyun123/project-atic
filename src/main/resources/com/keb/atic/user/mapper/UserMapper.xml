@@ -3,21 +3,36 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.keb.atic.user.mapper.UserMapper">
 
-	<select id="createUser">
+	<insert id="createUser">
+	INSERT INTO at_user 
+	VALUES      (#{id}, 
+             #{name}, 
+             #{nickname}, 
+             #{profile}, 
+             #{acc_num}, 
+             #{acc_pw}, 
+             #{vt_acc_num}, 
+             #{phone}, 
+             0, 
+             0) 
+	</insert>
 	
-	</select>
 	<select id="readUser" resultType="com.keb.atic.user.domain.User">
 	
 	</select>
+	
 	<select id="userListAll" resultType="com.keb.atic.user.domain.User">
 	
 	</select>
+	
 	<delete id="deleteUser" >
 	
 	</delete>
+	
 	<select id="certifyBankUser" resultType="com.keb.atic.user.domain.BankUser">
 	
 	</select>
+	
 	<update id="updateUser">
 	
 	</update>

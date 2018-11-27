@@ -1,12 +1,16 @@
 package com.keb.atic.user.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**플랫폼 사용자의 정보를 담는 Domain
  * @author 권현우
  *
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 	//User 은행 id
 	private String id;
