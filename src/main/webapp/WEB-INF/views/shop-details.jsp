@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <html>
 
 <head>
@@ -19,62 +20,9 @@
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="/resources/css/style.css">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	let wsocket;
-	$(window).on("beforeunload", function() {
-		sayBye();
-		setInterval(function(){
-			wsocket.close();
-		}, 500);
-	}
-	);
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/resources/css/common.css">
 
-	function sayBye() {
-		var messageObject = {
-				type : 2000
-		}
-		send(messageObject);
-
-	}
-
-	function send(object) {
-		if (object) {
-			wsocket.send(JSON.stringify(object));
-		}
-	}
-
-	function connect() {
-		wsocket = new WebSocket("ws://localhost/hanaSocket");
-		//wsocket.onopen = onOpen;
-		wsocket.onmessage = onMessage;
-		wsocket.onclose = onClose;
-	}
-
-	
-	function onClose(event) {
-		sayBye();
-	}
-
-	function onMessage(event) {
-		var serverMessage = event.data;
-		var mObject = JSON.parse(serverMessage);
-		switch (mObject.type) {
-		case 1000:
-			var count = mObject.count;
-			$("#currentCount").text(count + "명");
-			break;
-		case 2000:
-			var count = mObject.count;
-			$("#currentCount").text(count + "명");
-			break;
-		}
-
-	}
-	
-	connect();
-</script>
 </head>
 
 <body>
@@ -85,7 +33,7 @@
 		<!-- Top Breadcrumb Area -->
 		<div
 			class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
-			style="background-image: url(img/bg-img/24.jpg);">
+			style="background-image: url(/resources/img/bg-img/24.jpg);">
 			<h2>SHOP DETAILS</h2>
 		</div>
 
@@ -137,15 +85,17 @@
 										</a>
 									</div>
 								</div>
+								<!-- 
 								<ol class="carousel-indicators">
 									<li class="active" data-target="#product_details_slider"
 										data-slide-to="0"
-										style="background-image: url(img/bg-img/49.jpg);"></li>
+										style="background-image: url(/resources/img/bg-img/49.jpg);"></li>
 									<li data-target="#product_details_slider" data-slide-to="1"
-										style="background-image: url(img/bg-img/49.jpg);"></li>
+										style="background-image: url(/resources/img/bg-img/49.jpg);"></li>
 									<li data-target="#product_details_slider" data-slide-to="2"
-										style="background-image: url(img/bg-img/49.jpg);"></li>
+										style="background-image: url(/resources/img/bg-img/49.jpg);"></li>
 								</ol>
+								 -->
 							</div>
 						</div>
 					</div>
@@ -166,8 +116,7 @@
 								<!-- Add to Cart Form -->
 								<form class="cart clearfix d-flex align-items-center"
 									method="post">
-									<button type="submit" name="addtocart" value="5"
-										class="btn alazea-btn ml-15">지금 투자하기</button>
+									<input type="button" id="deposit" value="지금 투자하기" class="btn alazea-btn ml-15">
 								</form>
 
 							</div>
@@ -510,6 +459,141 @@
 	<script src="/resources/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="/resources/js/active.js"></script>
+	
+	<script type="text/javascript">
+		
+	
+		let wsocket;
+		$(window).on("beforeunload", function() {
+			sayBye();
+			setInterval(function() {
+				wsocket.close();
+			}, 500);
+		});
+	
+		function sayBye() {
+			var messageObject = {
+				type : 2000
+			}
+			send(messageObject);
+	
+		}
+	
+		function send(object) {
+			if (object) {
+				wsocket.send(JSON.stringify(object));
+			}
+		}
+	
+		function connect() {
+			wsocket = new WebSocket("ws://localhost/hanaSocket");
+			//wsocket.onopen = onOpen;
+			wsocket.onmessage = onMessage;
+			wsocket.onclose = onClose;
+		}
+	
+		function onClose(event) {
+			sayBye();
+		}
+	
+		function onMessage(event) {
+			var serverMessage = event.data;
+			var mObject = JSON.parse(serverMessage);
+			switch (mObject.type) {
+			case 1000:
+				var count = mObject.count;
+				$("#currentCount").text(count + "명");
+				break;
+			case 2000:
+				var count = mObject.count;
+				$("#currentCount").text(count + "명");
+				break;
+			}
+	
+		}
+		
+		$("#deposit").click(function(){
+			$("#deposit-modal").modal('show');
+		});
+	
+		
+		
+		var currentTab = 0; // Current tab is set to be the first tab (0)
+		showTab(currentTab); // Display the current tab
+
+		function showTab(n) {
+		  // This function will display the specified tab of the form ...
+		  var x = document.getElementsByClassName("tab");
+		  x[n].style.display = "block";
+		  // ... and fix the Previous/Next buttons:
+		  if (n == 0) {
+		    document.getElementById("prevBtn").style.display = "none";
+		  } else {
+		    document.getElementById("prevBtn").style.display = "inline";
+		  }
+		  if (n == (x.length - 1)) {
+		    document.getElementById("nextBtn").innerHTML = "Submit";
+		  } else {
+		    document.getElementById("nextBtn").innerHTML = "Next";
+		  }
+		  // ... and run a function that displays the correct step indicator:
+		  fixStepIndicator(n)
+		}
+
+		function nextPrev(n) {
+		  // This function will figure out which tab to display
+		  var x = document.getElementsByClassName("tab");
+		  // Exit the function if any field in the current tab is invalid:
+		  if (n == 1 && !validateForm()) return false;
+		  // Hide the current tab:
+		  x[currentTab].style.display = "none";
+		  // Increase or decrease the current tab by 1:
+		  currentTab = currentTab + n;
+		  // if you have reached the end of the form... :
+		  if (currentTab >= x.length) {
+		    //...the form gets submitted:
+		    document.getElementById("regForm").submit();
+		    return false;
+		  }
+		  // Otherwise, display the correct tab:
+		  showTab(currentTab);
+		}
+
+		function validateForm() {
+		  // This function deals with validation of the form fields
+		  var x, y, i, valid = true;
+		  x = document.getElementsByClassName("tab");
+		  y = x[currentTab].getElementsByTagName("input");
+		  // A loop that checks every input field in the current tab:
+		  for (i = 0; i < y.length; i++) {
+		    // If a field is empty...
+		    if (y[i].value == "") {
+		      // add an "invalid" class to the field:
+		      y[i].className += " invalid";
+		      // and set the current valid status to false:
+		      valid = false;
+		    }
+		  }
+		  // If the valid status is true, mark the step as finished and valid:
+		  if (valid) {
+		    document.getElementsByClassName("step")[currentTab].className += " finish";
+		  }
+		  return valid; // return the valid status
+		}
+
+		function fixStepIndicator(n) {
+		  // This function removes the "active" class of all steps...
+		  var i, x = document.getElementsByClassName("step");
+		  for (i = 0; i < x.length; i++) {
+		    x[i].className = x[i].className.replace(" active", "");
+		  }
+		  //... and adds the "active" class to the current step:
+		  x[n].className += " active";
+		}
+		
+		
+		connect();
+	</script>
 </body>
 
 </html>

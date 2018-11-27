@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keb.atic.userEval.mapper.UserEvalMapper">
+
+	<select id="createUserEval">
+	
+	</select>
+	
+	<select id="readUserEval" resultType="com.keb.atic.userEval.domain.UserEval">
+	
+	</select>
+	
+	<select id="userEvalListAll" resultType="com.keb.atic.userEval.domain.UserEval">
+	
+	</select>
+	
+	<select id="readUserEvalByUser" resultType="com.keb.atic.userEval.domain.UserEval">
+	
+	</select>
+	
+	<select id="readUserEvalByProject" resultType="com.keb.atic.userEval.domain.UserEval">
+	
+	</select>
+
+	<delete id="deleteUserEvalByCondition"  parameterType="map">
+	
+	</delete>
+
+	<update id="updateUserEval">
+	
+	</update>
+</mapper>

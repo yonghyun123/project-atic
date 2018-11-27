@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keb.atic.projectImage.mapper.ProjectImageMapper">
+
+	<select id="registProjectImage">
+	
+	</select>
+	
+	<select id="readProjectImage"  parameterType="map" resultType="com.keb.atic.projectImage.domain.ProjectImage">
+	
+	</select>
+	
+	<select id="projectImageListAll" resultType="com.keb.atic.projectImage.domain.ProjectImage">
+	
+	</select>
+
+	<delete id="deleteProjectImage" parameterType="map" >
+	
+	</delete>
+
+	<update id="updateProjectImage">
+	
+	</update>
+</mapper>
