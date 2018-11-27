@@ -15,27 +15,29 @@ public class UserStatus {
 	//사용자 투자내역 고유 식별자
 	private String id;
 	//사용자 Id
-	private String user_id;
+	private String userId;
 	//적금 년
 	private String year;
 	//적금 월
 	private String month;
 	//누적 총 이윤
-	private String total_profit;
+	private String totalProfit;
 	//당월 추가 이윤
-	private String cur_profit;
+	private String curProfit;
 	//누적 총 적금액
-	private String total_money;
+	private String totalMoney;
 	//당월 추가 적금액
-	private String cur_money;
-	
-	public UserStatus(String user_id, String total_profit, String cur_profit, String total_money, String cur_money) {
+	private String curMoney;
+	public UserStatus(String userId, String year, String month, String totalProfit, String curProfit, String totalMoney,
+			String curMoney) {
 		super();
-		this.user_id = user_id;
-		this.total_profit = total_profit;
-		this.cur_profit = cur_profit;
-		this.total_money = total_money;
-		this.cur_money = cur_money;
+		this.userId = userId;
+		this.year = year;
+		this.month = month;
+		this.totalProfit = totalProfit;
+		this.curProfit = curProfit;
+		this.totalMoney = totalMoney;
+		this.curMoney = curMoney;
 	}
 	
 	
