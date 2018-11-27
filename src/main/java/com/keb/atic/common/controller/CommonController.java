@@ -81,4 +81,10 @@ public class CommonController {
 		return "single-post";
 	}
 	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String getAdminPage(Locale locale, Model model) {
+		log.info("Welcome Admin-page");		
+		return "admin/admin";
+	}
+	
 }
