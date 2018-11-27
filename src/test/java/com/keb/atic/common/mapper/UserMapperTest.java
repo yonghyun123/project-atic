@@ -1,5 +1,8 @@
 package com.keb.atic.common.mapper;
 
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -19,10 +22,24 @@ public class UserMapperTest {
 	@Inject
 	private UserMapper userMapper;
 	
-	@Test
+//	@Test
 	public void testCreate() {
-		User user = new User("hee","희지니","흐딘","test","1111-1111-2222","1111","9999-9999-9999","01058837760","0","10000","0");
+		User user = new User("hee","1111","희지니","흐딘","test","1111-1111-2222","1111","9999-9999-9999","01058837760","0","10000");
 		userMapper.createUser(user);
 		log.info("성공");
 	}
+	
+//	@Test
+	public void testListAll() {
+		List<User> list = userMapper.userListAll();
+		for (User user : list) {
+			log.info(user);
+		}
+	}
+	
+//	@Test
+	public void testRead() {
+		log.info(userMapper.readUser("test1"));
+	}
+	
 }
