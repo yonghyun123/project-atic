@@ -58,7 +58,7 @@
                     <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
                         <!-- Shop Page Count -->
                         <div class="shop-page-count">
-                            <p>진행중인 펀딩이 <c:out value="${count }"/>건의 있습니다</p>
+                            <p>진행중인 펀딩이 <c:out value="${count }"/>건이 있습니다</p>
                         </div>
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
@@ -94,7 +94,13 @@
                                   <a href="/shop/detail/${project.id }">
                                       <h6> ${project.name } </h6>
                                   </a>
-                                  <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                                  <h6>목표금액 : ${project.goal }</h6>
+                                  <div class="progress">
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+  aria-valuemin="0" aria-valuemax="100" style="width:50%">
+     40%
+  </div>
+</div>
                               </div>
                           </div>
                           </div>
@@ -127,23 +133,18 @@
 	<div class="single-product-area mb-50">
     	<!-- Product Image -->	
 	    <div class="product-img">
-    	<form id="form{id}" action="/shop/details" method="post">
-        	<a href="/shop-details">
-	        <img src="/resources/img/project-image/{fileName}" alt=""></a>
-   	     <input type="hidden" value="{id}">
-   	     <!-- Product Tag -->
-   	     <div class="product-tag">
-   	         <a href="#">Hot</a>
-   	     </div>
-   	     </form>
-   	 </div>
-   	 <!-- Product Info -->
-   	 <div class="product-info mt-15 text-center">
-   	     <a href="/shop-details">
-   	         <h6> {name} </h6>
-   	     </a>
-   	     <h6>업종 : {category} / 목표금액 : {goal}</h6>
-   	 </div>
+          <a href="/shop/detail/{id}">
+          <img src="/resources/img/project-image/{fileName}" alt=""></a>
+          <div class="product-tag">
+          <a href="#">Hot</a>
+          </div>
+          </div>
+          <div class="product-info mt-15 text-center">
+          <a href="/shop/detail/{id}">
+          <h6> {name} </h6>
+          </a>
+          <h6>업종 : {category} / 목표금액 : {goal}</h6>
+          </div>
 		</div>
 	</div>
 </script>
