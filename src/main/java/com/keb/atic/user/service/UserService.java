@@ -30,7 +30,10 @@ public interface UserService {
 	/* 로그인 시 id와 비밀번호를 통한 회원 조회 */
 	public BankUser certifyBankUser(String userId) throws Exception;
 	
-	// 닉네임 중복여부 확인을 위한 조회
+	/* 닉네임 중복여부 확인을 위한 조회 */
 	public int searchNickname(String nickname);
+	
+	/* 가상계좌 생성 */
+	public int updateUserVt(String nickname);
 	
 }
