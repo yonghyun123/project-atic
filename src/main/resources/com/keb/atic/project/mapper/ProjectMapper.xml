@@ -150,19 +150,16 @@
 					ORDER  BY ( p.cur_price / p.goal ) DESC
 			       </when>
 			       <when test='condition != null and condition.equals("eval")'>
-					FROM   at_project p 
-			       		JOIN at_category c 
-			         	ON p.category_id = c.id 
-			       		JOIN at_project_image pi 
-			         	ON p.id = pi.project_id 
-			       		JOIN at_file_info f 
-			         	ON pi.file_id = f.file_id 
-			       		LEFT OUTER JOIN at_user_eval e 
-			                    ON p.id = e.project_id 
-					WHERE  To_char(p.create_date, 'Month') = #{month}
-			       		AND pi.image_type = 'th' 
-					ORDER  BY Nvl(stable_grade + favor_grade + growth_grade 
-			              + market_grade, 0) DESC 
+					from AT_project p join at_category c
+					on p.category_id = c.ID join AT_PROJECT_IMAGE pi
+					on p.id = pi.PROJECT_ID join AT_FILE_INFO f
+					on pi.FILE_ID = f.FILE_ID left outer join AT_USER_EVAL e
+					on p.ID = e.PROJECT_ID
+					where  to_char(p.create_date,'Month') = #{month} 
+					and pi.IMAGE_TYPE = 'th'
+					group by p.id, p.name, p.goal, p.company, c.name, 
+					p.create_date, f.FILE_NAME
+					order by nvl(avg(STABLE_GRADE + FAVOR_GRADE + GROWTH_GRADE + MARKET_GRADE),0) desc
 			   		</when> 
 			       </choose>
 	</select>

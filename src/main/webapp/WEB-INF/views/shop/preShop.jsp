@@ -84,7 +84,7 @@
                               <!-- Product Image -->
                               <div class="product-img">
                               <form id="form${project.id}" action="/shop/details" method="post">
-                                  <a href="/shop-details">
+                                 <a href="/shop/detail/${project.id }">
                                   <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
                                   <input type="hidden" value="${project.id }">
                                   <!-- Product Tag -->
@@ -164,7 +164,7 @@ var condition = $("#search_by option:selected").val();
 		dataType : "text",
 		data : {
 			'condition' : condition,
-			'whichProject' : whichProject
+			'whichProject' : 'preProject'
 		},
 		success : function(data){
 			var jsonModifyData = JSON.parse(data);
