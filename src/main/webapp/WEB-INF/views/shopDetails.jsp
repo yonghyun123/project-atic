@@ -467,10 +467,10 @@
 	<script type="text/javascript">
 		let wsocket;
 		$(window).on("beforeunload", function() {
-			setInterval(function() {
 				sayBye();
-			}, 500);
+			setInterval(function(){
 				wsocket.close();
+			}, 1000)
 		});
 
 		
