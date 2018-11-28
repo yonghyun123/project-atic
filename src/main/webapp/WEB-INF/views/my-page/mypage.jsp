@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 
 <head>
@@ -74,11 +76,12 @@
 				<div class="card" style="width: 30rem; margin:20px;">
 				  <div class="card-body">
 				    <h5 class="card-title">총 이자률</h5>
-				    <p class="card-text">${userStatus.totalProfit}</p>
+				    <c:set var="profit" value="${userStatus.totalProfit*100}"/>
+				    <p class="card-text" style="color: blue">${profit}%</p>
 				    </div>
 				    <div class="card-body">
 				  	<h5 class="card-title">총 적금액</h5>
-				  	<p class="card-text">${userStatus.totalMoney}</p>
+				  	<p class="card-text" style="color: blue"><fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
 					</div>				  
 				</div>		
             </div>
@@ -107,18 +110,12 @@
 	                   <p>당신의 적금현황을 보여드립니다. 여러 기업에 호감도와 적금을 투자하셔서 12개월 만기를 채우시면 기존 이율보다 높은 수익률을 느끼실 수 있습니다.</p>
 	
 	                   <!-- Progress Bar Content Area -->
-	                   <div class="alazea-progress-bar">
-	                       <!-- Single Progress Bar -->
-	                       <div class="single_progress_bar">
-	                           <p>만기 도달 개월수(%)</p>
-	                           <div id="bar1" class="barfiller">
-	                               <div class="tipWrap">
-	                                   <span class="tip"></span>
-	                               </div>
-	                               <span class="fill" data-percentage="40.3"></span>
-	                           </div>
-	                       </div>
-	                   </div>
+                       <p>만기 도달 개월수(%)</p>
+	                   <div class="progress">
+						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" id="prog-date" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+						    50% Complete (info)
+						  </div>
+						</div>
 	               </div>
 			    </div>
 			    <!-- 수익률 그래프 그려져야 하는 부분 -->
@@ -182,7 +179,34 @@
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
     
     <script type="text/javascript">
-     
+    
+    /* 날짜계산하기 */
+    function calculDate(){
+    	var now = new Date();  
+    	var year= now.getFullYear();  
+    	var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);  
+    	var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();  
+    	var curDate = year + '-'+ mon+ '-' + day
+    	var lastDate = "2019-06-30";
+        var arr1 = curDate.split('-');
+        var arr2 = lastDate.split('-');
+        var dat1 = new Date(arr1[0], arr1[1], arr1[2]);
+        var dat2 = new Date(arr2[0], arr2[1], arr2[2]);
+        var diff = dat2 - dat1;
+        var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+        var difDate = parseInt(diff/currDay);
+        
+        const datePerc = Math.round(difDate / 365 * 100,2) + "%";
+        //percent 동적삽입
+        $("#prog-date").css("width",datePerc);
+        $("#prog-date").text(datePerc+"달성!");
+        
+        
+    }
+    
+    calculDate();
+    
+    
 	 /*
 	 javascript AJAX Service(read, put, post...)
 	 created by yonghyun
@@ -223,88 +247,127 @@
 
 			return {
 				add : add,
-				get : get,
-				getList : getList,
+				get : get
 			};
 
 		})();
 	 
 	 /* AJAX 사용 */
 	 userStatusService.get("test1", function(list){
-		 list.forEach(function(v) {
-		 	
-		 })
+		 // 월별 만기 환급액
+		 var totalDepositMonth = [];
+		 // 월별 적금액
+		 var curDepositMonth = [];
+		 // 월별 이자율
+		 var profitMonth = [];
+		 
+		 list.graphList.forEach(function(v) {
+		 	totalDepositMonth.push(v.totalMoney);
+		 	curDepositMonth.push(v.curMoney);
+		 	v.totalProfit = Number(v.totalProfit) * 100;
+		 	profitMonth.push(v.totalProfit);
+		 });
+		 
+		 totalDepoitGraph(curDepositMonth,totalDepositMonth);
+		 profitGraph(profitMonth);
+		 
 	 })
 	 
-	 
-	     /* chart.js chart examples */
-	 // chart colors
-	 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
-	
-	 /* large line chart */
-	 var chLine = document.getElementById("chLine");
-	 var chartData = {
-	   labels: ["8월", "9월", "10월", "11월", "12월"],
-	   datasets: [{
-		 label: "월별 적금 금액",
-	     data: [100000, 200000, 100000, 300000, 200000, 400000, 500000],
-	     backgroundColor: 'transparent',
-	     borderColor: colors[0],
-	     borderWidth: 4,
-	     pointBackgroundColor: colors[0]
-	   },
-	   {
-		 label: "만기시 월별 환금 금액",
-		 data: [102130, 312323, 421214, 521231, 624242, 1000123, 1200020],
-	     backgroundColor: colors[3],
-	     borderColor: colors[1],
-	     borderWidth: 4,
-	     pointBackgroundColor: colors[1]
-	   }]
-	 };
-	
-	 if (chLine) {
-	   new Chart(chLine, {
-	   type: 'line',
-	   data: chartData,
-	   options: {
-	     scales: {
-	       yAxes: [{
-	         ticks: {
-	           beginAtZero: false
-	         }
-	       }]
-	     },
-	     legend: {
-	       display: true
-	     }
-	   }
-	   });
+	 function totalDepoitGraph(depositDataset, totalDataset){
+		 /* chart.js chart examples */
+		 // chart colors
+		 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
+		 var chLine = document.getElementById("chLine");
+		 /* large line chart */
+		 
+		 var chartData = {
+		   labels: ["7월", "8월", "9월", "10월", "11월"],
+		   datasets: [{
+			 label: "월별 적금 금액",
+		     data: depositDataset,
+		     backgroundColor: 'transparent',
+		     borderColor: colors[0],
+		     borderWidth: 4,
+		     pointBackgroundColor: colors[0]
+		   },
+		   {
+			 label: "만기시 월별 환금 금액",
+			 data: totalDataset,
+		     backgroundColor: colors[3],
+		     borderColor: colors[1],
+		     borderWidth: 4,
+		     pointBackgroundColor: colors[1]
+		   }]
+		 };
+		 
+		 /*누적금액 월평 금액 선 그래프  */
+		 if (chLine) {
+		   new Chart(chLine, {
+		   type: 'line',
+
+		   data: chartData,
+		   options: {
+		   	 title:{
+		   		 display: true,
+			     text: '월별 수익률 현황(원)'
+		     },
+		     scales: {
+		       yAxes: [{
+		         ticks: {
+		           beginAtZero: false
+		         }
+		       }]
+		     },
+		     
+		     legend: {
+		       display: true
+		       
+		     },
+	         tooltips: {
+	            mode: 'label',
+	            label: 'mylabel',
+	            callbacks: {
+	                label: function(tooltipItem, data) {
+	                    return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }, 
+                },
+		     }
+		   }
+		   });
+	 	}
 	 }
 	 
-	 /* 수평 바 chart 이윤 증가율 */
-	 new Chart(document.getElementById("bar-chart-horizontal"), {
-	    type: 'horizontalBar',
-	    data: {
-	      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-	      datasets: [
-	        {
-	          label: "Population (millions)",
-	          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-	          data: [2478,5267,734,784,433]
-	        }
-	      ]
-	    },
-	    options: {
-	      legend: { display: false },
-	      title: {
-	        display: true,
-	        text: 'Predicted world population (millions) in 2050'
-	      }
-	    }
-	});
-    
-    
+	 function profitGraph(profitDataset){
+		 /* 수평 바 chart 이윤 증가율 */
+		 new Chart(document.getElementById("bar-chart-horizontal"), {
+		    type: 'horizontalBar',
+		    data: {
+		      labels: ["7월", "8월", "9월", "10월", "11월"],
+		      datasets: [
+		        {
+		          label: "profit (%)",
+		          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+		          data: profitDataset
+		        }
+		      ]
+		    },
+		    options: {
+		      legend: { display: false },
+		      scales: {
+			       xAxes:[{
+			    	 ticks:{
+			    		 min:2.9
+			    	 }   
+			       }]
+			     },
+		      title: {
+		        display: true,
+		        text: '월별 이자 증가율(%)'
+		        
+		      }
+		    }
+		});
+	 }
     </script>
 </body>
 </html>
