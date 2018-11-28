@@ -18,8 +18,8 @@
             <div class="form-group">
               <label><span class="glyphicon glyphicon-eye-open"></span> Password</label>
               <input type="password" class="form-control" name="password" id="psw" placeholder="Enter Password" required>
+              <span id="login-fail-text">로그인 정보를 다시 확인해주세요!</span>
             </div>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
               <button type="button" class="btn btn-success btn-block" id="login-bt"><span class="glyphicon glyphicon-off"></span>Login</button>
           </form>
           <button type="submit" class="btn btn-danger btn-default btn-cancel" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -38,8 +38,18 @@
         	url: '/user/login',
         	data: params,
         	success: function (data) {
+        		var count = 0;
         		if(data.trim() == 'userNone') {
-        			alert("로그인에 실패했습니다");
+        			var selector = document.getElementById('login-fail-text');
+        			var fadeIn = setInterval( function() {
+        				selector.style.visibility = 'visible';
+        				if(count >= 5) {
+        					selector.style.visibility = 'hidden';
+        					clearInterval(fadeIn);
+        					return ;
+        				}
+        				count++;
+        			}, 500);
         		} else if(data.trim() == 'nickNone') {
         			$('#login-modal').modal('hide');
               		$('#nickname-modal').modal('show');
