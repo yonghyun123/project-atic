@@ -16,10 +16,12 @@ public interface UserMapper {
 	public User readUser(String id);
 	// 전체 사용자 조회
 	public List<User> userListAll();
-	//사용자 삭제
+	// 사용자 삭제
 	public int deleteUser(String id);
-	//기존 은행 회원 유무 확인
+	// 기존 은행 회원 유무 확인
 	public BankUser certifyBankUser(String id);
-	//사용자 정보 업데이트
+	// 사용자 정보 업데이트
 	public int updateUser(User user);
+	// 닉네임 중복여부 확인을 위한 조회
+	public int searchNickname(String nickname);
 }

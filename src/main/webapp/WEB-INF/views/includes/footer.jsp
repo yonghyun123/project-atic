@@ -5,6 +5,10 @@
 $(document).ready(function(){
   $("#login").on("click", function(e) {
     $("#login-modal").modal('show');
+  });
+  
+  $("#logout").on("click", function(e) {
+	$("#logout-modal").modal('show');
   })
 });
 </script>
@@ -15,7 +19,6 @@ $(document).ready(function(){
     <div class="main-footer-area">
         <div class="container">
             <div class="row">
-
                 <!-- Single Footer Widget -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-footer-widget">

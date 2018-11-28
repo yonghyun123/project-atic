@@ -1,11 +1,15 @@
 package com.keb.atic.user.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -71,4 +75,30 @@ public class UserController {
 		statusMap.put("graphList", statusList);
 		return statusMap;
 	}
+	
+	
+	/* 닉네임 조회 Controller */
+	@GetMapping(value="/id/{id}/nickname/{nickname}")
+	public String getNickname(Model model, @PathVariable("nickname") String nickname, @PathVariable("id") String id,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		log.info("닉네임 중복 조회");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(userService.searchNickname(nickname) != 0) {
+			out.println("duplicate");
+		} else {
+			User user = userService.readUser(id);
+			user.setNickname(nickname);
+			userService.updateUser(user);
+			out.println("nick-success");
+		}
+		return null; 
+	}
+
 }

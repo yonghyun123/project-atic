@@ -4,7 +4,9 @@
 
 <!-- Modal Area Start -->
 <%@ include file="/WEB-INF/views/modal/login.jsp"%>
+<%@ include file="/WEB-INF/views/modal/logout.jsp"%>
 <%@ include file="/WEB-INF/views/modal/deposit.jsp"%>
+<%@ include file="/WEB-INF/views/modal/nickname.jsp"%>
 <!-- Modal Area End -->
 
 <!-- Preloader -->
@@ -55,8 +57,15 @@
                     <li><a href="#">오픈된 상품</a></li>
                   </ul></li>
                 <li><a href="#">이용 가이드</a></li>
-
-                <li><a id="login">로그인</a></li>
+                <c:choose>
+                  <c:when test="${not empty loginId }">
+                    <li><a id="my-page">마이 페이지</a></li>
+                    <li><a id="logout">로그아웃</a></li>
+                  </c:when>
+                  <c:otherwise>
+                    <li><a id="login">로그인</a></li>  
+                  </c:otherwise>
+                </c:choose>
               </ul>
 
               <!-- Search Icon -->
