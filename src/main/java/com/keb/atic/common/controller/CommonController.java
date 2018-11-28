@@ -1,7 +1,9 @@
 package com.keb.atic.common.controller;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,15 +25,24 @@ public class CommonController {
 	private ProjectService projectService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
 		int nextMonth = thisMonth +1;
 		if(nextMonth >12) {
 			nextMonth-=12;
 		}
-		model.addAttribute("hotList",projectService.readMonthProjectByGoal(String.valueOf(thisMonth)));
-		model.addAttribute("nextList",projectService.readMonthProjectByGoal(String.valueOf(nextMonth)));
+		String count = "3";
+		/**인기 프로젝트 리스트*/
+		Map<String, String>hotMap = new HashMap<String,String>();
+		hotMap.put("month", String.valueOf(thisMonth)+"월");
+		hotMap.put("count", count);
+		/**등록예정 프로젝트 리스트*/
+		Map<String, String>nextMap = new HashMap<String,String>();
+		nextMap.put("month", String.valueOf(nextMonth)+"월");
+		nextMap.put("count", count);
+		
+		model.addAttribute("hotList",projectService.readMonthProjectByGoal(hotMap));
+		model.addAttribute("nextList",projectService.readMonthProjectByGoal(nextMap));
 		log.info("Welcome IndexPage");		
 		return "index";
 	}
@@ -69,6 +80,12 @@ public class CommonController {
 	public String portfolio(Locale locale, Model model) {
 		log.info("Welcome PortfolioPage");		
 		return "portfolio";
+	}
+	
+	@RequestMapping(value="/preshop" , method = RequestMethod.GET)
+	public String preShop(Locale locale, Model model) {
+		log.info("Welcome preShop");		
+		return "preShop";
 	}
 	
 	@RequestMapping(value = "/shop-details", method = RequestMethod.GET)

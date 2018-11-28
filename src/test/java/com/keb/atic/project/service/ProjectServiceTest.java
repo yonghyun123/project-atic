@@ -1,6 +1,8 @@
 package com.keb.atic.project.service;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -28,15 +30,30 @@ public class ProjectServiceTest{
 	public void testOrderByGoal() {
 		log.info(service.readProjectsByGoal());
 	}
-	@Test
+	//@Test
 	public void testNextProject() {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		int month = cal.get(GregorianCalendar.MONTH)+2;
 		if(month >12) {
 			month-=12;
 		}
-		log.info(service.readMonthProjectByGoal(String.valueOf(month)));
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("month",String.valueOf(month) + "월" );
+		map.put("count", "4");
+		log.info(service.readMonthProjectByGoal(map));
 	}
 	
+	@Test
+	public void testByCondition() {
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		int month = cal.get(GregorianCalendar.MONTH)+1;
+		if(month >12) {
+			month-=12;
+		}
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("month",String.valueOf(month) + "월" );
+		map.put("condition", "eval");
+		log.info(service.readProjectByCondition(map));
+	}
 
 }

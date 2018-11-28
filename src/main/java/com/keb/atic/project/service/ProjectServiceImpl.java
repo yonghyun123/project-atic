@@ -1,6 +1,7 @@
 package com.keb.atic.project.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,8 +68,14 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public List<Project> readMonthProjectByGoal(String month) {
+	public List<Project> readMonthProjectByGoal(Map<String, String> map) {
 		log.info("list by Month");
-		return mapper.readMonthProjectByGoal(month+"월");
+		return mapper.readMonthProjectByGoal(map);
+	}
+
+	@Override
+	public List<Project> readProjectByCondition(Map<String, String> map) {
+		log.info("list by Condition");
+		return mapper.readProjectByCondition(map);
 	}
 }
