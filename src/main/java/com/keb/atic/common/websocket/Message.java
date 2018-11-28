@@ -4,6 +4,7 @@ public class Message {
 	private int type;
 	private int count;
 	private String message;
+	private String projectId;
 	
 	public Message() {}
 
@@ -11,6 +12,15 @@ public class Message {
 		super();
 		this.type = type;
 		this.count = count;
+	}
+
+	
+	public String getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
 	}
 
 	public int getType() {
@@ -39,8 +49,10 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [type=" + type + ", count=" + count + ", message=" + message + "]";
+		return "Message [type=" + type + ", count=" + count + ", message=" + message + ", projectId=" + projectId + "]";
 	}
+
+	
 	
 	
 	
