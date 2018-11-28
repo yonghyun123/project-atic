@@ -13,9 +13,17 @@
 	margin-top: 1%;
 }
 
-#login-fail-text, #nickname-fail-text {
+#login-fail-text, #nickname-fail-text, #menual-fail-text {
 	color: red;
 	visibility: hidden;
+}
+
+#menual-fail-text {
+	font-size: 24px;
+}
+
+#login-bt {
+	margin-top: 4%;
 }
 
 /* logout-modal CSS */
@@ -53,9 +61,98 @@
 	margin-top: 1%;
 } 
 
-/** depoist-modal CSS*/
+/* nickname-modal CSS */
+
+.form-group label h4 {
+	 display: inline-block;
+}
+
+#nickname-bt {
+	margin-top: 4%;
+}
+
+/* deposit-menual-modal CSS */
+
+input[type="checkbox"] {
+	width: 5%;
+}
+
+.dropdown div label {
+	margin-left: 32%;
+	display: block;
+}
+
+#menual-form {
+	padding: 3% 8% 0 8%;
+}
+
+#menual-form > div > div {
+	padding: 3% 10% 3% 10%;
+}
+
+#menual-form h4 {
+	display: inline-block;
+}
+
+#deposit-menual-bt {
+	margin-top: 5%;
+}
+
+.menual-container {
+	border: 1px solid #dddfe1;
+}
+
+.menual-cancel-bt {
+	padding: 0 8% 2% 8%;
+}
+
+#deposit-menual-modal .deposit-menual-modal-dialog {
+	max-width: 1000px;
+	margin-top: 1%;
+}
+
+#deposit-menual-modal .modal-content {
+	max-height: 100%;
+    overflow-y: auto;
+}
+
+.dropdown-content div h5 {
+	text-align: center;
+}
+
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.show {display: block;}
 
 /* Style the form */
+
 #regForm {
   background-color: #ffffff;
   margin: 100px auto;
@@ -65,6 +162,7 @@
 }
 
 /* Style the input fields */
+
 input {
   padding: 10px;
   width: 100%;
@@ -74,16 +172,19 @@ input {
 }
 
 /* Mark input boxes that gets an error on validation: */
+
 input.invalid {
   background-color: #ffdddd;
 }
 
 /* Hide all steps by default: */
+
 .tab {
   display: none;
 }
 
 /* Make circles that indicate the steps of the form: */
+
 .step {
   height: 15px;
   width: 15px;
@@ -96,11 +197,13 @@ input.invalid {
 }
 
 /* Mark the active step: */
+
 .step.active {
   opacity: 1;
 }
 
 /* Mark the steps that are finished and valid: */
+
 .step.finish {
   background-color: #4CAF50;
 }

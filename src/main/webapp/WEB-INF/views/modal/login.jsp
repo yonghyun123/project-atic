@@ -18,7 +18,7 @@
             <div class="form-group">
               <label><span class="glyphicon glyphicon-eye-open"></span> Password</label>
               <input type="password" class="form-control" name="password" id="psw" placeholder="Enter Password" required>
-              <span id="login-fail-text">로그인 정보를 다시 확인해주세요!</span>
+              <span id="login-fail-text"></span>
             </div>
               <button type="button" class="btn btn-success btn-block" id="login-bt"><span class="glyphicon glyphicon-off"></span>Login</button>
           </form>
@@ -41,22 +41,30 @@
         		var count = 0;
         		if(data.trim() == 'userNone') {
         			var selector = document.getElementById('login-fail-text');
-        			var fadeIn = setInterval( function() {
-        				selector.style.visibility = 'visible';
-        				if(count >= 5) {
-        					selector.style.visibility = 'hidden';
-        					clearInterval(fadeIn);
-        					return ;
-        				}
-        				count++;
-        			}, 500);
+        			messageView(selector, "로그인 정보를 다시 확인해주세요.");
         		} else if(data.trim() == 'nickNone') {
         			$('#login-modal').modal('hide');
               		$('#nickname-modal').modal('show');
+              		$("body").css("overflow-y", "hidden");
         		} else {
         			window.location.reload();
         		}
   	    	}
     	})
+    	
+    	/* 에러메세지 출력 메서드 */
+    	function messageView(selector, message) {
+  		var count = 0;
+  		var fadeIn = setInterval( function() {
+  			selector.style.visibility = 'visible';
+  			selector.innerHTML = message;
+  			if(count >= 5) {
+  				selector.style.visibility = 'hidden';
+  				clearInterval(fadeIn);
+  				return ;
+  			}
+  			count++;
+  		}, 500);
+  	}
   	}
  </script>
