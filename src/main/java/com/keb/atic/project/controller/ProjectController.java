@@ -1,5 +1,7 @@
 package com.keb.atic.project.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.keb.atic.project.domain.Project;
 import com.keb.atic.project.service.ProjectService;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +28,16 @@ public class ProjectController {
 	@GetMapping("")
 	public String listAll( Model model) {
 		log.info("list ");
-		model.addAttribute("list", projectService.projectListAll());
+		JsonArray jsonArray = new JsonArray();
+		JsonObject jsonObject = null;
+		List<Project> list = null;
+		list = projectService.projectListAll();
+		for (Project project : list) {
+			jsonObject = new JsonObject();
+			jsonObject.put(,project.get)
+		}
+		
+		model.addAttribute("count", projectService.projectListAll().size());
 		return "/shop" ;
 	}
 	
@@ -31,12 +45,15 @@ public class ProjectController {
 	public String listByConditon(@RequestParam("condition") String condition, RedirectAttributes rttr) {
 		log.info("list by condition");
 		log.info(condition);
-		if(condition.equals("목표 금액 순")) {
+		if(condition.equals("1")) {
 			rttr.addFlashAttribute("list", projectService.readProjectsByGoal());
-		} else if(condition.equals("달성률 순")) {
+			rttr.addFlashAttribute("count", projectService.readProjectsByGoal().size());
+		} else if(condition.equals("2")) {
 			rttr.addFlashAttribute("list", projectService.readProjectsByPercent());
-		} else if(condition.equals("예비 평점 순")){
+			rttr.addFlashAttribute("count", projectService.readProjectsByPercent().size());
+		} else if(condition.equals("3")){
 			rttr.addFlashAttribute("list", projectService.readProjectsByEval());
+			rttr.addFlashAttribute("count", projectService.readProjectsByEval().size());
 		}
 		return null ;
 	}
