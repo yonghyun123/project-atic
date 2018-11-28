@@ -22,52 +22,67 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/resources/css/common.css">
     
+        <!-- slick -->
+    <link href="/resources/css/slick.css" rel="stylesheet">
+    <link href="/resources/css/slick-theme.css" rel="stylesheet">    
 </head>
 
 <body>
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
     
-    <!-- ##### Breadcrumb Area Start ##### -->
-    <div class="breadcrumb-area">
-        <!-- Top Breadcrumb Area -->
-        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/bg-img/24.jpg);">
-            <h2>Shop</h2>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
+    <!-- ##### slide Area Start ##### -->
+    <div style="height: 90px"></div>
+    <section class=PreProjctSector01>
+    <nav id="investNav"style="height: 10%">
+      <ul>
+        <li id="investMain" value="investMain" value="main">펀딩 홈</li>
+        <li class="monthProject" id="curProject" value="currentShop">진행중</li>
+        <li class="monthProject"  id="preProject" value="preShop">오픈예정</li>
+      </ul>
+    </nav>
+    <div id="mainView">
+      <div class="single-item">
+        <img src="/resources/img/bg-img/1.jpg"><img
+          src="/resources/img/bg-img/2.jpg"> <img
+          src="/resources/img/bg-img/3.jpg">
+      </div>
     </div>
-    <!-- ##### Breadcrumb Area End ##### -->
+  </section>
+    <!-- ##### slide Area End ##### -->
 
     <!-- ##### Shop Area Start ##### -->
-    <section class="shop-page section-padding-0-100">
+    <section class="shop-page section-padding-20-100">
         <div class="container">
             <div class="row">
-                <!-- Shop Sorting Data -->
-                <div class="col-12">
-                    <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
-                        <!-- Shop Page Count -->
-                        <div class="shop-page-count">
-                            <p>진행중인 펀딩이 <c:out value="${count }"/>건의 있습니다</p>
-                        </div>
-                        <!-- Search by Terms -->
-                        <div class="search_by_terms">
-                                <select id="search_by" class="custom-select widget-title">
-                                  <option selected>정렬</option>
-                                  <option value="1">목표 금액 순</option>
-                                  <option value="2">달성률 순</option>
-                                  <option value="3">예비 평점 순</option>
-                                </select>
+                <!-- All Products Area -->
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="shop-products-area">
+                        <div class="row" id="templateBody">
+                <c:forEach var="project" items="${curList }" varStatus="status">
+                        <div class="col-12 col-sm-6 col-lg-4">
+                          <div class="single-product-area mb-50">
+                              <!-- Product Image -->
+                              <div class="product-img">
+                              <form id="form${project.id}" action="/shop/details" method="post">
+                                  <a href="/shop-details">
+                                  <img src="/resources/img/project-image/${project.file_name }" alt=""></a>
+                                  <input type="hidden" value="${project.id }">
+                                  <!-- Product Tag -->
+                                  <div class="product-tag">
+                                      <a href="#">Hot</a>
+                                  </div>
+                                  </form>
+                              </div>
+                              <!-- Product Info -->
+                              <div class="product-info mt-15 text-center">
+                                  <a href="/shop-details">
+                                      <h6> ${project.name } </h6>
+                                  </a>
+                                  <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                              </div>
+                          </div>
+                          </div>
+                    </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -77,7 +92,7 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row" id="templateBody">
-                <c:forEach var="project" items="${list }" varStatus="status">
+                <c:forEach var="project" items="${preList }" varStatus="status">
                         <div class="col-12 col-sm-6 col-lg-4">
                           <div class="single-product-area mb-50">
                               <!-- Product Image -->
@@ -121,35 +136,28 @@
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/js/active.js"></script>
+          <!-- slick js -->
+  <script type="text/javascript" src="/resources/js/slick.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function() {
+        $('.single-item').slick({
+          autoplay:true,
+          autoplaySpeed:3000,
+          dots: false,
+          arrows: true,
+          pauseOnHover:true
+        });
+        
+        $('.monthProject').click(function(){
+        	 whichProject = $(this).attr('value');
+  			location.href = "/"+whichProject;
 
+      });
+     });
+      
+</script>
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
-
-<script id="templateList" type="text/template">
-	<div class="col-12 col-sm-6 col-lg-4">
-	<div class="single-product-area mb-50">
-    	<!-- Product Image -->	
-	    <div class="product-img">
-    	<form id="form{id}" action="/shop/details" method="post">
-        	<a href="/shop-details">
-	        <img src="/resources/img/project-image/{fileName}" alt=""></a>
-   	     <input type="hidden" value="{id}">
-   	     <!-- Product Tag -->
-   	     <div class="product-tag">
-   	         <a href="#">Hot</a>
-   	     </div>
-   	     </form>
-   	 </div>
-   	 <!-- Product Info -->
-   	 <div class="product-info mt-15 text-center">
-   	     <a href="/shop-details">
-   	         <h6> {name} </h6>
-   	     </a>
-   	     <h6>업종 : {category} / 목표금액 : {goal}</h6>
-   	 </div>
-		</div>
-	</div>
-</script>
 
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
@@ -160,7 +168,8 @@ var condition = $("#search_by option:selected").val();
 		url : "/shop/search",
 		dataType : "text",
 		data : {
-			'condition' : condition
+			'condition' : condition,
+			'whichProject' : whichProject
 		},
 		success : function(data){
 			var jsonModifyData = JSON.parse(data);
@@ -170,10 +179,14 @@ var condition = $("#search_by option:selected").val();
 }
 });
 function searchTemplate(jsonModifyData) {
+	//템플릿 내용
     var templateHtml = document.querySelector('#templateList').innerHTML;
-    var originHtml = document.querySelector('#templateBody');
+    //
+	var originHtml = document.querySelector('#templateBody');
     var newHtml = '';
+    var projectCount = 0;
     jsonModifyData.forEach(function(v, i) {
+    	projectCount++;
       newHtml += templateHtml.replace('{id}', v.id)
           				  .replace('{fileName}', v.fileName)
           				  .replace('{name}', v.name)
@@ -181,6 +194,35 @@ function searchTemplate(jsonModifyData) {
           				  .replace('{goal}', v.goal)
     });
     originHtml.innerHTML = newHtml;
+    var counterHtml = document.querySelector("#countBody")
+    counterHtml.innerHTML = "<p>진행중인 펀딩이 "+ projectCount + "건 있습니다.</p>" ;
   }
 </script>
+<!-- projectCard 템플릿 -->
+<script id="templateList" type="text/template">
+  <div class="col-12 col-sm-6 col-lg-4">
+  <div class="single-product-area mb-50">
+      <!-- Product Image -->  
+      <div class="product-img">
+      <form id="form{id}" action="/shop/details" method="post">
+          <a href="/shop-details">
+          <img src="/resources/img/project-image/{fileName}" alt=""></a>
+         <input type="hidden" value="{id}">
+         <!-- Product Tag -->
+         <div class="product-tag">
+             <a href="#">Hot</a>
+         </div>
+         </form>
+     </div>
+     <!-- Product Info -->
+     <div class="product-info mt-15 text-center">
+         <a href="/shop-details">
+             <h6> {name} </h6>
+         </a>
+         <h6>업종 : {category} / 목표금액 : {goal}</h6>
+     </div>
+    </div>
+  </div>
+</script>
+
 </html>
