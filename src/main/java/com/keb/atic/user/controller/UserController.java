@@ -79,7 +79,7 @@ public class UserController {
 	
 	/* 닉네임 조회 Controller */
 	@GetMapping(value="/id/{id}/nickname/{nickname}")
-	public String getNickname(Model model, @PathVariable("nickname") String nickname, @PathVariable("id") String id,
+	public String getNickname(@PathVariable("nickname") String nickname, @PathVariable("id") String id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		log.info("닉네임 중복 조회");
 		response.setContentType("text/html; charset=utf-8");
@@ -95,10 +95,33 @@ public class UserController {
 		} else {
 			User user = userService.readUser(id);
 			user.setNickname(nickname);
-			userService.updateUser(user);
+//			userService.updateUser(user);
 			out.println("nick-success");
 		}
 		return null; 
 	}
 
+	/* 닉네임 조회 Controller */
+	@GetMapping(value="/vt/{id}")
+	public String updateVt(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		log.info("가상계좌 생성");
+		response.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(userService.updateUserVt(id) == 0) {
+			out.println("updateFail");
+		} else {
+			out.println("updateSuccess");
+		}
+		
+		return null; 
+	}
+	
+	
 }
