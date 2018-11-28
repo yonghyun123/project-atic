@@ -13,51 +13,33 @@
 
 					<form id="regForm" action="">
 
-						<h1>Deposit</h1>
+						<h1>DEPOSIT</h1>
 
 						<!-- One "tab" for each step in the form: -->
 						<div class="tab">
-							Name:
+							deposit:
 							<p>
-								<input placeholder="First name..." oninput="this.className = ''">
+								<input placeholder="적금 금액을 입력해주세요." oninput="this.className = ''">
 							</p>
+							password:
 							<p>
-								<input placeholder="Last name..." oninput="this.className = ''">
-							</p>
-						</div>
-
-						<div class="tab">
-							Contact Info:
-							<p>
-								<input placeholder="E-mail..." oninput="this.className = ''">
-							</p>
-							<p>
-								<input placeholder="Phone..." oninput="this.className = ''">
+								<input type="password" placeholder="계좌의 비밀번호를 입력해주세요." oninput="this.className = ''">
 							</p>
 						</div>
 
 						<div class="tab">
-							Birthday:
+							E-mail:
 							<p>
-								<input placeholder="dd" oninput="this.className = ''">
+								<input type="text" placeholder="E-mail..." oninput="this.className = ''" id="email">
+								<input type="button" id="auth" value="인증메일 보내기">
 							</p>
+							인증 번호:
 							<p>
-								<input placeholder="mm" oninput="this.className = ''">
-							</p>
-							<p>
-								<input placeholder="yyyy" oninput="this.className = ''">
+								<input type="text" placeholder="인증번호를 입력해주세요." oninput="this.className = ''" id="authNum">
+								<input type="button" id="authB" value="인증하기">
 							</p>
 						</div>
 
-						<div class="tab">
-							Login Info:
-							<p>
-								<input placeholder="Username..." oninput="this.className = ''">
-							</p>
-							<p>
-								<input placeholder="Password..." oninput="this.className = ''">
-							</p>
-						</div>
 
 						<div style="overflow: auto;">
 							<div style="float: right;">
@@ -68,8 +50,7 @@
 
 						<!-- Circles which indicates the steps of the form: -->
 						<div style="text-align: center; margin-top: 40px;">
-							<span class="step"></span> <span class="step"></span> <span
-								class="step"></span> <span class="step"></span>
+							<span class="step"></span> <span class="step"></span>
 						</div>
 
 					</form>

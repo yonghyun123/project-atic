@@ -462,7 +462,6 @@
 	
 	<script type="text/javascript">
 		
-	
 		let wsocket;
 		$(window).on("beforeunload", function() {
 			sayBye();
@@ -514,6 +513,36 @@
 		
 		$("#deposit").click(function(){
 			$("#deposit-modal").modal('show');
+			
+			var authNum = 0;
+			$("#auth").on("click", function(){
+				alert("눌럿졍");
+				var email = $("#email").val();
+				alert(email);
+				$.ajax({
+					url : "/email/auth",
+					type: "post",
+					async:false,
+					data:{
+						email : email
+					},
+					dataType: "text",
+					success: function(data){
+						console.log(data);
+						var jsonData = JSON.parse(data);
+						
+						authNum = jsonData.authNum;
+					}
+				})
+			})
+			
+			$("#authB").on("click", function(){
+				if($("#authNum").val() == authNum){
+					alert("일치");
+				}else{
+					alert("불일치");
+				}
+			})
 		});
 	
 		
@@ -580,7 +609,7 @@
 		  }
 		  return valid; // return the valid status
 		}
-
+		
 		function fixStepIndicator(n) {
 		  // This function removes the "active" class of all steps...
 		  var i, x = document.getElementsByClassName("step");
@@ -590,6 +619,7 @@
 		  //... and adds the "active" class to the current step:
 		  x[n].className += " active";
 		}
+		
 		
 		
 		connect();

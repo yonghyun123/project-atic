@@ -26,8 +26,8 @@ public class UserStatusMapperTest {
 	
 //	@Test
 	public void testCreate() {
-		UserStatus userStatus = new UserStatus("test2","0.031","0.001","100000","10000");
-		userStatusMapper.createUserStatus(userStatus);
+//		UserStatus userStatus = new UserStatus("test2","0.031","0.001","100000","10000");
+//		userStatusMapper.createUserStatus(userStatus);
 		log.info("생성완료!");
 	}
 	

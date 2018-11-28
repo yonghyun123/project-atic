@@ -62,14 +62,12 @@
                         </div>
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
-                            <form action="#" method="post" class="form-inline">
-                                <select class="custom-select widget-title">
+                                <select id="search_by" class="custom-select widget-title">
                                   <option selected>정렬</option>
-                                  <option value="1">목표 금액 순</option>
-                                  <option value="2">달성률 순</option>
-                                  <option value="3">예비 평점 순</option>
+                                  <option value="목표 금액 순">목표 금액 순</option>
+                                  <option value="달성률 순">달성률 순</option>
+                                  <option value="예비 평점 순">예비 평점 순</option>
                                 </select>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -81,13 +79,12 @@
                     <div class="shop-products-area">
                         <div class="row">
                             <c:forEach var="list" items="${list }" varStatus="status">
-<%--                             ${list } --%>
                             <!-- Single Product Area -->
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-area mb-50">
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <a href="/shop-details"><img src="/resources/img/bg-img/42.png" alt=""></a>
+                                        <a href="/shop-details"><img src="/resources/img/project-image/${list.file_name }" alt=""></a>
                                                                                 <!-- Product Tag -->
                                         <div class="product-tag">
                                             <a href="#">Hot</a>
@@ -127,7 +124,28 @@
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
+$(document).on("change", "#search_by", function(event) {
+var condition = $("#search_by option:selected").val();
+ if(condition != '정렬'){
+	alert(condition);
+	 $.ajax({
+		type : "post",
+		url : "/shop/search",
+		dataType : "text",
+		data : {
+			'condition' : condition
+		},
+		success : function(data){
+			alert(data);
+		},
+		error : function(data){
+			alert('실패'+data.responseText);
+			
+		}
+	}); 
+}
+});
 
-
+	
 </script>
 </html>
