@@ -1,5 +1,6 @@
 package com.keb.atic.common.controller;
 
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,15 @@ public class CommonController {
 	private ProjectService projectService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		model.addAttribute("hotList",projectService.readProjectsByGoal());
+		
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
+		int nextMonth = thisMonth +1;
+		if(nextMonth >12) {
+			nextMonth-=12;
+		}
+		model.addAttribute("hotList",projectService.readMonthProjectByGoal(String.valueOf(thisMonth)));
+		model.addAttribute("nextList",projectService.readMonthProjectByGoal(String.valueOf(nextMonth)));
 		log.info("Welcome IndexPage");		
 		return "index";
 	}

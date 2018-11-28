@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 
 <head>
@@ -31,7 +32,7 @@
     <div style="height: 5%"></div>
     <div id="mainVisual">
       <div class="single-item">
-        <img src="/resources/img/bg-img/1.jpg"> <img
+        <img src="/resources/img/bg-img/1.jpg"><img
           src="/resources/img/bg-img/2.jpg"> <img
           src="/resources/img/bg-img/3.jpg">
       </div>
@@ -72,15 +73,16 @@
       </div>
 
       <div class="row">
-
+      
+  <c:forEach items="${hotList}" var="project">
         <!-- Single Product Area -->
-        <div class="col-12 col-sm-6 col-lg-3">
+        <div class="col-12 col-sm-6 col-lg-4">
           <div class="single-product-area mb-50 wow fadeInUp"
             data-wow-delay="100ms">
             <!-- Product Image -->
             <div class="product-img">
               <a href="shop-details.html"><img
-                src="/resources/img/bg-img/9.jpg" alt=""></a>
+                src="/resources/img/project-image/${project.file_name}" alt=""></a>
               <!-- Product Tag -->
               <div class="product-tag">
                 <a href="#">HOT</a>
@@ -102,88 +104,8 @@
             </div>
           </div>
         </div>
+</c:forEach>
 
-        <!-- Single Product Area -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-product-area mb-50 wow fadeInUp"
-            data-wow-delay="200ms">
-            <!-- Product Image -->
-            <div class="product-img">
-              <a href="shop-details.html"><img
-                src="/resources/img/bg-img/10.jpg" alt=""></a>
-              <div class="product-meta d-flex">
-                <a href="#" class="wishlist-btn"><i
-                  class="icon_heart_alt"></i></a> <a href="cart.html"
-                  class="add-to-cart-btn">Add to cart</a> <a href="#"
-                  class="compare-btn"><i
-                  class="arrow_left-right_alt"></i></a>
-              </div>
-            </div>
-            <!-- Product Info -->
-            <div class="product-info mt-15 text-center">
-              <a href="shop-details.html">
-                <p>Cactus Flower</p>
-              </a>
-              <h6>$10.99</h6>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Product Area -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-product-area mb-50 wow fadeInUp"
-            data-wow-delay="300ms">
-            <!-- Product Image -->
-            <div class="product-img">
-              <a href="shop-details.html"><img
-                src="/resources/img/bg-img/11.jpg" alt=""></a>
-              <div class="product-meta d-flex">
-                <a href="#" class="wishlist-btn"><i
-                  class="icon_heart_alt"></i></a> <a href="cart.html"
-                  class="add-to-cart-btn">Add to cart</a> <a href="#"
-                  class="compare-btn"><i
-                  class="arrow_left-right_alt"></i></a>
-              </div>
-            </div>
-            <!-- Product Info -->
-            <div class="product-info mt-15 text-center">
-              <a href="shop-details.html">
-                <p>Cactus Flower</p>
-              </a>
-              <h6>$10.99</h6>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Product Area -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-product-area mb-50 wow fadeInUp"
-            data-wow-delay="400ms">
-            <!-- Product Image -->
-            <div class="product-img">
-              <a href="shop-details.html"><img
-                src="/resources/img/bg-img/12.jpg" alt=""></a>
-              <!-- Product Tag -->
-              <div class="product-tag sale-tag">
-                <a href="#">Hot</a>
-              </div>
-              <div class="product-meta d-flex">
-                <a href="#" class="wishlist-btn"><i
-                  class="icon_heart_alt"></i></a> <a href="cart.html"
-                  class="add-to-cart-btn">Add to cart</a> <a href="#"
-                  class="compare-btn"><i
-                  class="arrow_left-right_alt"></i></a>
-              </div>
-            </div>
-            <!-- Product Info -->
-            <div class="product-info mt-15 text-center">
-              <a href="shop-details.html">
-                <p>Cactus Flower</p>
-              </a>
-              <h6>$10.99</h6>
-            </div>
-          </div>
-        </div>
 
         <div class="col-12 text-center">
           <a href="#" class="btn alazea-btn">View All</a>
@@ -208,13 +130,13 @@
       </div>
 
       <div class="row justify-content-center">
-
+  <c:forEach items="${nextList}" var="preProject">
         <!-- Single Blog Post Area -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="single-blog-post mb-100">
             <div class="post-thumbnail mb-30">
               <a href="single-post.html"><img
-                src="/resources/img/bg-img/6.jpg" alt=""></a>
+                src="/resources/img/project-image/${preProject.file_name}" alt=""></a>
             </div>
             <div class="post-content">
               <a href="single-post.html" class="post-title">
@@ -233,57 +155,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Single Blog Post Area -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="single-blog-post mb-100">
-            <div class="post-thumbnail mb-30">
-              <a href="single-post.html"><img
-                src="/resources/img/bg-img/7.jpg" alt=""></a>
-            </div>
-            <div class="post-content">
-              <a href="single-post.html" class="post-title">
-                <h5>2018 Midwest Tree and Shrub Conference:
-                  Resilient Plants for a Lasting Landscape</h5>
-              </a>
-              <div class="post-meta">
-                <a href="#"><i class="fa fa-clock-o"
-                  aria-hidden="true"></i> 20 Jun 2018</a> <a href="#"><i
-                  class="fa fa-user" aria-hidden="true"></i> Christina
-                  Aguilera</a>
-              </div>
-              <p class="post-excerpt">Integer luctus diam ac
-                scerisque consectetur. Vimus ottawas nec lacus sit amet.
-                Aenean interdus mid vitae.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Blog Post Area -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="single-blog-post mb-100">
-            <div class="post-thumbnail mb-30">
-              <a href="single-post.html"><img
-                src="/resources/img/bg-img/8.jpg" alt=""></a>
-            </div>
-            <div class="post-content">
-              <a href="single-post.html" class="post-title">
-                <h5>The summer coming up, itâs time for both us
-                  and the flowers to soak up the sunshine</h5>
-              </a>
-              <div class="post-meta">
-                <a href="#"><i class="fa fa-clock-o"
-                  aria-hidden="true"></i> 19 Jun 2018</a> <a href="#"><i
-                  class="fa fa-user" aria-hidden="true"></i> Mason
-                  Jenkins</a>
-              </div>
-              <p class="post-excerpt">Integer luctus diam ac
-                scerisque consectetur. Vimus ottawas nec lacus sit amet.
-                Aenean interdus mid vitae.</p>
-            </div>
-          </div>
-        </div>
-
+</c:forEach>
       </div>
     </div>
   </section>

@@ -65,4 +65,10 @@ public class ProjectServiceImpl implements ProjectService{
 	public void updateProject(Project project) {
 		log.info("update : project = " + project);
 	}
+
+	@Override
+	public List<Project> readMonthProjectByGoal(String month) {
+		log.info("list by Month");
+		return mapper.readMonthProjectByGoal(month+"월");
+	}
 }
