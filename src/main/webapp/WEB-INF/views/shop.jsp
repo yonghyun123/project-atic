@@ -77,6 +77,31 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row" id="templateBody">
+                <c:forEach var="project" items="${list }" varStatus="status">
+                        <div class="col-12 col-sm-6 col-lg-4">
+                          <div class="single-product-area mb-50">
+                              <!-- Product Image -->
+                              <div class="product-img">
+                              <form id="form${project.id}" action="/shop/details" method="post">
+                                  <a href="/shop-details">
+                                  <img src="/resources/img/project-image/${project.file_name }" alt=""></a>
+                                  <input type="hidden" value="${project.id }">
+                                  <!-- Product Tag -->
+                                  <div class="product-tag">
+                                      <a href="#">Hot</a>
+                                  </div>
+                                  </form>
+                              </div>
+                              <!-- Product Info -->
+                              <div class="product-info mt-15 text-center">
+                                  <a href="/shop-details">
+                                      <h6> ${project.name } </h6>
+                                  </a>
+                                  <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                              </div>
+                          </div>
+                          </div>
+                    </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -139,6 +164,11 @@ var condition = $("#search_by option:selected").val();
 		},
 		success : function(data){
 			alert(data);
+// 			var jsonDetailData = JSON.parse(data);
+//           	var body = detailHeaderTemplate(jsonDetailData);
+//           	detailBodyTemplate(jsonDetailData, body);
+//           	detailSideTemplate(jsonDetailData);
+//           	detailInformTemplate(jsonDetailData);
 		},
 		error : function(data){
 			alert('실패'+data.responseText);
