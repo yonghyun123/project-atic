@@ -13,6 +13,34 @@
 	margin-top: 1%;
 }
 
+#login-fail-text, #nickname-fail-text {
+	color: red;
+	visibility: hidden;
+}
+
+/* logout-modal CSS */
+
+.logout-body {
+	padding: 0 20% 10% 20%;
+	display: inherit;
+}
+
+.logout-body .logout {
+	margin: 0 0 0 1%;
+}
+
+.logout-text {
+	padding: 5% 0;
+}
+
+#logout-btn, .logout-form {
+	width: 100%;
+}
+
+.modal-body .form-group {
+	margin: 0;
+}
+
 /* security-login.jsp */
 
 .security-login {

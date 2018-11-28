@@ -64,9 +64,17 @@
 			<if test="password != null">password = #{password},</if>
 			<if test="nickname != null">nickname = #{nickname},</if>
 			<if test="profile != null">profile = #{profile},</if>
+			vt_acc_num = vt_acc_num_seq.nextval,
+			vt_acc_flag = 1,
 			<if test="acc_pw != null">acc_pw = #{acc_pw},</if>
 			<if test="total_money != null">total_money = #{total_money}</if>
 		</set>
 		WHERE id=#{id}
 	</update>
+	
+	<select id="searchNickname" resultType="int">
+	SELECT count(*)
+	FROM at_user
+	WHERE nickname = #{nickname}
+	</select>
 </mapper>

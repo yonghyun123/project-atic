@@ -56,6 +56,12 @@ public class UserServiceImpl implements UserService {
 		log.info("유저 인증");
 		return userMapper.certifyBankUser(userId);
 	}
+
+	@Override
+	public int searchNickname(String nickname) {
+		log.info("유저 인증");
+		return userMapper.searchNickname(nickname);
+	}
 	
 	
 	

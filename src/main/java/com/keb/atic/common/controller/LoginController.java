@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.keb.atic.user.domain.User;
 import com.keb.atic.user.service.UserService;
@@ -44,7 +46,8 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
-		if(user != null) {
+		if(user != null && user.getPassword().equals(password)) {
+			log.info("로그인");
 			Cookie cookie = new Cookie("loginId", username);
 			cookie.setPath("/");
 			response.addCookie(cookie);
@@ -57,21 +60,19 @@ public class LoginController {
 		return null;
 	}
 	
-	// 권한이 필요한 로그인
-	// 경로로는 모달을 띄울 수 없으므로 로그인 페이지인 security-login.jsp로 이동
-	// 테이블에 유저별 권한 테이블이 없으면 쓸모 없슴.
-//	@RequestMapping("/customLogin")
-//	public void loginInput(String error, String logout, Model model) {
-//		log.info("error : " + error);		
-//		log.info("logout : " + logout);		
-//		
-//		if(error != null) {
-//			model.addAttribute("error", "Login Error");
-//		}
-//		
-//		if(logout != null) {
-//			model.addAttribute("logout", "Logout");
-//		}
-//	}
+	@GetMapping("/user/logout")
+	public String userLogout(HttpServletRequest request, HttpServletResponse response) {
+		log.info("로그아웃");
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if(cookie.getName().equals("loginId")) {
+				cookie.setMaxAge(0);
+				cookie.setPath("/");
+				response.addCookie(cookie);
+				break;
+			}
+		}
+		return "redirect:/";
+	}
 	
 }
