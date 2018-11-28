@@ -11,7 +11,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>>A-TiC</title>
+    <title>A-TiC</title>
 
     <!-- Favicon -->
     <link rel="icon" href="/resources/img/core-img/favicon.ico">
@@ -58,50 +58,26 @@
                     <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
                         <!-- Shop Page Count -->
                         <div class="shop-page-count">
-                            <p>Showing (count) of 72 results</p>
+                            <p>진행중인 펀딩이 <c:out value="${count }"/>건의 있습니다</p>
                         </div>
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
                                 <select id="search_by" class="custom-select widget-title">
                                   <option selected>정렬</option>
-                                  <option value="목표 금액 순">목표 금액 순</option>
-                                  <option value="달성률 순">달성률 순</option>
-                                  <option value="예비 평점 순">예비 평점 순</option>
+                                  <option value="1">목표 금액 순</option>
+                                  <option value="2">달성률 순</option>
+                                  <option value="3">예비 평점 순</option>
                                 </select>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <!-- All Products Area -->
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
-                        <div class="row">
-                            <c:forEach var="list" items="${list }" varStatus="status">
-                            <!-- Single Product Area -->
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-area mb-50">
-                                    <!-- Product Image -->
-                                    <div class="product-img">
-                                        <a href="/shop-details"><img src="/resources/img/project-image/${list.file_name }" alt=""></a>
-                                                                                <!-- Product Tag -->
-                                        <div class="product-tag">
-                                            <a href="#">Hot</a>
-                                        </div>
-                                    </div>
-                                    <!-- Product Info -->
-                                    <div class="product-info mt-15 text-center">
-                                        <a href="/shop-details">
-                                            <h6>${list.name }</h6>
-                                        </a>
-                                        <h6>업종 : ${list.category } / 목표금액 : ${list.goal }</h6>
-                                    </div>
-                                </div>
-                            </div>
-                          </c:forEach>
+                        <div class="row" id="templateBody">
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -123,6 +99,32 @@
 
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
+<script id="templateList" type="text/template">
+<div class="col-12 col-sm-6 col-lg-4">
+<div class="single-product-area mb-50">
+    <!-- Product Image -->
+    <div class="product-img">
+    <form id="form{id}" action="/shop/details" method="post">
+        <a href="/shop-details">
+        <img src="/resources/img/project-image/{fileName }" alt=""></a>
+        <input type="hidden" value="{id }">
+        <!-- Product Tag -->
+        <div class="product-tag">
+            <a href="#">Hot</a>
+        </div>
+        </form>
+    </div>
+    <!-- Product Info -->
+    <div class="product-info mt-15 text-center">
+        <a href="/shop-details">
+            <h6> {name } </h6>
+        </a>
+        <h6>업종 : {category } / 목표금액 : {goal }</h6>
+    </div>
+</div>
+</div>
+</script>
+
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
 var condition = $("#search_by option:selected").val();
@@ -140,7 +142,6 @@ var condition = $("#search_by option:selected").val();
 		},
 		error : function(data){
 			alert('실패'+data.responseText);
-			
 		}
 	}); 
 }
