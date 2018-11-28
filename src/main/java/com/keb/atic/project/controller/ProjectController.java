@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.keb.atic.project.domain.Project;
@@ -37,7 +36,7 @@ public class ProjectController {
 	private ProjectService projectService;
 	private UserProjectService userProjectService;
 
-	@RequestMapping(value= {"","/main"}, method=RequestMethod.GET)
+	@GetMapping("")
 	public String listAll(Model model) {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
@@ -57,7 +56,7 @@ public class ProjectController {
 		model.addAttribute("curList",projectService.readMonthProjectByGoal(curMap));
 		model.addAttribute("preList",projectService.readMonthProjectByGoal(preMap));
 		model.addAttribute("count", projectService.projectListAll().size());
-		return "/shop";
+		return "/shop/shop";
 	}
 	
 	@GetMapping("/currentShop")
@@ -72,6 +71,20 @@ public class ProjectController {
 		curMap.put("month", String.valueOf(thisMonth)+"월");
 		curMap.put("count", "10");
 		model.addAttribute("curList",projectService.readMonthProjectByGoal(curMap));
+	}
+	
+	@GetMapping("/preShop")
+	public void preShop(Model model) {
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
+		int nextMonth = thisMonth +1;
+		if(nextMonth >12) {
+			nextMonth-=12;
+		}
+		Map<String, String>preMap = new HashMap<String,String>();
+		preMap.put("month", String.valueOf(nextMonth)+"월");
+		preMap.put("count", "10");
+		model.addAttribute("preList",projectService.readMonthProjectByGoal(preMap));
 	}
 	
 /*	@GetMapping("/selectList")
@@ -146,7 +159,7 @@ public class ProjectController {
 		for (Project project : list) {
 			jsonObject = new JSONObject();
 			jsonObject.put("id", project.getId());
-			jsonObject.put("fileName", project.getFile_name());
+			jsonObject.put("fileName", project.getFileName());
 			jsonObject.put("name", project.getName());
 			jsonObject.put("category", project.getCategory());
 			jsonObject.put("goal", project.getGoal());
@@ -169,7 +182,7 @@ public String shopDetails(@PathVariable("projectId") String projectId , Model mo
    model.addAttribute("project",projectService.readProject(projectId));
    model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
    model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
-   return "shopDetails";
+   return "/shop/shopDetails";
 }
 
 }
