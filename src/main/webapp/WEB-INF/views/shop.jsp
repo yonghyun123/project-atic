@@ -77,6 +77,28 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row" id="templateBody">
+                <c:forEach var="project" items="${list }" varStatus="status">
+                        <div class="col-12 col-sm-6 col-lg-4">
+                          <div class="single-product-area mb-50">
+                              <!-- Product Image -->
+                              <div class="product-img">
+                                  <a href="/shop/detail/${project.id }">
+                                  <img src="/resources/img/project-image/${project.file_name }" alt=""></a>
+                                  <!-- Product Tag -->
+                                  <div class="product-tag">
+                                      <a href="#">Hot</a>
+                                  </div>
+                              </div>
+                              <!-- Product Info -->
+                              <div class="product-info mt-15 text-center">
+                                  <a href="/shop/detail/${project.id }">
+                                      <h6> ${project.name } </h6>
+                                  </a>
+                                  <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                              </div>
+                          </div>
+                          </div>
+                    </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -99,37 +121,36 @@
 
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
+
 <script id="templateList" type="text/template">
-<div class="col-12 col-sm-6 col-lg-4">
-<div class="single-product-area mb-50">
-    <!-- Product Image -->
-    <div class="product-img">
-    <form id="form{id}" action="/shop/details" method="post">
-        <a href="/shop-details">
-        <img src="/resources/img/project-image/{fileName }" alt=""></a>
-        <input type="hidden" value="{id }">
-        <!-- Product Tag -->
-        <div class="product-tag">
-            <a href="#">Hot</a>
-        </div>
-        </form>
-    </div>
-    <!-- Product Info -->
-    <div class="product-info mt-15 text-center">
-        <a href="/shop-details">
-            <h6> {name } </h6>
-        </a>
-        <h6>업종 : {category } / 목표금액 : {goal }</h6>
-    </div>
-</div>
-</div>
+	<div class="col-12 col-sm-6 col-lg-4">
+	<div class="single-product-area mb-50">
+    	<!-- Product Image -->	
+	    <div class="product-img">
+    	<form id="form{id}" action="/shop/details" method="post">
+        	<a href="/shop-details">
+	        <img src="/resources/img/project-image/{fileName}" alt=""></a>
+   	     <input type="hidden" value="{id}">
+   	     <!-- Product Tag -->
+   	     <div class="product-tag">
+   	         <a href="#">Hot</a>
+   	     </div>
+   	     </form>
+   	 </div>
+   	 <!-- Product Info -->
+   	 <div class="product-info mt-15 text-center">
+   	     <a href="/shop-details">
+   	         <h6> {name} </h6>
+   	     </a>
+   	     <h6>업종 : {category} / 목표금액 : {goal}</h6>
+   	 </div>
+		</div>
+	</div>
 </script>
 
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
 var condition = $("#search_by option:selected").val();
- if(condition != '정렬'){
-	alert(condition);
 	 $.ajax({
 		type : "post",
 		url : "/shop/search",
@@ -138,15 +159,30 @@ var condition = $("#search_by option:selected").val();
 			'condition' : condition
 		},
 		success : function(data){
-			alert(data);
-		},
-		error : function(data){
-			alert('실패'+data.responseText);
+			var jsonModifyData = JSON.parse(data);
+          	searchTemplate(jsonModifyData);
 		}
 	}); 
-}
 });
-
-	
+function searchTemplate(jsonModifyData) {
+    var templateHtml = document.querySelector('#templateList').innerHTML;
+    var originHtml = document.querySelector('#templateBody');
+    var newHtml = '';
+    jsonModifyData.forEach(function(v, i) {
+      newHtml += templateHtml.replace('{id}', v.id)
+          				  .replace('{fileName}', v.fileName)
+          				  .replace('{name}', v.name)
+          				  .replace('{category}', v.category)
+          				  .replace('{goal}', v.goal)
+    });
+    originHtml.innerHTML = newHtml;
+  }
+  
+$(".move").on("click",function(e) {
+	e.preventDefault();
+			actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+			actionForm.attr("action","/spring/board/get");
+			actionForm.submit();
+		});
 </script>
 </html>
