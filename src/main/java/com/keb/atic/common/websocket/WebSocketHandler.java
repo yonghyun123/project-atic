@@ -1,7 +1,8 @@
 package com.keb.atic.common.websocket;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -14,20 +15,22 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class WebSocketHandler extends TextWebSocketHandler {
-	private Vector<WebSocketSession> connectedClients = new Vector<WebSocketSession>(10, 2);
+//	private Vector<WebSocketSession> connectedClients = new Vector<WebSocketSession>(10, 2);
+	private HashMap<String, ArrayList<WebSocketSession>> connectedClients = new HashMap<>();
 	private int count = 0;
+	private String projectId ="";
 
 	/** 웹 클라이언트 연결 이벤트 처리 */
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log.info("웹클라이언트(" + session.getId() + ") 연결함...");
-		connectedClients.addElement(session);
-		count = connectedClients.size();
-		Gson gs = new Gson();
-		Message msg = new Message(1000, count);
-		String json = gs.toJson(msg);
-		TextMessage tm = new TextMessage(json);
-		sendMessageToAll(tm);
+//		connectedClients.addElement(session);
+//		count = connectedClients.size();
+//		Gson gs = new Gson();
+//		Message msg = new Message(1000, count);
+//		String json = gs.toJson(msg);
+//		TextMessage tm = new TextMessage(json);
+//		sendMessageToAll(tm);
 
 	}
 
@@ -36,15 +39,33 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		Gson gson = new Gson();
 		Message msg = gson.fromJson(message.getPayload(), Message.class);
+		projectId = msg.getProjectId();
 		switch (msg.getType()) {
+		case 1000:
+			if (connectedClients.get(projectId) == null) {
+				connectedClients.put(projectId, new ArrayList<>());
+			}
+			connectedClients.get(projectId).add(session);
+			count = connectedClients.get(projectId).size();
+			Gson gs1 = new Gson();
+			Message msg1 = new Message(1000, count);
+			String json1 = gs1.toJson(msg1);
+			TextMessage tm1 = new TextMessage(json1);
+			sendMessageToAll(tm1, projectId);
+			break;
 		case 2000:
-			connectedClients.removeElement(session);
-			count = connectedClients.size();
+			List<WebSocketSession> list = connectedClients.get(projectId);
+			for (WebSocketSession wss : list) {
+				if(wss.equals(session)) {
+					list.remove(session);
+				}
+			}
+			count = connectedClients.get(projectId).size();
 			Gson gs = new Gson();
 			Message msg2 = new Message(2000, count);
 			String json = gs.toJson(msg2);
 			TextMessage tm = new TextMessage(json);
-			sendMessageToAll(tm);
+			sendMessageToAll(tm, projectId);
 			break;
 		case 3000:
 			break;
@@ -52,11 +73,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
 	}
 	
-	private void sendMessageToAll(TextMessage tm) throws Exception{
-		Enumeration<WebSocketSession> e = connectedClients.elements();
-		while (e.hasMoreElements()) {
-			WebSocketSession client = e.nextElement();
-			client.sendMessage(tm);
+	private void sendMessageToAll(TextMessage tm, String projectId) throws Exception{
+		List<WebSocketSession> list = connectedClients.get(projectId);
+		for (WebSocketSession wss : list) {
+			wss.sendMessage(tm);
 		}
 	}
 
@@ -64,7 +84,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		log.info("웹클라이언트(" + session.getId() + ") 연결 종료함...");
-		connectedClients.removeElement(session);
+		List<WebSocketSession> list = connectedClients.get(projectId);
+		for (WebSocketSession wss : list) {
+			if(wss.equals(session)) {
+				list.remove(session);
+			}
+		}
 
 	}
 

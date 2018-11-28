@@ -65,42 +65,60 @@
 
 					<div class="col-12 col-md-6 col-lg-5">
 						<div class="single_product_thumb">
-						
+
 							<!-- 썸네일 이미지 -->
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<a class="product-img" href="/resources/img/project-image/<c:out value='${project.file_name }'/>"
-											title="Product Image"> <img class="d-block w-100"
-											src="/resources/img/project-image/<c:out value='${project.file_name }'/>" alt="1">
-										</a>
-									</div>
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<a class="product-img"
+										href="/resources/img/project-image/<c:out value='${project.fileName }'/>"
+										title="Product Image"> <img class="d-block w-100"
+										src="/resources/img/project-image/<c:out value='${project.fileName }'/>"
+										alt="1">
+									</a>
 								</div>
-								
-							
+							</div>
+
+
 						</div>
 					</div>
 
 					<div class="col-12 col-md-6">
 						<div class="single_product_desc">
-							<h4 class="title"><c:out value='${project.name }'/></h4>
-							목표 자금 <c:out value="${project.goal }"/>
-							<h4 class="price"><c:out value="${project.cur_price }"/>원 달성</h4>
+							<h4 class="title">
+								<c:out value='${project.name }' />
+							</h4>
+							목표 자금
+							<c:out value="${project.goal }" />
+							<input type="hidden" value="<c:out value="${project.id }"/>"
+								id="projectId">
+							<h4 class="price">
+								<c:out value="${project.curPrice }" />
+								원 달성
+							</h4>
 							<div class="short_overview">
-								<p><c:out value="${project.title }"/></p>
-								<p>이 프로젝트가 목표자금을 달성할 시 <c:out value="${project.interest }"/>%의 금리혜택을 받으실 수 있습니다.</p>
+								<p>
+									<c:out value="${project.title }" />
+								</p>
+								<p>
+									이 프로젝트가 목표자금을 달성할 시
+									<c:out value="${project.interest }" />
+									%의 금리혜택을 받으실 수 있습니다.
+								</p>
 							</div>
 
 							<div class="cart--area d-flex flex-wrap align-items-center">
 								<!-- Add to Cart Form -->
 								<form class="cart clearfix d-flex align-items-center"
 									method="post">
-									<input type="button" id="deposit" value="지금 투자하기" class="btn alazea-btn ml-15">
+									<input type="button" id="deposit" value="지금 투자하기"
+										class="btn alazea-btn ml-15">
 								</form>
 
 							</div>
 
 							<div class="products--meta">
-									<img src="/resources/img/heart.gif"><span>이 페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
+								<img src="/resources/img/heart.gif"><span>이 페이지를 보고
+									있는 사람들</span> <span id="currentCount"></span>
 							</div>
 						</div>
 					</div>
@@ -115,13 +133,13 @@
 						<!-- Tabs -->
 						<ul class="nav nav-tabs" role="tablist" id="product-details-tab">
 							<li class="nav-item"><a href="#description"
-								class="nav-link active" data-toggle="tab" role="tab">상세 설명</a>
-							</li>
+								class="nav-link active" data-toggle="tab" role="tab">상세 설명</a></li>
 							<li class="nav-item"><a href="#addi-info" class="nav-link"
 								data-toggle="tab" role="tab">회사 정보</a></li>
 							<li class="nav-item"><a href="#investor" class="nav-link"
 								data-toggle="tab" role="tab">투자자 현황<span class="text-muted">
-								(<c:out value="${countOfInvestor }"/>)</span></a></li>
+										(<c:out value="${countOfInvestor }" />)
+								</span></a></li>
 							<li class="nav-item"><a href="#reviews" class="nav-link"
 								data-toggle="tab" role="tab">예비 평가</a></li>
 						</ul>
@@ -130,64 +148,68 @@
 							<div role="tabpanel" class="tab-pane fade show active"
 								id="description">
 								<div class="description_area">
-									<p><c:out value="${project.description }"/></p>
 									<p>
-									<img src="/resources/img/project-image/<c:out value="${project.id }"/>_et_1.png">
-									<img src="/resources/img/project-image/<c:out value="${project.id }"/>_et_2.png">
-									<img src="/resources/img/project-image/<c:out value="${project.id }"/>_et_3.png">
-									
+										<c:out value="${project.description }" />
 									</p>
-									
+									<p>
+										<img
+											src="/resources/img/project-image/<c:out value="${project.id }"/>_et_1.png">
+										<img
+											src="/resources/img/project-image/<c:out value="${project.id }"/>_et_2.png">
+										<img
+											src="/resources/img/project-image/<c:out value="${project.id }"/>_et_3.png">
+
+									</p>
+
 								</div>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="addi-info">
 								<div class="additional_info_area">
 									<p>
-										회사 이름<br> <span>
-										<c:out value="${project.company }"/>
+										회사 이름<br> <span> <c:out
+												value="${project.company }" />
 										</span>
 									</p>
 									<p>
-										회사 전화번호 <br> <span>
-										<c:out value="${project.tel }"/>
+										회사 전화번호 <br> <span> <c:out value="${project.tel }" />
 										</span>
 									</p>
 									<p>
-										회사 업종 <br>
-										<span>
-										<c:out value="${project.category }"/>
+										회사 업종 <br> <span> <c:out
+												value="${project.category }" />
 										</span>
 									</p>
-									
+
 								</div>
 							</div>
-							
+
 							<div role="tabpanel" class="tab-pane fade" id="investor">
 								<div class="investor_area">
 									<table id="customers">
-									<tr>
-									<th>No</th>
-									<th>투자자</th>
-									<th>투자액</th>
-									<th>투자 날짜</th>
-									</tr>
-									<c:choose>
-					                  <c:when test="${not empty userProject }">
-									 <c:forEach var="project" items="${userProject}" varStatus="status">
-									<tr>
-									<td>${status.index+1 }</td>
-									<td>${project.user_id }</td>
-									<td>${project.deposit }</td>
-									<td>${project.create_date }</td>
-									</tr>
-									</c:forEach>
-									</c:when>
-									</c:choose>
+										<tr>
+											<th>No</th>
+											<th>투자자</th>
+											<th>투자액</th>
+											<th>투자 날짜</th>
+										</tr>
+										<c:choose>
+											<c:when test="${not empty userProject }">
+												<c:forEach var="project" items="${userProject}"
+													varStatus="status">
+													<tr>
+														<td>${status.index+1 }</td>
+														<td>${project.userId }</td>
+														<td>${project.deposit }</td>
+														<td>${project.createDate }</td>
+													</tr>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 									</table>
-									
+
 								</div>
 							</div>
-							
+
 							<div role="tabpanel" class="tab-pane fade" id="reviews">
 								<div class="reviews_area">
 									<ul>
@@ -437,13 +459,12 @@
 	<script src="/resources/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="/resources/js/active.js"></script>
-		<!-- ##### Related Product Area End ##### -->
+	<!-- ##### Related Product Area End ##### -->
 
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-	
-	
+
+
 	<script type="text/javascript">
-		
 		let wsocket;
 		$(window).on("beforeunload", function() {
 			sayBye();
@@ -451,32 +472,41 @@
 				wsocket.close();
 			}, 500);
 		});
-	
+
 		function sayBye() {
 			var messageObject = {
 				type : 2000
 			}
 			send(messageObject);
-	
+
 		}
-	
+
 		function send(object) {
 			if (object) {
 				wsocket.send(JSON.stringify(object));
 			}
 		}
-	
+
 		function connect() {
 			wsocket = new WebSocket("ws://localhost/hanaSocket");
-			//wsocket.onopen = onOpen;
+			wsocket.onopen = onOpen;
 			wsocket.onmessage = onMessage;
 			wsocket.onclose = onClose;
 		}
-	
+
+		function onOpen(event) {
+			var projectId = $("#projectId").val();
+			var messageObject = {
+				type : 1000,
+				projectId : projectId
+			}
+			send(messageObject);
+		}
+
 		function onClose(event) {
 			sayBye();
 		}
-	
+
 		function onMessage(event) {
 			var serverMessage = event.data;
 			var mObject = JSON.parse(serverMessage);
@@ -490,121 +520,119 @@
 				$("#currentCount").text(count + "명");
 				break;
 			}
-	
+
 		}
-		
-		$("#deposit").click(function(){
+
+		$("#deposit").click(function() {
 			$("#deposit-modal").modal('show');
-			
+
 			var authNum = 0;
-			$("#auth").on("click", function(){
+			$("#auth").on("click", function() {
 				alert("눌럿졍");
 				var email = $("#email").val();
 				alert(email);
 				$.ajax({
 					url : "/email/auth",
-					type: "post",
-					async:false,
-					data:{
+					type : "post",
+					async : false,
+					data : {
 						email : email
 					},
-					dataType: "text",
-					success: function(data){
+					dataType : "text",
+					success : function(data) {
 						console.log(data);
 						var jsonData = JSON.parse(data);
-						
+
 						authNum = jsonData.authNum;
 					}
 				})
 			})
-			
-			$("#authB").on("click", function(){
-				if($("#authNum").val() == authNum){
+
+			$("#authB").on("click", function() {
+				if ($("#authNum").val() == authNum) {
 					alert("일치");
-				}else{
+				} else {
 					alert("불일치");
 				}
 			})
 		});
-	
-		
-		
+
 		var currentTab = 0; // Current tab is set to be the first tab (0)
 		showTab(currentTab); // Display the current tab
 
 		function showTab(n) {
-		  // This function will display the specified tab of the form ...
-		  var x = document.getElementsByClassName("tab");
-		  x[n].style.display = "block";
-		  // ... and fix the Previous/Next buttons:
-		  if (n == 0) {
-		    document.getElementById("prevBtn").style.display = "none";
-		  } else {
-		    document.getElementById("prevBtn").style.display = "inline";
-		  }
-		  if (n == (x.length - 1)) {
-		    document.getElementById("nextBtn").innerHTML = "Submit";
-		  } else {
-		    document.getElementById("nextBtn").innerHTML = "Next";
-		  }
-		  // ... and run a function that displays the correct step indicator:
-		  fixStepIndicator(n)
+			// This function will display the specified tab of the form ...
+			var x = document.getElementsByClassName("tab");
+			x[n].style.display = "block";
+			// ... and fix the Previous/Next buttons:
+			if (n == 0) {
+				document.getElementById("prevBtn").style.display = "none";
+			} else {
+				document.getElementById("prevBtn").style.display = "inline";
+			}
+			if (n == (x.length - 1)) {
+				document.getElementById("nextBtn").innerHTML = "Submit";
+			} else {
+				document.getElementById("nextBtn").innerHTML = "Next";
+			}
+			// ... and run a function that displays the correct step indicator:
+			fixStepIndicator(n)
 		}
 
 		function nextPrev(n) {
-		  // This function will figure out which tab to display
-		  var x = document.getElementsByClassName("tab");
-		  // Exit the function if any field in the current tab is invalid:
-		  if (n == 1 && !validateForm()) return false;
-		  // Hide the current tab:
-		  x[currentTab].style.display = "none";
-		  // Increase or decrease the current tab by 1:
-		  currentTab = currentTab + n;
-		  // if you have reached the end of the form... :
-		  if (currentTab >= x.length) {
-		    //...the form gets submitted:
-		    document.getElementById("regForm").submit();
-		    return false;
-		  }
-		  // Otherwise, display the correct tab:
-		  showTab(currentTab);
+			// This function will figure out which tab to display
+			var x = document.getElementsByClassName("tab");
+			// Exit the function if any field in the current tab is invalid:
+			if (n == 1 && !validateForm())
+				return false;
+			// Hide the current tab:
+			x[currentTab].style.display = "none";
+			// Increase or decrease the current tab by 1:
+			currentTab = currentTab + n;
+			// if you have reached the end of the form... :
+			if (currentTab >= x.length) {
+				//...the form gets submitted:
+				document.getElementById("regForm").submit();
+				return false;
+			}
+			// Otherwise, display the correct tab:
+			showTab(currentTab);
 		}
 
 		function validateForm() {
-		  // This function deals with validation of the form fields
-		  var x, y, i, valid = true;
-		  x = document.getElementsByClassName("tab");
-		  y = x[currentTab].getElementsByTagName("input");
-		  // A loop that checks every input field in the current tab:
-		  for (i = 0; i < y.length; i++) {
-		    // If a field is empty...
-		    if (y[i].value == "") {
-		      // add an "invalid" class to the field:
-		      y[i].className += " invalid";
-		      // and set the current valid status to false:
-		      valid = false;
-		    }
-		  }
-		  // If the valid status is true, mark the step as finished and valid:
-		  if (valid) {
-		    document.getElementsByClassName("step")[currentTab].className += " finish";
-		  }
-		  return valid; // return the valid status
+			// This function deals with validation of the form fields
+			var x, y, i, valid = true;
+			x = document.getElementsByClassName("tab");
+			y = x[currentTab].getElementsByTagName("input");
+			// A loop that checks every input field in the current tab:
+			for (i = 0; i < y.length; i++) {
+				// If a field is empty...
+				if (y[i].value == "") {
+					// add an "invalid" class to the field:
+					y[i].className += " invalid";
+					// and set the current valid status to false:
+					valid = false;
+				}
+			}
+			// If the valid status is true, mark the step as finished and valid:
+			if (valid) {
+				document.getElementsByClassName("step")[currentTab].className += " finish";
+			}
+			return valid; // return the valid status
 		}
-		
+
 		function fixStepIndicator(n) {
-		  // This function removes the "active" class of all steps...
-		  var i, x = document.getElementsByClassName("step");
-		  for (i = 0; i < x.length; i++) {
-		    x[i].className = x[i].className.replace(" active", "");
-		  }
-		  //... and adds the "active" class to the current step:
-		  x[n].className += " active";
+			// This function removes the "active" class of all steps...
+			var i, x = document.getElementsByClassName("step");
+			for (i = 0; i < x.length; i++) {
+				x[i].className = x[i].className.replace(" active", "");
+			}
+			//... and adds the "active" class to the current step:
+			x[n].className += " active";
 		}
-		
-		
-		
+
 		connect();
+		onOpen();
 	</script>
 </body>
 
