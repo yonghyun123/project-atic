@@ -1,7 +1,13 @@
 package com.keb.atic.project.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.keb.atic.project.domain.Project;
 import com.keb.atic.project.service.ProjectService;
 
@@ -28,33 +32,45 @@ public class ProjectController {
 	@GetMapping("")
 	public String listAll( Model model) {
 		log.info("list ");
-		JsonArray jsonArray = new JsonArray();
-		JsonObject jsonObject = null;
-		List<Project> list = null;
-		list = projectService.projectListAll();
-		for (Project project : list) {
-			jsonObject = new JsonObject();
-			jsonObject.put(,project.get)
-		}
-		
+		model.addAttribute("list", projectService.projectListAll());
 		model.addAttribute("count", projectService.projectListAll().size());
 		return "/shop" ;
 	}
 	
 	@PostMapping("/search")
-	public String listByConditon(@RequestParam("condition") String condition, RedirectAttributes rttr) {
+	public String listByConditon(@RequestParam("condition") String condition, HttpServletResponse response) {
+		response.setContentType("applicaion/json; charset=utf-8");
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jsonObject = null;
+		List<Project> list = null;
 		log.info("list by condition");
 		log.info(condition);
 		if(condition.equals("1")) {
-			rttr.addFlashAttribute("list", projectService.readProjectsByGoal());
-			rttr.addFlashAttribute("count", projectService.readProjectsByGoal().size());
+			list = projectService.readProjectsByGoal();
 		} else if(condition.equals("2")) {
-			rttr.addFlashAttribute("list", projectService.readProjectsByPercent());
-			rttr.addFlashAttribute("count", projectService.readProjectsByPercent().size());
+			list = projectService.readProjectsByPercent();
 		} else if(condition.equals("3")){
-			rttr.addFlashAttribute("list", projectService.readProjectsByEval());
-			rttr.addFlashAttribute("count", projectService.readProjectsByEval().size());
+			list = projectService.readProjectsByEval();
+		} else {
+			list = projectService.projectListAll();
 		}
+		for (Project project : list) {
+			jsonObject = new JSONObject();
+			jsonObject.put("id",project.getId());
+			jsonObject.put("fileName",project.getFile_name());
+			jsonObject.put("name",project.getName());
+			jsonObject.put("category",project.getCategory());
+			jsonObject.put("goal",project.getGoal());
+			jsonArray.add(jsonObject);
+		}
+		PrintWriter out=null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.println(jsonArray.toJSONString());
+		
 		return null ;
 	}
 	
