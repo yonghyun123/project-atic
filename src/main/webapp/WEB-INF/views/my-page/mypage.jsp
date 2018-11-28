@@ -77,11 +77,11 @@
 				  <div class="card-body">
 				    <h5 class="card-title">총 이자률</h5>
 				    <c:set var="profit" value="${userStatus.totalProfit*100}"/>
-				    <p class="card-text">${profit}%</p>
+				    <p class="card-text" style="color: blue">${profit}%</p>
 				    </div>
 				    <div class="card-body">
 				  	<h5 class="card-title">총 적금액</h5>
-				  	<p class="card-text">	<fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
+				  	<p class="card-text" style="color: blue"><fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
 					</div>				  
 				</div>		
             </div>
@@ -110,18 +110,12 @@
 	                   <p>당신의 적금현황을 보여드립니다. 여러 기업에 호감도와 적금을 투자하셔서 12개월 만기를 채우시면 기존 이율보다 높은 수익률을 느끼실 수 있습니다.</p>
 	
 	                   <!-- Progress Bar Content Area -->
-	                   <div class="alazea-progress-bar">
-	                       <!-- Single Progress Bar -->
-	                       <div class="single_progress_bar">
-	                           <p>만기 도달 개월수(%)</p>
-	                           <div id="bar1" class="barfiller">
-	                               <div class="tipWrap">
-	                                   <span class="tip"></span>
-	                               </div>
-	                               <span class="fill" data-percentage="40.3"></span>
-	                           </div>
-	                       </div>
-	                   </div>
+                       <p>만기 도달 개월수(%)</p>
+	                   <div class="progress">
+						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" id="prog-date" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+						    50% Complete (info)
+						  </div>
+						</div>
 	               </div>
 			    </div>
 			    <!-- 수익률 그래프 그려져야 하는 부분 -->
@@ -192,10 +186,22 @@
     	var year= now.getFullYear();  
     	var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);  
     	var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();  
-
-    	alert(year + mon + day);  
-    	alert(year + '년 ' + mon + '월 ' + day + '일');  
-    	alert(year + '-'+ mon+ '-' + day); 
+    	var curDate = year + '-'+ mon+ '-' + day
+    	var lastDate = "2019-06-30";
+        var arr1 = curDate.split('-');
+        var arr2 = lastDate.split('-');
+        var dat1 = new Date(arr1[0], arr1[1], arr1[2]);
+        var dat2 = new Date(arr2[0], arr2[1], arr2[2]);
+        var diff = dat2 - dat1;
+        var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+        var difDate = parseInt(diff/currDay);
+        
+        const datePerc = Math.round(difDate / 365 * 100,2) + "%";
+        //percent 동적삽입
+        $("#prog-date").css("width",datePerc);
+        $("#prog-date").text(datePerc+"달성!");
+        
+        
     }
     
     calculDate();
