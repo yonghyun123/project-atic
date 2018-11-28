@@ -115,15 +115,15 @@
 						<!-- Tabs -->
 						<ul class="nav nav-tabs" role="tablist" id="product-details-tab">
 							<li class="nav-item"><a href="#description"
-								class="nav-link active" data-toggle="tab" role="tab">Description</a>
+								class="nav-link active" data-toggle="tab" role="tab">상세 설명</a>
 							</li>
 							<li class="nav-item"><a href="#addi-info" class="nav-link"
-								data-toggle="tab" role="tab">Company Information</a></li>
+								data-toggle="tab" role="tab">회사 정보</a></li>
 							<li class="nav-item"><a href="#investor" class="nav-link"
-								data-toggle="tab" role="tab">Investor <span class="text-muted">
+								data-toggle="tab" role="tab">투자자 현황<span class="text-muted">
 								(<c:out value="${countOfInvestor }"/>)</span></a></li>
 							<li class="nav-item"><a href="#reviews" class="nav-link"
-								data-toggle="tab" role="tab">Reviews</a></li>
+								data-toggle="tab" role="tab">예비 평가</a></li>
 						</ul>
 						<!-- Tab Content -->
 						<div class="tab-content">
