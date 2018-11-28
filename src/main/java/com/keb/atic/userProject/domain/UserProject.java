@@ -17,7 +17,19 @@ public class UserProject {
 	//user 투자금액
 	private String deposit;
 	//userId
-	private String user_id;
+	private String userId;
 	//projectId
-	private String project_id;
+	private String projectId;
+	
+	/*도메인 추가 (yonghyun 2018-11-28) */
+	//목표금액
+	private String goal;
+	//현재금액
+	private String curPrice;
+	//사업이름
+	private String name;
+	//회사이름
+	private String company;
+	//투자한 날짜
+	private String createDate;
 }

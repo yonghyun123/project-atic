@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -162,13 +163,13 @@ public class ProjectController {
 		return null;
 	}
 
-	@GetMapping("/detail")
-	public String shopDetails(@RequestParam("project_id") String project_id, Model model) {
-		log.info("detail :" + project_id);
-		model.addAttribute("project", projectService.readProject(project_id));
-		model.addAttribute("userProject", userProjectService.readUserProjectsByProject(project_id));
-		return "shopDetails";
-	}
-
+@GetMapping("/detail/{projectId}")
+public String shopDetails(@PathVariable("projectId") String projectId , Model model) {
+   log.info("detail :" + projectId);
+   model.addAttribute("project",projectService.readProject(projectId));
+   model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
+   model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
+   return "shopDetails";
+}
 
 }

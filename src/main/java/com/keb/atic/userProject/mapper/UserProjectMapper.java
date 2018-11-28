@@ -24,4 +24,6 @@ public interface UserProjectMapper {
 	public void deleteUserProjectByCondition(Map<String, String> condition);
 	//userProject 업데이트
 	public void updateUserProject(UserProject userProject);
+	//project별 투자자 수
+	public int countOfInvestor(String projectId);
 }
