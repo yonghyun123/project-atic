@@ -231,57 +231,67 @@
 	 
 	 /* AJAX 사용 */
 	 userStatusService.get("test1", function(list){
+		 var totalDepositMonth = [];
+		 var curDepositMonth = [];
 		 list.forEach(function(v) {
-		 	
+		 	totalDepositMonth.push(v.totalMoney);
+		 	curDepositMonth.push(v.curMoney);
 		 })
+		 
+		 totalDepoitGraph(curDepositMonth,curDepositMonth);
+		 
+		 
 	 })
 	 
-	 
-	     /* chart.js chart examples */
-	 // chart colors
-	 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
-	
-	 /* large line chart */
-	 var chLine = document.getElementById("chLine");
-	 var chartData = {
-	   labels: ["8월", "9월", "10월", "11월", "12월"],
-	   datasets: [{
-		 label: "월별 적금 금액",
-	     data: [100000, 200000, 100000, 300000, 200000, 400000, 500000],
-	     backgroundColor: 'transparent',
-	     borderColor: colors[0],
-	     borderWidth: 4,
-	     pointBackgroundColor: colors[0]
-	   },
-	   {
-		 label: "만기시 월별 환금 금액",
-		 data: [102130, 312323, 421214, 521231, 624242, 1000123, 1200020],
-	     backgroundColor: colors[3],
-	     borderColor: colors[1],
-	     borderWidth: 4,
-	     pointBackgroundColor: colors[1]
-	   }]
-	 };
-	
-	 if (chLine) {
-	   new Chart(chLine, {
-	   type: 'line',
-	   data: chartData,
-	   options: {
-	     scales: {
-	       yAxes: [{
-	         ticks: {
-	           beginAtZero: false
-	         }
-	       }]
-	     },
-	     legend: {
-	       display: true
-	     }
-	   }
-	   });
+	 function totalDepoitGraph(depositDataset, totalDataset){
+		 /* chart.js chart examples */
+		 // chart colors
+		 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
+		 var chLine = document.getElementById("chLine");
+		 /* large line chart */
+		 
+		 var chartData = {
+		   labels: ["7월", "8월", "9월", "10월", "11월"],
+		   datasets: [{
+			 label: "월별 적금 금액",
+		     data: depositDataset,
+		     backgroundColor: 'transparent',
+		     borderColor: colors[0],
+		     borderWidth: 4,
+		     pointBackgroundColor: colors[0]
+		   },
+		   {
+			 label: "만기시 월별 환금 금액",
+			 data: totalDataset,
+		     backgroundColor: colors[3],
+		     borderColor: colors[1],
+		     borderWidth: 4,
+		     pointBackgroundColor: colors[1]
+		   }]
+		 };
+		 
+		 /*누적금액 월평 금액 선 그래프  */
+		 if (chLine) {
+		   new Chart(chLine, {
+		   type: 'line',
+		   data: chartData,
+		   options: {
+		     scales: {
+		       yAxes: [{
+		         ticks: {
+		           beginAtZero: false
+		         }
+		       }]
+		     },
+		     legend: {
+		       display: true
+		     }
+		   }
+		   });
+		 }
 	 }
 	 
+	
 	 /* 수평 바 chart 이윤 증가율 */
 	 new Chart(document.getElementById("bar-chart-horizontal"), {
 	    type: 'horizontalBar',
