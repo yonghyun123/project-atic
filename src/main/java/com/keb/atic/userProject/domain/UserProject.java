@@ -20,4 +20,6 @@ public class UserProject {
 	private String user_id;
 	//projectId
 	private String project_id;
+	//createDate
+	private String create_date;
 }
