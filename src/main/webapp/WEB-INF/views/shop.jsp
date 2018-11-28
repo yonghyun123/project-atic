@@ -124,37 +124,37 @@
 
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
+
 <script id="templateList" type="text/template">
-<div class="col-12 col-sm-6 col-lg-4">
-<div class="single-product-area mb-50">
-    <!-- Product Image -->
-    <div class="product-img">
-    <form id="form{id}" action="/shop/details" method="post">
-        <a href="/shop-details">
-        <img src="/resources/img/project-image/{fileName }" alt=""></a>
-        <input type="hidden" value="{id }">
-        <!-- Product Tag -->
-        <div class="product-tag">
-            <a href="#">Hot</a>
-        </div>
-        </form>
-    </div>
-    <!-- Product Info -->
-    <div class="product-info mt-15 text-center">
-        <a href="/shop-details">
-            <h6> {name } </h6>
-        </a>
-        <h6>업종 : {category } / 목표금액 : {goal }</h6>
-    </div>
-</div>
-</div>
+	<div class="col-12 col-sm-6 col-lg-4">
+	<div class="single-product-area mb-50">
+    	<!-- Product Image -->	
+	    <div class="product-img">
+    	<form id="form{id}" action="/shop/details" method="post">
+        	<a href="/shop-details">
+	        <img src="/resources/img/project-image/{fileName}" alt=""></a>
+   	     <input type="hidden" value="{id}">
+   	     <!-- Product Tag -->
+   	     <div class="product-tag">
+   	         <a href="#">Hot</a>
+   	     </div>
+   	     </form>
+   	 </div>
+   	 <!-- Product Info -->
+   	 <div class="product-info mt-15 text-center">
+   	     <a href="/shop-details">
+   	         <h6> {name} </h6>
+   	     </a>
+   	     <h6>업종 : {category} / 목표금액 : {goal}</h6>
+   	 </div>
+		</div>
+	</div>
 </script>
 
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
 var condition = $("#search_by option:selected").val();
  if(condition != '정렬'){
-	alert(condition);
 	 $.ajax({
 		type : "post",
 		url : "/shop/search",
@@ -163,20 +163,24 @@ var condition = $("#search_by option:selected").val();
 			'condition' : condition
 		},
 		success : function(data){
-			alert(data);
-// 			var jsonDetailData = JSON.parse(data);
-//           	var body = detailHeaderTemplate(jsonDetailData);
-//           	detailBodyTemplate(jsonDetailData, body);
-//           	detailSideTemplate(jsonDetailData);
-//           	detailInformTemplate(jsonDetailData);
-		},
-		error : function(data){
-			alert('실패'+data.responseText);
+			var jsonModifyData = JSON.parse(data);
+          	searchTemplate(jsonModifyData);
 		}
 	}); 
 }
 });
-
-	
+function searchTemplate(jsonModifyData) {
+    var templateHtml = document.querySelector('#templateList').innerHTML;
+    var originHtml = document.querySelector('#templateBody');
+    var newHtml = '';
+    jsonModifyData.forEach(function(v, i) {
+      newHtml += templateHtml.replace('{id}', v.id)
+          				  .replace('{fileName}', v.fileName)
+          				  .replace('{name}', v.name)
+          				  .replace('{category}', v.category)
+          				  .replace('{goal}', v.goal)
+    });
+    originHtml.innerHTML = newHtml;
+  }
 </script>
 </html>
