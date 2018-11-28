@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class UserProjectServiceImpl implements UserProjectService{
 	@Setter(onMethod_ = { @Autowired })
-	private UserProjectMapper mapper;
+	private UserProjectMapper userProjectMapper;
 
 	@Override
 	public void createUserProject(UserProject userProject) {
@@ -28,7 +28,12 @@ public class UserProjectServiceImpl implements UserProjectService{
 
 	@Override
 	public List<UserProject> readUserProjectsByProject(String projectId) {
-		return mapper.readUserProjectsByProject(projectId);
+		return userProjectMapper.readUserProjectsByProject(projectId);
+	}
+
+	@Override
+	public int countOfInvestor(String projectId) {
+		return userProjectMapper.countOfInvestor(projectId);
 	}
 	
 	

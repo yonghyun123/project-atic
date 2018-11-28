@@ -23,7 +23,14 @@
 	SELECT id, 
        deposit, 
        user_id, 
-       project_id 
+       project_id,
+       create_date 
+	FROM   at_user_project 
+	WHERE  project_id = #{project_id}
+	</select>
+	
+	<select id="countOfInvestor" resultType="int">
+	SELECT count(*)
 	FROM   at_user_project 
 	WHERE  project_id = #{project_id}
 	</select>

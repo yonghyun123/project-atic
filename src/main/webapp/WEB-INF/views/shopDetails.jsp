@@ -23,6 +23,8 @@
 <!-- Custom CSS -->
 <link rel="stylesheet" href="/resources/css/common.css">
 
+<!-- table CSS -->
+<link rel="stylesheet" href="/resources/css/shop_detail.css">
 </head>
 
 <body>
@@ -98,10 +100,7 @@
 							</div>
 
 							<div class="products--meta">
-								<p>
-									<span>이 페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
-									<span>투자자 수</span>
-								</p>
+									<img src="/resources/img/heart.gif"><span>이 페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
 							</div>
 						</div>
 					</div>
@@ -120,9 +119,11 @@
 							</li>
 							<li class="nav-item"><a href="#addi-info" class="nav-link"
 								data-toggle="tab" role="tab">Company Information</a></li>
+							<li class="nav-item"><a href="#investor" class="nav-link"
+								data-toggle="tab" role="tab">Investor <span class="text-muted">
+								(<c:out value="${countOfInvestor }"/>)</span></a></li>
 							<li class="nav-item"><a href="#reviews" class="nav-link"
-								data-toggle="tab" role="tab">Reviews <span
-									class="text-muted">(1)</span></a></li>
+								data-toggle="tab" role="tab">Reviews</a></li>
 						</ul>
 						<!-- Tab Content -->
 						<div class="tab-content">
@@ -160,6 +161,33 @@
 									
 								</div>
 							</div>
+							
+							<div role="tabpanel" class="tab-pane fade" id="investor">
+								<div class="investor_area">
+									<table id="customers">
+									<tr>
+									<th>No</th>
+									<th>투자자</th>
+									<th>투자액</th>
+									<th>투자 날짜</th>
+									</tr>
+									<c:choose>
+					                  <c:when test="${not empty userProject }">
+									 <c:forEach var="project" items="${userProject}" varStatus="status">
+									<tr>
+									<td>${status.index+1 }</td>
+									<td>${project.user_id }</td>
+									<td>${project.deposit }</td>
+									<td>${project.create_date }</td>
+									</tr>
+									</c:forEach>
+									</c:when>
+									</c:choose>
+									</table>
+									
+								</div>
+							</div>
+							
 							<div role="tabpanel" class="tab-pane fade" id="reviews">
 								<div class="reviews_area">
 									<ul>
