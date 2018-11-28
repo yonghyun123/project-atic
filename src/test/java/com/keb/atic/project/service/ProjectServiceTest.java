@@ -1,5 +1,7 @@
 package com.keb.atic.project.service;
 
+import java.util.GregorianCalendar;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -16,10 +18,24 @@ public class ProjectServiceTest{
 	@Inject
 	private ProjectService service;
 
-	@Test
+	//@Test
 	public void testClass() {
 		log.info(service.projectListAll());
 		
+	}
+	
+	//@Test
+	public void testOrderByGoal() {
+		log.info(service.readProjectsByGoal());
+	}
+	@Test
+	public void testNextProject() {
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		int month = cal.get(GregorianCalendar.MONTH)+2;
+		if(month >12) {
+			month-=12;
+		}
+		log.info(service.readMonthProjectByGoal(String.valueOf(month)));
 	}
 	
 

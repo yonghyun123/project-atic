@@ -12,6 +12,8 @@ public class FileInfo {
 	private String id;
 	//file 명
 	private String file_name;
+	//파일 확장자
+	private String content_type;
 	//file 등록일자
 	private String create_date;
 }
