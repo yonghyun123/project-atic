@@ -40,5 +40,5 @@ public class Project {
 	private String category;
 	//project 이미지 이름
 	private String file_name;
-	//project 이미지 타입
+	
 }

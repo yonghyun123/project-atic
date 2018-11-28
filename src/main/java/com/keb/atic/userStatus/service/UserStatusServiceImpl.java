@@ -1,5 +1,7 @@
 package com.keb.atic.userStatus.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +20,11 @@ public class UserStatusServiceImpl implements UserStatusService {
 	@Override
 	public UserStatus getMaxStatus(String userId) {
 		return userStatusMapper.getMaxStatus(userId);
+	}
+
+	@Override
+	public List<UserStatus> userStatusListByUser(String userId) {
+		return userStatusMapper.userStatusListByUser(userId);
 	}
 
 }

@@ -7,7 +7,7 @@
 	
 	</select>
 	<select id="readProject" resultType="com.keb.atic.project.domain.Project">
-		SELECT p.id          AS "id", 
+		SELECT 	   p.id          AS "id", 
 			       p.NAME        AS "name", 
 			       p.title       AS"title", 
 			       p.description AS "description", 
@@ -30,33 +30,59 @@
 			       AND pi.image_type = 'th'
 	</select>
 	
-	<select id="readProjectsByGoal"  parameterType="string" resultType="com.keb.atic.project.domain.Project">
-			SELECT p.NAME         AS "name", 
+	<!-- 이번달 목표금액 달성 순 -->
+	<select id="readProjectsByGoal"  resultType="com.keb.atic.project.domain.Project">
+			SELECT p.id			  AS "id",
+				   p.NAME         AS "name", 
 			       p.goal         AS "goal", 
 			       p.company      AS "company", 
 			       c.NAME         AS "category", 
 			       p.create_date  AS "create_date", 
-			       f.file_name    AS "file_name", 
-			       f.content_type AS "content_type" 
-			FROM   at_project p 
-			       JOIN at_category c 
-			         ON p.category_id = c.id 
-			       JOIN at_project_image pi 
-			         ON p.id = pi.project_id 
-			       JOIN at_file_info f 
-			         ON pi.file_id = f.file_id 
-			WHERE  To_char(p.create_date, 'Month') = To_char(sysdate, 'Month') 
-			       AND pi.image_type = 'th' 
-			ORDER  BY ( p.cur_price / p.goal ) DESC 
+			       f.file_name    AS "file_name"
+			from AT_project p join at_category c
+			on p.category_id = c.ID join AT_PROJECT_IMAGE pi
+			on p.id = pi.PROJECT_ID join AT_FILE_INFO f
+			on pi.FILE_ID = f.FILE_ID
+			where  to_char(p.create_date,'Month') = to_char(sysdate,'Month')
+			and pi.IMAGE_TYPE = 'th'
+			order by p.goal desc
 	</select>
-	<select id="readProjectsByPercent"  parameterType="string" resultType="com.keb.atic.project.domain.Project">
-			SELECT p.NAME         AS "name", 
+	
+	<!-- 다음달 예비 등록 사업 조회 -->
+	<select id="readMonthProjectByGoal" resultType="com.keb.atic.project.domain.Project">
+    SELECT "id",
+    	   "name",
+           "goal",
+           "company",
+           "category",
+           "create_date",
+           "file_name"
+    FROM (
+      SELECT p.id			AS "id", 
+      		 p.NAME         AS "name", 
+			 p.goal         AS "goal", 
+			 p.company      AS "company", 
+			 c.NAME         AS "category", 
+			 p.create_date  AS "create_date", 
+			 f.file_name    AS "file_name"
+			from AT_project p join at_category c
+				on p.category_id = c.ID join AT_PROJECT_IMAGE pi
+				on p.id = pi.PROJECT_ID join AT_FILE_INFO f
+				on pi.FILE_ID = f.FILE_ID
+			where  to_char(p.create_date,'Month') =#{value}
+				and pi.IMAGE_TYPE = 'th'
+				order by p.goal desc
+        )
+        where rownum <![CDATA[ < ]]> 4
+	</select>
+	<select id="readProjectsByPercent"  resultType="com.keb.atic.project.domain.Project">
+			SELECT p.id			  AS "id",
+				   p.NAME         AS "name", 
 			       p.goal         AS "goal", 
 			       p.company      AS "company", 
 			       c.NAME         AS "category", 
 			       p.create_date  AS "create_date", 
-			       f.file_name    AS "file_name", 
-			       f.content_type AS "content_type" 
+			       f.file_name    AS "file_name"
 				FROM   at_project p 
 				       JOIN at_category c 
 				         ON p.category_id = c.id 
@@ -68,14 +94,15 @@
 				       AND pi.image_type = 'th' 
 				ORDER  BY ( p.cur_price / p.goal ) DESC
 	</select>
-	<select id="readProjectsByEval"  parameterType="string" resultType="com.keb.atic.project.domain.Project">
-			SELECT p.NAME         AS "name", 
+	
+	<select id="readProjectsByEval"  resultType="com.keb.atic.project.domain.Project">
+			SELECT p.id			  AS "id",
+				   p.NAME         AS "name", 
 			       p.goal         AS "goal", 
 			       p.company      AS "company", 
 			       c.NAME         AS "category", 
 			       p.create_date  AS "create_date", 
-			       f.file_name    AS "file_name", 
-			       f.content_type AS "content_type" 
+			       f.file_name    AS "file_name"
 			FROM   at_project p 
 			       JOIN at_category c 
 			         ON p.category_id = c.id 
@@ -92,13 +119,13 @@
 	</select>
 	
 	<select id="projectListAll"  resultType="com.keb.atic.project.domain.Project">
-		SELECT p.NAME         AS "name", 
+		SELECT p.id			  AS "id",
+			   p.NAME         AS "name", 
 		       p.goal         AS "goal", 
 		       p.company      AS "company", 
 		       c.NAME         AS "category", 
 		       p.create_date  AS "create_date", 
-		       f.file_name    AS "file_name", 
-		       f.content_type AS "content_type" 
+		       f.file_name    AS "file_name"
 		FROM   at_project p 
 		       JOIN at_category c 
 		         ON p.category_id = c.id 
@@ -109,6 +136,7 @@
 		WHERE  To_char(p.create_date, 'Month') = To_char(sysdate, 'Month') 
 		       AND pi.image_type = 'th'
 	</select>
+	
 	
 	<delete id="deleteProject" >
 	
