@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 
 <head>
@@ -44,8 +44,8 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="#"><i
 									class="fa fa-home"></i> Home</a></li>
-							<li class="breadcrumb-item"><a href="#">Shop</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Shop
+							<li class="breadcrumb-item"><a href="#">Project</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Project
 								Details</li>
 						</ol>
 					</nav>
@@ -63,53 +63,29 @@
 
 					<div class="col-12 col-md-6 col-lg-5">
 						<div class="single_product_thumb">
-							<div id="product_details_slider" class="carousel slide"
-								data-ride="carousel">
+						
+							<!-- 썸네일 이미지 -->
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<a class="product-img" href="/resources/img/bg-img/49.jpg"
+										<a class="product-img" href="/resources/img/project-image/<c:out value='${project.file_name }'/>"
 											title="Product Image"> <img class="d-block w-100"
-											src="/resources/img/bg-img/49.jpg" alt="1">
-										</a>
-									</div>
-									<div class="carousel-item">
-										<a class="product-img" href="/resources/img/bg-img/49.jpg"
-											title="Product Image"> <img class="d-block w-100"
-											src="/resources/img/bg-img/49.jpg" alt="1">
-										</a>
-									</div>
-									<div class="carousel-item">
-										<a class="product-img" href="/resources/img/bg-img/49.jpg"
-											title="Product Image"> <img class="d-block w-100"
-											src="/resources/img/bg-img/49.jpg" alt="1">
+											src="/resources/img/project-image/<c:out value='${project.file_name }'/>" alt="1">
 										</a>
 									</div>
 								</div>
-								<!-- 
-								<ol class="carousel-indicators">
-									<li class="active" data-target="#product_details_slider"
-										data-slide-to="0"
-										style="background-image: url(/resources/img/bg-img/49.jpg);"></li>
-									<li data-target="#product_details_slider" data-slide-to="1"
-										style="background-image: url(/resources/img/bg-img/49.jpg);"></li>
-									<li data-target="#product_details_slider" data-slide-to="2"
-										style="background-image: url(/resources/img/bg-img/49.jpg);"></li>
-								</ol>
-								 -->
-							</div>
+								
+							
 						</div>
 					</div>
 
 					<div class="col-12 col-md-6">
 						<div class="single_product_desc">
-							<h4 class="title">Recuerdos Plant</h4>
-							<h4 class="price">$9.99</h4>
+							<h4 class="title"><c:out value='${project.name }'/></h4>
+							목표 자금 <c:out value="${project.goal }"/>
+							<h4 class="price"><c:out value="${project.cur_price }"/>원 달성</h4>
 							<div class="short_overview">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Phasellus pellem malesuada in nibh selama euismod. Curabitur a
-									rhoncus dui. Nunc lobortis cursus magna utrum faucibus. Vivamus
-									justo nibh, pharetra non risus accumsan, tincidunt suscipit
-									leo.</p>
+								<p><c:out value="${project.title }"/></p>
+								<p>이 프로젝트가 목표자금을 달성할 시 <c:out value="${project.interest }"/>%의 금리혜택을 받으실 수 있습니다.</p>
 							</div>
 
 							<div class="cart--area d-flex flex-wrap align-items-center">
@@ -121,25 +97,10 @@
 
 							</div>
 
-							<!--  
-                            <div class="products--meta">
-                                <p><span>SKU:</span> <span>CT201807</span></p>
-                                <p><span>Category:</span> <span>Outdoor Plants</span></p>
-                                <p><span>Tags:</span> <span>plants, green, cactus </span></p>
-                                <p>
-                                    <span>Share on:</span>
-                                    <span>
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                                </span>
-                                </p>
-                            </div>
--->
 							<div class="products--meta">
 								<p>
 									<span>이 페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
+									<span>투자자 수</span>
 								</p>
 							</div>
 						</div>
@@ -158,7 +119,7 @@
 								class="nav-link active" data-toggle="tab" role="tab">Description</a>
 							</li>
 							<li class="nav-item"><a href="#addi-info" class="nav-link"
-								data-toggle="tab" role="tab">Additional Information</a></li>
+								data-toggle="tab" role="tab">Company Information</a></li>
 							<li class="nav-item"><a href="#reviews" class="nav-link"
 								data-toggle="tab" role="tab">Reviews <span
 									class="text-muted">(1)</span></a></li>
@@ -168,43 +129,35 @@
 							<div role="tabpanel" class="tab-pane fade show active"
 								id="description">
 								<div class="description_area">
-									<p>Sed a facilisis orci. Curabitur magna urna, varius
-										placerat placerat sodales, pretium vitae orci. Aliquam erat
-										volutpat. Cras sit amet suscipit magna. Quisque turpis odio,
-										facilisis vel eleifend eu, dignissim ac odio.</p>
-									<p>Interdum et malesuada fames ac ante ipsum primis in
-										faucibus. In scelerisque augue at the moment mattis. Proin
-										vitae arcu sit amet justo sollicitudin tincidunt sit amet ut
-										velit.Proin placerat vel augue eget euismod. Phasellus cursus
-										orci eu tellus vestibulum, vestibulum urna accumsan.
-										Vestibulum ut ullamcorper sapien. Pellentesque molestie, est
-										ac vestibulum eleifend, lorem ipsum mollis ipsum.</p>
+									<p><c:out value="${project.description }"/></p>
+									<p>
+									<img src="/resources/img/project-image/<c:out value="${project.id }"/>_et_1.png">
+									<img src="/resources/img/project-image/<c:out value="${project.id }"/>_et_2.png">
+									<img src="/resources/img/project-image/<c:out value="${project.id }"/>_et_3.png">
+									
+									</p>
+									
 								</div>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="addi-info">
 								<div class="additional_info_area">
 									<p>
-										What should I do if I receive a damaged parcel? <br> <span>Lorem
-											ipsum dolor sit amet, consectetur adipisicing elit.
-											Reprehenderit impedit similique qui, itaque delectus labore.</span>
+										회사 이름<br> <span>
+										<c:out value="${project.company }"/>
+										</span>
 									</p>
 									<p>
-										I have received my order but the wrong item was delivered to
-										me. <br> <span>Lorem ipsum dolor sit amet,
-											consectetur adipisicing elit. Facilis quam voluptatum beatae
-											harum tempore, ab?</span>
+										회사 전화번호 <br> <span>
+										<c:out value="${project.tel }"/>
+										</span>
 									</p>
 									<p>
-										Product Receipt and Acceptance Confirmation Process <br>
-										<span>Lorem ipsum dolor sit amet, consectetur
-											adipisicing elit. Dolorum ducimus, temporibus soluta impedit
-											minus rerum?</span>
+										회사 업종 <br>
+										<span>
+										<c:out value="${project.category }"/>
+										</span>
 									</p>
-									<p>
-										How do I cancel my order? <br> <span>Lorem ipsum
-											dolor sit amet, consectetur adipisicing elit. Nostrum eius
-											eum, minima!</span>
-									</p>
+									
 								</div>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="reviews">
@@ -444,9 +397,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- ##### Related Product Area End ##### -->
-
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 
 	<!-- ##### All Javascript Files ##### -->
 	<!-- jQuery-2.2.4 js -->
@@ -459,6 +409,10 @@
 	<script src="/resources/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="/resources/js/active.js"></script>
+		<!-- ##### Related Product Area End ##### -->
+
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
+	
 	
 	<script type="text/javascript">
 		
