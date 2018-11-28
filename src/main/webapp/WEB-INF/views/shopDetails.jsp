@@ -467,12 +467,19 @@
 	<script type="text/javascript">
 		let wsocket;
 		$(window).on("beforeunload", function() {
-			sayBye();
 			setInterval(function() {
-				wsocket.close();
+				sayBye();
 			}, 500);
+				wsocket.close();
 		});
 
+		
+		function send(object) {
+			if (object) {
+				wsocket.send(JSON.stringify(object));
+			}
+		}
+		
 		function sayBye() {
 			var messageObject = {
 				type : 2000
@@ -481,11 +488,7 @@
 
 		}
 
-		function send(object) {
-			if (object) {
-				wsocket.send(JSON.stringify(object));
-			}
-		}
+		
 
 		function connect() {
 			wsocket = new WebSocket("ws://localhost/hanaSocket");
