@@ -82,19 +82,16 @@
                           <div class="single-product-area mb-50">
                               <!-- Product Image -->
                               <div class="product-img">
-                              <form id="form${project.id}" action="/shop/details" method="post">
-                                  <a href="/shop-details">
+                                  <a href="/shop/detail/${project.id }">
                                   <img src="/resources/img/project-image/${project.file_name }" alt=""></a>
-                                  <input type="hidden" value="${project.id }">
                                   <!-- Product Tag -->
                                   <div class="product-tag">
                                       <a href="#">Hot</a>
                                   </div>
-                                  </form>
                               </div>
                               <!-- Product Info -->
                               <div class="product-info mt-15 text-center">
-                                  <a href="/shop-details">
+                                  <a href="/shop/detail/${project.id }">
                                       <h6> ${project.name } </h6>
                                   </a>
                                   <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
@@ -154,7 +151,6 @@
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
 var condition = $("#search_by option:selected").val();
- if(condition != '정렬'){
 	 $.ajax({
 		type : "post",
 		url : "/shop/search",
@@ -167,7 +163,6 @@ var condition = $("#search_by option:selected").val();
           	searchTemplate(jsonModifyData);
 		}
 	}); 
-}
 });
 function searchTemplate(jsonModifyData) {
     var templateHtml = document.querySelector('#templateList').innerHTML;
@@ -182,5 +177,12 @@ function searchTemplate(jsonModifyData) {
     });
     originHtml.innerHTML = newHtml;
   }
+  
+$(".move").on("click",function(e) {
+	e.preventDefault();
+			actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+			actionForm.attr("action","/spring/board/get");
+			actionForm.submit();
+		});
 </script>
 </html>
