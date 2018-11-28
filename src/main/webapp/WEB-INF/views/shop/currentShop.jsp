@@ -84,7 +84,7 @@
                               <!-- Product Image -->
                               <div class="product-img">
                               <form id="form${project.id}" action="/shop/details" method="post">
-                                  <a href="/shop-details">
+                                  <a href="/shop/detail/${project.id }">
                                   <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
                                   <input type="hidden" value="${project.id }">
                                   <!-- Product Tag -->
@@ -134,21 +134,6 @@
           pauseOnHover:true
         });
         
-        $('.monthProject').click(function(){
-        	 whichProject = $(this).attr('value');
-         	 $.ajax({
-        			type : "get",
-        			url : "/shop/selectList",
-        			dataType : "text",
-        			data : {
-        				'listType' : whichProject
-        			},
-        			success : function(data){
-        				var jsonModifyData = JSON.parse(data);
-        	          	searchTemplate(jsonModifyData);
-        			}
-        		});  
-        })
       });
 </script>
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
@@ -156,7 +141,7 @@
 
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
-var condition = $("#search_by option:selected").val();
+	var condition = $("#search_by option:selected").val();
  if(condition != '정렬'){
 	 $.ajax({
 		type : "post",
@@ -164,7 +149,7 @@ var condition = $("#search_by option:selected").val();
 		dataType : "text",
 		data : {
 			'condition' : condition,
-			'whichProject' : whichProject
+			'whichProject' : 'curProject'
 		},
 		success : function(data){
 			var jsonModifyData = JSON.parse(data);

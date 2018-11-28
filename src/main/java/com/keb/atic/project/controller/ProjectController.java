@@ -83,50 +83,9 @@ public class ProjectController {
 		}
 		Map<String, String>preMap = new HashMap<String,String>();
 		preMap.put("month", String.valueOf(nextMonth)+"월");
-		preMap.put("count", "10");
+		preMap.put("count", "20");
 		model.addAttribute("preList",projectService.readMonthProjectByGoal(preMap));
 	}
-	
-/*	@GetMapping("/selectList")
-	public String listByMonth(@RequestParam("listType") String listType, HttpServletResponse response) {
-		response.setContentType("applicaion/json; charset=utf-8");
-		JSONArray jsonArray = new JSONArray();
-		JSONObject jsonObject = null;
-		List<Project> list = null;
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("count", "10");
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
-		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
-		int nextMonth = thisMonth +1;
-		if(nextMonth >12) {
-			nextMonth-=12;
-		}
-		
-		if (listType.equals("curProject")) {
-			map.put("month", String.valueOf(thisMonth)+"월");
-			list = projectService.readMonthProjectByGoal(map);
-		} else {
-			map.put("month", String.valueOf(nextMonth)+"월");
-			list = projectService.readMonthProjectByGoal(map);
-		}
-		for (Project project : list) {
-			jsonObject = new JSONObject();
-			jsonObject.put("id", project.getId());
-			jsonObject.put("fileName", project.getFile_name());
-			jsonObject.put("name", project.getName());
-			jsonObject.put("category", project.getCategory());
-			jsonObject.put("goal", project.getGoal());
-			jsonArray.add(jsonObject);
-		}
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		out.println(jsonArray.toJSONString());
-		return null;
-	}*/
 	
 	/**프로젝트 검색*/
 	@PostMapping("/search")
