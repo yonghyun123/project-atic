@@ -466,6 +466,7 @@
 
 	<script type="text/javascript">
 		let wsocket;
+		var projectId = $("#projectId").val();
 		$(window).on("beforeunload", function() {
 			sayBye();
 			setInterval(function() {
@@ -475,7 +476,8 @@
 
 		function sayBye() {
 			var messageObject = {
-				type : 2000
+				type : 2000,
+				projectId : projectId
 			}
 			send(messageObject);
 
@@ -495,7 +497,7 @@
 		}
 
 		function onOpen(event) {
-			var projectId = $("#projectId").val();
+			
 			var messageObject = {
 				type : 1000,
 				projectId : projectId

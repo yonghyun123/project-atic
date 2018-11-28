@@ -15,6 +15,14 @@ public class Message {
 	}
 
 	
+	public Message(int type, int count, String message, String projectId) {
+		super();
+		this.type = type;
+		this.count = count;
+		this.message = message;
+		this.projectId = projectId;
+	}
+
 	public String getProjectId() {
 		return projectId;
 	}
