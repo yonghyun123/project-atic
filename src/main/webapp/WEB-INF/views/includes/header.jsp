@@ -4,7 +4,7 @@
 
 <!-- Modal Area Start -->
 <%@ include file="/WEB-INF/views/modal/login.jsp"%>
-<%@ include file="/WEB-INF/views/modal/logout.jsp"%>
+<%-- <%@ include file="/WEB-INF/views/modal/logout.jsp"%> --%>
 <%@ include file="/WEB-INF/views/modal/deposit.jsp"%>
 <%@ include file="/WEB-INF/views/modal/nickname.jsp"%>
 <!-- Modal Area End -->
@@ -49,13 +49,13 @@
             <!-- Navbar Start -->
             <div class="classynav">
               <ul>
-                <li><a href="#">투자 하기</a>
-                <li><a href="#">대출 신청</a>
+                <li><a href="#">스타트업 지원 신청</a>
+                <li><a href="#">펀딩</a>
                   <ul class="dropdown">
-                    <li><a href="/shop">투자 홈</a></li>
-                    <li><a href="#">오픈예정</a></li>
-                    <li><a href="#">오픈된 상품</a></li>
-                  </ul></li>
+                    <li><a href="/shop">펀딩 홈</a></li>
+                    <li><a href="/preshop">오픈예정 사업</a></li>
+                  </ul>
+                </li>
                 <li><a href="#">이용 가이드</a></li>
                 <c:choose>
                   <c:when test="${not empty loginId }">

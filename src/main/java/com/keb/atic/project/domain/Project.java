@@ -23,7 +23,7 @@ public class Project {
 	//project 목표 모금액
 	private String goal;
 	//project 현재 모금액
-	private String cur_price;
+	private String curPrice;
 	// project 기업 홈페이지
 	private String homepage;
 	// project 기업 전화번호
@@ -33,14 +33,14 @@ public class Project {
 	//project 최대 이율
 	private String interest;
 	//project 등록 일자
-	private String create_date;
+	private String createDate;
 	//project 목표 모금 달성 여부
-	private String goal_flag;
+	private String goalFlag;
 	//project 카테고리 식별자
-	private String category_id;
+	private String categoryId;
 	//project 카테고리 이름
 	private String category;
 	//project 이미지 이름
-	private String file_name;
+	private String fileName;
 	
 }
