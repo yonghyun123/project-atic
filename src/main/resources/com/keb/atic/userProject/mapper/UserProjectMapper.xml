@@ -16,23 +16,34 @@
 	</select>
 	
 	<select id="readUserProjectsByUser" resultType="com.keb.atic.userProject.domain.UserProject">
-	
+	SELECT
+		 p.id AS "projectId", 
+		 p.name AS "name",
+		 p.goal AS "goal",
+		 p.cur_price AS "curPrice",
+		 p.company AS "company",
+		 up.deposit AS "deposit",
+		 up.create_date AS "createDate"
+	FROM AT_user_project up, AT_project p
+	WHERE user_id = #{userId} and up.project_id = p.id
+	ORDER BY up.create_date desc
 	</select>
 	
 	<select id="readUserProjectsByProject" resultType="com.keb.atic.userProject.domain.UserProject">
-	SELECT id, 
-       deposit, 
-       user_id, 
-       project_id,
-       create_date 
+	SELECT id AS "id", 
+       deposit AS "deposit", 
+       user_id AS "userId", 
+       project_id AS "projectId",
+       create_date AS "createDate"
 	FROM   at_user_project 
-	WHERE  project_id = #{project_id}
+	WHERE  project_id = #{projectId}
+	ORDER BY deposit desc
 	</select>
 	
 	<select id="countOfInvestor" resultType="int">
 	SELECT count(*)
 	FROM   at_user_project 
-	WHERE  project_id = #{project_id}
+	WHERE  project_id = #{projectId}
 	</select>
 
 	<delete id="deleteUserProjectByCondition" parameterType="Map">
