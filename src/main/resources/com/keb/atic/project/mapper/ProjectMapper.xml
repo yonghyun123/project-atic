@@ -55,8 +55,8 @@
            "goal",
            "company",
            "category",
-           "create_date",
-           "file_name"
+           "createDate",
+           "fileName"
     FROM (
       SELECT p.id			AS "id", 
       		 p.NAME         AS "name", 
