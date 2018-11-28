@@ -82,7 +82,7 @@
             <!-- Product Image -->
             <div class="product-img">
               <a href="shop-details.html"><img
-                src="/resources/img/project-image/${project.file_name}" alt=""></a>
+                src="/resources/img/project-image/${project.fileName}" alt=""></a>
               <!-- Product Tag -->
               <div class="product-tag">
                 <a href="#">HOT</a>
@@ -136,7 +136,7 @@
           <div class="single-blog-post mb-100">
             <div class="post-thumbnail mb-30">
               <a href="single-post.html"><img
-                src="/resources/img/project-image/${preProject.file_name}" alt=""></a>
+                src="/resources/img/project-image/${preProject.fileName}" alt=""></a>
             </div>
             <div class="post-content">
               <a href="single-post.html" class="post-title">
