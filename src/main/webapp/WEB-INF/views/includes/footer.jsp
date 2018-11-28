@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+  <script src="/resources/js/countTime.js"></script>    
 <script>
 $(document).ready(function(){
   $("#login").on("click", function(e) {
@@ -11,6 +11,11 @@ $(document).ready(function(){
 	$("#logout-modal").modal('show');
   })
 });
+$(function(){
+    $('#countTime').countTime({
+      time: '2018-12-01 00:00:00'//기준시간
+    });
+  });
 </script>
     
 <!-- ##### Footer Area Start ##### -->
