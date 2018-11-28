@@ -1,5 +1,6 @@
 package com.keb.atic.project.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /** Project의 정보를 담는 Domain
@@ -7,6 +8,7 @@ import lombok.Data;
  *
  */
 @Data
+@AllArgsConstructor
 public class Project {
 	//project 식별자
 	private String id;
