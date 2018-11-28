@@ -9,7 +9,7 @@
 	<select id="readProject" resultType="com.keb.atic.project.domain.Project">
 		SELECT 	   p.id          AS "id", 
 			       p.NAME        AS "name", 
-			       p.title       AS"title", 
+			       p.title       AS "title", 
 			       p.description AS "description", 
 			       p.cur_price   AS "curPrice", 
 			       p.tel         AS "tel", 
