@@ -20,7 +20,12 @@
 	</select>
 	
 	<select id="readUserProjectsByProject" resultType="com.keb.atic.userProject.domain.UserProject">
-	
+	SELECT id, 
+       deposit, 
+       user_id, 
+       project_id 
+	FROM   at_user_project 
+	WHERE  project_id = #{project_id}
 	</select>
 
 	<delete id="deleteUserProjectByCondition" parameterType="Map">
