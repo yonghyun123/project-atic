@@ -168,6 +168,7 @@ function searchTemplate(jsonModifyData) {
     jsonModifyData.forEach(function(v, i) {
     	projectCount++;
       newHtml += templateHtml.replace('{id}', v.id)
+      					  .replace('{Id}',v.id)
           				  .replace('{fileName}', v.fileName)
           				  .replace('{name}', v.name)
           				  .replace('{category}', v.category)
@@ -185,7 +186,7 @@ function searchTemplate(jsonModifyData) {
       <!-- Product Image -->  
       <div class="product-img">
       <form id="form{id}" action="/shop/details" method="post">
-          <a href="/shop-details">
+           <a href="/shop/detail/{Id}">
           <img src="/resources/img/project-image/{fileName}" alt=""></a>
          <input type="hidden" value="{id}">
          <!-- Product Tag -->
