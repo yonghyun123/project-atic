@@ -474,11 +474,7 @@
 		});
 
 		
-		function send(object) {
-			if (object) {
-				wsocket.send(JSON.stringify(object));
-			}
-		}
+		
 		
 		function sayBye() {
 			var messageObject = {
@@ -524,6 +520,12 @@
 				break;
 			}
 
+		}
+		
+		function send(object) {
+			if (object) {
+				wsocket.send(JSON.stringify(object));
+			}
 		}
 
 		$("#deposit").click(function() {
