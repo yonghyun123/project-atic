@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 
 <head>
@@ -74,11 +76,12 @@
 				<div class="card" style="width: 30rem; margin:20px;">
 				  <div class="card-body">
 				    <h5 class="card-title">총 이자률</h5>
-				    <p class="card-text">${userStatus.totalProfit}</p>
+				    <c:set var="profit" value="${userStatus.totalProfit*100}"/>
+				    <p class="card-text">${profit}%</p>
 				    </div>
 				    <div class="card-body">
 				  	<h5 class="card-title">총 적금액</h5>
-				  	<p class="card-text">${userStatus.totalMoney}</p>
+				  	<p class="card-text">	<fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
 					</div>				  
 				</div>		
             </div>
@@ -182,7 +185,22 @@
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
     
     <script type="text/javascript">
-     
+    
+    /* 날짜계산하기 */
+    function calculDate(){
+    	var now = new Date();  
+    	var year= now.getFullYear();  
+    	var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);  
+    	var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();  
+
+    	alert(year + mon + day);  
+    	alert(year + '년 ' + mon + '월 ' + day + '일');  
+    	alert(year + '-'+ mon+ '-' + day); 
+    }
+    
+    calculDate();
+    
+    
 	 /*
 	 javascript AJAX Service(read, put, post...)
 	 created by yonghyun
@@ -223,23 +241,29 @@
 
 			return {
 				add : add,
-				get : get,
-				getList : getList,
+				get : get
 			};
 
 		})();
 	 
 	 /* AJAX 사용 */
 	 userStatusService.get("test1", function(list){
+		 // 월별 만기 환급액
 		 var totalDepositMonth = [];
+		 // 월별 적금액
 		 var curDepositMonth = [];
-		 list.forEach(function(v) {
+		 // 월별 이자율
+		 var profitMonth = [];
+		 
+		 list.graphList.forEach(function(v) {
 		 	totalDepositMonth.push(v.totalMoney);
 		 	curDepositMonth.push(v.curMoney);
-		 })
+		 	v.totalProfit = Number(v.totalProfit) * 100;
+		 	profitMonth.push(v.totalProfit);
+		 });
 		 
-		 totalDepoitGraph(curDepositMonth,curDepositMonth);
-		 
+		 totalDepoitGraph(curDepositMonth,totalDepositMonth);
+		 profitGraph(profitMonth);
 		 
 	 })
 	 
@@ -274,8 +298,13 @@
 		 if (chLine) {
 		   new Chart(chLine, {
 		   type: 'line',
+
 		   data: chartData,
 		   options: {
+		   	 title:{
+		   		 display: true,
+			     text: '월별 수익률 현황(원)'
+		     },
 		     scales: {
 		       yAxes: [{
 		         ticks: {
@@ -283,38 +312,56 @@
 		         }
 		       }]
 		     },
+		     
 		     legend: {
 		       display: true
+		       
+		     },
+	         tooltips: {
+	            mode: 'label',
+	            label: 'mylabel',
+	            callbacks: {
+	                label: function(tooltipItem, data) {
+	                    return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }, 
+                },
 		     }
 		   }
 		   });
-		 }
+	 	}
 	 }
 	 
-	
-	 /* 수평 바 chart 이윤 증가율 */
-	 new Chart(document.getElementById("bar-chart-horizontal"), {
-	    type: 'horizontalBar',
-	    data: {
-	      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-	      datasets: [
-	        {
-	          label: "Population (millions)",
-	          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-	          data: [2478,5267,734,784,433]
-	        }
-	      ]
-	    },
-	    options: {
-	      legend: { display: false },
-	      title: {
-	        display: true,
-	        text: 'Predicted world population (millions) in 2050'
-	      }
-	    }
-	});
-    
-    
+	 function profitGraph(profitDataset){
+		 /* 수평 바 chart 이윤 증가율 */
+		 new Chart(document.getElementById("bar-chart-horizontal"), {
+		    type: 'horizontalBar',
+		    data: {
+		      labels: ["7월", "8월", "9월", "10월", "11월"],
+		      datasets: [
+		        {
+		          label: "profit (%)",
+		          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+		          data: profitDataset
+		        }
+		      ]
+		    },
+		    options: {
+		      legend: { display: false },
+		      scales: {
+			       xAxes:[{
+			    	 ticks:{
+			    		 min:2.9
+			    	 }   
+			       }]
+			     },
+		      title: {
+		        display: true,
+		        text: '월별 이자 증가율(%)'
+		        
+		      }
+		    }
+		});
+	 }
     </script>
 </body>
 </html>
