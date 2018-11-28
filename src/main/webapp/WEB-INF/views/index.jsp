@@ -21,6 +21,8 @@
 <link href="/resources/css/style.css" rel="stylesheet">
 <link href="/resources/css/slick.css" rel="stylesheet">
 <link href="/resources/css/slick-theme.css" rel="stylesheet">
+<link href="/resources/css/common.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -52,8 +54,6 @@
             </ol>
           </div>
        </div>
-
-
       </div>
     </div>
   </section>
@@ -176,9 +176,16 @@
   <script type="text/javascript" src="/resources/js/slick.min.js"></script>
   <script type="text/javascript">
 			$(document).ready(function() {
-				$('.single-item').slick({});
+				$('.single-item').slick({
+					
+					autoplay:true,
+					autoplaySpeed:3000,
+					dots: true,
+					arrows: true,
+					pauseOnHover:true
+				});
 			});
-		</script>
+</script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 

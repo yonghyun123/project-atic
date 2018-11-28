@@ -71,6 +71,12 @@ public class CommonController {
 		return "portfolio";
 	}
 	
+	@RequestMapping(value="/preshop" , method = RequestMethod.GET)
+	public String preShop(Locale locale, Model model) {
+		log.info("Welcome preShop");		
+		return "preShop";
+	}
+	
 	@RequestMapping(value = "/shop-details", method = RequestMethod.GET)
 	public String shopDetails(Locale locale, Model model) {
 		log.info("Welcome Shop-DetailsPage");		
