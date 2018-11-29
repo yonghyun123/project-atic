@@ -24,6 +24,6 @@ public interface ProjectService {
 	public List<Project> readProjectByCondition(Map<String, String> map);
 	//프로젝트 삭제
 	public void deleteProject(String id);
-	//사용자 정보 업데이트
+	//프로젝트 현재 모금액 정보 업데이트
 	public void updateProject(Project project);
 }

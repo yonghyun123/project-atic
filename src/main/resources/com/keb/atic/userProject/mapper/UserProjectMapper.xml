@@ -4,7 +4,14 @@
 <mapper namespace="com.keb.atic.userProject.mapper.UserProjectMapper">
 
 	<select id="createUserProject">
-	
+	INSERT INTO at_user_project(
+	id, deposit, user_id, project_id, create_date
+	) 
+	VALUES (user_project_id_seq.NEXTVAL, 
+             #{deposit}, 
+             #{userId}, 
+             #{projectId}, 
+             sysdate)
 	</select>
 	
 	<select id="readUserProject" resultType="com.keb.atic.userProject.domain.UserProject">
