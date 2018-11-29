@@ -207,3 +207,9 @@ input.invalid {
 .step.finish {
   background-color: #4CAF50;
 }
+
+/* index CSS */
+
+.product-img a img {
+	height: 360px;
+}
