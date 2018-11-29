@@ -48,6 +48,7 @@
               		$("body").css("overflow-y", "hidden");
         		} else {
         			window.location.reload();
+        			sessionStorage.flag = "popup-message-login-success";
         		}
   	    	}
     	})
