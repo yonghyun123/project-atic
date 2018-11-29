@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+/* header CSS */
+
+.classynav ul .time-li {
+	font-size: 40px;
+	margin-bottom: 25px;
+	vertical-align: middle;
+}
 
 /* login-modal CSS */
 

@@ -196,4 +196,27 @@
 		</set>
 	WHERE id=#{id}
 	</update>
+	
+	
+	<select id="recommendProject" resultType="com.keb.atic.project.domain.Project">
+	(SELECT project_id as "id"
+	FROM  (SELECT project_id, 
+              Count(*) AS count 
+       FROM   at_project p 
+              join at_user_project up 
+                ON p.id = up.project_id 
+       WHERE  user_id in (SELECT user_id 
+                            FROM   at_project p 
+                                   join at_user_project up 
+                                     ON p.id = up.project_id 
+                            WHERE  up.project_id = #{projectId})
+       GROUP  BY project_id 
+       ORDER  BY Count(*) DESC) 
+	WHERE  ROWNUM BETWEEN 1 AND 4)
+	minus
+	(select id
+	from AT_PROJECT
+	where id = #{projectId}
+	) 
+	</select>
 </mapper>
