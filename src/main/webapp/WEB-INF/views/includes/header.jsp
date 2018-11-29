@@ -53,7 +53,7 @@
             <!-- Navbar Start -->
             <div class="classynav">
               <ul>
-                <li><span id="countTime"></span></li>
+                <li class="time-li"><span id="countTime"></span></li>
                 <li><a href="#">스타트업 지원 신청</a>
                 <li><a href="#">펀딩</a>
                   <ul class="dropdown">
@@ -68,7 +68,7 @@
                     <li><a id="logout">로그아웃</a></li>
                   </c:when>
                   <c:otherwise>
-                    <li><a id="login">로그인</a></li>  
+                    <li><a id="login">로그인</a></li>
                   </c:otherwise>
                 </c:choose>
               </ul>
@@ -77,7 +77,20 @@
               <div id="searchIcon">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </div>
-
+              <div id="searchIcon">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </div>
+              <div id="searchIcon">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </div>
+              <c:if test="${empty loginId }">
+                <div id="searchIcon">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <div id="searchIcon">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </div>  
+              </c:if>
             </div>
             <!-- Navbar End -->
           </div>
