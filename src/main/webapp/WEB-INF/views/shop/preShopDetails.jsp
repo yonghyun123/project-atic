@@ -25,6 +25,8 @@
 
 <!-- table CSS -->
 <link rel="stylesheet" href="/resources/css/shop_detail.css">
+
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -530,7 +532,7 @@
 		}
 
 		$("#deposit").click(function() {
-			$("#deposit-modal").modal('show');
+			$("#user-Eval").modal('show');
 
 			var authNum = 0;
 			$("#auth").on("click", function() {
@@ -566,6 +568,8 @@
 		$('.starRev span').click(function(){
 			  $(this).parent().children('span').removeClass('on');
 			  $(this).addClass('on').prevAll('span').addClass('on');
+			  console.log($(this).parent().children('p'));
+			  $(this).parent().children('.scoreTable').html($(this).text());
 			  return false;
 			});
 
@@ -574,18 +578,19 @@
 
 		function showTab(n) {
 			// This function will display the specified tab of the form ...
-			var x = document.getElementsByClassName("tab");
+			console.log(n);
+			var x = document.getElementsByClassName("preTab");
 			x[n].style.display = "block";
 			// ... and fix the Previous/Next buttons:
 			if (n == 0) {
-				document.getElementById("prevBtn").style.display = "none";
+				document.getElementById("prevBtnPre").style.display = "none";
 			} else {
-				document.getElementById("prevBtn").style.display = "inline";
+				document.getElementById("prevBtnPre").style.display = "inline";
 			}
 			if (n == (x.length - 1)) {
-				document.getElementById("nextBtn").innerHTML = "Submit";
+				document.getElementById("nextBtnPre").innerHTML = "Submit";
 			} else {
-				document.getElementById("nextBtn").innerHTML = "Next";
+				document.getElementById("nextBtnPre").innerHTML = "Next";
 			}
 			// ... and run a function that displays the correct step indicator:
 			fixStepIndicator(n)
@@ -593,7 +598,7 @@
 
 		function nextPrev(n) {
 			// This function will figure out which tab to display
-			var x = document.getElementsByClassName("tab");
+			var x = document.getElementsByClassName("preTab");
 			// Exit the function if any field in the current tab is invalid:
 			if (n == 1 && !validateForm())
 				return false;
@@ -604,7 +609,7 @@
 			// if you have reached the end of the form... :
 			if (currentTab >= x.length) {
 				//...the form gets submitted:
-				document.getElementById("regForm").submit();
+				document.getElementById("regPreForm").submit();
 				return false;
 			}
 			// Otherwise, display the correct tab:
@@ -614,7 +619,7 @@
 		function validateForm() {
 			// This function deals with validation of the form fields
 			var x, y, i, valid = true;
-			x = document.getElementsByClassName("tab");
+			x = document.getElementsByClassName("preTab");
 			y = x[currentTab].getElementsByTagName("input");
 			// A loop that checks every input field in the current tab:
 			for (i = 0; i < y.length; i++) {
@@ -640,6 +645,7 @@
 				x[i].className = x[i].className.replace(" active", "");
 			}
 			//... and adds the "active" class to the current step:
+			console.log(x[n]);
 			x[n].className += " active";
 		}
 

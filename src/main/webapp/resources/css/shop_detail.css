@@ -38,5 +38,46 @@
     text-indent: -9999px;
     cursor: pointer;
 }
+.starRev{
+	height:40px;
+}
 .starR1.on{background-position:0 0;}
 .starR2.on{background-position:-15px 0;}
+
+.preExplain{
+	    line-height: 24px;
+    font-size: 17px;
+    font-weight: 300;
+}
+.preP{
+	margin-bottom: 0;
+}
+.preExplainHead{
+	margin: 0;
+    margin-bottom: 12px;
+    line-height: 1.35;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.authBtn{
+	margin-bottom: 20px;
+}
+
+#prevBtnPre, #nextBtnPre{
+	margin-right: 5px;
+}
+
+.scoreTable{
+	margin-left: 160px;
+}
+
+.starRev{
+	margin-top: 10px;
+}
+#evalTable{
+	margin-top: 30px;
+	padding-left:30px;
+	background-color: #f2f4f5;
+}
+
