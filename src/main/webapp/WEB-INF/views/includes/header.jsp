@@ -8,6 +8,8 @@
 <%@ include file="/WEB-INF/views/modal/deposit.jsp"%>
 <%@ include file="/WEB-INF/views/modal/deposit-menual.jsp"%>
 <%@ include file="/WEB-INF/views/modal/nickname.jsp"%>
+<%@ include file="/WEB-INF/views/modal/userEvaluate.jsp"%>
+
 <!-- Modal Area End -->
 
 <!-- Preloader -->
