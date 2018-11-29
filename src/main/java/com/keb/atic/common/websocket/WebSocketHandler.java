@@ -2,8 +2,10 @@ package com.keb.atic.common.websocket;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -18,7 +20,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //	private Vector<WebSocketSession> connectedClients = new Vector<WebSocketSession>(10, 2);
 	private HashMap<String, ArrayList<WebSocketSession>> connectedClients = new HashMap<>();
 	private int count = 0;
-	private String projectId ="";
+	private String projectId;
 
 	/** 웹 클라이언트 연결 이벤트 처리 */
 	@Override
@@ -54,10 +56,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			sendMessageToAll(tm1, projectId);
 			break;
 		case 2000:
-			List<WebSocketSession> list = connectedClients.get(projectId);
-			for (WebSocketSession wss : list) {
+			ArrayList<WebSocketSession> list1 = connectedClients.get(projectId);
+			Iterator<WebSocketSession> it = list1.iterator();
+			while (it.hasNext()) {
+				WebSocketSession wss = it.next();
 				if(wss.equals(session)) {
-					list.remove(session);
+					it.remove();
 				}
 			}
 			count = connectedClients.get(projectId).size();
@@ -74,10 +78,13 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	}
 	
 	private void sendMessageToAll(TextMessage tm, String projectId) throws Exception{
-		List<WebSocketSession> list = connectedClients.get(projectId);
-		for (WebSocketSession wss : list) {
+		ArrayList<WebSocketSession> list = connectedClients.get(projectId);
+		Iterator<WebSocketSession> it = list.iterator();
+		while (it.hasNext()) {
+			WebSocketSession wss = it.next();
 			wss.sendMessage(tm);
 		}
+		
 	}
 
 	/** 웹 클라이언트 연결 종료 이벤트 처리 */
@@ -85,9 +92,11 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		log.info("웹클라이언트(" + session.getId() + ") 연결 종료함...");
 		List<WebSocketSession> list = connectedClients.get(projectId);
-		for (WebSocketSession wss : list) {
+		Iterator<WebSocketSession> it = list.iterator();
+		while (it.hasNext()) {
+			WebSocketSession wss = it.next();
 			if(wss.equals(session)) {
-				list.remove(session);
+				it.remove();
 			}
 		}
 

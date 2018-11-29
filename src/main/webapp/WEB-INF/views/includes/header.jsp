@@ -4,8 +4,9 @@
 
 <!-- Modal Area Start -->
 <%@ include file="/WEB-INF/views/modal/login.jsp"%>
-<%-- <%@ include file="/WEB-INF/views/modal/logout.jsp"%> --%>
+<%@ include file="/WEB-INF/views/modal/logout.jsp"%>
 <%@ include file="/WEB-INF/views/modal/deposit.jsp"%>
+<%@ include file="/WEB-INF/views/modal/deposit-menual.jsp"%>
 <%@ include file="/WEB-INF/views/modal/nickname.jsp"%>
 <!-- Modal Area End -->
 

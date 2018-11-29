@@ -468,12 +468,15 @@
 	<script type="text/javascript">
 		let wsocket;
 		$(window).on("beforeunload", function() {
-			sayBye();
-			setInterval(function() {
+				sayBye();
+			setInterval(function(){
 				wsocket.close();
-			}, 500);
+			}, 1000)
 		});
 
+		
+		
+		
 		function sayBye() {
 			var messageObject = {
 				type : 2000
@@ -482,11 +485,7 @@
 
 		}
 
-		function send(object) {
-			if (object) {
-				wsocket.send(JSON.stringify(object));
-			}
-		}
+		
 
 		function connect() {
 			wsocket = new WebSocket("ws://localhost/hanaSocket");
@@ -522,6 +521,12 @@
 				break;
 			}
 
+		}
+		
+		function send(object) {
+			if (object) {
+				wsocket.send(JSON.stringify(object));
+			}
 		}
 
 		$("#deposit").click(function() {

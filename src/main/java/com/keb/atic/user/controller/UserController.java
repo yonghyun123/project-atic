@@ -95,7 +95,7 @@ public class UserController {
 		} else {
 			User user = userService.readUser(id);
 			user.setNickname(nickname);
-//			userService.updateUser(user);
+			userService.updateUser(user);
 			out.println("nick-success");
 		}
 		return null; 
