@@ -41,7 +41,7 @@
 			<h2>SHOP DETAILS</h2>
 		</div>
 
-		<div class="container">
+		<div class="container col-md-10">
 			<div class="row">
 				<div class="col-12">
 					<nav aria-label="breadcrumb">
@@ -60,14 +60,12 @@
 	<!-- ##### Breadcrumb Area End ##### -->
 
 	<!-- ##### Single Product Details Area Start ##### -->
-	<section class="single_product_details_area mb-50">
-		<div class="produts-details--content mb-50">
+	<section class="single_product_details_area mb-50 col-md-10">
+		<div class="produts-details-content mb-50">
 			<div class="container">
 				<div class="row justify-content-between">
-
 					<div class="col-12 col-md-6 col-lg-5">
 						<div class="single_product_thumb">
-
 							<!-- 썸네일 이미지 -->
 							<div class="carousel-inner">
 								<div class="carousel-item active">
@@ -79,11 +77,8 @@
 									</a>
 								</div>
 							</div>
-
-
 						</div>
 					</div>
-
 					<div class="col-12 col-md-6">
 						<div class="single_product_desc">
 							<h4 class="title">
