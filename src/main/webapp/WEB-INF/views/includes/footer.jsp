@@ -3,24 +3,36 @@
 <script src="/resources/js/countTime.js"></script>    
 <script>
   $(document).ready(function(){
+	// 로그인 이베트
     $("#login").on("click", function(e) {
       $("#login-modal").modal('show');
     });
     
+    // 로그아웃 이벤트
     $("#logout").on("click", function(e) {
   	  $("#logout-modal").modal('show');
     });
     
+    // Nav바 타이머 출력을 위한 스크립트
     $(function(){
       $('#countTime').countTime({
-      time: year.toString() + '-' + month.toString()+'-01 00:00:00'//기준시간
+      	time: year.toString() + '-' + month.toString()+'-01 00:00:00'//기준시간
   	  });
     });
+    
+    // 토스트 출력을 위한 스크립트 
+    if(sessionStorage.getItem('flag') != null) {
+      popup(sessionStorage.getItem('flag'));
+      sessionStorage.clear();
+    } 
   });	
 </script>
     
 <!-- ##### Footer Area Start ##### -->
 <footer class="footer-area bg-img" style="background-image: url(/resources/img/bg-img/3.jpg);">
+    <div id="popup-message-login-success">로그인 성공!</div>
+    <div id="popup-message-logout-success">로그아웃 성공!</div>
+    <div id="popup-message-create-deposit-success">계좌생성 성공!</div>
     <!-- Main Footer Area -->
     <div class="main-footer-area">
         <div class="container">
