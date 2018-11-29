@@ -54,7 +54,9 @@
 			if(nickname.trim().length == 0) {
 				messageView(selector, "닉네임을 입력해주세요.");
 				return false;
-			} else {
+			}else if (nickname.trim().length < 2) {
+				messageView(selector, "닉네임을 2자 이상 입력해주세요.");
+			}else {
 				if(regName.test(nickname)) {
 					return true;
 				} else {
