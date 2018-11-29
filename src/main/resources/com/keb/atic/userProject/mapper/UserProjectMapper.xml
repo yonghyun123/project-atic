@@ -64,7 +64,7 @@
 		 TO_CHAR(up.create_date,'YYYY-MM-DD') AS "createDate"
 	FROM AT_user_project up, AT_project p
 	WHERE up.user_id=#{userId} and up.project_id = p.id
-	AND  up.create_date BETWEEN to_date(#{startDate},'YYYYMMDD') AND to_date(#{endDate},'YYYYMMDD') 
+	AND  up.create_date BETWEEN to_date(#{startDate},'YYYYMMDD') AND to_date(#{endDate}+1,'YYYYMMDD') 
 	ORDER BY up.create_date desc
 	</select>
 
