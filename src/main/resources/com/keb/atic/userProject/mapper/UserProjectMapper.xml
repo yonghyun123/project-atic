@@ -30,9 +30,9 @@
 		 p.cur_price AS "curPrice",
 		 p.company AS "company",
 		 up.deposit AS "deposit",
-		 up.create_date AS "createDate"
+		 TO_CHAR(up.create_date,'YYYY-MM-DD') AS "createDate"
 	FROM AT_user_project up, AT_project p
-	WHERE user_id = #{userId} and up.project_id = p.id
+	WHERE up.user_id = #{userId} and up.project_id = p.id
 	ORDER BY up.create_date desc
 	</select>
 	
@@ -51,6 +51,21 @@
 	SELECT count(*)
 	FROM   at_user_project 
 	WHERE  project_id = #{projectId}
+	</select>
+	
+	<select id="getCompanyListByDate" parameterType="map" resultType="com.keb.atic.userProject.domain.UserProject" >
+	SELECT up.id AS "id", 
+		 p.id AS "projectId", 
+		 p.name AS "name",
+		 p.goal AS "goal",
+		 p.cur_price AS "curPrice",
+		 p.company AS "company",
+		 up.deposit AS "deposit",
+		 TO_CHAR(up.create_date,'YYYY-MM-DD') AS "createDate"
+	FROM AT_user_project up, AT_project p
+	WHERE up.user_id=#{userId} and up.project_id = p.id
+	AND  up.create_date BETWEEN to_date(#{startDate},'YYYYMMDD') AND to_date(#{endDate},'YYYYMMDD') 
+	ORDER BY up.create_date desc
 	</select>
 
 	<delete id="deleteUserProjectByCondition" parameterType="Map">

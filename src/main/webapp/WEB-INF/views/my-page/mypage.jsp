@@ -219,6 +219,7 @@
 	</tr>
 	</script>
     <script type="text/javascript">
+    var userId = ${loginId};
     
     /* 날짜계산하기 */
     function calculDate(){
@@ -285,7 +286,7 @@
  			if(startDate.trim().length == 0 || endDate.trim().length == 0){
  				// 검색조건이 비어있을때 그냥 전체 리스트 ajax로 요청
  				//userId 바꿔줘야해
- 				 userStatusService.getCompanyList("test1", function(list){
+ 				 userStatusService.getCompanyList(userId, function(list){
  					 console.log(list.companyList);
  					 companyListTemplate(list.companyList);
  				 });
@@ -295,7 +296,7 @@
  	 					endDate: endDate
  	 			};
  	 			//userId 바꿔줘야해
- 				 userStatusService.postSearchList("test1", date, function(list){
+ 				 userStatusService.postSearchList(userId, date, function(list){
  					 console.log(list.companyList);
  					 companyListTemplate(list.companyList);
  				 });
@@ -367,7 +368,7 @@
 	 
 	 /* AJAX 사용 */
 	 //userId가 들어가야함
-	 userStatusService.get("test1", function(list){
+	 userStatusService.get(userId, function(list){
 		 // 월별 만기 환급액
 		 var totalDepositMonth = [];
 		 // 월별 적금액
@@ -388,7 +389,7 @@
 	 
 	 /*Ajax로 기업리스트 불러오기 */
 	 //userId가 들어가야함
-	 userStatusService.getCompanyList("test1", function(list){
+	 userStatusService.getCompanyList(userId, function(list){
 		 console.log(list.companyList);
 		 companyListTemplate(list.companyList);
 	 });

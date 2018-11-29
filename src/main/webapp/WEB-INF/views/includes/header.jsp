@@ -62,7 +62,7 @@
                 <li><a href="#">이용 가이드</a></li>
                 <c:choose>
                   <c:when test="${not empty loginId }">
-                    <li><a id="my-page">마이 페이지</a></li>
+                    <li><a href="/users/mypage/${loginId}" id="my-page"> 마이 페이지</a></li>
                     <li><a id="logout">로그아웃</a></li>
                   </c:when>
                   <c:otherwise>
