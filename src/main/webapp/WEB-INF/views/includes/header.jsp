@@ -4,8 +4,9 @@
 
 <!-- Modal Area Start -->
 <%@ include file="/WEB-INF/views/modal/login.jsp"%>
-<%-- <%@ include file="/WEB-INF/views/modal/logout.jsp"%> --%>
+<%@ include file="/WEB-INF/views/modal/logout.jsp"%>
 <%@ include file="/WEB-INF/views/modal/deposit.jsp"%>
+<%@ include file="/WEB-INF/views/modal/deposit-menual.jsp"%>
 <%@ include file="/WEB-INF/views/modal/nickname.jsp"%>
 <!-- Modal Area End -->
 
@@ -43,12 +44,14 @@
             <div class="classycloseIcon">
               <div class="cross-wrap">
                 <span class="top"></span><span class="bottom"></span>
+                
               </div>
             </div>
 
             <!-- Navbar Start -->
             <div class="classynav">
               <ul>
+                <li><span id="countTime"></span></li>
                 <li><a href="#">스타트업 지원 신청</a>
                 <li><a href="#">펀딩</a>
                   <ul class="dropdown">

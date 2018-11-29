@@ -59,12 +59,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int searchNickname(String nickname) {
-		log.info("유저 인증");
+		log.info("유저 닉네임 조회");
 		return userMapper.searchNickname(nickname);
 	}
 
 	@Override
 	public int updateUserVt(String nickname) {
+		log.info("유저 가상계좌 생성");
 		return userMapper.updateUserVt(nickname);
 	}
 	

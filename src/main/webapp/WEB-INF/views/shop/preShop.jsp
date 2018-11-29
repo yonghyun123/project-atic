@@ -84,7 +84,7 @@
                               <!-- Product Image -->
                               <div class="product-img">
                               <form id="form${project.id}" action="/shop/details" method="post">
-                                 <a href="/shop/detail/${project.id }">
+                                 <a href="/shop/detail/pre/${project.id }">
                                   <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
                                   <input type="hidden" value="${project.id }">
                                   <!-- Product Tag -->
@@ -181,6 +181,7 @@ function searchTemplate(jsonModifyData) {
     jsonModifyData.forEach(function(v, i) {
     	projectCount++;
       newHtml += templateHtml.replace(/{id}/gi, v.id)
+      				 	  .replace('{Id}',v.id)
           				  .replace('{fileName}', v.fileName)
           				  .replace('{name}', v.name)
           				  .replace('{category}', v.category)
@@ -197,7 +198,7 @@ function searchTemplate(jsonModifyData) {
   <div class="single-product-area mb-50">
       <!-- Product Image -->  
       <div class="product-img">
-          <a href="/shop/detail/{id}">
+            <a href="/shop/detail/pre/{Id}">
           <img src="/resources/img/project-image/{fileName}" alt=""></a>
          <!-- Product Tag -->
          <div class="product-tag">

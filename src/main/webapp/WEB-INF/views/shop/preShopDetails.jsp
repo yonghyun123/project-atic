@@ -92,8 +92,9 @@
 							<input type="hidden" value="<c:out value="${project.id }"/>"
 								id="projectId">
 							<h4 class="price">
-								<c:out value="${project.curPrice }" />
-								원 달성
+								<%-- <c:out value="${project.curPrice }" />
+								원 달성 --%>
+                                 <c:out value="${project.createDate }" /> 오픈예정
 							</h4>
 							<div class="short_overview">
 								<p>
@@ -110,7 +111,7 @@
 								<!-- Add to Cart Form -->
 								<form class="cart clearfix d-flex align-items-center"
 									method="post">
-									<input type="button" id="deposit" value="지금 투자하기"
+									<input type="button" id="deposit" value="알림 신청하기"
 										class="btn alazea-btn ml-15">
 								</form>
 
@@ -467,12 +468,15 @@
 	<script type="text/javascript">
 		let wsocket;
 		$(window).on("beforeunload", function() {
-			sayBye();
-			setInterval(function() {
+				sayBye();
+			setInterval(function(){
 				wsocket.close();
-			}, 500);
+			}, 1000)
 		});
 
+		
+		
+		
 		function sayBye() {
 			var messageObject = {
 				type : 2000
@@ -481,11 +485,7 @@
 
 		}
 
-		function send(object) {
-			if (object) {
-				wsocket.send(JSON.stringify(object));
-			}
-		}
+		
 
 		function connect() {
 			wsocket = new WebSocket("ws://localhost/hanaSocket");
@@ -522,6 +522,12 @@
 			}
 
 		}
+		
+		function send(object) {
+			if (object) {
+				wsocket.send(JSON.stringify(object));
+			}
+		}
 
 		$("#deposit").click(function() {
 			$("#deposit-modal").modal('show');
@@ -556,6 +562,12 @@
 				}
 			})
 		});
+		
+		$('.starRev span').click(function(){
+			  $(this).parent().children('span').removeClass('on');
+			  $(this).addClass('on').prevAll('span').addClass('on');
+			  return false;
+			});
 
 		var currentTab = 0; // Current tab is set to be the first tab (0)
 		showTab(currentTab); // Display the current tab

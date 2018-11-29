@@ -18,11 +18,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.keb.atic.user.domain.User;
 import com.keb.atic.user.service.UserService;
+import com.keb.atic.userProject.domain.UserProject;
+import com.keb.atic.userProject.service.UserProjectService;
 import com.keb.atic.userStatus.domain.UserStatus;
 import com.keb.atic.userStatus.service.UserStatusService;
 
@@ -45,6 +49,8 @@ public class UserController {
 	private UserService userService;
 	@Inject
 	private UserStatusService userStatusService;
+	@Inject
+	private UserProjectService userProjectService;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<User> get(@PathVariable("id") String id) throws Exception {
@@ -95,7 +101,7 @@ public class UserController {
 		} else {
 			User user = userService.readUser(id);
 			user.setNickname(nickname);
-//			userService.updateUser(user);
+			userService.updateUser(user);
 			out.println("nick-success");
 		}
 		return null; 
@@ -122,6 +128,39 @@ public class UserController {
 		
 		return null; 
 	}
+	/* 유저별 투자한 기업 리스트 조회 */
+	@GetMapping(value="/mypage/corlist/{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody Map<String, Object> getCompanyList(@PathVariable("id") String userId) throws Exception{
+		List<UserProject> userProjectList = userProjectService.readUserProjectsByUser(userId);
+		Map<String, Object> userProjectMap = new HashMap<>();
+		userProjectMap.put("companyList", userProjectList);
+		return userProjectMap;
+	}
 	
+	/* 날짜 검색을 통한 기업 리스트 조회 */
+	@PostMapping(value="/mypage/corlist/{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody Map<String, Object> getFilterCompanyList(@PathVariable("id") String userId, 
+			@RequestBody Map<String, Object> dateObj) throws Exception{
+		
+		String start =(String)dateObj.get("startDate");
+		String end = (String)dateObj.get("endDate");
+		start = start.replaceAll("-","");
+		end = end.replaceAll("-", "");
+		
+		dateObj.put("startDate", start);
+		dateObj.put("endDate", end);
+		dateObj.put("userId", userId);
+		
+		List<UserProject> userProjectList = userProjectService.getCompanyListByDate(dateObj);
+		
+		for (UserProject userProject : userProjectList) {
+			log.info(userProject);
+		}
+		
+		Map<String, Object> userProjectMap = new HashMap<>();
+		userProjectMap.put("companyList", userProjectList);
+		return userProjectMap;
+		//return null;
+	}
 	
 }
