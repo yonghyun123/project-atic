@@ -45,16 +45,26 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		Gson gson = new Gson();
 		Message msg = gson.fromJson(message.getPayload(), Message.class);
 		projectId = msg.getProjectId();
-		
+		String loginId = msg.getLoginId();
 		switch (msg.getType()) {
 		case 1000:
 			if (connectedClients.get(projectId) == null) {
 				connectedClients.put(projectId, new ArrayList<>());
 			}
+			UserProject userProject= new UserProject();
+			userProject.setUserId(loginId);
+			userProject.setProjectId(projectId);
+			int check = userProjectService.checkInvest(userProject);
+			String sendMsg ="";
+			if(check > 0) {
+				sendMsg = "false";
+			}else {
+				sendMsg = "true";
+			}
 			connectedClients.get(projectId).add(session);
 			count = connectedClients.get(projectId).size();
 			Gson gs1 = new Gson();
-			Message msg1 = new Message(1000, count);
+			Message msg1 = new Message(1000, count,sendMsg);
 			String json1 = gs1.toJson(msg1);
 			TextMessage tm1 = new TextMessage(json1);
 			sendMessageToAll(tm1, projectId);
@@ -77,12 +87,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			break;
 		case 3000:
 			log.info(msg);
-			String loginId = msg.getLoginId();
+			
 			String deposit = msg.getDeposit();
 			String curPrice = msg.getCurPrice();
 			int money = Integer.parseInt(deposit) + Integer.parseInt(curPrice); 
-			UserProject userProject = new UserProject(deposit, loginId, projectId);
-			userProjectService.createUserProject(userProject);
+			UserProject userProject1 = new UserProject(deposit, loginId, projectId);
+			userProjectService.createUserProject(userProject1);
 			Project project = new Project(projectId, String.valueOf(money));
 			projectService.updateProject(project);
 			//project = projectService.readProject(projectId);

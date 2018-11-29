@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 
 <head>
@@ -469,6 +470,7 @@
 	<script type="text/javascript">
 		let wsocket;
 		var projectId = $("#projectId").val();
+		var loginId = $("#loginId").val();
 		$(window).on("beforeunload", function() {
 			sayBye();
 			setInterval(function() {
@@ -502,7 +504,9 @@
 			
 			var messageObject = {
 				type : 1000,
-				projectId : projectId
+				projectId : projectId,
+				loginId : loginId
+				
 			}
 			send(messageObject);
 		}
@@ -518,6 +522,11 @@
 			case 1000:
 				var count = mObject.count;
 				$("#currentCount").text(count + "명");
+				var flag = mObject.message;
+				if(flag == "false"){
+					$("#deposit").val("투자하신 프로젝트입니다.");
+					document.getElementById("deposit").disabled = true;
+				}
 				break;
 			case 2000:
 				var count = mObject.count;
@@ -538,7 +547,6 @@
 
 			var authNum = 0;
 			$("#auth").on("click", function() {
-				alert("눌럿졍");
 				var email = $("#email").val();
 				alert(email);
 				$.ajax({
@@ -574,7 +582,7 @@
 		
 		function invest(){
 			var depositM = $("#depositMoney").val();
-			var loginId = $("#loginId").val();
+			
 			var curPrice = document.getElementById("curprice").innerHTML;
 			var messageObject = {
 					type : 3000,
