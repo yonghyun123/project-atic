@@ -84,7 +84,7 @@
                               <!-- Product Image -->
                               <div class="product-img">
                               <form id="form${project.id}" action="/shop/details" method="post">
-                                 <a href="/shop/detail/${project.id }">
+                                 <a href="/shop/detail/pre/${project.id }">
                                   <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
                                   <input type="hidden" value="${project.id }">
                                   <!-- Product Tag -->
@@ -201,7 +201,7 @@ function searchTemplate(jsonModifyData) {
       <!-- Product Image -->  
       <div class="product-img">
       <form id="form{id}" action="/shop/details" method="post">
-            <a href="/shop/detail/{Id}">
+            <a href="/shop/detail/pre/{Id}">
           <img src="/resources/img/project-image/{fileName}" alt=""></a>
          <input type="hidden" value="{id}">
          <!-- Product Tag -->
