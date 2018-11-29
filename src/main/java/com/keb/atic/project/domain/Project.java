@@ -42,5 +42,7 @@ public class Project {
 	private String category;
 	//project 이미지 이름
 	private String fileName;
+	//project 목표율
+	private String progress;
 	
 }

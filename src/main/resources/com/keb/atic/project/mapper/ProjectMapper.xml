@@ -121,6 +121,7 @@
 	
 	<select id="readProjectByCondition" parameterType="map" resultType="com.keb.atic.project.domain.Project">
 					SELECT p.id	  AS "id",
+				   round((p.CUR_PRICE/ p.goal)*100) AS "progress",
 				   p.NAME         AS "name", 
 			       p.goal         AS "goal", 
 			       p.company      AS "company", 
@@ -150,16 +151,16 @@
 					ORDER  BY ( p.cur_price / p.goal ) DESC
 			       </when>
 			       <when test='condition != null and condition.equals("eval")'>
-					from AT_project p join at_category c
-					on p.category_id = c.ID join AT_PROJECT_IMAGE pi
-					on p.id = pi.PROJECT_ID join AT_FILE_INFO f
-					on pi.FILE_ID = f.FILE_ID left outer join AT_USER_EVAL e
-					on p.ID = e.PROJECT_ID
-					where  to_char(p.create_date,'Month') = #{month} 
-					and pi.IMAGE_TYPE = 'th'
-					group by p.id, p.name, p.goal, p.company, c.name, 
-					p.create_date, f.FILE_NAME
-					order by nvl(avg(STABLE_GRADE + FAVOR_GRADE + GROWTH_GRADE + MARKET_GRADE),0) desc
+						from AT_project p join at_category c
+						on p.category_id = c.ID join AT_PROJECT_IMAGE pi
+						on p.id = pi.PROJECT_ID join AT_FILE_INFO f
+						on pi.FILE_ID = f.FILE_ID left outer join AT_USER_EVAL e
+						on p.ID = e.PROJECT_ID
+						where  To_char(p.create_date, 'Month') = #{month} 
+						and pi.IMAGE_TYPE = 'th'
+						group by p.id, p.CUR_PRICE/p.goal, p.NAME, p.goal, p.company, 
+						c.NAME, p.create_date, f.file_name
+						order by nvl(avg(STABLE_GRADE + FAVOR_GRADE + GROWTH_GRADE + MARKET_GRADE),0) desc
 			   		</when> 
 			       </choose>
 	</select>

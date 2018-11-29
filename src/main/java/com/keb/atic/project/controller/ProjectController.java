@@ -69,8 +69,8 @@ public class ProjectController {
 		}
 		Map<String, String>curMap = new HashMap<String,String>();
 		curMap.put("month", String.valueOf(thisMonth)+"월");
-		curMap.put("count", "10");
-		model.addAttribute("curList",projectService.readMonthProjectByGoal(curMap));
+		curMap.put("condition", "goal");
+		model.addAttribute("curList",projectService.readProjectByCondition(curMap));
 	}
 	
 	@GetMapping("/preShop")
@@ -122,6 +122,7 @@ public class ProjectController {
 			jsonObject.put("name", project.getName());
 			jsonObject.put("category", project.getCategory());
 			jsonObject.put("goal", project.getGoal());
+			jsonObject.put("progress", project.getProgress());
 			jsonArray.add(jsonObject);
 		}
 		PrintWriter out = null;

@@ -35,7 +35,7 @@
     <section class=PreProjctSector01>
     <nav id="investNav"style="height: 10%">
       <ul>
-        <li id="investMain"><a href="/shop/main">펀딩 홈</a></li>
+        <li id="investMain"><a href="/shop/">펀딩 홈</a></li>
         <li class="monthProject"><a href="/shop/currentShop">진행중</a></li>
         <li class="monthProject"><a href="/shop/preShop">오픈예정</a></li>
       </ul>
