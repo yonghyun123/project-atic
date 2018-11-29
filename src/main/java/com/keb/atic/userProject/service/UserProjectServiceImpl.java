@@ -23,7 +23,7 @@ public class UserProjectServiceImpl implements UserProjectService{
 
 	@Override
 	public void createUserProject(UserProject userProject) {
-		// TODO Auto-generated method stub
+		userProjectMapper.createUserProject(userProject);
 		
 	}
 

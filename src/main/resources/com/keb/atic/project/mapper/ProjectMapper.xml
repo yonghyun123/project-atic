@@ -190,6 +190,10 @@
 	</delete>
 
 	<update id="updateProject">
-	
+	UPDATE at_project
+		<set>
+			<if test="curPrice != null">cur_price = #{curPrice}</if>
+		</set>
+	WHERE id=#{id}
 	</update>
 </mapper>
