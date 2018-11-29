@@ -175,16 +175,16 @@
   <!-- slick js -->
   <script type="text/javascript" src="/resources/js/slick.min.js"></script>
   <script type="text/javascript">
-			$(document).ready(function() {
-				$('.single-item').slick({
-					
-					autoplay:true,
-					autoplaySpeed:3000,
-					dots: true,
-					arrows: true,
-					pauseOnHover:true
-				});
-			});
+         $(document).ready(function() {
+            $('.single-item').slick({
+               
+               autoplay:true,
+               autoplaySpeed:3000,
+               dots: true,
+               arrows: true,
+               pauseOnHover:true
+            });
+         });
 </script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
