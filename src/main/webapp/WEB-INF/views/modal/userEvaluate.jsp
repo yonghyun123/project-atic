@@ -10,7 +10,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-body">
-          <form id="regPreForm" action="">
+          <form id="regPreForm"  method="post" action="/shop/preEval/${project.id}/${loginId}">
             <!-- Circles which indicates the steps of the form: -->
             <div style="text-align: center; margin-bottom: 40px;">
               <button type="button" class="close" data-dismiss="modal">
@@ -46,7 +46,9 @@
                 <span class="starR1">2.5</span> <span class="starR2">3.0</span>
                 <span class="starR1">3.5</span> <span class="starR2">4.0</span>
                 <span class="starR1">4.5</span> <span class="starR2">5.0</span>
-                <p class="scoreTable">0.5</p>
+                <div class="scoreTable">0.5</div>
+                <input type="text" class="scoreTable" name="profit" value="0.5" style="display: none;">
+                
               </div>
               <p class="preP">안정성</p>
               <div class="starRev">
@@ -55,7 +57,8 @@
                 <span class="starR1">2.5</span> <span class="starR2">3.0</span>
                 <span class="starR1">3.5</span> <span class="starR2">4.0</span>
                 <span class="starR1">4.5</span> <span class="starR2">5.0</span>
-                <p class="scoreTable">0.5</p>
+                <div class="scoreTable">0.5</div>
+                <input type="text" class="scoreTable" name="stable" value="0.5" style="display: none;">
               </div>
               <p class="preP">성장성</p>
               <div class="starRev">
@@ -64,7 +67,8 @@
                 <span class="starR1">2.5</span> <span class="starR2">3.0</span>
                 <span class="starR1">3.5</span> <span class="starR2">4.0</span>
                 <span class="starR1">4.5</span> <span class="starR2">5.0</span>
-                <p class="scoreTable" >0.5</p>
+                <div class="scoreTable" >0.5</div>
+                        <input type="text" class="scoreTable" name="potential" value="0.5" style="display: none;">
               </div>
               <p class="preP">매력도</p>
               <div class="starRev">
@@ -73,7 +77,8 @@
                 <span class="starR1">2.5</span> <span class="starR2">3.0</span>
                 <span class="starR1">3.5</span> <span class="starR2">4.0</span>
                 <span class="starR1">4.5</span> <span class="starR2">5.0</span>
-                <p class="scoreTable" >0.5</p>
+                <div class="scoreTable" >0.5</div>
+                        <input type="text" class="scoreTable" name="attraction" value="0.5" style="display: none;">
               </div>
               <p class="preP">호감도</p>
               <div class="starRev">
@@ -82,7 +87,8 @@
                 <span class="starR1">2.5</span> <span class="starR2">3.0</span>
                 <span class="starR1">3.5</span> <span class="starR2">4.0</span>
                 <span class="starR1">4.5</span> <span class="starR2">5.0</span>
-                <p class="scoreTable" >0.5</p>
+                <div class="scoreTable"  >0.5</div>
+                <input type="text" class="scoreTable" name="favor" value="0.5" style="display: none;">
               </div>
             </div>
             </div>
@@ -95,7 +101,6 @@
                   onclick="nextPrev(1)" class="btn">Next</button>
               </div>
             </div>
-
           </form>
         </div>
       </div>

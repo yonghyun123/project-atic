@@ -6,7 +6,8 @@
 <!-- id 값 next.val 로!!!! -->
 	<select id="createUserEval">
 	INSERT INTO at_user_eval 
-	VALUES      (40, 
+	VALUES      (
+			  user_status_id_seq.nextval, 
              #{user_id}, 
              #{project_id}, 
              #{stable_grade}, 

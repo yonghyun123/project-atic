@@ -33,12 +33,13 @@
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
 	<!-- ##### Breadcrumb Area Start ##### -->
+    <div style="height: 90px"></div>
 	<div class="breadcrumb-area">
 		<!-- Top Breadcrumb Area -->
 		<div
 			class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
 			style="background-image: url(/resources/img/bg-img/24.jpg);">
-			<h2>SHOP DETAILS</h2>
+			<h2>오픈 예정사업</h2>
 		</div>
 
 		<div class="container">
@@ -94,8 +95,7 @@
 							<input type="hidden" value="<c:out value="${project.id }"/>"
 								id="projectId">
 							<h4 class="price">
-								<%-- <c:out value="${project.curPrice }" />
-								원 달성 --%>
+					
                                  <c:out value="${project.createDate }" /> 오픈예정
 							</h4>
 							<div class="short_overview">
@@ -120,8 +120,7 @@
 							</div>
 
 							<div class="products--meta">
-								<img src="/resources/img/heart.gif"><span>이 페이지를 보고
-									있는 사람들</span> <span id="currentCount"></span>
+				              매력도 평가
 							</div>
 						</div>
 					</div>
@@ -468,101 +467,12 @@
 
 
 	<script type="text/javascript">
-		let wsocket;
-		$(window).on("beforeunload", function() {
-				sayBye();
-			setInterval(function(){
-				wsocket.close();
-			}, 1000)
-		});
-
-		
-		
-		
-		function sayBye() {
-			var messageObject = {
-				type : 2000
-			}
-			send(messageObject);
-
-		}
-
-		
-
-		function connect() {
-			wsocket = new WebSocket("ws://localhost/hanaSocket");
-			wsocket.onopen = onOpen;
-			wsocket.onmessage = onMessage;
-			wsocket.onclose = onClose;
-		}
-
-		function onOpen(event) {
-			var projectId = $("#projectId").val();
-			var messageObject = {
-				type : 1000,
-				projectId : projectId
-			}
-			send(messageObject);
-		}
-
-		function onClose(event) {
-			sayBye();
-		}
-
-		function onMessage(event) {
-			var serverMessage = event.data;
-			var mObject = JSON.parse(serverMessage);
-			switch (mObject.type) {
-			case 1000:
-				var count = mObject.count;
-				$("#currentCount").text(count + "명");
-				break;
-			case 2000:
-				var count = mObject.count;
-				$("#currentCount").text(count + "명");
-				break;
-			}
-
-		}
-		
-		function send(object) {
-			if (object) {
-				wsocket.send(JSON.stringify(object));
-			}
-		}
+	
 
 		$("#deposit").click(function() {
 			$("#user-Eval").modal('show');
 
-			var authNum = 0;
-			$("#auth").on("click", function() {
-				alert("눌럿졍");
-				var email = $("#email").val();
-				alert(email);
-				$.ajax({
-					url : "/email/auth",
-					type : "post",
-					async : false,
-					data : {
-						email : email
-					},
-					dataType : "text",
-					success : function(data) {
-						console.log(data);
-						var jsonData = JSON.parse(data);
-
-						authNum = jsonData.authNum;
-					}
-				})
-			})
-
-			$("#authB").on("click", function() {
-				if ($("#authNum").val() == authNum) {
-					alert("일치");
-				} else {
-					alert("불일치");
-				}
-			})
+			
 		});
 		
 		$('.starRev span').click(function(){
@@ -570,6 +480,7 @@
 			  $(this).addClass('on').prevAll('span').addClass('on');
 			  console.log($(this).parent().children('p'));
 			  $(this).parent().children('.scoreTable').html($(this).text());
+			  $(this).parent().children('.scoreTable').val($(this).text());
 			  return false;
 			});
 

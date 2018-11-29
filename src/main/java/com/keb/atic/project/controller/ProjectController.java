@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.keb.atic.project.domain.Project;
 import com.keb.atic.project.service.ProjectService;
+import com.keb.atic.userEval.domain.UserEval;
+import com.keb.atic.userEval.service.UserEvalService;
 import com.keb.atic.userProject.service.UserProjectService;
 
 import lombok.AllArgsConstructor;
@@ -35,6 +37,7 @@ public class ProjectController {
 	
 	private ProjectService projectService;
 	private UserProjectService userProjectService;
+	private UserEvalService userEvalService;
 
 	@GetMapping("")
 	public String listAll(Model model) {
@@ -145,4 +148,28 @@ public String shopDetails(@PathVariable("projectId") String projectId , Model mo
    return "/shop/shopDetails";
 }
 
+// 예정 등록프로젝트 상세
+@GetMapping("/detail/pre/{projectId}")
+public String shopPreDetails(@PathVariable("projectId") String projectId , Model model) {
+   log.info("detail :" + projectId);
+   model.addAttribute("project",projectService.readProject(projectId));
+   model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
+   model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
+   return "/shop/preShopDetails";
+}
+
+
+@PostMapping("/preEval/{projectId}/{loginId}")
+public String userEvaluate(@PathVariable("loginId") String loginId, @PathVariable("projectId") String projectId, @RequestParam("profit") String profit, @RequestParam("stable") String stable, @RequestParam("potential") String potential,
+		@RequestParam("attraction") String attraction, @RequestParam("favor") String favor) {
+	log.info("profit = " + profit);
+	log.info("stable = " + stable);
+	log.info("potential= " + potential);
+	log.info("attraction= " + attraction);
+	log.info("favor = " + favor);
+	
+	UserEval userEval = new UserEval(loginId, projectId, stable, profit, favor, potential);
+	userEvalService.createUserEval(userEval);
+	return "redirect:/shop/detail/pre/"+projectId;
+}
 }

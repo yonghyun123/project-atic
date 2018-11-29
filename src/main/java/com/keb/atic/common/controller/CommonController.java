@@ -50,15 +50,7 @@ public class CommonController {
 		log.info("Welcome IndexPage");		
 		return "index";
 	}
-	//테스트
-	@GetMapping("/shop/detail/pre/{projectId}")
-	public String shopDetails(@PathVariable("projectId") String projectId , Model model) {
-	   log.info("detail :" + projectId);
-	   model.addAttribute("project",projectService.readProject(projectId));
-	   model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
-	   model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
-	   return "/shop/preShopDetails";
-	}
+
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String about(Locale locale, Model model) {
 		log.info("Welcome AboutPage");		
