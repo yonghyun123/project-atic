@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -12,27 +14,28 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.Gson;
+import com.keb.atic.project.domain.Project;
+import com.keb.atic.project.service.ProjectService;
+import com.keb.atic.userProject.domain.UserProject;
+import com.keb.atic.userProject.service.UserProjectService;
 
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class WebSocketHandler extends TextWebSocketHandler {
-//	private Vector<WebSocketSession> connectedClients = new Vector<WebSocketSession>(10, 2);
 	private HashMap<String, ArrayList<WebSocketSession>> connectedClients = new HashMap<>();
 	private int count = 0;
 	private String projectId;
+	@Inject
+	UserProjectService userProjectService;
+	@Inject
+	ProjectService projectService;
 
 	/** 웹 클라이언트 연결 이벤트 처리 */
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log.info("웹클라이언트(" + session.getId() + ") 연결함...");
-//		connectedClients.addElement(session);
-//		count = connectedClients.size();
-//		Gson gs = new Gson();
-//		Message msg = new Message(1000, count);
-//		String json = gs.toJson(msg);
-//		TextMessage tm = new TextMessage(json);
-//		sendMessageToAll(tm);
+
 
 	}
 
@@ -42,6 +45,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		Gson gson = new Gson();
 		Message msg = gson.fromJson(message.getPayload(), Message.class);
 		projectId = msg.getProjectId();
+		
 		switch (msg.getType()) {
 		case 1000:
 			if (connectedClients.get(projectId) == null) {
@@ -72,6 +76,22 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			sendMessageToAll(tm, projectId);
 			break;
 		case 3000:
+			log.info(msg);
+			String loginId = msg.getLoginId();
+			String deposit = msg.getDeposit();
+			String curPrice = msg.getCurPrice();
+			int money = Integer.parseInt(deposit) + Integer.parseInt(curPrice); 
+			UserProject userProject = new UserProject(deposit, loginId, projectId);
+			userProjectService.createUserProject(userProject);
+			Project project = new Project(projectId, String.valueOf(money));
+			projectService.updateProject(project);
+			//project = projectService.readProject(projectId);
+			//String price = project.getCurPrice();
+			Gson gs3 = new Gson();
+			Message msg3 = new Message(3000, String.valueOf(money));
+			String json3 = gs3.toJson(msg3);
+			TextMessage tm3 = new TextMessage(json3);
+			sendMessageToAll(tm3, projectId);
 			break;
 		}
 

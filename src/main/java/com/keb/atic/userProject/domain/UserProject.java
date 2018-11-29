@@ -32,4 +32,13 @@ public class UserProject {
 	private String company;
 	//투자한 날짜
 	private String createDate;
+	
+	public UserProject(String deposit, String userId, String projectId) {
+		super();
+		this.deposit = deposit;
+		this.userId = userId;
+		this.projectId = projectId;
+	}
+	
+	
 }

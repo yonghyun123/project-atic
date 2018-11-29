@@ -19,7 +19,7 @@
 						<div class="tab">
 							deposit:
 							<p>
-								<input placeholder="적금 금액을 입력해주세요." oninput="this.className = ''">
+								<input id="depositMoney" placeholder="적금 금액을 입력해주세요." oninput="this.className = ''">
 							</p>
 							password:
 							<p>
