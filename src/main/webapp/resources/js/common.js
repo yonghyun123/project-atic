@@ -2,6 +2,14 @@
 name : common.js 
 */
 
+/* 토스트 출력 메서드 */
+function popup(flag) {
+	x = document.getElementById(flag);
+	setTimeout(function(){ x.className = "show"; }, 1500);
+	setTimeout(function(){ x.className = ""; }, 3000);
+}
+
+
 /* 닉네임 유효성검사 메서드 */ 
 function nicknameValidation(nickname, selector) {
 	var regName = /^[가-힣0-9]{2,6}$|^[a-zA-Z0-9]{2,12}$/;

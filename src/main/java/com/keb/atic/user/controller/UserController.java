@@ -102,12 +102,11 @@ public class UserController {
 			User user = userService.readUser(id);
 			user.setNickname(nickname);
 			userService.updateUser(user);
-			out.println("nick-success");
 		}
 		return null; 
 	}
 
-	/* 닉네임 조회 Controller */
+	/* 가상계좌 생성 Controller */
 	@GetMapping(value="/vt/{id}")
 	public String updateVt(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		log.info("가상계좌 생성");
@@ -119,13 +118,6 @@ public class UserController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
-		if(userService.updateUserVt(id) == 0) {
-			out.println("updateFail");
-		} else {
-			out.println("updateSuccess");
-		}
-		
 		return null; 
 	}
 	/* 유저별 투자한 기업 리스트 조회 */

@@ -169,14 +169,11 @@
 			$.ajax({
 				url : '/users/vt/' + id,
 				success : function(data) {
-					if(data.trim() == "updateFail") {
-						alert("계좌 생성 실패!");
-					} else {
-						alert("계좌 생성 성공!");
-						window.location.reload();
-					}
+					window.location.reload();
+					sessionStorage.flag = "popup-message-create-deposit-success";
 				}
-			})
+			});
+		
 		} else {
 			var selector = document.getElementById('menual-fail-text');
 			messageView(selector, '동의하지 않은 약관이 있습니다.');
