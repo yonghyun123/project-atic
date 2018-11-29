@@ -33,7 +33,7 @@
 		var selector = document.getElementById('nickname-fail-text');
 		
 		// 글자수 체크 및 유효성 검사 메서드 추가하기
-		if(validation(nickname, selector)) {
+		if(nicknameValidation(nickname, selector)) {
 			$.ajax({
 				url : '/users/id/' + id + '/nickname/' + nickname,
 				type : 'get',
@@ -48,37 +48,5 @@
 				}
 			})
 		}
-		
-		function validation(nickname, selector) {
-			var regName = /^[가-힣0-9]{2,6}$|^[a-zA-Z0-9]{2,12}$/;
-			if(nickname.trim().length == 0) {
-				messageView(selector, "닉네임을 입력해주세요.");
-				return false;
-			}else if (nickname.trim().length < 2) {
-				messageView(selector, "닉네임을 2자 이상 입력해주세요.");
-			}else {
-				if(regName.test(nickname)) {
-					return true;
-				} else {
-					messageView(selector, "한글+숫자 6자, 영어+숫자 12자까지 가능합니다.");
-					return false;
-				}				
-			}
-		}
-		
-		function messageView(selector, message) {
-			var count = 0;
-			var fadeIn = setInterval( function() {
-				selector.style.visibility = 'visible';
-				selector.innerHTML = message;
-				if(count >= 5) {
-					selector.style.visibility = 'hidden';
-					clearInterval(fadeIn);
-					return ;
-				}
-				count++;
-			}, 500);
-		}
-		
-	}
+ 	}
 </script>

@@ -509,7 +509,9 @@
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/js/active.js"></script>
-
+    <!-- Common js -->
+    <script src="/resources/js/common.js"></script>
+    
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 
