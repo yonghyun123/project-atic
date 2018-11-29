@@ -38,11 +38,11 @@ public class CommonController {
 		String count = "3";
 		/**인기 프로젝트 리스트*/
 		Map<String, String>hotMap = new HashMap<String,String>();
-		hotMap.put("month", String.valueOf(thisMonth)+"월");
+		hotMap.put("month", String.valueOf(thisMonth));
 		hotMap.put("count", count);
 		/**등록예정 프로젝트 리스트*/
 		Map<String, String>nextMap = new HashMap<String,String>();
-		nextMap.put("month", String.valueOf(nextMonth)+"월");
+		nextMap.put("month", String.valueOf(nextMonth));
 		nextMap.put("count", count);
 		
 		model.addAttribute("hotList",projectService.readMonthProjectByGoal(hotMap));
