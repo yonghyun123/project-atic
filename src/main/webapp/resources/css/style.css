@@ -574,14 +574,20 @@ img {
   	height:80%;
 	
 }
-#investNav{
-	
+
+#rankingList ol {
+	margin-left: 10%;
 }
+
+#rankingList ol a {
+	font-size: 16px;
+}
+
 #investNav ul{
 	display: flex;
 	justify-content: center;
-	width: 100%;
 }
+
 #investNav ul li{
 	float: left;
 	max-width: 20%;
@@ -589,17 +595,20 @@ img {
 }
 
 #mainVisual{
-	float:left;
-	 width:40%;
-  	height:70%;
-  	 margin:0 0 0 20%;
+	float: left;
+	width: 73%;
+  	margin: 0 0 0 3%;
 }
 
 #rankingSection{
-	float:right;
-	 width:20%;
-  	height:100%;
-  	margin:0 18% 0 0;
+	float: right;
+	width: 20%;
+  	height: 100%;
+  	margin-right: 1%:
+}
+
+.new-arrivals-products-area {
+	padding-bottom: 50px;  
 }
 
 .hotClipWrapper{

@@ -30,37 +30,37 @@
 
   <!-- ##### Hero Area Start ##### -->
   <div style="height: 90px"></div>
-  <section class=sector01>
-    <div style="height: 5%"></div>
-    <div id="mainVisual">
-      <div class="single-item">
-        <img src="/resources/img/bg-img/1.jpg"><img
-          src="/resources/img/bg-img/2.jpg"> <img
-          src="/resources/img/bg-img/3.jpg">
+  <section class="sector01">
+    <div class="container" style="height: 80%">
+      <div id="mainVisual">
+        <div class="single-item">
+          <img src="/resources/img/bg-img/1.jpg"><img
+            src="/resources/img/bg-img/2.jpg"> <img
+            src="/resources/img/bg-img/3.jpg">
+        </div>
       </div>
-    </div>
-    <div id="rankingSection">
-      <div class="hotClipWrapper">
-       <div id="clipHeader">
-        <h5>투자액 급등 종목</h5>
-       </div>
-       <div id="clipBody">
-          <img id = "hotImage" src="/resources/img/bg-img/13.jpg">
-          <div id="rankingList">
-            <ol>
-              <li><em>1</em><a>짜장면가게</a></li>
-              <li><em>2</em><a>유산슬가게</a></li>
-              <li><em>3</em><a>팔보체가게</a></li>
-            </ol>
-          </div>
-       </div>
+      <div id="rankingSection">
+        <div class="hotClipWrapper">
+         <div id="clipHeader">
+          <h5>투자액 급등 종목</h5>
+         </div>
+         <div id="clipBody">
+            <div id="rankingList">
+              <ol>
+                <li><em>1</em><a>짜장면가게</a></li>
+                <li><em>2</em><a>유산슬가게</a></li>
+                <li><em>3</em><a>팔보체가게</a></li>
+              </ol>
+            </div>
+         </div>
+        </div>
       </div>
     </div>
   </section>
   <!-- ##### Hero Area End ##### -->
   <!-- ##### Product Area Start ##### -->
   <section
-    class="new-arrivals-products-area bg-gray section-padding-100">
+    class="new-arrivals-products-area bg-gray section-padding-50">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -86,13 +86,6 @@
               <!-- Product Tag -->
               <div class="product-tag">
                 <a href="#">HOT</a>
-              </div>
-              <div class="product-meta d-flex">
-                <a href="#" class="wishlist-btn"><i
-                  class="icon_heart_alt"></i></a> <a href="cart.html"
-                  class="add-to-cart-btn">Add to cart</a> <a href="#"
-                  class="compare-btn"><i
-                  class="arrow_left-right_alt"></i></a>
               </div>
             </div>
             <!-- Product Info -->
@@ -134,7 +127,7 @@
         <!-- Single Blog Post Area -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="single-blog-post mb-100">
-            <div class="post-thumbnail mb-30">
+            <div class="product-img mb-30">
               <a href="single-post.html"><img
                 src="/resources/img/project-image/${preProject.fileName}" alt=""></a>
             </div>
@@ -143,12 +136,6 @@
                 <h5>Garden designers across the country forecast
                   ideas shaping the gardening world in 2018</h5>
               </a>
-              <div class="post-meta">
-                <a href="#"><i class="fa fa-clock-o"
-                  aria-hidden="true"></i> 20 Jun 2018</a> <a href="#"><i
-                  class="fa fa-user" aria-hidden="true"></i> Alan
-                  Jackson</a>
-              </div>
               <p class="post-excerpt">Integer luctus diam ac
                 scerisque consectetur. Vimus ottawas nec lacus sit amet.
                 Aenean interdus mid vitae.</p>
