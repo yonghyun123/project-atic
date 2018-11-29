@@ -22,7 +22,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/resources/css/common.css">
     
-        <!-- slick -->
+    <!-- slick -->
     <link href="/resources/css/slick.css" rel="stylesheet">
     <link href="/resources/css/slick-theme.css" rel="stylesheet">    
 </head>
@@ -124,12 +124,14 @@
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/js/active.js"></script>
-          <!-- slick js -->
-  <script type="text/javascript" src="/resources/js/slick.min.js"></script>
-  <!-- projectCard 템플릿 -->
-  <script id="templateList" type="text/template">
-  <div class="col-12 col-sm-6 col-lg-4">
-  <div class="single-product-area mb-50">
+    <!-- Common js -->
+    <script src="/resources/js/common.js"></script>
+    <!-- slick js -->
+    <script type="text/javascript" src="/resources/js/slick.min.js"></script>
+    <!-- projectCard 템플릿 -->
+    <script id="templateList" type="text/template">
+  	<div class="col-12 col-sm-6 col-lg-4">
+  	<div class="single-product-area mb-50">
       <!-- Product Image -->  
       <div class="product-img">
           <a href="/shop/detail/{id}">
@@ -149,10 +151,10 @@
           <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{progress}" aria-valuemin="0" aria-valuemax="100" style="width:{progress}%">
            {progress} % </div>
           </div>
-          </div>
         </div>
-     </div>
-  </script>
+      </div>
+   </div>
+   </script>
    <script type="text/javascript">
       $(document).ready(function() {
         $('.single-item').slick({

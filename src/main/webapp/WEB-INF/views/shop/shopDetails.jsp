@@ -462,10 +462,10 @@
 	<script src="/resources/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="/resources/js/active.js"></script>
-	<!-- ##### Related Product Area End ##### -->
+    <!-- Common js -->
+    <script src="/resources/js/common.js"></script>
 
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-
 
 	<script type="text/javascript">
 		let wsocket;

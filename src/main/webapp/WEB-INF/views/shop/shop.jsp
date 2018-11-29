@@ -133,9 +133,11 @@
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/js/active.js"></script>
-          <!-- slick js -->
-  <script type="text/javascript" src="/resources/js/slick.min.js"></script>
-   <script type="text/javascript">
+    <!-- Common js -->
+    <script src="/resources/js/common.js"></script>
+    <!-- slick js -->
+    <script type="text/javascript" src="/resources/js/slick.min.js"></script>
+    <script type="text/javascript">
       $(document).ready(function() {
         $('.single-item').slick({
           autoplay:true,
@@ -146,7 +148,7 @@
         });
      });
       
-</script>
+	</script>
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 

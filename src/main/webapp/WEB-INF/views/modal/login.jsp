@@ -51,20 +51,5 @@
         		}
   	    	}
     	})
-    	
-    	/* 에러메세지 출력 메서드 */
-    	function messageView(selector, message) {
-  		var count = 0;
-  		var fadeIn = setInterval( function() {
-  			selector.style.visibility = 'visible';
-  			selector.innerHTML = message;
-  			if(count >= 5) {
-  				selector.style.visibility = 'hidden';
-  				clearInterval(fadeIn);
-  				return ;
-  			}
-  			count++;
-  		}, 500);
-  	}
   	}
  </script>
