@@ -221,7 +221,7 @@
 	</tr>
 	</script>
     <script type="text/javascript">
-    var userId = ${loginId};
+    var userId = "${loginId}";
     
     /* 날짜계산하기 */
     function calculDate(){
