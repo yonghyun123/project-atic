@@ -153,14 +153,17 @@
   <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
   <!-- Popper js -->
   <script src="/resources/js/bootstrap/popper.min.js"></script>
+  <!-- slick js -->
+  <script type="text/javascript" src="/resources/js/slick.min.js"></script>
   <!-- Bootstrap js -->
   <script src="/resources/js/bootstrap/bootstrap.min.js"></script>
   <!-- All Plugins js -->
   <script src="/resources/js/plugins/plugins.js"></script>
   <!-- Active js -->
   <script src="/resources/js/active.js"></script>
-  <!-- slick js -->
-  <script type="text/javascript" src="/resources/js/slick.min.js"></script>
+  <!-- Common js -->
+  <script src="/resources/js/common.js"></script>
+  
   <script type="text/javascript">
 			$(document).ready(function() {
 				$('.single-item').slick({

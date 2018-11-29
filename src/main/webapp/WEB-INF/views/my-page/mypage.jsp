@@ -202,6 +202,8 @@
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/js/active.js"></script>
+    <!-- Common js -->
+    <script src="/resources/js/common.js"></script>
     <!-- char.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
