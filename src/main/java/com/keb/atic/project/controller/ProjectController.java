@@ -145,6 +145,7 @@ public String shopDetails(@PathVariable("projectId") String projectId , Model mo
    model.addAttribute("project",projectService.readProject(projectId));
    model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
    model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
+   model.addAttribute("recommend", projectService.recommendProject(projectId));
    return "/shop/shopDetails";
 }
 

@@ -79,4 +79,9 @@ public class ProjectServiceImpl implements ProjectService{
 		log.info("list by Condition");
 		return mapper.readProjectByCondition(map);
 	}
+
+	@Override
+	public List<Project> recommendProject(String projectId) {
+		return mapper.recommendProject(projectId);
+	}
 }
