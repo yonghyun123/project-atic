@@ -29,4 +29,7 @@ public interface UserProjectMapper {
 	
 	//기간별 투자 회사 리스트 검색
 	public List<UserProject> getCompanyListByDate(Map<String,Object> dateObj);
+	
+	//기투자 방지하기 위한 체크 함수
+	public int checkInvest(UserProject userProject);
 }

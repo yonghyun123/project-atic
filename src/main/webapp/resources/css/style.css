@@ -2733,6 +2733,12 @@ em{
     margin-bottom: 0; }
   .portfolio-details-meta:last-child {
     margin-bottom: 0; }
+    
+#deposit:disabled{
+	color: white;
+    opacity: 0.65;
+    background-color: #70c475;
+}
 
 /* ======= The End ======= */
 

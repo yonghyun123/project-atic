@@ -3,7 +3,7 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.keb.atic.userProject.mapper.UserProjectMapper">
 
-	<select id="createUserProject">
+	<insert id="createUserProject">
 	INSERT INTO at_user_project(
 	id, deposit, user_id, project_id, create_date
 	) 
@@ -12,7 +12,7 @@
              #{userId}, 
              #{projectId}, 
              sysdate)
-	</select>
+	</insert>
 	
 	<select id="readUserProject" resultType="com.keb.atic.userProject.domain.UserProject">
 	
@@ -75,4 +75,11 @@
 	<update id="updateUserProject">
 	
 	</update>
+	
+	<select id="checkInvest" resultType="int">
+	SELECT Count(*) 
+	FROM   at_user_project 
+	WHERE  user_id = #{userId} 
+       AND project_id = #{projectId} 
+	</select>
 </mapper>

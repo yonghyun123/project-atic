@@ -47,6 +47,11 @@ public class UserProjectServiceImpl implements UserProjectService{
 	public List<UserProject> getCompanyListByDate(Map<String, Object> dateObj) {
 		return userProjectMapper.getCompanyListByDate(dateObj);
 	}
+
+	@Override
+	public int checkInvest(UserProject userProject) {
+		return userProjectMapper.checkInvest(userProject);
+	}
 	
 	
 }

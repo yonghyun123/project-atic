@@ -16,10 +16,15 @@ public class Message {
 		this.type = type;
 		this.count = count;
 	}
-	
-	
 
 	
+	public Message(int type, int count, String message) {
+		super();
+		this.type = type;
+		this.count = count;
+		this.message = message;
+	}
+
 	public Message(int type, String message) {
 		super();
 		this.type = type;
