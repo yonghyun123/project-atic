@@ -49,11 +49,11 @@ public class ProjectController {
 		}
 		String count = "3";
 		Map<String, String>curMap = new HashMap<String,String>();
-		curMap.put("month", String.valueOf(thisMonth)+"월");
+		curMap.put("month", String.valueOf(thisMonth));
 		curMap.put("count", count);
 		/**등록예정 프로젝트 리스트*/
 		Map<String, String>preMap = new HashMap<String,String>();
-		preMap.put("month", String.valueOf(nextMonth)+"월");
+		preMap.put("month", String.valueOf(nextMonth));
 		preMap.put("count", count);
 		
 		model.addAttribute("curList",projectService.readMonthProjectByGoal(curMap));
@@ -71,7 +71,7 @@ public class ProjectController {
 			nextMonth-=12;
 		}
 		Map<String, String>curMap = new HashMap<String,String>();
-		curMap.put("month", String.valueOf(thisMonth)+"월");
+		curMap.put("month", String.valueOf(thisMonth));
 		curMap.put("condition", "goal");
 		model.addAttribute("curList",projectService.readProjectByCondition(curMap));
 	}
@@ -85,7 +85,7 @@ public class ProjectController {
 			nextMonth-=12;
 		}
 		Map<String, String>preMap = new HashMap<String,String>();
-		preMap.put("month", String.valueOf(nextMonth)+"월");
+		preMap.put("month", String.valueOf(nextMonth));
 		preMap.put("count", "20");
 		model.addAttribute("preList",projectService.readMonthProjectByGoal(preMap));
 	}
@@ -111,10 +111,10 @@ public class ProjectController {
 		}
 		
 		if(whichProject.equals("curProject")) {
-			map.put("month", String.valueOf(thisMonth)+"월");
+			map.put("month", String.valueOf(thisMonth));
 
 		}else {
-			map.put("month", String.valueOf(nextMonth)+"월");
+			map.put("month", String.valueOf(nextMonth));
 		}
 			list = projectService.readProjectByCondition(map);
 			
