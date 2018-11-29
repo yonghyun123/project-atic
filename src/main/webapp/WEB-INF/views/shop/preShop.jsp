@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+.<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -64,7 +64,7 @@
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
                                 <select id="search_by" class="custom-select widget-title">
-                                  <option selected>정렬</option>
+                                  <option selected value="goal">정렬</option>
                                   <option value="goal">목표 금액 순</option>
                                   <option value="percent">달성률 순</option>
                                   <option value="eval">예비 평점 순</option>
@@ -157,7 +157,6 @@
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
 var condition = $("#search_by option:selected").val();
- if(condition != '정렬'){
 	 $.ajax({
 		type : "post",
 		url : "/shop/search",
@@ -171,7 +170,6 @@ var condition = $("#search_by option:selected").val();
           	searchTemplate(jsonModifyData);
 		}
 	}); 
-}
 });
 function searchTemplate(jsonModifyData) {
 	//템플릿 내용
@@ -182,7 +180,7 @@ function searchTemplate(jsonModifyData) {
     var projectCount = 0;
     jsonModifyData.forEach(function(v, i) {
     	projectCount++;
-      newHtml += templateHtml.replace('{id}', v.id)
+      newHtml += templateHtml.replace(/{id}/gi, v.id)
       				 	  .replace('{Id}',v.id)
           				  .replace('{fileName}', v.fileName)
           				  .replace('{name}', v.name)
@@ -200,25 +198,22 @@ function searchTemplate(jsonModifyData) {
   <div class="single-product-area mb-50">
       <!-- Product Image -->  
       <div class="product-img">
-      <form id="form{id}" action="/shop/details" method="post">
             <a href="/shop/detail/pre/{Id}">
           <img src="/resources/img/project-image/{fileName}" alt=""></a>
-         <input type="hidden" value="{id}">
          <!-- Product Tag -->
          <div class="product-tag">
              <a href="#">Hot</a>
          </div>
-         </form>
      </div>
      <!-- Product Info -->
      <div class="product-info mt-15 text-center">
-         <a href="/shop-details">
-             <h6> {name} </h6>
+         <a href="/shop/detail/{id}">
+             <h6> {name}</h6>
          </a>
          <h6>업종 : {category} / 목표금액 : {goal}</h6>
+          </div>
+        </div>
      </div>
-    </div>
-  </div>
-</script>
+  </script>
 
 </html>
