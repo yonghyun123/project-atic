@@ -64,7 +64,7 @@
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
                                 <select id="search_by" class="custom-select widget-title">
-                                  <option selected>정렬</option>
+                                  <option selected value="goal">정렬</option>
                                   <option value="goal">목표 금액 순</option>
                                   <option value="percent">달성률 순</option>
                                   <option value="eval">예비 평점 순</option>
@@ -83,22 +83,24 @@
                           <div class="single-product-area mb-50">
                               <!-- Product Image -->
                               <div class="product-img">
-                              <form id="form${project.id}" action="/shop/details" method="post">
                                   <a href="/shop/detail/${project.id }">
                                   <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
-                                  <input type="hidden" value="${project.id }">
                                   <!-- Product Tag -->
                                   <div class="product-tag">
                                       <a href="#">Hot</a>
                                   </div>
-                                  </form>
                               </div>
                               <!-- Product Info -->
                               <div class="product-info mt-15 text-center">
-                                  <a href="/shop-details">
+                                  <a href="/shop/detail/${project.id }">
                                       <h6> ${project.name } </h6>
                                   </a>
                                   <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                                  <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
+                                      ${project.progress }%
+                                    </div>
+                                  </div>
                               </div>
                           </div>
                           </div>
@@ -124,6 +126,33 @@
     <script src="/resources/js/active.js"></script>
           <!-- slick js -->
   <script type="text/javascript" src="/resources/js/slick.min.js"></script>
+  <!-- projectCard 템플릿 -->
+  <script id="templateList" type="text/template">
+  <div class="col-12 col-sm-6 col-lg-4">
+  <div class="single-product-area mb-50">
+      <!-- Product Image -->  
+      <div class="product-img">
+          <a href="/shop/detail/{id}">
+          <img src="/resources/img/project-image/{fileName}" alt=""></a>
+         <!-- Product Tag -->
+         <div class="product-tag">
+             <a href="#">Hot</a>
+         </div>
+     </div>
+     <!-- Product Info -->
+     <div class="product-info mt-15 text-center">
+         <a href="/shop/detail/{id}">
+             <h6> {name}</h6>
+         </a>
+         <h6>업종 : {category} / 목표금액 : {goal}</h6>
+         <div class="progress">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{progress}" aria-valuemin="0" aria-valuemax="100" style="width:{progress}%">
+           {progress} % </div>
+          </div>
+          </div>
+        </div>
+     </div>
+  </script>
    <script type="text/javascript">
       $(document).ready(function() {
         $('.single-item').slick({
@@ -142,7 +171,6 @@
 <script type="text/javascript">
 $(document).on("change", "#search_by", function(event) {
 	var condition = $("#search_by option:selected").val();
- if(condition != '정렬'){
 	 $.ajax({
 		type : "post",
 		url : "/shop/search",
@@ -156,7 +184,6 @@ $(document).on("change", "#search_by", function(event) {
           	searchTemplate(jsonModifyData);
 		}
 	}); 
-}
 });
 function searchTemplate(jsonModifyData) {
 	//템플릿 내용
@@ -167,43 +194,19 @@ function searchTemplate(jsonModifyData) {
     var projectCount = 0;
     jsonModifyData.forEach(function(v, i) {
     	projectCount++;
-      newHtml += templateHtml.replace('{id}', v.id)
-      					  .replace('{Id}',v.id)
+      newHtml += templateHtml.replace(/{id}/gi, v.id)
           				  .replace('{fileName}', v.fileName)
           				  .replace('{name}', v.name)
           				  .replace('{category}', v.category)
           				  .replace('{goal}', v.goal)
+          				  .replace(/{progress}/gi,v.progress)
+          				  
     });
     originHtml.innerHTML = newHtml;
     var counterHtml = document.querySelector("#countBody")
     counterHtml.innerHTML = "<p>진행중인 펀딩이 "+ projectCount + "건 있습니다.</p>" ;
   }
 </script>
-<!-- projectCard 템플릿 -->
-<script id="templateList" type="text/template">
-  <div class="col-12 col-sm-6 col-lg-4">
-  <div class="single-product-area mb-50">
-      <!-- Product Image -->  
-      <div class="product-img">
-      <form id="form{id}" action="/shop/details" method="post">
-           <a href="/shop/detail/{Id}">
-          <img src="/resources/img/project-image/{fileName}" alt=""></a>
-         <input type="hidden" value="{id}">
-         <!-- Product Tag -->
-         <div class="product-tag">
-             <a href="#">Hot</a>
-         </div>
-         </form>
-     </div>
-     <!-- Product Info -->
-     <div class="product-info mt-15 text-center">
-         <a href="/shop-details">
-             <h6> {name} </h6>
-         </a>
-         <h6>업종 : {category} / 목표금액 : {goal}</h6>
-     </div>
-    </div>
-  </div>
-</script>
+
 
 </html>

@@ -21,6 +21,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/resources/css/common.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
@@ -143,7 +144,34 @@
 			    <!-- 투자한 기업 리스트 보여줘야 하는 부분 -->
 			    <div id="comp-list" class="tab-pane fade">
 			      <h3>투자 기업 리스트</h3>
-			      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			      <div class="container">
+				  <h2>기업 현황</h2>
+				  <h4>기간 선택</h4>
+				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;" >
+				  <label for="fromDate">시작일</label>
+				  <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+				</div>
+				
+				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;">
+				  <label for="toDate">종료일</label>
+		       	  <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+				</div>
+			    <input type="button" style="width: 90.5%" class="btn btn-success btn-block" value="검색하기" id="send-date-btn"/>
+				  <table class="table table-striped">
+				    <thead>
+				      <tr>
+				        <th>투자한 날짜</th>
+				        <th>사업 주제</th>
+				        <th>투자한 기업</th>
+				        <th>투자한 적금 금액</th>
+				        <th>모금 달성률</th>
+				      </tr>
+				    </thead>
+				    <tbody id="table-body-in">
+				    <!-- 여기에 들어가면돼 -->
+				    </tbody>
+				  </table>
+				</div>
 			    </div>
 			  </div>
 			</div>	
@@ -176,9 +204,22 @@
     <script src="/resources/js/active.js"></script>
     <!-- char.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <!-- datepicker 한국어로 -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-    
+    <script type="my-template" id="table-list">
+	<tr>
+		<td>{createDate}</td>
+		<td>{name}</td>
+		<td>{company}</td>
+		<td>{deposit}</td>
+		<td>{percentage}</td>
+	</tr>
+	</script>
     <script type="text/javascript">
+    var userId = ${loginId};
     
     /* 날짜계산하기 */
     function calculDate(){
@@ -200,24 +241,109 @@
         //percent 동적삽입
         $("#prog-date").css("width",datePerc);
         $("#prog-date").text(datePerc+"달성!");
-        
-        
     }
     
-    calculDate();
-    
+ 	//오늘 날짜를 출력
+ 	function datePickFunc(){
+ 	    $("#today").text(new Date().toLocaleDateString());
+ 	    //datepicker 한국어로 사용하기 위한 언어설정
+ 	    $.datepicker.setDefaults($.datepicker.regional['ko']); 
+ 	    
+ 	    // 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
+ 	    // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
+ 	    //시작일.
+ 	    $('#fromDate').datepicker({
+ 	        dateFormat: "yy-mm-dd",             // 날짜의 형식
+ 	        changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
+ 	        //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+ 	        onClose: function( selectedDate ) {    
+ 	            // 시작일(fromDate) datepicker가 닫힐때
+ 	            // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+ 	            $("#toDate").datepicker( "option", "minDate", selectedDate );
+ 	        }                
+ 	    });
+
+ 	    //종료일
+ 	    $('#toDate').datepicker({
+ 	        dateFormat: "yy-mm-dd",
+ 	        changeMonth: true,
+ 	        //minDate: 0, // 오늘 이전 날짜 선택 불가
+ 	        onClose: function( selectedDate ) {
+ 	            // 종료일(toDate) datepicker가 닫힐때
+ 	            // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+ 	            $("#fromDate").datepicker( "option", "maxDate", selectedDate );
+ 	        }                
+ 	    });
+ 	};
+ 	
+ 	function sendFilterList(){
+ 		$('#send-date-btn').click(function(){
+ 			
+ 			const startDate = $('#fromDate').val();
+ 			const endDate = $('#toDate').val();
+
+ 			
+ 			if(startDate.trim().length == 0 || endDate.trim().length == 0){
+ 				// 검색조건이 비어있을때 그냥 전체 리스트 ajax로 요청
+ 				//userId 바꿔줘야해
+ 				 userStatusService.getCompanyList(userId, function(list){
+ 					 console.log(list.companyList);
+ 					 companyListTemplate(list.companyList);
+ 				 });
+ 			} else if(startDate && endDate){
+ 	 			var date = {
+ 	 					startDate: startDate,
+ 	 					endDate: endDate
+ 	 			};
+ 	 			//userId 바꿔줘야해
+ 				 userStatusService.postSearchList(userId, date, function(list){
+ 					 console.log(list.companyList);
+ 					 companyListTemplate(list.companyList);
+ 				 });
+ 			}
+ 			
+ 			$('#toDate').val('');
+ 			$('#fromDate').val('');
+ 		})
+ 	}
+ 	calculDate();
+    datePickFunc();
+    sendFilterList();
     
 	 /*
-	 javascript AJAX Service(read, put, post...)
-	 created by yonghyun
+		 javascript AJAX Service(read, put, post...)
+		 created by yonghyun
 	 */
 	 var userStatusService = (function() {
-			function add(reply, callback, error) {
-				console.log("add reply...............");
+			function get(userId, callback, error) {
+				$.get("/users/mypage/graph/"+userId, function(result) {
+					if (callback) {
+						callback(result);
+					}
+
+				}).fail(function(xhr, status, err) {
+					if (error) {
+						error();
+					}
+				});
+			};
+			function getCompanyList(userId, callback, error){
+				$.get("/users/mypage/corlist/"+userId, function(result){
+					if(callback){
+						callback(result);
+					}
+				}).fail(function(xhr, status, err){
+					if(error){
+						error();
+					}
+				});
+			};
+			
+			function postSearchList(userId, data, callback, error){
 				$.ajax({
 					type : 'post',
-					url : '/replies/new',
-					data : JSON.stringify(reply),
+					url : "/users/mypage/corlist/"+userId,
+					data : JSON.stringify(data),
 					contentType : "application/json; charset=utf-8",
 					success : function(result, status, xhr) {
 						if (callback) {
@@ -232,28 +358,17 @@
 				})
 			}
 
-			function get(userId, callback, error) {
-				$.get("/users/mypage/graph/"+userId, function(result) {
-					if (callback) {
-						callback(result);
-					}
-
-				}).fail(function(xhr, status, err) {
-					if (error) {
-						error();
-					}
-				});
-			}
-
 			return {
-				add : add,
-				get : get
+				get : get,
+				getCompanyList : getCompanyList,
+				postSearchList : postSearchList
 			};
 
 		})();
 	 
 	 /* AJAX 사용 */
-	 userStatusService.get("test1", function(list){
+	 //userId가 들어가야함
+	 userStatusService.get(userId, function(list){
 		 // 월별 만기 환급액
 		 var totalDepositMonth = [];
 		 // 월별 적금액
@@ -270,8 +385,28 @@
 		 
 		 totalDepoitGraph(curDepositMonth,totalDepositMonth);
 		 profitGraph(profitMonth);
-		 
 	 })
+	 
+	 /*Ajax로 기업리스트 불러오기 */
+	 //userId가 들어가야함
+	 userStatusService.getCompanyList(userId, function(list){
+		 console.log(list.companyList);
+		 companyListTemplate(list.companyList);
+	 });
+	 
+	 /* 기업 리스트 html template */
+	 function companyListTemplate(companyList){
+		 var originHtml = document.querySelector('#table-list').innerHTML;
+		 var newHtml = '';
+		 companyList.forEach(function(v) {
+		 	newHtml += originHtml.replace('{createDate}', v.createDate)
+		 					     .replace('{name}', v.name)
+		 					     .replace('{deposit}', v.deposit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+		 					     .replace('{company}', v.company)
+		 					     .replace('{percentage}', Math.round((Number(v.curPrice)/Number(v.goal))*100) + "%");
+		 });
+		 document.querySelector('#table-body-in').innerHTML = newHtml;
+	 }
 	 
 	 function totalDepoitGraph(depositDataset, totalDataset){
 		 /* chart.js chart examples */

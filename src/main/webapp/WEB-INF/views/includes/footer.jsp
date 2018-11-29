@@ -2,21 +2,66 @@
     pageEncoding="UTF-8"%>
   <script src="/resources/js/countTime.js"></script>    
 <script>
-$(document).ready(function(){
-  $("#login").on("click", function(e) {
-    $("#login-modal").modal('show');
+  $(document).ready(function(){
+    $("#login").on("click", function(e) {
+      $("#login-modal").modal('show');
+    });
+    
+    $("#logout").on("click", function(e) {
+  	  $("#logout-modal").modal('show');
+    })
   });
   
-  $("#logout").on("click", function(e) {
-	$("#logout-modal").modal('show');
-  })
-});
-$(function(){
-    $('#countTime').countTime({
-      time: '2018-12-01 00:00:00'//기준시간
-    });
+  $(function(){
+	$('#countTime').countTime({
+	time: year.toString() + '-' + month.toString()+'-01 00:00:00'//기준시간
+  	});
   });
 </script>
+    
+<!-- Channel Plugin Scripts -->
+<script>
+  window.channelPluginSettings = {
+    "pluginKey": "b069aa92-f615-4c52-8447-4180a1cfb081"
+  };
+  (function() {
+    var w = window;
+    if (w.ChannelIO) {
+      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+    }
+    var d = window.document;
+    var ch = function() {
+      ch.c(arguments);
+    };
+    ch.q = [];
+    ch.c = function(args) {
+      ch.q.push(args);
+    };
+    w.ChannelIO = ch;
+    function l() {
+      if (w.ChannelIOInitialized) {
+        return;
+      }
+      w.ChannelIOInitialized = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState === 'complete') {
+      l();
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', l);
+    } else {
+      window.addEventListener('DOMContentLoaded', l, false);
+      window.addEventListener('load', l, false);
+    }
+  })();
+</script>
+<!-- End Channel Plugin -->
     
 <!-- ##### Footer Area Start ##### -->
 <footer class="footer-area bg-img" style="background-image: url(/resources/img/bg-img/3.jpg);">

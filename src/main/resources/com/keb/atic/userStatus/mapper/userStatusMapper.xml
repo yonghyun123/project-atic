@@ -43,7 +43,7 @@
 	</select>
 
 	<select id="userStatusListByUser" resultType="com.keb.atic.userStatus.domain.UserStatus">
-		SELECT user_id as userId,
+		SELECT user_id as "userId",
 		year as "year",
 		month as "month",
 		total_profit as "totalProfit",

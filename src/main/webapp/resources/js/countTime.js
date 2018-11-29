@@ -1,6 +1,15 @@
 /*
 name : countTime.js
 */
+
+var date = new Date();
+var year = date.getFullYear();
+var month = date.getMonth()+2;
+if(month > 12){
+	year = year + 1;
+	month = month -12;
+}
+
 (function($){
 	var opt,ele,top;
 

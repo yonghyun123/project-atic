@@ -1,6 +1,7 @@
 package com.keb.atic.userProject.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class UserProjectServiceImpl implements UserProjectService{
 
 	@Override
 	public void createUserProject(UserProject userProject) {
-		// TODO Auto-generated method stub
+		userProjectMapper.createUserProject(userProject);
 		
 	}
 
@@ -34,6 +35,22 @@ public class UserProjectServiceImpl implements UserProjectService{
 	@Override
 	public int countOfInvestor(String projectId) {
 		return userProjectMapper.countOfInvestor(projectId);
+	}
+	
+	// 회원별 userProject 조회
+	@Override
+	public List<UserProject> readUserProjectsByUser(String userId){
+		return userProjectMapper.readUserProjectsByUser(userId);
+	}
+
+	@Override
+	public List<UserProject> getCompanyListByDate(Map<String, Object> dateObj) {
+		return userProjectMapper.getCompanyListByDate(dateObj);
+	}
+
+	@Override
+	public int checkInvest(UserProject userProject) {
+		return userProjectMapper.checkInvest(userProject);
 	}
 	
 	

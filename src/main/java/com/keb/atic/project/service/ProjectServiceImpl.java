@@ -65,6 +65,7 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public void updateProject(Project project) {
 		log.info("update : project = " + project);
+		mapper.updateProject(project);
 	}
 
 	@Override
