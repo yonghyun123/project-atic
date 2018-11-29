@@ -26,4 +26,7 @@ public interface UserProjectMapper {
 	public void updateUserProject(UserProject userProject);
 	//project별 투자자 수
 	public int countOfInvestor(String projectId);
+	
+	//기간별 투자 회사 리스트 검색
+	public List<UserProject> getCompanyListByDate(Map<String,Object> dateObj);
 }
