@@ -31,12 +31,33 @@
   <!-- ##### Hero Area Start ##### -->
   <div style="height: 90px"></div>
   <section class="sector01">
-    <div class="container" style="height: 80%">
+    <div class="container" style="height: 90%">
       <div id="mainVisual">
         <div class="single-item">
-          <img src="/resources/img/bg-img/1.jpg"><img
-            src="/resources/img/bg-img/2.jpg"> <img
-            src="/resources/img/bg-img/3.jpg">
+          <a href="/shop/detail/pre/12" style="background-image: url('/resources/img/slider-img/slide1.png')">
+            <p class="index-slider-text-title">
+              서울 카페쇼에서 혁신상 수상!<br>
+            </p>
+            <p class="index-slider-text-content">
+              음악과 함께하는 콜드브루 커피머신<br>
+            </p>
+          </a>
+          <a href="/shop/detail/pre/4" style="background-image: url('/resources/img/slider-img/slide2.png')">
+            <p class="index-slider-text-title">
+              수요미식회 인정 한우<br>삼정하누<br>
+            </p>
+            <p class="index-slider-text-content">
+             <br><br> 한우의 프리미엄화를 선도하고 있습니다!<br>
+            </p>
+          </a>
+          <a href="#" style="background-image: url('/resources/img/slider-img/slide3.png')">
+            <p class="index-slider-text-title">
+              이율이 늘어나는 자유적금<br>
+            </p>
+            <p class="index-slider-text-content">
+              100% 달성 기업을 맞추며 이율을 늘려보세요!<br>
+            </p>
+          </a>
         </div>
       </div>
       <div id="rankingSection">
@@ -81,19 +102,19 @@
             data-wow-delay="100ms">
             <!-- Product Image -->
             <div class="product-img">
-              <a href="shop-details.html"><img
+              <a href="/shop/detail/${project.id }"><img
                 src="/resources/img/project-image/${project.fileName}" alt=""></a>
               <!-- Product Tag -->
               <div class="product-tag">
-                <a href="#">HOT</a>
+                <a href="/shop/detail/${project.id }">HOT</a>
               </div>
             </div>
             <!-- Product Info -->
             <div class="product-info mt-15 text-center">
-              <a href="shop-details.html">
-                <p>Cactus Flower</p>
+              <a href="/shop/detail/${project.id }">
+                <p><h5>${project.name }</h5></p>
               </a>
-              <h6>$10.99</h6>
+              <h6>${project.description }</h6>
             </div>
           </div>
         </div>
@@ -125,20 +146,17 @@
       <div class="row justify-content-center">
   <c:forEach items="${nextList}" var="preProject">
         <!-- Single Blog Post Area -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 text-center">
           <div class="single-blog-post mb-100">
             <div class="product-img mb-30">
-              <a href="single-post.html"><img
+              <a href="/shop/detail/pre/${preProject.id }"><img
                 src="/resources/img/project-image/${preProject.fileName}" alt=""></a>
             </div>
             <div class="post-content">
-              <a href="single-post.html" class="post-title">
-                <h5>Garden designers across the country forecast
-                  ideas shaping the gardening world in 2018</h5>
+              <a href="/shop/detail/pre/${preProject.id }" class="post-title">
+                <h5>${preProject.name }</h5>
               </a>
-              <p class="post-excerpt">Integer luctus diam ac
-                scerisque consectetur. Vimus ottawas nec lacus sit amet.
-                Aenean interdus mid vitae.</p>
+              <p class="post-excerpt">${preProject.description }</p>
             </div>
           </div>
         </div>
