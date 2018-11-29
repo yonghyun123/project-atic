@@ -147,14 +147,16 @@
 			      <div class="container">
 				  <h2>기업 현황</h2>
 				  <h4>기간 선택</h4>
-				  
-		          <label for="fromDate">시작일</label>
-		          <input type="text" name="fromDate" id="fromDate">
-		          ~
-		          <label for="toDate">종료일</label>
-		          <input type="text" name="toDate" id="toDate">
-			      
-			      <input type="button" value="검색하기" id="send-date-btn"/>
+				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;" >
+				  <label for="fromDate">시작일</label>
+				  <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+				</div>
+				
+				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;">
+				  <label for="toDate">종료일</label>
+		       	  <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+				</div>
+			    <input type="button" style="width: 90.5%" class="btn btn-success btn-block" value="검색하기" id="send-date-btn"/>
 				  <table class="table table-striped">
 				    <thead>
 				      <tr>
@@ -276,12 +278,13 @@
  	function sendFilterList(){
  		$('#send-date-btn').click(function(){
  			
- 			const startDate = $('#toDate').val();
- 			const endDate = $('#fromDate').val();
+ 			const startDate = $('#fromDate').val();
+ 			const endDate = $('#toDate').val();
 
  			
  			if(startDate.trim().length == 0 || endDate.trim().length == 0){
  				// 검색조건이 비어있을때 그냥 전체 리스트 ajax로 요청
+ 				//userId 바꿔줘야해
  				 userStatusService.getCompanyList("test1", function(list){
  					 console.log(list.companyList);
  					 companyListTemplate(list.companyList);
@@ -291,12 +294,12 @@
  	 					startDate: startDate,
  	 					endDate: endDate
  	 			};
+ 	 			//userId 바꿔줘야해
  				 userStatusService.postSearchList("test1", date, function(list){
  					 console.log(list.companyList);
- 					 //companyListTemplate(list.companyList);
+ 					 companyListTemplate(list.companyList);
  				 });
  			}
- 			//postSearchList('test1',)
  			
  			$('#toDate').val('');
  			$('#fromDate').val('');

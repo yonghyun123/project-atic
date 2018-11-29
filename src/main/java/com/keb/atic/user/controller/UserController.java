@@ -151,6 +151,9 @@ public class UserController {
 		dateObj.put("endDate", end);
 		dateObj.put("userId", userId);
 		
+		log.info(dateObj.get("startDate"));
+		log.info(dateObj.get("endDate"));
+		log.info(dateObj.get("userId"));
 		List<UserProject> userProjectList = userProjectService.getCompanyListByDate(dateObj);
 		
 		for (UserProject userProject : userProjectList) {
