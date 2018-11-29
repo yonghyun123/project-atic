@@ -93,18 +93,6 @@ body .PreProjctSector01 {
 	margin: 0;
 }
 
-/* security-login.jsp */
-
-.security-login {
-	margin: 0 auto;
-	padding: 5% 10%;
-}
-
-.security-login .btn-cancel {
-	width: 100%;
-	margin-top: 1%;
-} 
-
 /* nickname-modal CSS */
 
 .form-group label h4 {
@@ -256,6 +244,22 @@ input.invalid {
 
 .product-img a img {
 	height: 360px;
+}
+
+/* shop CSS */
+
+#shop-sec {
+	padding: 0;
+}
+
+/* shopDetail CSS */
+
+.shop-slide-row {
+	padding: 0;
+}
+
+.single_product_details_area {
+	margin: 0 auto;
 }
 
 /* popup을 위한 css */
