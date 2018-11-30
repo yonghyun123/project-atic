@@ -80,4 +80,18 @@
         WHERE  project_id = #{project_id} 
         GROUP  BY project_id) 
 	</select>
+	
+	<select id="readUserEvalAvgByUser" resultType="com.keb.atic.userEval.domain.UserEval">
+	SELECT ( stable_grade + favor_grade + market_grade 
+         + growth_grade ) / 4 AS total_avg, 
+       stable_grade, 
+       favor_grade, 
+       market_grade, 
+       growth_grade, 
+       user_id, 
+       project_id 
+	FROM  at_user_eval 
+	WHERE project_id = #{project_id}
+	ORDER BY total_avg desc 
+	</select>
 </mapper>

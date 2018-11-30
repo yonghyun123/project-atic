@@ -3,7 +3,7 @@
 /* header CSS */
 
 .classynav ul .time-li {
-	font-size: 40px;
+	font-size: 32px;
 	margin-bottom: 25px;
 	vertical-align: middle;
 }
@@ -39,6 +39,12 @@ body .PreProjctSector01 {
 	font-size: 18px;
 	top: 250;
 	margin-left: 30px;
+}
+
+@media (min-width: 1200px) {
+	body .container {
+		width: 1400px;
+	}
 }
 
 #countTime {
@@ -260,6 +266,27 @@ input.invalid {
 
 .single_product_details_area {
 	margin: 0 auto;
+}
+
+/* myPage CSS */
+.card-area {
+	margin: 0 auto;
+	display: inherit;
+}
+
+.card {
+	width: 30rem;
+	margin: 20px;
+}
+
+#uploadBtn {
+	width: 100%;
+	margin-top: 4%;
+	padding: 10px 0;
+}
+
+#upload-input {
+	margin-top: 6%;
 }
 
 /* popup을 위한 css */
