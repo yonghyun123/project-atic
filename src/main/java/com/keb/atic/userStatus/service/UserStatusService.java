@@ -9,7 +9,14 @@ import com.keb.atic.userStatus.domain.UserStatus;
  *
  */
 public interface UserStatusService {
+	//userStatus 등록
+	public void createUserStatus(UserStatus userStatus);
+	
 	public UserStatus getMaxStatus(String userId);
 	// 사용자 별 userStatus 조회
 	public List<UserStatus> userStatusListByUser(String userId);
+	//업데이트 해야할 이자율
+	public List<UserStatus> calInterest(String userId);
+	// 성공 project에 투자한 사람들 업데이트 해야 할 목록
+	public List<UserStatus> updateListByMonth();
 }
