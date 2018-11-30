@@ -32,7 +32,7 @@
 
           <!-- Nav Brand -->
           <a href="/" class="nav-brand"><img
-            src="/resources/img/core-img/logo.png" alt=""></a>
+            src="/resources/img/aticLogo.png" style="height: 90px; width: 150px"></a>
 
           <!-- Navbar Toggler -->
           <div class="classy-navbar-toggler">
@@ -53,12 +53,10 @@
             <div class="classynav">
               <ul>
                 <li class="time-li"><span id="countTime"></span>&emsp;</li>
-                <li><a href="#">스타트업 지원 신청</a>
-                <li><a href="#">펀딩</a>
-                  <ul class="dropdown">
-                    <li><a href="/shop">펀딩 홈</a></li>
-                    <li><a href="/preshop">오픈예정 사업</a></li>
-                  </ul>
+                <li><a href="#">투자 지원 신청</a>
+                 
+                <li><a href="/shop">펀딩</a>
+                  
                 </li>
                 <li><a href="#">이용 가이드</a></li>
                 <c:choose>
