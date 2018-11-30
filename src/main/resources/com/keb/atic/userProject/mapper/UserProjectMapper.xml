@@ -82,4 +82,16 @@
 	WHERE  user_id = #{userId} 
        AND project_id = #{projectId} 
 	</select>
+	
+	<select id="riseProject" resultType="com.keb.atic.userProject.domain.UserProject">
+	select sum(deposit) as "deposit", 
+	project_id as "projectId",
+	p.name as "projectName"
+	from at_user_project up
+ 	join at_project p
+ 	on p.id = up.project_id
+ 	where (up.create_date BETWEEN to_date(to_char(sysdate,'yyyy/mm/dd'))  and sysdate)
+ 	group by up.project_id, p.name
+ 	order by sum(deposit) desc
+	</select>
 </mapper>
