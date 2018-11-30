@@ -468,8 +468,8 @@
 	
 	<script type="my-template" id="review-list">
 	<a class="list-group-item">
-		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "><img alt="profile" src="">{profile}</h6>
-		<p  style="float: left; margin-right: 50px; ">{userId}</p>
+		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "> <img class="card-img-top profile-img" style="width:50px; height:50px" src="/user/profile/{profile}" alt="Card image cap"></h6>
+		<p  style="float: left; margin-right: 50px; ">아이디:{userId}</p>
 		<p>{createDate}</p>
 		<h4>{content}</h4>
 	</a>
@@ -625,7 +625,7 @@
 			var newHtml = '';
 			
 			list.forEach(function(v) {
-				newHtml += originHtml.replace('{profile}', v.profile)
+				newHtml += originHtml.replace('{profile}', v.userId)
 									 .replace('{userId}', v.userId)
 									 .replace('{createDate}', v.regDate)
 									 .replace('{content}', v.content)
