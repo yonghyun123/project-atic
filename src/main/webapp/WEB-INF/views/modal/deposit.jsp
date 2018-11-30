@@ -23,7 +23,7 @@
 							</p>
 							password:
 							<p>
-								<input type="password" placeholder="계좌의 비밀번호를 입력해주세요." oninput="this.className = ''">
+								<input id="depositPasswd" type="password" placeholder="계좌의 비밀번호를 입력해주세요." oninput="this.className = ''">
 							</p>
 						</div>
 
@@ -43,8 +43,8 @@
 
 						<div style="overflow: auto;">
 							<div style="float: right;">
-								<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-								<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+								<button type="button" id="prevBtn">Previous</button>
+								<button type="button" id="nextBtn">Next</button>
 							</div>
 						</div>
 
