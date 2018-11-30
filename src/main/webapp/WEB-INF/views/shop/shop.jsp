@@ -29,26 +29,48 @@
 
 <body>
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
-    
     <!-- ##### slide Area Start ##### -->
     <div style="height: 90px"></div>
-    <section class=PreProjctSector01>
-    <nav id="investNav"style="height: 10%">
-      <ul>
-        <li id="investMain"><a href="/shop/">펀딩 홈</a></li>
-        <li class="monthProject"><a href="/shop/currentShop">진행중</a></li>
-        <li class="monthProject"><a href="/shop/preShop">오픈예정</a></li>
-      </ul>
-    </nav>
-    <div id="mainView">
-      <div class="single-item">
-        <img src="/resources/img/bg-img/1.jpg"><img
-          src="/resources/img/bg-img/2.jpg"> <img
-          src="/resources/img/bg-img/3.jpg">
+    <section class="sector01" id="shop-sec">
+      <nav id="investNav"style="height: 10%">
+        <ul>
+          <li id="investMain"><a href="/shop/">펀딩 홈</a></li>
+          <li class="monthProject"><a href="/shop/currentShop">진행중</a></li>
+          <li class="monthProject"><a href="/shop/preShop">오픈예정</a></li>
+        </ul>
+      </nav>
+      <div class="col-md-12 shop-slide-row" style="height: 90%">
+        <div>
+          <div class="single-item">
+            <a href="/shop/detail/pre/12" style="background-image: url('/resources/img/slider-img/shop-slide1.png')">
+              <p class="index-slider-text-title">
+                서울 카페쇼에서 혁신상 수상!<br>
+              </p>
+              <p class="index-slider-text-content">
+                음악과 함께하는 콜드브루 커피머신<br>
+              </p>
+            </a>
+            <a href="/shop/detail/pre/4" style="background-image: url('/resources/img/slider-img/shop-slide2.png')">
+              <p class="index-slider-text-title">
+                수요미식회 인정 한우<br>삼정하누<br>
+              </p>
+              <p class="index-slider-text-content">
+               <br><br> 한우의 프리미엄화를 선도하고 있습니다!<br>
+              </p>
+            </a>
+            <a href="#" style="background-image: url('/resources/img/slider-img/shop-slide3.png')">
+              <p class="index-slider-text-title">
+                이율이 늘어나는 자유적금<br>
+              </p>
+              <p class="index-slider-text-content">
+                100% 달성 기업을 맞추며 이율을 늘려보세요!<br>
+              </p>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-    <!-- ##### slide Area End ##### -->
+    </section>
+    <!-- ##### slide Area End ##### -->  
 
     <!-- ##### Shop Area Start ##### -->
     <section class="shop-page section-padding-20-100">
@@ -148,7 +170,7 @@
         });
      });
       
-	</script>
+</script>
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 

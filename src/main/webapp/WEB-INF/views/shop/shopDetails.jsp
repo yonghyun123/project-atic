@@ -41,7 +41,7 @@
 			<h2>SHOP DETAILS</h2>
 		</div>
 
-		<div class="container">
+		<div class="container col-md-10">
 			<div class="row">
 				<div class="col-12">
 					<nav aria-label="breadcrumb">
@@ -60,14 +60,12 @@
 	<!-- ##### Breadcrumb Area End ##### -->
 
 	<!-- ##### Single Product Details Area Start ##### -->
-	<section class="single_product_details_area mb-50">
-		<div class="produts-details--content mb-50">
+	<section class="single_product_details_area mb-50 col-md-10">
+		<div class="produts-details-content mb-50">
 			<div class="container">
 				<div class="row justify-content-between">
-
 					<div class="col-12 col-md-6 col-lg-5">
 						<div class="single_product_thumb">
-
 							<!-- 썸네일 이미지 -->
 							<div class="carousel-inner">
 								<div class="carousel-item active">
@@ -79,11 +77,8 @@
 									</a>
 								</div>
 							</div>
-
-
 						</div>
 					</div>
-
 					<div class="col-12 col-md-6">
 						<div class="single_product_desc">
 							<h4 class="title">
@@ -92,10 +87,10 @@
 							목표 자금
 							<c:out value="${project.goal }" />
 							<input type="hidden" value="<c:out value="${project.id }"/>"
-								id="projectId">
-								<input type="hidden" value="${loginId }" id="loginId">
+								id="projectId"> <input type="hidden" value="${loginId }"
+								id="loginId">
 							<h4 class="price">
-							<span id="curprice"><c:out value="${project.curPrice }" /></span>
+								<span id="curprice"><c:out value="${project.curPrice }" /></span>
 								원 달성
 							</h4>
 							<div class="short_overview">
@@ -336,7 +331,7 @@
 				<div class="col-12">
 					<!-- Section Heading -->
 					<div class="section-heading text-center">
-						<h2>Related Products</h2>
+						<h2>이 프로젝트에 투자하신 분들은 이런 프로젝트에도 투자하셨어요!</h2>
 					</div>
 				</div>
 			</div>
@@ -344,13 +339,25 @@
 			<div class="row">
 
 				<!-- Single Product Area -->
-				<div class="col-12 col-sm-6 col-lg-3">
-					<div class="single-product-area mb-100">
-						<!-- Product Image -->
-						<div class="product-img">
-							<a href="shop-details.html"><img
-								src="/resources/img/bg-img/40.png" alt=""></a>
-							<!-- Product Tag -->
+
+				<c:choose>
+					<c:when test="${not empty recommend }">
+						<c:forEach var="projects" items="${recommend}" varStatus="status">
+						
+							<div class="col-12 col-sm-6 col-lg-3">
+								<div class="single-product-area mb-100">
+									<!-- Product Image -->
+									<div class="product-img">
+										<a href="/shop/detail/${projects.id }"> <img
+											src="/resources/img/project-image/${projects.id }_th.png" alt=""></a>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+
+				<!-- Product Tag 
 							<div class="product-tag">
 								<a href="#">Hot</a>
 							</div>
@@ -361,20 +368,20 @@
 									class="arrow_left-right_alt"></i></a>
 							</div>
 						</div>
-						<!-- Product Info -->
+						-->
+				<!-- Product Info 
 						<div class="product-info mt-15 text-center">
 							<a href="shop-details.html">
 								<p>Cactus Flower</p>
 							</a>
 							<h6>$10.99</h6>
 						</div>
-					</div>
-				</div>
-
-				<!-- Single Product Area -->
+					
+-->
+				<!-- Single Product Area 
 				<div class="col-12 col-sm-6 col-lg-3">
 					<div class="single-product-area mb-100">
-						<!-- Product Image -->
+						<!-- Product Image 
 						<div class="product-img">
 							<a href="shop-details.html"><img
 								src="/resources/img/bg-img/41.png" alt=""></a>
@@ -385,7 +392,8 @@
 									class="arrow_left-right_alt"></i></a>
 							</div>
 						</div>
-						<!-- Product Info -->
+						-->
+				<!-- Product Info 
 						<div class="product-info mt-15 text-center">
 							<a href="shop-details.html">
 								<p>Cactus Flower</p>
@@ -394,11 +402,11 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- Single Product Area -->
+-->
+				<!-- Single Product Area 
 				<div class="col-12 col-sm-6 col-lg-3">
 					<div class="single-product-area mb-100">
-						<!-- Product Image -->
+						<!-- Product Image 
 						<div class="product-img">
 							<a href="shop-details.html"><img
 								src="/resources/img/bg-img/42.png" alt=""></a>
@@ -409,7 +417,8 @@
 									class="arrow_left-right_alt"></i></a>
 							</div>
 						</div>
-						<!-- Product Info -->
+						-->
+				<!-- Product Info 
 						<div class="product-info mt-15 text-center">
 							<a href="shop-details.html">
 								<p>Cactus Flower</p>
@@ -418,15 +427,15 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- Single Product Area -->
+-->
+				<!-- Single Product Area 
 				<div class="col-12 col-sm-6 col-lg-3">
 					<div class="single-product-area mb-100">
-						<!-- Product Image -->
+					-->
+				<!-- 
 						<div class="product-img">
 							<a href="shop-details.html"><img
 								src="/resources/img/bg-img/43.png" alt=""></a>
-							<!-- Product Tag -->
 							<div class="product-tag sale-tag">
 								<a href="#">Hot</a>
 							</div>
@@ -437,7 +446,6 @@
 									class="arrow_left-right_alt"></i></a>
 							</div>
 						</div>
-						<!-- Product Info -->
 						<div class="product-info mt-15 text-center">
 							<a href="shop-details.html">
 								<p>Cactus Flower</p>
@@ -446,7 +454,7 @@
 						</div>
 					</div>
 				</div>
-
+ -->
 			</div>
 		</div>
 	</div>
@@ -462,8 +470,8 @@
 	<script src="/resources/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="/resources/js/active.js"></script>
-    <!-- Common js -->
-    <script src="/resources/js/common.js"></script>
+	<!-- Common js -->
+	<script src="/resources/js/common.js"></script>
 
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 
@@ -501,12 +509,12 @@
 		}
 
 		function onOpen(event) {
-			
+
 			var messageObject = {
 				type : 1000,
 				projectId : projectId,
 				loginId : loginId
-				
+
 			}
 			send(messageObject);
 		}
@@ -523,7 +531,7 @@
 				var count = mObject.count;
 				$("#currentCount").text(count + "명");
 				var flag = mObject.message;
-				if(flag == "false"){
+				if (flag == "false") {
 					$("#deposit").val("투자하신 프로젝트입니다.");
 					document.getElementById("deposit").disabled = true;
 				}
@@ -538,7 +546,6 @@
 				//document.getElementById("price").innerHTML = price;
 				break;
 			}
-				
 
 		}
 
@@ -569,7 +576,7 @@
 			$("#authB").on("click", function() {
 				if ($("#authNum").val() == authNum) {
 					document.getElementById("nextBtn").disabled = false;
-					$("#nextBtn").on("click",function(){
+					$("#nextBtn").on("click", function() {
 						invest();
 					})
 					alert("인증번호가 일치합니다.");
@@ -577,20 +584,20 @@
 					alert("인증번호가 일치하지 않습니다.");
 				}
 			})
-			
+
 		});
-		
-		function invest(){
+
+		function invest() {
 			var depositM = $("#depositMoney").val();
-			
+
 			var curPrice = document.getElementById("curprice").innerHTML;
 			var messageObject = {
-					type : 3000,
-					projectId : projectId,
-					deposit : depositM,
-					loginId : loginId,
-					curPrice : curPrice
-				}
+				type : 3000,
+				projectId : projectId,
+				deposit : depositM,
+				loginId : loginId,
+				curPrice : curPrice
+			}
 			send(messageObject);
 		}
 
@@ -610,7 +617,7 @@
 			if (n == (x.length - 1)) {
 				document.getElementById("nextBtn").innerHTML = "Submit";
 				document.getElementById("nextBtn").disabled = true;
-				
+
 			} else {
 				document.getElementById("nextBtn").innerHTML = "Next";
 			}

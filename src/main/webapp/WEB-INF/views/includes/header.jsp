@@ -46,14 +46,13 @@
             <div class="classycloseIcon">
               <div class="cross-wrap">
                 <span class="top"></span><span class="bottom"></span>
-                
               </div>
             </div>
 
             <!-- Navbar Start -->
             <div class="classynav">
               <ul>
-                <li class="time-li"><span id="countTime"></span></li>
+                <li class="time-li"><span id="countTime"></span>&emsp;</li>
                 <li><a href="#">스타트업 지원 신청</a>
                 <li><a href="#">펀딩</a>
                   <ul class="dropdown">
@@ -75,39 +74,19 @@
 
               <!-- Search Icon -->
               <div id="searchIcon">
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <c:choose>
+                  <c:when test="${not empty loginId }">
+                    &emsp;&emsp;&emsp;&emsp;
+                  </c:when>
+                  <c:otherwise>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                  </c:otherwise>
+                </c:choose>
               </div>
-              <div id="searchIcon">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </div>
-              <div id="searchIcon">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </div>
-              <c:if test="${empty loginId }">
-                <div id="searchIcon">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </div>
-                <div id="searchIcon">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </div>  
-              </c:if>
             </div>
             <!-- Navbar End -->
           </div>
         </nav>
-
-        <!-- Search Form -->
-        <div class="search-form">
-          <form action="#" method="get">
-            <input type="search" name="search" id="search"
-              placeholder="상품을 검색해보세요!">
-            <button type="submit" class="d-none"></button>
-          </form>
-          <!-- Close Icon -->
-          <div class="closeIcon">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </div>
-        </div>
       </div>
     </div>
   </div>
