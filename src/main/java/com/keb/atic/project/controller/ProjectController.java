@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.keb.atic.project.domain.Project;
 import com.keb.atic.project.service.ProjectService;
 import com.keb.atic.userEval.domain.UserEval;
 import com.keb.atic.userEval.service.UserEvalService;
 import com.keb.atic.userProject.service.UserProjectService;
+import com.keb.atic.userStatus.domain.UserStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -149,7 +152,7 @@ public String shopDetails(@PathVariable("projectId") String projectId , Model mo
    return "/shop/shopDetails";
 }
 
-// 예정 등록프로젝트 상세
+// 등록 예정프로젝트 상세
 @GetMapping("/detail/pre/{projectId}")
 public String shopPreDetails(@PathVariable("projectId") String projectId , Model model) {
    log.info("detail :" + projectId);
@@ -159,18 +162,46 @@ public String shopPreDetails(@PathVariable("projectId") String projectId , Model
    return "/shop/preShopDetails";
 }
 
-
+//등록 예정 프로젝트 평가
 @PostMapping("/preEval/{projectId}/{loginId}")
 public String userEvaluate(@PathVariable("loginId") String loginId, @PathVariable("projectId") String projectId, @RequestParam("profit") String profit, @RequestParam("stable") String stable, @RequestParam("potential") String potential,
-		@RequestParam("attraction") String attraction, @RequestParam("favor") String favor) {
-	log.info("profit = " + profit);
-	log.info("stable = " + stable);
-	log.info("potential= " + potential);
-	log.info("attraction= " + attraction);
-	log.info("favor = " + favor);
-	
+		 @RequestParam("favor") String favor) {	
 	UserEval userEval = new UserEval(loginId, projectId, stable, profit, favor, potential);
 	userEvalService.createUserEval(userEval);
 	return "redirect:/shop/detail/pre/"+projectId;
+}
+//등록 예정 프로젝트 평점
+@GetMapping("/preEval/graph/{projectId}")
+public void  getEvalPoint(@PathVariable("projectId") String projectId, HttpServletResponse response) {
+	response.setContentType("applicaion/json; charset=utf-8");
+	JSONArray jsonArray = new JSONArray();
+	JSONObject jsonObject = null;
+	UserEval userEval = userEvalService.readUserEvalAvg(projectId);
+	jsonObject = new JSONObject();
+	jsonObject.put("id", userEval.getId());
+	jsonObject.put("Favor", userEval.getFavor_grade());
+	jsonObject.put("Growth", userEval.getGrowth_grade());
+	jsonObject.put("Market", userEval.getMarket_grade());
+	jsonObject.put("Stable", userEval.getStable_grade());
+	jsonObject.put("Total", userEval.getTotal_avg());
+	jsonArray.add(jsonObject);
+	PrintWriter out = null;
+	try {
+		out = response.getWriter();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	out.println(jsonObject.toJSONString());
+}
+
+@GetMapping(value="/preEval/eval/{projectId}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+public @ResponseBody Map<String, Object> getUserEval(@PathVariable("projectId") String projectId) throws Exception{
+	List<UserEval> evalList = userEvalService.readUserEvalAvgByUser(projectId);
+	Map<String, Object> evalMap = new HashMap<>();
+	for (UserEval userEval : evalList) {
+		log.info(userEval);
+	}
+	evalMap.put("userEvalList", evalList);
+	return evalMap;
 }
 }

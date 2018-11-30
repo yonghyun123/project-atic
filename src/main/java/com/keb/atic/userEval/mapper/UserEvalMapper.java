@@ -26,4 +26,7 @@ public interface UserEvalMapper {
 	public void updateUserEval(UserEval userEval);
 	//사업별 평균 userEval 조회
 	public UserEval readUserEvalAvg(String product_id);
+	//사업별 사용자 평균 userEvalList 조회
+	public List<UserEval> readUserEvalAvgByUser(String product_id);
+		
 }
