@@ -47,6 +47,7 @@ public class CommonController {
 		
 		model.addAttribute("hotList",projectService.readMonthProjectByGoal(hotMap));
 		model.addAttribute("nextList",projectService.readMonthProjectByGoal(nextMap));
+		model.addAttribute("riseProject",userProjectService.riseProject());
 		log.info("Welcome IndexPage");		
 		return "index";
 	}

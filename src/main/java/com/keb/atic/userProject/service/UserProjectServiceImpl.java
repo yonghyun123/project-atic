@@ -52,6 +52,11 @@ public class UserProjectServiceImpl implements UserProjectService{
 	public int checkInvest(UserProject userProject) {
 		return userProjectMapper.checkInvest(userProject);
 	}
+
+	@Override
+	public List<UserProject> riseProject() {
+		return userProjectMapper.riseProject();
+	}
 	
 	
 }
