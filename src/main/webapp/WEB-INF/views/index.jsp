@@ -185,7 +185,6 @@
   <script type="text/javascript">
          $(document).ready(function() {
             $('.single-item').slick({
-               
                autoplay:true,
                autoplaySpeed:3000,
                dots: true,

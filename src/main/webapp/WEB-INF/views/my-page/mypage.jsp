@@ -330,6 +330,7 @@
 					}
 				});
 			};
+			
 			function getCompanyList(userId, callback, error){
 				$.get("/users/mypage/corlist/"+userId, function(result){
 					if(callback){
