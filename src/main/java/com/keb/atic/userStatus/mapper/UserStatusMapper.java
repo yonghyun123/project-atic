@@ -21,5 +21,8 @@ public interface UserStatusMapper {
 	public void updateUserStatus(UserStatus userStatus);
 	//getMaxStatus
 	public UserStatus getMaxStatus(String userId);
-	
+	//업데이트 해야할 이자율
+	public List<UserStatus> calInterest(String userId);
+	// 성공 project에 투자한 사람들 업데이트 해야 할 목록
+	public List<UserStatus> updateListByMonth();
 }

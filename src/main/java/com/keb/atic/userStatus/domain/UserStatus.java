@@ -28,17 +28,9 @@ public class UserStatus {
 	private String totalMoney;
 	//당월 추가 적금액
 	private String curMoney;
-	public UserStatus(String userId, String year, String month, String totalProfit, String curProfit, String totalMoney,
-			String curMoney) {
-		super();
-		this.userId = userId;
-		this.year = year;
-		this.month = month;
-		this.totalProfit = totalProfit;
-		this.curProfit = curProfit;
-		this.totalMoney = totalMoney;
-		this.curMoney = curMoney;
-	}
 	
+	private String sumInterest;
+	
+	private String sumDeposit;
 	
 }
