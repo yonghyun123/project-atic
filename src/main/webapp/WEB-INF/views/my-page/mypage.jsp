@@ -30,7 +30,6 @@
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
     <!-- ##### Breadcrumb Area Start ##### -->
-      <div style="height: 90px"></div>
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
         <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/bg-img/24.jpg);">

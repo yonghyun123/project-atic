@@ -217,7 +217,6 @@ $(".move").on("click",function(e) {
 			actionForm.attr("action","/spring/board/get");
 			actionForm.submit();
 		});
-		
 </script>
 <!-- projectCard 템플릿 -->
 <script id="templateList" type="text/template">

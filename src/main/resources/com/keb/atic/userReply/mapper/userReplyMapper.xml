@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keb.atic.userReply.mapper.UserReplyMapper">
+
+	<select id="createUserReply">
+	INSERT INTO at_user_reply(id, user_id, project_id, content)
+	VALUES      (user_reply_id_seq.nextval, 
+             #{userId}, 
+             #{projectId}, 
+             #{content}) 
+	</select>
+	
+	<select id="read" resultType="com.keb.atic.userReply.domain.UserReply">
+	
+	</select>
+	
+	<select id="userReplyListAll" resultType="com.keb.atic.userReply.domain.UserReply">
+	
+	</select>
+	
+	<select id="readUserReplyByUser" resultType="com.keb.atic.userReply.domain.UserReply">
+
+	</select>
+	
+	<select id="readUserReplyByProject" resultType="com.keb.atic.userReply.domain.UserReply">
+		SELECT ur.user_id as "userId",
+	 	   ur.project_id as projectId,
+	 	   ur.content as "content",
+	 	   TO_CHAR(ur.create_date,'YYYY-MM-DD') as "regDate",
+	 	   u.profile as "profile"
+	FROM AT_user_reply ur, AT_user u
+	WHERE ur.project_id = #{projectId} and ur.user_id = u.id
+	ORDER BY ur.create_date
+	</select>
+
+	<delete id="deleteUserReplyByCondition" parameterType="Map">
+	
+	</delete>
+
+	<update id="updateUserReply">
+	
+	</update>
+</mapper>
