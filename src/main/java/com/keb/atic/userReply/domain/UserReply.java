@@ -11,9 +11,11 @@ public class UserReply {
 	//댓글 고유 식별자
 	private String id;
 	//사용자 Id
-	private String user_id;
+	private String userId;
+	//profile
+	private String profile;
 	//댓글 프로젝트 식별자
-	private String project_id;
+	private String projectId;
 	//댓글 내용
 	private String content;
 	//댓글 생성일자
