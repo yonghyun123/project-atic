@@ -32,6 +32,10 @@ body .PreProjctSector01 {
 	margin-left: 30px;
 }
 
+.navText{
+color: rgba(0,0,0,.84);
+    font-weight: 1000;
+}
 .index-slider-text-content {
 	position: absolute;
 	z-index: 1;
