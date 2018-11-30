@@ -24,7 +24,18 @@
     
         <!-- slick -->
     <link href="/resources/css/slick.css" rel="stylesheet">
-    <link href="/resources/css/slick-theme.css" rel="stylesheet">    
+    <link href="/resources/css/slick-theme.css" rel="stylesheet">
+    
+    <style type="text/css">
+      .titleRow{
+          margin: 3% 3% 3% 0;
+    line-height: 32px;
+    letter-spacing: 0;
+    color: rgba(0,0,0,.84);
+    font-size: 24px;
+    font-weight: 700;
+      }
+    </style>    
 </head>
 
 <body>
@@ -34,9 +45,9 @@
     <section class="sector01" id="shop-sec">
       <nav id="investNav"style="height: 10%">
         <ul>
-          <li id="investMain"><a href="/shop/">펀딩 홈</a></li>
-          <li class="monthProject"><a href="/shop/currentShop">진행중</a></li>
-          <li class="monthProject"><a href="/shop/preShop">오픈예정</a></li>
+          <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
+          <li class="monthProject"><a href="/shop/currentShop"  class="navText">진행중</a></li>
+          <li class="monthProject"><a href="/shop/preShop" class="navText">오픈예정</a></li>
         </ul>
       </nav>
       <div class="col-md-12 shop-slide-row" style="height: 90%">
@@ -75,6 +86,7 @@
     <!-- ##### Shop Area Start ##### -->
     <section class="shop-page section-padding-20-100">
         <div class="container">
+          <div class="titleRow">현재 진행중인 프로젝트</div>
             <div class="row">
                 <!-- All Products Area -->
                 <div class="col-12 col-md-12 col-lg-12">
@@ -109,6 +121,7 @@
                     </div>
                 </div>
             </div>
+            <div class="titleRow">다음달 등록예정 프로젝트</div>
             <div class="row">
                 <!-- All Products Area -->
                 <div class="col-12 col-md-12 col-lg-12">
