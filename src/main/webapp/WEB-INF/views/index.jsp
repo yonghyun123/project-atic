@@ -225,7 +225,7 @@
         				(function(x) {
         				setTimeout(function() {
         				addShow(x);
-        				}, 1000*x);
+        				}, 700*x);
         				})(i);
         				}
         				}();
