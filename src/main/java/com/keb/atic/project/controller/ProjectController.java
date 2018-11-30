@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
@@ -17,16 +18,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.keb.atic.project.domain.Project;
 import com.keb.atic.project.service.ProjectService;
+import com.keb.atic.user.domain.User;
+import com.keb.atic.user.service.UserService;
 import com.keb.atic.userEval.domain.UserEval;
 import com.keb.atic.userEval.service.UserEvalService;
 import com.keb.atic.userProject.service.UserProjectService;
-import com.keb.atic.userStatus.domain.UserStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -41,6 +44,8 @@ public class ProjectController {
 	private ProjectService projectService;
 	private UserProjectService userProjectService;
 	private UserEvalService userEvalService;
+	@Inject
+	private UserService userService;
 
 	@GetMapping("")
 	public String listAll(Model model) {
@@ -204,4 +209,19 @@ public @ResponseBody Map<String, Object> getUserEval(@PathVariable("projectId") 
 	evalMap.put("userEvalList", evalList);
 	return evalMap;
 }
+
+	@PostMapping(value="/check/{userId}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody Map<String, Object> checkPasswd(@PathVariable("userId") String userId,
+		   @RequestBody Map<String,Object> passwdObj) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		log.info(passwdObj.get("passwd"));
+		User user = userService.readUser(userId);
+		if(user.getAcc_pw().equals((String)passwdObj.get("passwd"))){
+			returnMap.put("result", "true");
+		} else {
+			returnMap.put("result", "false");
+		}
+		return returnMap;
+	}
 }
