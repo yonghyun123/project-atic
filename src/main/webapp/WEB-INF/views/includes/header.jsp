@@ -76,7 +76,7 @@
               <div id="searchIcon">
                 <c:choose>
                   <c:when test="${not empty loginId }">
-                    &emsp;&emsp;&emsp;&emsp;
+                    &emsp;&emsp;
                   </c:when>
                   <c:otherwise>
                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
