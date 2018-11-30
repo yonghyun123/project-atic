@@ -542,6 +542,25 @@
 				});
 			};
 			
+			function checkAccPasswd(userId, data, callback, error){
+				$.ajax({
+					type : 'post',
+					url : "/shop/check/"+userId,
+					data : JSON.stringify(data),
+					contentType : "application/json; charset=utf-8",
+					success : function(result, status, xhr) {
+						if (callback) {
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+						}
+					}
+				})
+			}
+			
 			function postSearchList(projectId, data, callback, error){
 				$.ajax({
 					type : 'post',
@@ -559,11 +578,12 @@
 						}
 					}
 				})
-			}
+			};
 
 			return {
 				postSearchList : postSearchList,
-				get: get
+				get: get,
+				checkAccPasswd: checkAccPasswd
 			};
 		})();
 		
@@ -637,8 +657,32 @@
 				//document.getElementById("price").innerHTML = price;
 				break;
 			}
-
 		}
+		
+		$('#nextBtn').click(function(){
+			var passwd = $("#depositPasswd").val();
+			var accObj = {
+				passwd: passwd	
+			};
+			console.log(loginId);
+			console.log(passwd);
+			/*계좌 비밀번호 확인 로직 */
+			userReplyService.checkAccPasswd(loginId, accObj, function(list){
+				if(list.result === 'false'){
+					alert('비밀번호가 일치하지 않습니다');
+				} else {
+					nextPrev(1);	
+				}
+				
+				console.log(list.result);
+				
+			})
+		});
+		
+		$('#prevBtn').click(function(){
+			nextPrev(-1);
+		})
+
 
 		$("#deposit").click(function() {
 			$("#deposit-modal").modal('show');
@@ -658,7 +702,6 @@
 					success : function(data) {
 						console.log(data);
 						var jsonData = JSON.parse(data);
-
 						authNum = jsonData.authNum;
 					}
 				})
@@ -669,6 +712,7 @@
 					document.getElementById("nextBtn").disabled = false;
 					$("#nextBtn").on("click", function() {
 						invest();
+						nextPrev(1);
 					})
 					alert("인증번호가 일치합니다.");
 				} else {
@@ -680,7 +724,6 @@
 
 		function invest() {
 			var depositM = $("#depositMoney").val();
-
 			var curPrice = document.getElementById("curprice").innerHTML;
 			var messageObject = {
 				type : 3000,
@@ -702,6 +745,7 @@
 			// ... and fix the Previous/Next buttons:
 			if (n == 0) {
 				document.getElementById("prevBtn").style.display = "none";
+				document.getElementById("nextBtn").disabled = false;
 			} else {
 				document.getElementById("prevBtn").style.display = "inline";
 			}
@@ -767,6 +811,7 @@
 			//... and adds the "active" class to the current step:
 			x[n].className += " active";
 		}
+		
 		getReplyData();
 		sendReviewDdta();
 		connect();
