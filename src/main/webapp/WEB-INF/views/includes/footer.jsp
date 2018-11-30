@@ -40,9 +40,11 @@
                 <!-- Single Footer Widget -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-footer-widget">
+                    <!-- 
                         <div class="footer-logo mb-30">
-                            <a href="#"><img src="/resources/img/core-img/logo.png" alt=""></a>
+                            <a href="#"><img src="/resources/img/aticLogo.png" alt=""></a>
                         </div>
+                         -->
                         <p>A-Tic는 스타트업 투자 활성화를 위한 <br/>적금 플랫폼입니다.</p>
                     </div>
                 </div>
