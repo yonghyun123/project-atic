@@ -23,6 +23,16 @@
 <link href="/resources/css/slick-theme.css" rel="stylesheet">
 <link href="/resources/css/common.css" rel="stylesheet">
 
+
+<style type="text/css">
+.slide-fade li {
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+.slide-fade li.show {
+  opacity: 1;
+}
+</style>
 </head>
 
 <body>
@@ -61,16 +71,20 @@
         </div>
       </div>
       <div id="rankingSection">
-        <div class="hotClipWrapper">
+        <div class="hotClipWrapper" style="width: 300px">
          <div id="clipHeader">
-          <h5>투자액 급등 종목</h5>
+          <h5>오늘의 투자액 급등 프로젝트</h5>
          </div>
          <div id="clipBody">
-            <div id="rankingList">
-              <ol>
-                <li><em>1</em><a>짜장면가게</a></li>
-                <li><em>2</em><a>유산슬가게</a></li>
-                <li><em>3</em><a>팔보체가게</a></li>
+            <div id="rankingList" >
+              <ol style="margin-left: 0" class="slide-fade">
+              <c:choose>
+              <c:when test="${not empty riseProject }">
+              <c:forEach items="${riseProject}" var="project" varStatus="status">
+              <li id="li${status.index+1 }"><em>${status.index+1 }</em><a href="/shop/detail/${project.projectId }">${project.projectName }</a></li>
+              </c:forEach>
+              </c:when>
+              </c:choose>
               </ol>
             </div>
          </div>
@@ -184,6 +198,9 @@
   
   <script type="text/javascript">
          $(document).ready(function() {
+                
+
+        	 
             $('.single-item').slick({
                autoplay:true,
                autoplaySpeed:3000,
@@ -191,7 +208,40 @@
                arrows: true,
                pauseOnHover:true
             });
+           
+       		 
          });
+         
+    		 
+         
+    		$(window).load(function(){
+    			function addShow(i){
+        			$("#li"+i).addClass('show');
+        		 }
+    	
+    				test = function () {
+        				for (i=1; i < 6; i++) {
+        				(function(x) {
+        				setTimeout(function() {
+        				addShow(x);
+        				}, 1000*x);
+        				})(i);
+        				}
+        				}();
+        				
+    			
+
+              		 //if(i-1 != 0){
+              			// preList.removeClass("show");
+              		 //}
+                   //}
+    		});
+         //while(true){
+        	 
+         //}
+         
+         
+         
 </script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>

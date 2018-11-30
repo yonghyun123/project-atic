@@ -27,4 +27,19 @@ public class UserStatusServiceImpl implements UserStatusService {
 		return userStatusMapper.userStatusListByUser(userId);
 	}
 
+	@Override
+	public List<UserStatus> updateListByMonth() {
+		return userStatusMapper.updateListByMonth();
+	}
+
+	@Override
+	public List<UserStatus> calInterest(String userId) {
+		return userStatusMapper.calInterest(userId);
+	}
+
+	@Override
+	public void createUserStatus(UserStatus userStatus) {
+		userStatusMapper.createUserStatus(userStatus);
+	}
+
 }

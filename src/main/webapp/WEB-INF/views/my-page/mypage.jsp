@@ -30,11 +30,11 @@
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
     <!-- ##### Breadcrumb Area Start ##### -->
-      <div style="height: 90px"></div>
     <div class="breadcrumb-area">
+        <div style="height: 90px"></div>
         <!-- Top Breadcrumb Area -->
         <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/bg-img/24.jpg);">
-            <h2>ABOUT US</h2>
+            <h2>My Page</h2>
         </div>
 
         <div class="container">
@@ -51,17 +51,29 @@
 
     <!-- ##### About Area Start ##### -->
     <section class="about-us-area" style="margin-top: 20px;">
+        <div class="row" >
+          <div class="col-12 text-center">
+              <h2>내 정보</h2>
+          </div>
+        </div>
         <div class="container">
             <div class="row">
-				<div class="card" style="width: 30rem; margin:20px;">
-				<img class="card-img-top" src="/resources/img/project-image/1_et_1.png" alt="Card image cap">
+              <div class="card-area">
+				<div class="card card-inform">
+				  <div class="profile-row">
+                    <img class="card-img-top profile-img" src="/user/profile/${user.id }" alt="Card image cap">
+                  </div>
 				  <div class="card-body">
 				    <h5 class="card-title">내 정보</h5>
 				    <h6 class="card-subtitle mb-2 text-muted">${user.nickname}</h6>
-				  </div>
+				    <div class="uploadDiv">
+                      <input type="file" name="uploadFile" multiple>
+                      <button id="uploadBtn">Upload</button>
+                    </div>
+                  </div>
 				</div>
             
-                <div class="card"  style="width: 30rem; margin:20px;">
+                <div class="card card-inform">
 				  <div class="card-body">
 				    <h5 class="card-title">상세 정보</h5>
 				    <p class="card-text">${user.name}</p>
@@ -75,7 +87,7 @@
 				  </ul>
 				</div>
 
-				<div class="card" style="width: 30rem; margin:20px;">
+				<div class="card card-inform">
 				  <div class="card-body">
 				    <h5 class="card-title">총 이자률</h5>
 				    <c:set var="profit" value="${userStatus.totalProfit*100}"/>
@@ -85,12 +97,14 @@
 				  	<h5 class="card-title">총 적금액</h5>
 				  	<p class="card-text" style="color: blue"><fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
 					</div>				  
-				</div>		
+				</div>	
+              </div>	
             </div>
         </div>
-        <div class="container">
+        <div>
+          <div class="container">
 			<div class="row" >
-				<div class="col-12" style="text-align: center;">
+				<div class="col-12 text-center">
 				<h2>나의 상세 적금 정보</h2>
 				</div>
 			</div>
@@ -177,14 +191,7 @@
 			  </div>
 			</div>	
         </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="border-line"></div>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
     
     <!-- ##### About Area End ##### -->
@@ -507,6 +514,25 @@
 		    }
 		});
 	 }
+	 
+	 $("#uploadBtn").on("click", function(e) {
+		 var formData = new FormData();
+		 var inputFile = $("input[name='uploadFile']");
+		 var files = inputFile[0].files;
+		 var url = '/upload/profile/${loginId }';
+		 
+		 formData.append("uploadFile", files[0]);
+		 $.ajax({
+			url: url,
+			processData: false,
+			contentType: false,
+			data: formData,
+			type: 'POST',
+			success: function(result) {
+				window.location.reload();
+			}
+		});
+	 })
     </script>
 </body>
 </html>

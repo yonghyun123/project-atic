@@ -269,12 +269,13 @@ input.invalid {
 }
 
 /* myPage CSS */
+
 .card-area {
 	margin: 0 auto;
 	display: inherit;
 }
 
-.card {
+.card-inform {
 	width: 30rem;
 	margin: 20px;
 }
@@ -287,6 +288,24 @@ input.invalid {
 
 #upload-input {
 	margin-top: 6%;
+}
+
+.profile-img {
+	margin-top: 10%;
+	width: 200px;
+	height: 200px;
+}
+
+.profile-row {
+	margin: 0 auto;
+}
+
+.mypage-bottom {
+	margin: 0 auto;
+}
+
+.about-us-area {
+	margin-bottom: 5%;
 }
 
 /* popup을 위한 css */

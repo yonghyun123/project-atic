@@ -23,4 +23,7 @@ public interface UserProjectService {
 
 	// 기투자 방지하기 위한 체크 함수
 	public int checkInvest(UserProject userProject);
+	
+	//오늘의 투자액 상승 순위
+	public List<UserProject> riseProject();
 }

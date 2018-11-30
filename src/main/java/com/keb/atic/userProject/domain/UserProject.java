@@ -33,6 +33,9 @@ public class UserProject {
 	//투자한 날짜
 	private String createDate;
 	
+	/*도메인 추가 (희진) 2018-11-30*/
+	private String projectName;
+	
 	public UserProject(String deposit, String userId, String projectId) {
 		super();
 		this.deposit = deposit;

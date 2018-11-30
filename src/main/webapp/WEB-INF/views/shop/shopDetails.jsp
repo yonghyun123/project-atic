@@ -41,7 +41,7 @@
 			<h2>SHOP DETAILS</h2>
 		</div>
 
-		<div class="container col-md-10">
+		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<nav aria-label="breadcrumb">
@@ -60,12 +60,14 @@
 	<!-- ##### Breadcrumb Area End ##### -->
 
 	<!-- ##### Single Product Details Area Start ##### -->
-	<section class="single_product_details_area mb-50 col-md-10">
-		<div class="produts-details-content mb-50">
+	<section class="single_product_details_area mb-50">
+		<div class="produts-details--content mb-50">
 			<div class="container">
 				<div class="row justify-content-between">
+
 					<div class="col-12 col-md-6 col-lg-5">
 						<div class="single_product_thumb">
+
 							<!-- 썸네일 이미지 -->
 							<div class="carousel-inner">
 								<div class="carousel-item active">
@@ -77,8 +79,11 @@
 									</a>
 								</div>
 							</div>
+
+
 						</div>
 					</div>
+
 					<div class="col-12 col-md-6">
 						<div class="single_product_desc">
 							<h4 class="title">
@@ -138,8 +143,10 @@
 								data-toggle="tab" role="tab">투자자 현황<span class="text-muted">
 										(<c:out value="${countOfInvestor }" />)
 								</span></a></li>
-							<li class="nav-item"><a href="#reviews" class="nav-link"
+							<li class="nav-item"><a href="#evaluation" class="nav-link"
 								data-toggle="tab" role="tab">예비 평가</a></li>
+							<li class="nav-item"><a href="#reviews" class="nav-link"
+								data-toggle="tab" role="tab">리뷰</a></li>
 						</ul>
 						<!-- Tab Content -->
 						<div class="tab-content">
@@ -208,7 +215,7 @@
 								</div>
 							</div>
 
-							<div role="tabpanel" class="tab-pane fade" id="reviews">
+							<div role="tabpanel" class="tab-pane fade" id="evaluation">
 								<div class="reviews_area">
 									<ul>
 										<li>
@@ -260,60 +267,45 @@
 										</li>
 									</ul>
 								</div>
-
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="reviews">
 								<div class="submit_a_review_area mt-50">
 									<h4>Submit A Review</h4>
-									<form action="#" method="post">
+									
 										<div class="row">
-											<div class="col-12">
-												<div class="form-group d-flex align-items-center">
-													<span class="mr-15">Your Ratings:</span>
-													<div class="stars">
-														<input type="radio" name="star" class="star-1" id="star-1">
-														<label class="star-1" for="star-1">1</label> <input
-															type="radio" name="star" class="star-2" id="star-2">
-														<label class="star-2" for="star-2">2</label> <input
-															type="radio" name="star" class="star-3" id="star-3">
-														<label class="star-3" for="star-3">3</label> <input
-															type="radio" name="star" class="star-4" id="star-4">
-														<label class="star-4" for="star-4">4</label> <input
-															type="radio" name="star" class="star-5" id="star-5">
-														<label class="star-5" for="star-5">5</label> <span></span>
-													</div>
-												</div>
-											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="name">Nickname</label> <input type="email"
-														class="form-control" id="name" placeholder="Nazrul">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label for="options">Reason for your rating</label> <select
-														class="form-control" id="options">
-														<option>Quality</option>
-														<option>Value</option>
-														<option>Design</option>
-														<option>Price</option>
-														<option>Others</option>
+													<label for="options">카테고리</label> 
+													<select class="form-control" id="options">
+														<option>상품성</option>
+														<option>가치</option>
+														<option>Q&A</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-12">
 												<div class="form-group">
 													<label for="comments">Comments</label>
-													<textarea class="form-control" id="comments" rows="5"
-														data-max-length="150"></textarea>
+													<textarea class="form-control" id="comments" rows="5" data-max-length="150"></textarea>
 												</div>
 											</div>
 											<div class="col-12">
-												<button type="submit" class="btn alazea-btn">Submit
-													Your Review</button>
+												<button class="btn alazea-btn" style="margin-bottom: 50px;" id="review-send-btn" >Submit Your Review</button>
 											</div>
 										</div>
-									</form>
+									
 								</div>
+								
+								<!-- table이 들어가야해 -->
+								<div class="list-group" id="reply-body">
+								  <a class="list-group-item">
+								    <h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "><img alt="profile" src=""></h6>
+								    <p  style="float: left; margin-right: 50px; ">{userId}</p>
+								    <p>{createDate}</p>
+								    <h4>{content}</h4>
+								  </a>
+							   </div>
+
 							</div>
 
 						</div>
@@ -472,9 +464,17 @@
 	<script src="/resources/js/active.js"></script>
 	<!-- Common js -->
 	<script src="/resources/js/common.js"></script>
-
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-
+	
+	<script type="my-template" id="review-list">
+	<a class="list-group-item">
+		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "><img alt="profile" src="">{profile}</h6>
+		<p  style="float: left; margin-right: 50px; ">{userId}</p>
+		<p>{createDate}</p>
+		<h4>{content}</h4>
+	</a>
+	</script>
+	
 	<script type="text/javascript">
 		let wsocket;
 		var projectId = $("#projectId").val();
@@ -522,6 +522,117 @@
 		function onClose(event) {
 			sayBye();
 		}
+		
+		/* 댓글 ajax */
+		/*
+		 javascript AJAX Service(read, put, post...)
+		 created by yonghyun
+		*/
+	 	var userReplyService = (function() {
+			function get(projectId, callback, error) {
+				$.get("/shop/reply/"+projectId, function(result) {
+					if (callback) {
+						callback(result);
+					}
+
+				}).fail(function(xhr, status, err) {
+					if (error) {
+						error();
+					}
+				});
+			};
+			
+			function checkAccPasswd(userId, data, callback, error){
+				$.ajax({
+					type : 'post',
+					url : "/shop/check/"+userId,
+					data : JSON.stringify(data),
+					contentType : "application/json; charset=utf-8",
+					success : function(result, status, xhr) {
+						if (callback) {
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+						}
+					}
+				})
+			}
+			
+			function postSearchList(projectId, data, callback, error){
+				$.ajax({
+					type : 'post',
+					url : "/shop/reply/"+projectId,
+					data : JSON.stringify(data),
+					contentType : "application/json; charset=utf-8",
+					success : function(result, status, xhr) {
+						if (callback) {
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+						}
+					}
+				})
+			};
+
+			return {
+				postSearchList : postSearchList,
+				get: get,
+				checkAccPasswd: checkAccPasswd
+			};
+		})();
+		
+		// 리뷰 등록 버튼 이벤트
+		function sendReviewDdta(){
+			if(loginId == null || loginId.length == 0){
+				console.log('ddddd');
+				$('#review-send-btn').css('display','none');
+			} else{
+				$('#review-send-btn').css('display','block');
+			}
+			
+			$('#review-send-btn').click(function(){
+				
+				var comment = $('#comments').val()
+				var replyData = {
+						userId: loginId,
+						projectId: projectId,
+						content: comment
+				};
+				
+				console.log(replyData);
+				userReplyService.postSearchList(projectId, replyData, function(list){
+					makeReplyTemplate(list.replyList);
+				})
+			})
+		}
+		
+		/*페이지 로딩시 ajax로 데이터 가져오기 */
+		function getReplyData(){
+			userReplyService.get(projectId, function(list){
+				makeReplyTemplate(list.replyList);
+			})
+		}
+		
+		/*댓글 리스트 템플릿 */
+		function makeReplyTemplate(list){
+			var originHtml = document.querySelector('#review-list').innerHTML;
+			var newHtml = '';
+			
+			list.forEach(function(v) {
+				newHtml += originHtml.replace('{profile}', v.profile)
+									 .replace('{userId}', v.userId)
+									 .replace('{createDate}', v.regDate)
+									 .replace('{content}', v.content)
+			})
+			document.querySelector('#reply-body').innerHTML = newHtml;
+	
+		}
 
 		function onMessage(event) {
 			var serverMessage = event.data;
@@ -546,8 +657,32 @@
 				//document.getElementById("price").innerHTML = price;
 				break;
 			}
-
 		}
+		
+		$('#nextBtn').click(function(){
+			var passwd = $("#depositPasswd").val();
+			var accObj = {
+				passwd: passwd	
+			};
+			console.log(loginId);
+			console.log(passwd);
+			/*계좌 비밀번호 확인 로직 */
+			userReplyService.checkAccPasswd(loginId, accObj, function(list){
+				if(list.result === 'false'){
+					alert('비밀번호가 일치하지 않습니다');
+				} else {
+					nextPrev(1);	
+				}
+				
+				console.log(list.result);
+				
+			})
+		});
+		
+		$('#prevBtn').click(function(){
+			nextPrev(-1);
+		})
+
 
 		$("#deposit").click(function() {
 			$("#deposit-modal").modal('show');
@@ -567,7 +702,6 @@
 					success : function(data) {
 						console.log(data);
 						var jsonData = JSON.parse(data);
-
 						authNum = jsonData.authNum;
 					}
 				})
@@ -578,6 +712,7 @@
 					document.getElementById("nextBtn").disabled = false;
 					$("#nextBtn").on("click", function() {
 						invest();
+						nextPrev(1);
 					})
 					alert("인증번호가 일치합니다.");
 				} else {
@@ -589,7 +724,6 @@
 
 		function invest() {
 			var depositM = $("#depositMoney").val();
-
 			var curPrice = document.getElementById("curprice").innerHTML;
 			var messageObject = {
 				type : 3000,
@@ -611,6 +745,7 @@
 			// ... and fix the Previous/Next buttons:
 			if (n == 0) {
 				document.getElementById("prevBtn").style.display = "none";
+				document.getElementById("nextBtn").disabled = false;
 			} else {
 				document.getElementById("prevBtn").style.display = "inline";
 			}
@@ -676,7 +811,9 @@
 			//... and adds the "active" class to the current step:
 			x[n].className += " active";
 		}
-
+		
+		getReplyData();
+		sendReviewDdta();
 		connect();
 		onOpen();
 	</script>
