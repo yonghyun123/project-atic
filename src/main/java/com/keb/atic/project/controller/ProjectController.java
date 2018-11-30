@@ -155,7 +155,16 @@ public String shopDetails(@PathVariable("projectId") String projectId , Model mo
 // 등록 예정프로젝트 상세
 @GetMapping("/detail/pre/{projectId}")
 public String shopPreDetails(@PathVariable("projectId") String projectId , Model model) {
-   log.info("detail :" + projectId);
+	GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+	int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
+	int nextMonth = thisMonth +1;
+	if(nextMonth >12) {
+		nextMonth-=12;
+	}
+	Map<String, String>preMap = new HashMap<String,String>();
+	preMap.put("month", String.valueOf(nextMonth));
+	preMap.put("count", "20");
+	model.addAttribute("preList",projectService.readMonthProjectByGoal(preMap));
    model.addAttribute("project",projectService.readProject(projectId));
    model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
    model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));

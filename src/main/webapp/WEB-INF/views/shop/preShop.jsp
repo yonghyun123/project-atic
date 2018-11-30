@@ -106,15 +106,13 @@
                           <div class="single-product-area mb-50">
                               <!-- Product Image -->
                               <div class="product-img">
-                              <form id="form${project.id}" action="/shop/details" method="post">
                                  <a href="/shop/detail/pre/${project.id }">
                                   <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
-                                  <input type="hidden" value="${project.id }">
                                   <!-- Product Tag -->
                                   <div class="product-tag">
                                       <a href="#">Hot</a>
                                   </div>
-                                  </form>
+                   
                               </div>
                               <!-- Product Info -->
                               <div class="product-info mt-15 text-center">

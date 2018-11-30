@@ -119,7 +119,7 @@
                           <div class="single-product-area mb-50">
                               <!-- Product Image -->
                               <div class="product-img">
-                                  <a href="/shop/detail/${project.id }">
+                                  <a href="/shop/detail/pre/${project.id }">
                                   <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
                                   <!-- Product Tag -->
                                   <div class="product-tag">
