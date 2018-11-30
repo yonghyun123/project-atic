@@ -1,5 +1,7 @@
 package com.keb.atic.userEval.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -18,5 +20,17 @@ public class UserEvalServiceImpl implements UserEvalService {
 	@Override
 	public void createUserEval(UserEval userEval) {
 		userEvalMapper.createUserEval(userEval);
+	}
+
+	@Override
+	public UserEval readUserEvalAvg(String product_id) {
+		// TODO Auto-generated method stub
+		return userEvalMapper.readUserEvalAvg(product_id);
+	}
+
+	@Override
+	public List<UserEval> readUserEvalAvgByUser(String product_id) {
+		// TODO Auto-generated method stub
+		return userEvalMapper.readUserEvalAvgByUser(product_id);
 	}
 }

@@ -124,7 +124,7 @@ flex-direction: row;
                 <!-- Add to Cart Form -->
                 <form class="cart clearfix d-flex align-items-center"
                   method="post">
-                  <input type="button" id="deposit" value="알림 신청하기"
+                  <input type="button" id="pushAlert" value="알림 신청하기"
                     class="btn alazea-btn ml-15">
                 </form>
               </div>
@@ -135,8 +135,9 @@ flex-direction: row;
                       <div class="card" style="">
                       <div class="card-body" style="width: 40%; display: inline;">
                            <div id="average" style="margin-top: 15%; margin-left: 20%;">
-                            <h2>평균 평점</h2>
-                            <div style="margin-left:20%"><h1>4.5</h1></div>
+                            <h2 style="margin-left:15">평균 평점</h2>
+                            
+                            <div style="margin-left:20%" id="averPoint"><h1>4.5</h1></div>
                             </div>
                        </div>
                         <div class="card-body" style="width: 55%; display: inline;">
@@ -238,119 +239,12 @@ flex-direction: row;
 
               <div role="tabpanel" class="tab-pane fade" id="reviews">
                 <div class="reviews_area">
-                  <ul>
-                    <li>
-                      <div class="single_user_review mb-15">
-                        <div class="review-rating">
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <span>for Quality</span>
-                        </div>
-                        <div class="review-details">
-                          <p>
-                            by <a href="#">Colorlib</a> on <span>12
-                              Sep 2018</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="single_user_review mb-15">
-                        <div class="review-rating">
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <span>for Design</span>
-                        </div>
-                        <div class="review-details">
-                          <p>
-                            by <a href="#">Colorlib</a> on <span>12
-                              Sep 2018</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="single_user_review">
-                        <div class="review-rating">
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <span>for Value</span>
-                        </div>
-                        <div class="review-details">
-                          <p>
-                            by <a href="#">Colorlib</a> on <span>12
-                              Sep 2018</span>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                  <div id="calCount">
+                    <div id="count"></div>
+                  </div>
+                  <ul id="userEvalList">
 
-                <div class="submit_a_review_area mt-50">
-                  <h4>Submit A Review</h4>
-                  <form action="#" method="post">
-                    <div class="row">
-                      <div class="col-12">
-                        <div
-                          class="form-group d-flex align-items-center">
-                          <span class="mr-15">Your Ratings:</span>
-                          <div class="stars">
-                            <input type="radio" name="star"
-                              class="star-1" id="star-1"> <label
-                              class="star-1" for="star-1">1</label> <input
-                              type="radio" name="star" class="star-2"
-                              id="star-2"> <label class="star-2"
-                              for="star-2">2</label> <input type="radio"
-                              name="star" class="star-3" id="star-3">
-                            <label class="star-3" for="star-3">3</label>
-                            <input type="radio" name="star"
-                              class="star-4" id="star-4"> <label
-                              class="star-4" for="star-4">4</label> <input
-                              type="radio" name="star" class="star-5"
-                              id="star-5"> <label class="star-5"
-                              for="star-5">5</label> <span></span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        <div class="form-group">
-                          <label for="name">Nickname</label> <input
-                            type="email" class="form-control" id="name"
-                            placeholder="Nazrul">
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        <div class="form-group">
-                          <label for="options">Reason for your
-                            rating</label> <select class="form-control"
-                            id="options">
-                            <option>Quality</option>
-                            <option>Value</option>
-                            <option>Design</option>
-                            <option>Price</option>
-                            <option>Others</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="form-group">
-                          <label for="comments">Comments</label>
-                          <textarea class="form-control" id="comments"
-                            rows="5" data-max-length="150"></textarea>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <button type="submit" class="btn alazea-btn">Submit
-                          Your Review</button>
-                      </div>
-                    </div>
-                  </form>
+                  </ul>
                 </div>
               </div>
 
@@ -369,7 +263,7 @@ flex-direction: row;
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2>Related Products</h2>
+            <h2>오픈 예정 프로젝트</h2>
           </div>
         </div>
       </div>
@@ -509,12 +403,99 @@ flex-direction: row;
 
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 
-
+  <script type="my-template" id="userEval-list">
+   <li>
+     <div class="single_user_review mb-15">
+      <div class="review-rating">
+        <i class="fa fa-star" aria-hidden="true"></i>
+         <span>{totalAvg}</span>
+          </div>
+            <div class="review-details">
+              <p style="margin-bottom: 0">평가 평균</p>
+               <p>
+                by <a href="#" id="userId">{userId}</a>
+                </p>
+                </div>
+                </div>
+             </li>
+  </script>
   <script type="text/javascript">
-			$("#deposit").click(function() {
+  	var projectId = "${project.id}";
+  			//
+			$("#pushAlert").click(function() {
 				$("#user-Eval").modal('show');
 
 			});
+			
+			 /*
+			 javascript AJAX Service(read, put, post...)
+			 created by yonghyun
+		 */
+		 var evalPageService = (function() {
+				function get(projectId, callback, error) {
+					$.get("/shop/preEval/graph/"+projectId, function(result) {
+						if (callback) {
+							callback(result);
+						}
+
+					}).fail(function(xhr, status, err) {
+						if (error) {	
+							error();
+						}
+					});
+				};
+				
+				function getUserEvalList(projectId, callback, error) {
+					$.get("/shop/preEval/eval/"+projectId, function(result) {
+						if (callback) {
+							callback(result);
+						}
+
+					}).fail(function(xhr, status, err) {
+						if (error) {	
+							error();
+						}
+					});
+				};
+								
+				
+				
+				return {
+					get : get,
+					getUserEvalList: getUserEvalList
+				};
+			})();
+			 
+			 
+		 //페이지 오픈시 graph 데이터를 받기위해 ajax 전송	 
+		 evalPageService.get(projectId, function(Object){
+			var userEvalByProject = [];
+			 userEvalByProject.push(Math.round(Object.Market*100)/100.0);
+			 userEvalByProject.push(Math.round(Object.Stable*100)/100.0);
+			 userEvalByProject.push(Math.round(Object.Growth*100)/100.0);
+			 userEvalByProject.push(Math.round(Object.Favor*100)/100.0);
+			 $('#averPoint').html('<div style="display:inline-block; margin-bottom: 5px"><i class="fa fa-star fa-2x"></i></div><div style="display:inline-block; margin-left: 10px;"><h3>'+Math.round(Object.Total*100)/100.0+'</h3></div>');
+			 profitGraph(userEvalByProject);
+			 
+		 });
+		 
+		 //페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
+		 evalPageService.getUserEvalList(projectId, function(list){
+			 $('#count').html('<span>총 <h5>'+list.userEvalList.length+'개</h5>의 매력도 평가가 있습니다.</span>');
+			 userEvalListTemplate(list.userEvalList);
+		 });
+		 
+		 //페이지 오픈시 사용자 평가 리스트 반영
+		 function userEvalListTemplate(userEvalList){
+			 var originHtml = document.querySelector('#userEval-list').innerHTML;
+			 var newHtml = '';
+			 userEvalList.forEach(function(v) {
+			 	newHtml += originHtml.replace('{userId}', v.user_id)
+			 					     .replace('{totalAvg}', Math.round(v.total_avg*100)/100.0)
+			 });
+			 document.querySelector('#userEvalList').innerHTML = newHtml;
+		 }
+		 
 
 			$('.starRev span').click(function() {
 				$(this).parent().children('span').removeClass('on');
@@ -601,17 +582,17 @@ flex-direction: row;
 				x[n].className += " active";
 			}
 
-			 function profitGraph(){
+			 function profitGraph(userEvalByProject){
 				 /* 수평 바 chart 이윤 증가율 */
 				 new Chart(document.getElementById("bar-chart-paral"), {
 				    type: 'bar',
 				    data: {
-				      labels: ["수익성", "안정성", "성장성", "매력도", "호감도"],
+				      labels: ["수익성", "안정성", "성장성","호감도"],
 				      datasets: [
 				        {
 				          label: "점",
 				          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-				          data: [1,2,3,4,5]
+				          data: userEvalByProject
 				        }
 				      ]
 				    },
@@ -633,7 +614,7 @@ flex-direction: row;
 				});
 			 }
 			 
-			 profitGraph();
+		
 		</script>
 </body>
 
