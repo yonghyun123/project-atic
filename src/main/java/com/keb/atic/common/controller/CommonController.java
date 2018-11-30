@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,7 @@ public class CommonController {
 	private ProjectService projectService;
 	private UserProjectService userProjectService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
 		int nextMonth = thisMonth +1;
