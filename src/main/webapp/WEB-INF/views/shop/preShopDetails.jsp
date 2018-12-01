@@ -40,6 +40,12 @@
 .card{
 flex-direction: row;
 }
+
+.navText:hover{
+  color: black;
+  text-decoration:none;
+}
+
 </style>
 </head>
 
@@ -50,6 +56,13 @@ flex-direction: row;
   <div style="height: 90px"></div>
   <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
+     <nav id="investNav"style="height: 5%">
+        <ul>
+          <li id="investMain"><a class="navText" href="/shop/">펀딩 홈</a></li>
+          <li class="monthProject"><a class="navText" href="/shop/currentShop">진행중</a></li>
+          <li class="monthProject"><a class="navText" href="/shop/preShop">오픈예정</a></li>
+        </ul>
+      </nav>
     <div
       class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
       style="background-image: url(/resources/img/bg-img/24.jpg);">
