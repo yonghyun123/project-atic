@@ -33,10 +33,10 @@
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px"></div>
+  <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
 
   <div class="breadcrumb-area">
-    <nav id="investNav" style="height: 5%">
+    <nav id="investNav" style="height:6%">
       <ul>
         <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
         <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>
@@ -495,8 +495,8 @@
 
   <script type="my-template" id="review-list">
 	<a class="list-group-item">
-		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "><img alt="profile" src="">{profile}</h6>
-		<p  style="float: left; margin-right: 50px; ">{userId}</p>
+		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "> <img class="card-img-top profile-img" style="width:50px; height:50px" src="/user/profile/{profile}" alt="Card image cap"></h6>
+		<p  style="float: left; margin-right: 50px; ">아이디:{userId}</p>
 		<p>{createDate}</p>
 		<h4>{content}</h4>
 	</a>
@@ -648,6 +648,7 @@
 				userReplyService.get(projectId, function(list) {
 					makeReplyTemplate(list.replyList);
 				})
+
 			}
 
 			/*댓글 리스트 템플릿 */

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 <html>
 
 <head>
@@ -26,11 +28,12 @@
 
 <style type="text/css">
 .slide-fade li {
-  transition: all 0.4s ease-out;
-  opacity: 0;
+	transition: all 0.4s ease-out;
+	opacity: 0;
 }
+
 .slide-fade li.show {
-  opacity: 1;
+	opacity: 1;
 }
 </style>
 </head>
@@ -39,28 +42,30 @@
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Hero Area Start ##### -->
-  <div style="height: 90px"></div>
+  <div style="height: 90px; border-bottom: 1px solid #ebebe0" ></div>
   <section class="sector01">
     <div class="container" style="height: 90%">
       <div id="mainVisual">
         <div class="single-item">
-          <a href="/shop/detail/pre/12" style="background-image: url('/resources/img/slider-img/index-slide1.png')">
+          <a href="/shop/detail/pre/12"
+            style="background-image: url('/resources/img/slider-img/index-slide1.png')">
             <p class="index-slider-text-title">
               서울 카페쇼에서 혁신상 수상!<br>
             </p>
             <p class="index-slider-text-content">
               음악과 함께하는 콜드브루 커피머신<br>
             </p>
-          </a>
-          <a href="/shop/detail/pre/4" style="background-image: url('/resources/img/slider-img/index-slide2.png')">
+          </a> <a href="/shop/detail/pre/4"
+            style="background-image: url('/resources/img/slider-img/index-slide2.png')">
             <p class="index-slider-text-title">
               수요미식회 인정 한우<br>삼정하누<br>
             </p>
             <p class="index-slider-text-content">
-             <br><br> 한우의 프리미엄화를 선도하고 있습니다!<br>
+              <br>
+              <br> 한우의 프리미엄화를 선도하고 있습니다!<br>
             </p>
-          </a>
-          <a href="#" style="background-image: url('/resources/img/slider-img/index-slide3.png')">
+          </a> <a href="#"
+            style="background-image: url('/resources/img/slider-img/index-slide3.png')">
             <p class="index-slider-text-title">
               이율이 늘어나는 자유적금<br>
             </p>
@@ -72,30 +77,31 @@
       </div>
       <div id="rankingSection">
         <div class="hotClipWrapper" style="width: 300px">
-         <div id="clipHeader">
-          <h5>오늘의 투자액 급등 프로젝트</h5>
-         </div>
-         <div id="clipBody">
-            <div id="rankingList" >
+          <div id="clipHeader">
+            <h5>오늘의 투자액 급등 프로젝트</h5>
+          </div>
+          <div id="clipBody">
+            <div id="rankingList">
               <ol style="margin-left: 0" class="slide-fade">
-              <c:choose>
-              <c:when test="${not empty riseProject }">
-              <c:forEach items="${riseProject}" var="project" varStatus="status">
-              <li id="li${status.index+1 }"><em>${status.index+1 }</em><a href="/shop/detail/${project.projectId }">${project.projectName }</a></li>
-              </c:forEach>
-              </c:when>
-              </c:choose>
+                <c:choose>
+                  <c:when test="${not empty riseProject }">
+                    <c:forEach items="${riseProject}" var="project"
+                      varStatus="status">
+                      <li id="li${status.index+1 }"><em>${status.index+1 }</em><a
+                        href="/shop/detail/${project.projectId }">${project.projectName }</a></li>
+                    </c:forEach>
+                  </c:when>
+                </c:choose>
               </ol>
             </div>
-         </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
   <!-- ##### Hero Area End ##### -->
   <!-- ##### Product Area Start ##### -->
-  <section
-    class="new-arrivals-products-area bg-gray section-padding-50">
+  <section class="new-arrivals-products-area bg-gray section-padding-50">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -108,37 +114,45 @@
       </div>
 
       <div class="row">
-      
-  <c:forEach items="${hotList}" var="project">
-        <!-- Single Product Area -->
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="single-product-area mb-50 wow fadeInUp"
-            data-wow-delay="100ms">
-            <!-- Product Image -->
-            <div class="product-img">
-              <a href="/shop/detail/${project.id }"><img
-                src="/resources/img/project-image/${project.fileName}" alt=""></a>
-              <!-- Product Tag -->
-              <div class="product-tag">
-                <a href="/shop/detail/${project.id }">HOT</a>
+       <c:choose>
+        <c:when test="${fn:length(hotList) != 0}">
+        <c:forEach items="${hotList}" var="project">
+          <!-- Single Product Area -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="single-product-area mb-50 wow fadeInUp"
+              data-wow-delay="100ms">
+              <!-- Product Image -->
+              <div class="product-img">
+                <a href="/shop/detail/${project.id }"><img
+                  src="/resources/img/project-image/${project.fileName}"
+                  alt=""></a>
+                <!-- Product Tag -->
+                <div class="product-tag">
+                  <a href="/shop/detail/${project.id }">HOT</a>
+                </div>
+              </div>
+              <!-- Product Info -->
+              <div class="product-info mt-15 text-center">
+                <a href="/shop/detail/${project.id }">
+                  <p>
+                  <h5>${project.name }</h5>
+                  </p>
+                </a>
+                <h6>${project.description }</h6>
               </div>
             </div>
-            <!-- Product Info -->
-            <div class="product-info mt-15 text-center">
-              <a href="/shop/detail/${project.id }">
-                <p><h5>${project.name }</h5></p>
-              </a>
-              <h6>${project.description }</h6>
-            </div>
           </div>
-        </div>
-</c:forEach>
-
-
+        </c:forEach>
+        </c:when>
+        <c:otherwise>
+          <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
+              <div style="width:100%"><h1 >진행중인 프로젝트가 존재하지 않습니다.</h1></div>
+            </div>
+        </c:otherwise>
+        </c:choose>
         <div class="col-12 text-center">
-          <a href="#" class="btn alazea-btn">View All</a>
+          <a href="/shop/currentShop" class="btn alazea-btn">View All</a>
         </div>
-
       </div>
     </div>
   </section>
@@ -158,23 +172,37 @@
       </div>
 
       <div class="row justify-content-center">
-  <c:forEach items="${nextList}" var="preProject">
-        <!-- Single Blog Post Area -->
-        <div class="col-12 col-md-6 col-lg-4 text-center">
-          <div class="single-blog-post mb-100">
-            <div class="product-img mb-30">
-              <a href="/shop/detail/pre/${preProject.id }"><img
-                src="/resources/img/project-image/${preProject.fileName}" alt=""></a>
+        <c:choose>
+          <c:when test="${fn:length(nextList) != 0}">
+          <c:forEach items="${nextList}" var="preProject">
+            <!-- Single Blog Post Area -->
+            <div class="col-12 col-md-6 col-lg-4 text-center">
+              <div class="single-blog-post mb-100">
+                <div class="product-img mb-30">
+                  <a href="/shop/detail/pre/${preProject.id }"><img
+                    src="/resources/img/project-image/${preProject.fileName}"
+                    alt=""></a>
+                </div>
+                <div class="post-content">
+                  <a href="/shop/detail/pre/${preProject.id }"
+                    class="post-title">
+                    <h5>${preProject.name }</h5>
+                  </a>
+                  <p class="post-excerpt">${preProject.description }</p>
+                </div>
+              </div>
             </div>
-            <div class="post-content">
-              <a href="/shop/detail/pre/${preProject.id }" class="post-title">
-                <h5>${preProject.name }</h5>
-              </a>
-              <p class="post-excerpt">${preProject.description }</p>
+          </c:forEach>
+          </c:when>
+          <c:otherwise>
+            <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
+              <div style="width:100%"><h1 >진행 예정 프로젝트가 존재하지 않습니다.</h1></div>
             </div>
-          </div>
+          </c:otherwise>
+        </c:choose>
+         <div class="col-12 text-center" style="margin-bottom:20px">
+          <a href="/shop/preShop" class="btn alazea-btn">View All</a>
         </div>
-</c:forEach>
       </div>
     </div>
   </section>
@@ -195,54 +223,42 @@
   <script src="/resources/js/active.js"></script>
   <!-- Common js -->
   <script src="/resources/js/common.js"></script>
-  
+
   <script type="text/javascript">
-         $(document).ready(function() {
-                
+			$(document).ready(function() {
 
-        	 
-            $('.single-item').slick({
-               autoplay:true,
-               autoplaySpeed:3000,
-               dots: true,
-               arrows: true,
-               pauseOnHover:true
-            });
-           
-       		 
-         });
-         
-    		 
-         
-    		$(window).load(function(){
-    			function addShow(i){
-        			$("#li"+i).addClass('show');
-        		 }
-    	
-    				test = function () {
-        				for (i=1; i < 6; i++) {
-        				(function(x) {
-        				setTimeout(function() {
-        				addShow(x);
-        				}, 700*x);
-        				})(i);
-        				}
-        				}();
-        				
-    			
+				$('.single-item').slick({
+					autoplay : true,
+					autoplaySpeed : 3000,
+					pauseOnHover : true
+				});
 
-              		 //if(i-1 != 0){
-              			// preList.removeClass("show");
-              		 //}
-                   //}
-    		});
-         //while(true){
-        	 
-         //}
-         
-         
-         
-</script>
+			});
+
+			$(window).load(function() {
+				function addShow(i) {
+					$("#li" + i).addClass('show');
+				}
+
+				test = function() {
+					for (i = 1; i < 6; i++) {
+						(function(x) {
+							setTimeout(function() {
+								addShow(x);
+							}, 700 * x);
+						})(i);
+					}
+				}();
+
+				//if(i-1 != 0){
+				// preList.removeClass("show");
+				//}
+				//}
+			});
+			//while(true){
+
+			//}
+		</script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>
 
