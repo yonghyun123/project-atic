@@ -33,10 +33,10 @@
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px"></div>
+  <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
 
   <div class="breadcrumb-area">
-    <nav id="investNav" style="height: 5%">
+    <nav id="investNav" style="height:6%">
       <ul>
         <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
         <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>

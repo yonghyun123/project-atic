@@ -53,10 +53,10 @@ flex-direction: row;
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px"></div>
+  <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
   <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
-     <nav id="investNav"style="height: 5%">
+     <nav id="investNav"style="height:6%">
         <ul>
           <li id="investMain"><a class="navText" href="/shop/">펀딩 홈</a></li>
           <li class="monthProject"><a class="navText" href="/shop/currentShop">진행중</a></li>
@@ -335,29 +335,29 @@ flex-direction: row;
             <div class="review-details" id="userId">
               <div id="showAll"><p style="margin-bottom: 0">전체점수 보기 <i class="fa fa-sort-desc"></i></p></div>
                <div id="totalEval{userID}" style="display:none">
-					<div id="Favor"> 
-					<span>호감도</span>
-						<i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
- 						{Favor}
-					</div>
-					<div id="Growth"> 
-					<span>성장성</span>
-						<i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
- 						{Growth}
-					</div>
-					<div id="Market"> 
-					<span>수익성</span>
-						<i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
- 						{Market}
-					</div>
-					<div id="Stable"> 
-					<span>안정성</span>
-						<i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
- 						{Stable}
-					</div>
+          <div id="Favor"> 
+          <span>호감도</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Favor}
+          </div>
+          <div id="Growth"> 
+          <span>성장성</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Growth}
+          </div>
+          <div id="Market"> 
+          <span>수익성</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Market}
+          </div>
+          <div id="Stable"> 
+          <span>안정성</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Stable}
+          </div>
 
-				</div>
-				<p>
+        </div>
+        <p>
                 by <a>{userId}</a>
                 </p>
                 </div>
@@ -434,13 +434,13 @@ flex-direction: row;
           userEvalListTemplate(list.userEvalList);
          
           list.userEvalList.forEach(function(v){
-        	  if(v.user_id == loginId){
-        		$('#pushAlert').val("신청하신 프로젝트입니다.");
-        		$('#pushAlert').attr('disabled',true)
-        		$('#pushAlert').attr('class','alazea-btn-disable')
-        		
-        		
-        	  }
+            if(v.user_id == loginId){
+            $('#pushAlert').val("신청하신 프로젝트입니다.");
+            $('#pushAlert').attr('disabled',true)
+            $('#pushAlert').attr('class','alazea-btn-disable')
+            
+            
+            }
           })
        });
        
@@ -450,7 +450,7 @@ flex-direction: row;
           var newHtml = '';
           userEvalList.forEach(function(v) {
              newHtml += originHtml.replace('{userId}', v.user_id)
-             				  .replace('{userID}', v.user_id)
+                      .replace('{userID}', v.user_id)
                               .replace('{totalAvg}', Math.round(v.total_avg*100)/100.0)
                               .replace('{Favor}', Math.round(v.favor_grade*100)/100.0)
                               .replace('{Growth}', Math.round(v.growth_grade*100)/100.0)
@@ -583,46 +583,46 @@ flex-direction: row;
          $(document).ready(function() {
               $(document).on("click","#showAll",function(){
                  if($(this).next().css("display") == "none"){
-            	  $(this).next().show();
+                $(this).next().show();
                  } else{
-                	 $(this).next().hide();
+                   $(this).next().hide();
                  }
                  });
               
             $('.responsive').slick({
-            	  dots: true,
-            	  infinite: false,
-            	  speed: 300,
-            	  slidesToShow: 4,
-            	  slidesToScroll: 4,
-            	  responsive: [
-            	    {
-            	      breakpoint: 1024,
-            	      settings: {
-            	        slidesToShow: 3,
-            	        slidesToScroll: 3,
-            	        infinite: true,
-            	        dots: true
-            	      }
-            	    },
-            	    {
-            	      breakpoint: 600,
-            	      settings: {
-            	        slidesToShow: 2,
-            	        slidesToScroll: 2
-            	      }
-            	    },
-            	    {
-            	      breakpoint: 480,
-            	      settings: {
-            	        slidesToShow: 1,
-            	        slidesToScroll: 1
-            	      }
-            	    }
-            	    // You can unslick at a given breakpoint now by adding:
-            	    // settings: "unslick"
-            	    // instead of a settings object
-            	  ]
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      dots: true
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                  }
+                  // You can unslick at a given breakpoint now by adding:
+                  // settings: "unslick"
+                  // instead of a settings object
+                ]
             });
 
          });
