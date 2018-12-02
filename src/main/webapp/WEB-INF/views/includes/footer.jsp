@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer-widget">
                     <!-- 
                         <div class="footer-logo mb-30">
@@ -50,7 +50,7 @@
                 </div>
 
                 <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer-widget">
                         <div class="widget-title">
                             <h5>QUICK LINK</h5>
@@ -68,40 +68,8 @@
                         </nav>
                     </div>
                 </div>
-
                 <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-footer-widget">
-                        <div class="widget-title">
-                            <h5>BEST SELLER</h5>
-                        </div>
-
-                        <!-- Single Best Seller Products -->
-                        <div class="single-best-seller-product d-flex align-items-center">
-                            <div class="product-thumbnail">
-                                <a href="/shop-details"><img src="/resources/img/bg-img/4.jpg" alt=""></a>
-                            </div>
-                            <div class="product-info">
-                                <a href="/shop-details">Cactus Flower</a>
-                                <p>$10.99</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Best Seller Products -->
-                        <div class="single-best-seller-product d-flex align-items-center">
-                            <div class="product-thumbnail">
-                                <a href="/shop-details"><img src="/resources/img/bg-img/5.jpg" alt=""></a>
-                            </div>
-                            <div class="product-info">
-                                <a href="/shop-details">Tulip Flower</a>
-                                <p>$11.99</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer-widget">
                         <div class="widget-title">
                             <h5>CONTACT</h5>
