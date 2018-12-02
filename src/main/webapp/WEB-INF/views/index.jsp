@@ -35,6 +35,8 @@
 .slide-fade li.show {
 	opacity: 1;
 }
+
+
 </style>
 </head>
 
@@ -67,10 +69,10 @@
           </a> <a href="#"
             style="background-image: url('/resources/img/slider-img/index-slide3.png')">
             <p class="index-slider-text-title">
-              이율이 늘어나는 자유적금<br>
+             펀딩형 자유적금 'ATIC'<br>
             </p>
             <p class="index-slider-text-content">
-              100% 달성 기업을 맞추며 이율을 늘려보세요!<br>
+              우수 스타트업에 펀딩하면 늘어나는 적금 이율!<br>
             </p>
           </a>
         </div>
@@ -78,7 +80,7 @@
       <div id="rankingSection">
         <div class="hotClipWrapper" style="width: 300px">
           <div id="clipHeader">
-            <h5>오늘의 투자액 급등 프로젝트</h5>
+            <h5>금일 투자 급등 종목</h5>
           </div>
           <div id="clipBody">
             <div id="rankingList">

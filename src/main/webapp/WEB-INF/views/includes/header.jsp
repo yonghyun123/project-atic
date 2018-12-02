@@ -51,14 +51,12 @@
 
             <!-- Navbar Start -->
             <div class="classynav">
-              <ul>
+              <ul style="margin-top:10; margin-right:100px">
                 <li class="time-li"><span id="countTime"></span>&emsp;</li>
-                <li><a href="#">투자 지원 신청</a>
                  
                 <li><a href="/shop">펀딩</a>
                   
                 </li>
-                <li><a href="#">이용 가이드</a></li>
                 <c:choose>
                   <c:when test="${not empty loginId }">
                     <li><a href="/users/mypage/${loginId}" id="my-page"> 마이 페이지</a></li>
@@ -72,14 +70,16 @@
 
               <!-- Search Icon -->
               <div id="searchIcon">
-                <c:choose>
+                <div><input type="button" id="loanBtn" value="창업대출 신청"
+                    class="btn alazea-btn ml-15"></div>
+<%--                 <c:choose>
                   <c:when test="${not empty loginId }">
                     &emsp;&emsp;
                   </c:when>
                   <c:otherwise>
                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                   </c:otherwise>
-                </c:choose>
+                </c:choose> --%>
               </div>
             </div>
             <!-- Navbar End -->
