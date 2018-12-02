@@ -19,7 +19,7 @@ body .PreProjctSector01 {
 }
 
 #investNav {
-	height: 10%;
+	height: 11%;
 	background-color: #f2f4f5; 
 }
 
@@ -36,6 +36,7 @@ body .PreProjctSector01 {
 color: rgba(0,0,0,.84);
     font-weight: 1000;
 }
+
 .index-slider-text-content {
 	position: absolute;
 	z-index: 1;
@@ -55,10 +56,14 @@ color: rgba(0,0,0,.84);
 	font-family: "Dosis", sans-serif;
 }
 
+#searchIcon:hover {
+	cursor: default;
+}
+
 /* login-modal CSS */
 
 .modal-dialog {
-	margin-top: 15%;
+	margin-top: 15% !important;
 	max-width: 400px;
 }
 
@@ -150,7 +155,7 @@ input[type="checkbox"] {
 
 #deposit-menual-modal .deposit-menual-modal-dialog {
 	max-width: 1000px;
-	margin-top: 1%;
+	margin-top: 1% !important;
 }
 
 #deposit-menual-modal .modal-content {
@@ -272,6 +277,9 @@ input.invalid {
 
 .shop-slide-row {
 	padding: 0;
+	width: 1440px;
+	height: 90%;
+	margin: 0 auto;
 }
 
 .single_product_details_area {

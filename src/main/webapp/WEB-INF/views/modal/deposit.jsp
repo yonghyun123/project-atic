@@ -9,11 +9,11 @@
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-body">
+				<div class="modal-body deposit-body">
 
 					<form id="regForm" action="">
 
-						<h1>DEPOSIT</h1>
+						<h1 class="text-center">DEPOSIT</h1>
 
 						<!-- One "tab" for each step in the form: -->
 						<div class="tab">
@@ -39,27 +39,19 @@
 								<input type="button" id="authB" value="인증하기">
 							</p>
 						</div>
-
-
 						<div style="overflow: auto;">
 							<div style="float: right;">
 								<button type="button" id="prevBtn">Previous</button>
 								<button type="button" id="nextBtn">Next</button>
 							</div>
 						</div>
-
-						<!-- Circles which indicates the steps of the form: -->
-						<div style="text-align: center; margin-top: 40px;">
-							<span class="step"></span> <span class="step"></span>
-						</div>
-
 					</form>
-
-
-					<button type="submit" class="btn btn-danger btn-default btn-cancel"
-						data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> Cancel
-					</button>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-danger btn-default btn-cancel deposit-cancel"
+                        data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span> Cancel
+                      </button>
+                    </div>
 				</div>
 			</div>
 		</div>

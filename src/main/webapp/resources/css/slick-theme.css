@@ -88,16 +88,18 @@
 }
 .slick-prev:before
 {
-    content: '←';
+    content: '<';
+    color: black;
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: '→';
+    content: '>';
 }
 
 .slick-next
 {
     right: -25px;
+    
 }
 [dir='rtl'] .slick-next
 {
@@ -106,11 +108,12 @@
 }
 .slick-next:before
 {
-    content: '→';
+    content: '>';
+    color: black;
 }
 [dir='rtl'] .slick-next:before
 {
-    content: '←';
+    content: '<';
 }
 
 /* Dots */
