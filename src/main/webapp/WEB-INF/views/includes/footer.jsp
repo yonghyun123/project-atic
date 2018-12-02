@@ -29,16 +29,17 @@
 </script>
     
 <!-- ##### Footer Area Start ##### -->
-<footer class="footer-area bg-img" style="background-image: url(/resources/img/bg-img/3.jpg);">
+<footer class="footer-area bg-img" style="background-image: url(/resources/img/gravel.png);">
     <div id="popup-message-login-success">로그인 성공!</div>
     <div id="popup-message-logout-success">로그아웃 성공!</div>
     <div id="popup-message-create-deposit-success">계좌생성 성공!</div>
+    <div id="popup-message-change-profile-success">프로필 사진이 변경되었습니다.</div>
     <!-- Main Footer Area -->
     <div class="main-footer-area">
         <div class="container">
             <div class="row">
                 <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer-widget">
                     <!-- 
                         <div class="footer-logo mb-30">
@@ -50,7 +51,7 @@
                 </div>
 
                 <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer-widget">
                         <div class="widget-title">
                             <h5>QUICK LINK</h5>
@@ -58,50 +59,15 @@
                         <nav class="widget-nav">
                             <ul>
                                 <li><a href="/about">A-Tic?</a></li>
-                                <li><a href="#">공지사항</a></li>
                                 <li><a href="/shop">투자 홈</a></li>
-                                <li><a href="#">이용 가이드</a></li>
-                                <li><a href="#">오픈 예정</a></li>
-                                <li><a href="#"> </a></li>
-                                <li><a href="#">오픈한 상품</a></li>
+                                <li><a href="/shop/preShop/">오픈 예정</a></li>
+                                <li><a href="/shop/currentShop">오픈한 상품</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
-
                 <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-footer-widget">
-                        <div class="widget-title">
-                            <h5>BEST SELLER</h5>
-                        </div>
-
-                        <!-- Single Best Seller Products -->
-                        <div class="single-best-seller-product d-flex align-items-center">
-                            <div class="product-thumbnail">
-                                <a href="/shop-details"><img src="/resources/img/bg-img/4.jpg" alt=""></a>
-                            </div>
-                            <div class="product-info">
-                                <a href="/shop-details">Cactus Flower</a>
-                                <p>$10.99</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Best Seller Products -->
-                        <div class="single-best-seller-product d-flex align-items-center">
-                            <div class="product-thumbnail">
-                                <a href="/shop-details"><img src="/resources/img/bg-img/5.jpg" alt=""></a>
-                            </div>
-                            <div class="product-info">
-                                <a href="/shop-details">Tulip Flower</a>
-                                <p>$11.99</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer-widget">
                         <div class="widget-title">
                             <h5>CONTACT</h5>
@@ -142,9 +108,7 @@
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/about">A-Tic?</a></li>
-                                <li><a href="#">이용 가이드</a></li>
                                 <li><a href="/shop">투자 홈</a></li>
-                                <li><a href="#">공지사항</a></li>
                             </ul>
                         </nav>
                     </div>

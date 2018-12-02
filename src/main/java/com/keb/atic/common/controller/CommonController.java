@@ -4,10 +4,9 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,9 +30,7 @@ public class CommonController {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
 		int nextMonth = thisMonth +1;
-		if(nextMonth >12) {
-			nextMonth-=12;
-		}
+
 		String count = "3";
 		/**인기 프로젝트 리스트*/
 		Map<String, String>hotMap = new HashMap<String,String>();
@@ -41,7 +38,14 @@ public class CommonController {
 		hotMap.put("count", count);
 		/**등록예정 프로젝트 리스트*/
 		Map<String, String>nextMap = new HashMap<String,String>();
-		nextMap.put("month", String.valueOf(nextMonth));
+		if (nextMonth > 12) {
+			nextMonth -= 12;
+			nextMap.put("month", "0" + String.valueOf(nextMonth));
+		} else if (String.valueOf(nextMonth).length() == 1) {
+			nextMap.put("month", "0" + String.valueOf(nextMonth));
+		} else {
+			nextMap.put("month", String.valueOf(nextMonth));
+		}
 		nextMap.put("count", count);
 		
 		model.addAttribute("hotList",projectService.readMonthProjectByGoal(hotMap));
