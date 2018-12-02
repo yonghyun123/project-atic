@@ -12,9 +12,9 @@
         <div class="text-center logout-text"><h4>정말 로그아웃 하시겠습니까?</h4></div>
         <div class="modal-body logout-body">
           <form method="get" action="/user/logout" class="logout-form">
-            <input type="submit" class="btn btn-success btn-block" id="logout-bt" value="로그아웃"><span class="glyphicon glyphicon-off"></span>
+            <input type="submit" class="btn btn-success btn-block" id="logout-bt" value="로그아웃">
           </form>
-          <button type="submit" class="btn btn-danger btn-default btn-cancel logout" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> 취소</button>
+          <button type="submit" class="btn btn-danger btn-default btn-cancel logout" data-dismiss="modal">취소</button>
         </div>
       </div>
     </div>
