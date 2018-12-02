@@ -36,16 +36,6 @@
         <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/bg-img/24.jpg);">
             <h2>My Page</h2>
         </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav aria-label="breadcrumb">
-
-                    </nav>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- ##### Breadcrumb Area End ##### -->
 
@@ -65,8 +55,9 @@
                   </div>
 				  <div class="card-body">
 				    <div class="uploadDiv">
-                      <input type="file" name="uploadFile" multiple>
-                      <button id="uploadBtn">Upload</button>
+                      <p class="text-center">.png 파일만 업로드 가능합니다.</p>
+                      <input type="file" name="uploadFile" id="upload-form" multiple>
+                      <button id="uploadBtn" disabled>Upload</button>
                     </div>
                   </div>
 				</div>
@@ -127,7 +118,7 @@
             <div class="col-10 my-deposit-inform">
     			<div class="row" >
     				<div class="col-12 text-center">
-    				<h2>나의 상세 적금 정보</h2>
+    				  <h2>나의 상세 적금 정보</h2>
     				</div>
     			</div>
     			
@@ -181,33 +172,33 @@
     			    <div id="comp-list" class="tab-pane fade">
     			      <h3 class="ml-15">투자 기업 리스트</h3>
     			      <div class="container">
-    				  <h2>기업 현황</h2>
-    				  <h4>기간 선택</h4>
-    				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;" >
-    				  <label for="fromDate">시작일</label>
-    				  <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-    				</div>
+      				    <h2>기업 현황</h2>
+      				    <h4>기간 선택</h4>
+      				      <div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;" >
+    				        <label for="fromDate">시작일</label>
+    				        <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    				      </div>
     				
-    				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;">
-    				  <label for="toDate">종료일</label>
-    		       	  <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-    				</div>
-    			    <input type="button" style="width: 90.5%" class="btn btn-success btn-block" value="검색하기" id="send-date-btn"/>
-    				  <table class="table table-striped">
-    				    <thead>
-    				      <tr>
-    				        <th>투자한 날짜</th>
-    				        <th>사업 주제</th>
-    				        <th>투자한 기업</th>
-    				        <th>투자한 적금 금액</th>
-    				        <th>모금 달성률</th>
-    				      </tr>
-    				    </thead>
-    				    <tbody id="table-body-in">
-    				    <!-- 여기에 들어가면돼 -->
-    				    </tbody>
-    				  </table>
-    				</div>
+    				    <div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;">
+    				      <label for="toDate">종료일</label>
+    		       	      <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    				    </div>
+    			        <input type="button" style="width: 90.5%" class="btn btn-success btn-block" value="검색하기" id="send-date-btn"/>
+    				    <table class="table table-striped">
+      				      <thead>
+      				        <tr>
+      				          <th>투자한 날짜</th>
+      				          <th>사업 주제</th>
+      				          <th>투자한 기업</th>
+      				          <th>투자한 적금 금액</th>
+      				          <th>모금 달성률</th>
+      				        </tr>
+      				      </thead>
+    				      <tbody id="table-body-in">
+    				      <!-- 여기에 들어가면돼 -->
+    				      </tbody>
+    				    </table>
+    				  </div>
     			    </div>
     			  </div>
     			</div>	
@@ -222,12 +213,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-    <!-- jQuery-2.2.4 js -->
-    <!-- <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script> -->
     <!-- Popper js -->
     <script src="/resources/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <!-- <script src="/resources/js/bootstrap/bootstrap.min.js"></script> -->
     <!-- All Plugins js -->
     <script src="/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
@@ -556,6 +543,17 @@
 				sessionStorage.flag = "popup-message-change-profile-success";
 			}
 		});
+	 })
+	 
+	 /* 프로필 사진 확장자 체크 */
+	 $("#upload-form").on("change", function(e) {
+		 var inputFile = $("#upload-form").val();
+		 inputFile = inputFile.slice(inputFile.indexOf(".") + 1).toLowerCase();
+		 if(inputFile == 'png') {
+			 $("#uploadBtn").attr("disabled", false);
+		 } else {
+			 $("#uploadBtn").attr("disabled", true);
+		 }
 	 })
     </script>
 </body>

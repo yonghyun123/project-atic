@@ -19,7 +19,7 @@
                 <div class="dropdown">
                   <div>
                     <label class="dropdiv" id="1">
-                      <input type="checkbox" class="check" id="check1"><h4>예금거래 기본약관</h4><br>
+                      <input type="checkbox" class="check" id="check1"><h4>예금거래 기본약관(필수)</h4><br>
                     </label>
                   </div>
                   <div id="dropdown1" class="dropdown-content">
@@ -45,7 +45,7 @@
                 <div class="dropdown">
                   <div>
                     <label class="dropdiv" id="2">
-                      <input type="checkbox" class="check" id="check2"><h4>적립식예금 약관</h4><br>
+                      <input type="checkbox" class="check" id="check2"><h4>적립식예금 약관(필수)</h4><br>
                     </label>
                   </div>
                   <div id="dropdown2" class="dropdown-content">
@@ -72,7 +72,7 @@
                 <div class="dropdown">
                   <div>
                     <label class="dropdiv" id="3">
-                      <input type="checkbox" class="check" id="check3"><h4>계좌간 자동이체 약관</h4><br>
+                      <input type="checkbox" class="check" id="check3"><h4>계좌간 자동이체 약관(필수)</h4><br>
                     </label>
                   </div>
                   <div id="dropdown3" class="dropdown-content">

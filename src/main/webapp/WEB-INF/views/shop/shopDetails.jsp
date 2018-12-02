@@ -124,7 +124,7 @@
                 <form class="cart clearfix d-flex align-items-center"
                   method="post">
                   <input type="button" id="deposit" value="지금 투자하기"
-                    class="btn alazea-btn ml-15">
+                    class="btn alazea-btn">
                 </form>
 
               </div>
@@ -169,7 +169,7 @@
                   <p>
                     <c:out value="${project.description }" />
                   </p>
-                  <p>
+                  <p class="text-center">
                     <img
                       src="/resources/img/project-image/<c:out value="${project.id }"/>_et_1.png">
                     <img
