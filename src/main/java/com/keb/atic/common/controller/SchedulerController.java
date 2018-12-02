@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.keb.atic.project.service.ProjectService;
+import com.keb.atic.userProject.service.UserProjectService;
 import com.keb.atic.userStatus.domain.UserStatus;
 import com.keb.atic.userStatus.service.UserStatusService;
 
@@ -15,7 +17,11 @@ public class SchedulerController {
 
 	@Autowired
 	private UserStatusService userStatusService;
-
+	@Autowired
+	private ProjectService projectService;
+	@Autowired
+	private UserProjectService userProjectService;
+	
 	@Scheduled(cron = "0 0 0 1 * *")
 	public void updateInterest() {
 		// id별 각 달에 추가 되어야 할 interest 과 deposit
@@ -67,4 +73,5 @@ public class SchedulerController {
 		}
 
 	}
+	
 }

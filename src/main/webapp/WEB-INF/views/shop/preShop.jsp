@@ -84,15 +84,6 @@
                         <div class="shop-page-count" id="countBody">
                             <p>오픈예정인 펀딩이 <c:out value="${preList.size() }"/>건 있습니다</p>
                         </div>
-                        <!-- Search by Terms -->
-                        <div class="search_by_terms">
-                                <select id="search_by" class="custom-select widget-title">
-                                  <option selected value="goal">정렬</option>
-                                  <option value="goal">목표 금액 순</option>
-                                  <option value="percent">달성률 순</option>
-                                  <option value="eval">예비 평점 순</option>
-                                </select>
-                        </div>
                     </div>
                 </div>
             </div>
