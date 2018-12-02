@@ -83,7 +83,7 @@ color: rgba(0,0,0,.84);
 /* logout-modal CSS */
 
 .logout-body {
-	padding: 0 20% 10% 20%;
+	padding: 0 20% 10% 20% !important;
 	display: inherit;
 }
 
@@ -193,16 +193,22 @@ input[type="checkbox"] {
 
 .show {display: block;}
 
-/* Style the form */
+/* deposit Modal CSS */
 
 #regForm {
   background-color: #ffffff;
-  margin: 100px auto;
-  padding: 40px;
+  margin: 50px auto 5px auto;
   width: 70%;
   min-width: 300px;
 }
 
+.modal-content .modal-body .deposit-cancel {
+	width: 83%;
+}
+
+.deposit-body {
+	margin-bottom: 5%;
+}
 /* Style the input fields */
 
 input {
@@ -296,8 +302,8 @@ input.invalid {
 
 .profile-img {
 	margin-top: 10%;
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 }
 
 .profile-row {
@@ -312,11 +318,16 @@ input.invalid {
 	margin-bottom: 5%;
 }
 
+.my-deposit-inform {
+	margin: 0 auto;
+}
+
 /* popup을 위한 css */
 
 #popup-message-login-success, 
 #popup-message-logout-success, 
-#popup-message-create-deposit-success {
+#popup-message-create-deposit-success,
+#popup-message-change-profile-success {
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
@@ -334,7 +345,8 @@ input.invalid {
 
 #popup-message-login-success.show, 
 #popup-message-logout-success.show, 
-#popup-message-create-deposit-success.show {
+#popup-message-create-deposit-success.show,
+#popup-message-change-profile-success.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;

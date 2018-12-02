@@ -64,8 +64,6 @@
                     <img class="card-img-top profile-img" src="/user/profile/${user.id }" alt="Card image cap">
                   </div>
 				  <div class="card-body">
-				    <h5 class="card-title">내 정보</h5>
-				    <h6 class="card-subtitle mb-2 text-muted">${user.nickname}</h6>
 				    <div class="uploadDiv">
                       <input type="file" name="uploadFile" multiple>
                       <button id="uploadBtn">Upload</button>
@@ -74,28 +72,51 @@
 				</div>
             
                 <div class="card card-inform">
-				  <div class="card-body">
-				    <h5 class="card-title">상세 정보</h5>
+                  <ul class="list-group list-group-flush mb-0">
+                    <li class="list-group-item mt-0"><h4>상세 정보</h4></li>
+                  </ul>
+				  <div class="card-body pt-0">
+				    <h4 class="card-title">이름</h4>
 				    <p class="card-text">${user.name}</p>
+                    <h4 class="card-title">전화번호</h4>
 				    <p class="card-text">${user.phone}</p>
+                    <h4 class="card-title">닉네임</h4>
+                    <p class="card-text">${user.nickname}</p>
+                    <h4 class="card-title">실 계좌</h4>
+                    <p class="card-text">${user.acc_num}</p>
+                    <h4 class="card-title">가상 계좌</h4>
+                    <c:choose>
+                      <c:when test="${empty user.vt_acc_num }">
+                        <p class="card-text">개설된 가상계좌가 없습니다.</p>
+                      </c:when>
+                      <c:otherwise>
+                        <p class="card-text">${user.vt_acc_num}</p>
+                      </c:otherwise>
+                    </c:choose>
 				  </div>
-				  <ul class="list-group list-group-flush">
-				  	<li class="list-group-item">실 계좌</li>
-				    <li class="list-group-item">${user.acc_num}</li>
-				    <li class="list-group-item">가상 계좌</li>
-				    <li class="list-group-item">${user.vt_acc_num}</li>
-				  </ul>
 				</div>
 
 				<div class="card card-inform">
-				  <div class="card-body">
-				    <h5 class="card-title">총 이자률</h5>
+                  <ul class="list-group list-group-flush mb-0">
+                    <li class="list-group-item mt-0"><h4>투자 정보</h4></li>
+                  </ul>
+				  <div class="card-body pt-0">
+				    <h4 class="card-title">총 이자율</h4>
 				    <c:set var="profit" value="${userStatus.totalProfit*100}"/>
 				    <p class="card-text" style="color: blue">${profit}%</p>
 				    </div>
 				    <div class="card-body">
-				  	<h5 class="card-title">총 적금액</h5>
-				  	<p class="card-text" style="color: blue"><fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
+				  	<h4 class="card-title">총 적금액</h4>
+				  	<p class="card-text" style="color: blue">
+                    <c:choose>
+                      <c:when test="${empty userStatus.totalMoney }">
+                        0원
+                      </c:when>
+                      <c:otherwise>
+                        <fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
+                      </c:otherwise>
+                    </c:choose>
+                      
 					</div>				  
 				</div>	
               </div>	
@@ -103,94 +124,95 @@
         </div>
         <div>
           <div class="container">
-			<div class="row" >
-				<div class="col-12 text-center">
-				<h2>나의 상세 적금 정보</h2>
-				</div>
-			</div>
-			
-			<div class="row col-12">
-			  <ul class="nav nav-tabs" style="width: 100%">
-			    <li class="active"><a data-toggle="tab" href="#deposit">적금현황</a></li>
-			    <li><a data-toggle="tab" href="#graph">수익률 그래프</a></li>
-			    <li><a data-toggle="tab" href="#comp-list">투자 기업 리스트</a></li>
-			  </ul>
-			  <div class="tab-content">
-			    <div id="deposit" class="tab-pane fade in active">
-				<div class="col-12">
-	                   <!-- Section Heading -->
-	                   <div class="section-heading">
-	                       <h2>적금현황</h2>
-	                       <p>나의 적금현황</p>
-	                   </div>
-	                   <p>당신의 적금현황을 보여드립니다. 여러 기업에 호감도와 적금을 투자하셔서 12개월 만기를 채우시면 기존 이율보다 높은 수익률을 느끼실 수 있습니다.</p>
-	
-	                   <!-- Progress Bar Content Area -->
-                       <p>만기 도달 개월수(%)</p>
-	                   <div class="progress">
-						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" id="prog-date" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-						    50% Complete (info)
-						  </div>
-						</div>
-	               </div>
-			    </div>
-			    <!-- 수익률 그래프 그려져야 하는 부분 -->
-			    <div id="graph" class="tab-pane fade">
-			      <h3>수익률 그래프</h3>
-			      <div class="container">
-
-				    <div class="row my-2">
-				        <div class="col-md-12">
-				            <div class="card">
-				                <div class="card-body" style="width: 60%">
-			                		<h4>월별 적립금액 / 월별 수익금</h4>
-				                    <canvas id="chLine" height="200"></canvas>
-				                </div>
-				                <div class="card-body" style="width: 60%">
-				                	<h4>월별 이자 상승률</h4>
-				                    <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				  </div>
-			    </div>
-			    
-			    <!-- 투자한 기업 리스트 보여줘야 하는 부분 -->
-			    <div id="comp-list" class="tab-pane fade">
-			      <h3>투자 기업 리스트</h3>
-			      <div class="container">
-				  <h2>기업 현황</h2>
-				  <h4>기간 선택</h4>
-				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;" >
-				  <label for="fromDate">시작일</label>
-				  <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-				</div>
-				
-				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;">
-				  <label for="toDate">종료일</label>
-		       	  <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-				</div>
-			    <input type="button" style="width: 90.5%" class="btn btn-success btn-block" value="검색하기" id="send-date-btn"/>
-				  <table class="table table-striped">
-				    <thead>
-				      <tr>
-				        <th>투자한 날짜</th>
-				        <th>사업 주제</th>
-				        <th>투자한 기업</th>
-				        <th>투자한 적금 금액</th>
-				        <th>모금 달성률</th>
-				      </tr>
-				    </thead>
-				    <tbody id="table-body-in">
-				    <!-- 여기에 들어가면돼 -->
-				    </tbody>
-				  </table>
-				</div>
-			    </div>
-			  </div>
-			</div>	
-        </div>
+            <div class="col-10 my-deposit-inform">
+    			<div class="row" >
+    				<div class="col-12 text-center">
+    				<h2>나의 상세 적금 정보</h2>
+    				</div>
+    			</div>
+    			
+    			<div class="row">
+    			  <ul class="nav nav-tabs" style="width: 100%">
+    			    <li class="active"><a data-toggle="tab" href="#deposit">적금현황</a></li>
+    			    <li><a data-toggle="tab" href="#graph">수익률 그래프</a></li>
+    			    <li><a data-toggle="tab" href="#comp-list">투자 기업 리스트</a></li>
+    			  </ul>
+    			  <div class="tab-content" style="width: 100%">
+    			    <div id="deposit" class="tab-pane fade in active">
+    				<div class="col-12">
+    	                   <!-- Section Heading -->
+    	                   <div class="section-heading">
+    	                       <h2>나의 적금현황</h2>
+    	                   </div>
+    	                   <p>당신의 적금현황을 보여드립니다. 여러 기업에 호감도와 적금을 투자하셔서 12개월 만기를 채우시면 기존 이율보다 높은 수익률을 느끼실 수 있습니다.</p>
+    	
+    	                   <!-- Progress Bar Content Area -->
+                           <p>만기 도달 개월수(%)</p>
+    	                   <div class="progress">
+    						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" id="prog-date" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+    						    50% Complete (info)
+    						  </div>
+    						</div>
+    	               </div>
+    			    </div>
+    			    <!-- 수익률 그래프 그려져야 하는 부분 -->
+    			    <div id="graph" class="tab-pane fade">
+    			      <h3 class="ml-15">수익률 그래프</h3>
+    			      <div class="container">
+    
+    				    <div class="row my-2">
+    				        <div class="col-md-12">
+    				            <div class="card">
+    				                <div class="card-body" style="width: 60%">
+    			                		<h4>월별 적립금액 / 월별 수익금</h4>
+    				                    <canvas id="chLine" height="200"></canvas>
+    				                </div>
+    				                <div class="card-body" style="width: 60%">
+    				                	<h4>월별 이자 상승률</h4>
+    				                    <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+    				                </div>
+    				            </div>
+    				        </div>
+    				    </div>
+    				  </div>
+    			    </div>
+    			    
+    			    <!-- 투자한 기업 리스트 보여줘야 하는 부분 -->
+    			    <div id="comp-list" class="tab-pane fade">
+    			      <h3 class="ml-15">투자 기업 리스트</h3>
+    			      <div class="container">
+    				  <h2>기업 현황</h2>
+    				  <h4>기간 선택</h4>
+    				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;" >
+    				  <label for="fromDate">시작일</label>
+    				  <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    				</div>
+    				
+    				<div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;">
+    				  <label for="toDate">종료일</label>
+    		       	  <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    				</div>
+    			    <input type="button" style="width: 90.5%" class="btn btn-success btn-block" value="검색하기" id="send-date-btn"/>
+    				  <table class="table table-striped">
+    				    <thead>
+    				      <tr>
+    				        <th>투자한 날짜</th>
+    				        <th>사업 주제</th>
+    				        <th>투자한 기업</th>
+    				        <th>투자한 적금 금액</th>
+    				        <th>모금 달성률</th>
+    				      </tr>
+    				    </thead>
+    				    <tbody id="table-body-in">
+    				    <!-- 여기에 들어가면돼 -->
+    				    </tbody>
+    				  </table>
+    				</div>
+    			    </div>
+    			  </div>
+    			</div>	
+            </div>
+          </div>
       </div>
     </section>
     
@@ -201,7 +223,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
     <!-- jQuery-2.2.4 js -->
-    <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script> -->
     <!-- Popper js -->
     <script src="/resources/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -515,6 +537,7 @@
 		});
 	 }
 	 
+	 /* 프로필 사진 업로드 메서드 */
 	 $("#uploadBtn").on("click", function(e) {
 		 var formData = new FormData();
 		 var inputFile = $("input[name='uploadFile']");
@@ -530,6 +553,7 @@
 			type: 'POST',
 			success: function(result) {
 				window.location.reload();
+				sessionStorage.flag = "popup-message-change-profile-success";
 			}
 		});
 	 })
