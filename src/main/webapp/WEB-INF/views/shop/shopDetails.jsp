@@ -93,7 +93,6 @@
 
             </div>
           </div>
-
           <div class="col-12 col-md-6">
             <div class="single_product_desc">
               <h4 class="title">

@@ -85,4 +85,7 @@ window.channelPluginSettings = {
     }
 })();
 
+$('#loanBtn').click(function(){
+	location.href = "/loan";
+});
 

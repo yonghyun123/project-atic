@@ -116,4 +116,11 @@ public class CommonController {
 		return "admin/admin";
 	}
 	
+	@RequestMapping(value = "/loan", method = RequestMethod.GET)
+	public String getLoanPage(Locale locale, Model model) {
+		log.info("Welcome loan-main");		
+		return "loan/main";
+	}
+	
+	
 }
