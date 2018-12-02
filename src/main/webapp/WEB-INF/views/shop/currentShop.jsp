@@ -31,9 +31,9 @@
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
     
     <!-- ##### slide Area Start ##### -->
-    <div style="height: 90px"></div>
+    <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
     <section class="sector01" id="shop-sec">
-      <nav id="investNav"style="height: 10%">
+      <nav id="investNav"style="height: 11% " >
         <ul>
           <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
           <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>
