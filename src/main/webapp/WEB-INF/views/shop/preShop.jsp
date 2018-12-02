@@ -33,14 +33,14 @@
     <!-- ##### slide Area Start ##### -->
     <div style="height: 66px;  border-bottom: 1px solid #ebebe0"></div>
     <section class="sector01" id="shop-sec">
-      <nav id="investNav"style="height: 11%">
+      <nav id="investNav">
         <ul>
           <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
           <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>
           <li class="monthProject"><a href="/shop/preShop" class="navText">오픈예정</a></li>
         </ul>
       </nav>
-      <div class="col-md-12 shop-slide-row" style="height: 90%">
+      <div class="shop-slide-row">
         <div>
           <div class="single-item">
             <a href="/shop/detail/pre/12" style="background-image: url('/resources/img/slider-img/shop-slide1.png')">
@@ -82,7 +82,7 @@
                     <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
                         <!-- Shop Page Count -->
                         <div class="shop-page-count" id="countBody">
-                            <p>진행중인 펀딩이 <c:out value="${preList.size() }"/>건 있습니다</p>
+                            <p>오픈예정인 펀딩이 <c:out value="${preList.size() }"/>건 있습니다</p>
                         </div>
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
@@ -101,29 +101,38 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row" id="templateBody">
-                <c:forEach var="project" items="${preList }" varStatus="status">
-                        <div class="col-12 col-sm-6 col-lg-4">
-                          <div class="single-product-area mb-50">
-                              <!-- Product Image -->
-                              <div class="product-img">
-                                 <a href="/shop/detail/pre/${project.id }">
-                                  <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
-                                  <!-- Product Tag -->
-                                  <div class="product-tag">
-                                      <a href="#">Hot</a>
-                                  </div>
-                   
-                              </div>
-                              <!-- Product Info -->
-                              <div class="product-info mt-15 text-center">
-                                  <a href="/shop-details">
-                                      <h6> ${project.name } </h6>
-                                  </a>
-                                  <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
-                              </div>
+                        <c:choose>
+                          <c:when test="${not empty preList }">
+                            <c:forEach var="project" items="${preList }" varStatus="status">
+                              <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-area mb-50">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                       <a href="/shop/detail/pre/${project.id }">
+                                        <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
+                                        <!-- Product Tag -->
+                                        <div class="product-tag">
+                                            <a href="#">Hot</a>
+                                        </div>
+                         
+                                    </div>
+                                    <!-- Product Info -->
+                                    <div class="product-info mt-15 text-center">
+                                        <a href="/shop-details">
+                                            <h6> ${project.name } </h6>
+                                        </a>
+                                        <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                                    </div>
+                                </div>
+                                </div>
+                              </c:forEach>
+                            </c:when>
+                          <c:otherwise>
+                          <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
+                            <div style="width:100%"><h1>오픈예정인 프로젝트가 존재하지 않습니다.</h1></div>
                           </div>
-                          </div>
-                    </c:forEach>
+                          </c:otherwise>
+                        </c:choose>
                         </div>
                     </div>
                 </div>

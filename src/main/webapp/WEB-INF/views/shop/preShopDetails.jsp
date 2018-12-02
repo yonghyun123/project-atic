@@ -144,7 +144,7 @@ flex-direction: row;
                 <form class="cart clearfix d-flex align-items-center"
                   method="post">
                   <input type="button" id="pushAlert" value="알림 신청하기"
-                    class="btn alazea-btn ml-15" >
+                    class="btn alazea-btn" >
                 </form>
               </div>
               <div id="graph" class="tab-pane">
@@ -196,7 +196,7 @@ flex-direction: row;
                   <p>
                     <c:out value="${project.description }" />
                   </p>
-                  <p>
+                  <p class="text-center">
                     <img
                       src="/resources/img/project-image/<c:out value="${project.id }"/>_et_1.png">
                     <img

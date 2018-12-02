@@ -45,7 +45,7 @@
   <!-- ##### slide Area Start ##### -->
   <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
   <section class="sector01" id="shop-sec">
-    <nav id="investNav" style="height: 11%;">
+    <nav id="investNav"">
       <ul>
         <li id="investMain"><a href="/shop/" class="navText">펀딩
             홈</a></li>
@@ -55,7 +55,7 @@
           class="navText">오픈예정</a></li>
       </ul>
     </nav>
-    <div class="col-md-12 shop-slide-row" style="height: 90%">
+    <div class="shop-slide-row">
       <div>
         <div class="single-item">
           <a href="/shop/detail/pre/12"
