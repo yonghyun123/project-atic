@@ -370,6 +370,39 @@ flex-direction: row;
            //
         $("#pushAlert").click(function() {
             $("#user-Eval").modal('show');
+            
+            var authNum = 0;
+            $("#authPre").on("click", function(){
+            	var email = $("#EmailAddress").val();
+            	alert("인증번호가 발송되었습니다.");
+            	$.ajax({
+            		url : "/email/preauth",
+            		type : "post",
+            		async : false,
+            		data : {
+            			email : email
+            		},
+            		dataType : "text",
+            		success : function(data){
+            			var jsonData = JSON.parse(data);
+            			authNum = jsonData.authNum;
+            		}
+            	})
+            })
+            
+            $("#authPreB").on("click",function(){
+            	if($("#authPreNum").val() == authNum){
+     			   document.getElementById("nextBtnPre").disabled = false;
+     			  $("#nextBtnPre").on("click", function() {
+						//invest();
+						nextPrev(0);
+					})
+					alert("인증번호가 일치합니다.");
+            	}else{
+            		alert("인증번호가 일치하지 않습니다.");
+            	}
+            })
+            
 
          });
          
@@ -481,11 +514,14 @@ flex-direction: row;
             // ... and fix the Previous/Next buttons:
             if (n == 0) {
                document.getElementById("prevBtnPre").style.display = "none";
+               document.getElementById("nextBtnPre").disabled = true;
             } else {
                document.getElementById("prevBtnPre").style.display = "inline";
             }
             if (n == (x.length - 1)) {
                document.getElementById("nextBtnPre").innerHTML = "Submit";
+			   //document.getElementById("nextBtnPre").disabled = true;
+			  
             } else {
                document.getElementById("nextBtnPre").innerHTML = "Next";
             }

@@ -214,9 +214,9 @@ public class ProjectController {
 	@PostMapping("/preEval/{projectId}/{loginId}")
 	public String userEvaluate(@PathVariable("loginId") String loginId, @PathVariable("projectId") String projectId,
 			@RequestParam("profit") String profit, @RequestParam("stable") String stable,
-			@RequestParam("potential") String potential, @RequestParam("favor") String favor) {
+			@RequestParam("potential") String potential, @RequestParam("favor") String favor, @RequestParam("EmailAddress") String userEmail) {
 		UserEval userEval = new UserEval(loginId, projectId, stable, profit, favor, potential);
-		userEvalService.createUserEval(userEval);
+		userEvalService.createUserEval(userEval, userEmail);
 		return "redirect:/shop/detail/pre/" + projectId;
 	}
 

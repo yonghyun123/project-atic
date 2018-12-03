@@ -724,7 +724,7 @@
 				var authNum = 0;
 				$("#auth").on("click", function() {
 					var email = $("#email").val();
-					alert(email);
+					alert("인증번호가 발송되었습니다.");
 					$.ajax({
 						url : "/email/auth",
 						type : "post",
@@ -734,7 +734,7 @@
 						},
 						dataType : "text",
 						success : function(data) {
-							console.log(data);
+							//console.log(data);
 							var jsonData = JSON.parse(data);
 							authNum = jsonData.authNum;
 						}

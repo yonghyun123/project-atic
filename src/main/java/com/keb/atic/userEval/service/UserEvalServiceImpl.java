@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.keb.atic.userEval.domain.UserEval;
 import com.keb.atic.userEval.mapper.UserEvalMapper;
+import com.keb.atic.userReservation.domain.UserReservation;
+import com.keb.atic.userReservation.mapper.UserReservationMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -16,10 +18,19 @@ import lombok.extern.log4j.Log4j;
 public class UserEvalServiceImpl implements UserEvalService {
 	@Inject
 	UserEvalMapper userEvalMapper;
+	@Inject
+	UserReservationMapper userReservationMapper;
 
 	@Override
-	public void createUserEval(UserEval userEval) {
+	public void createUserEval(UserEval userEval, String userEmail) {
 		userEvalMapper.createUserEval(userEval);
+		String userId = userEval.getUser_id();
+		String projectId = userEval.getProject_id();
+		UserReservation userRes = new UserReservation();
+		userRes.setProjectId(projectId);
+		userRes.setUserId(userId);
+		userRes.setUserEmail(userEmail);
+		userReservationMapper.createReservation(userRes);
 	}
 
 	@Override

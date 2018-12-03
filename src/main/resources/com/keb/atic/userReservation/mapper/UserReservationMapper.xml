@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keb.atic.userReservation.mapper.UserReservationMapper">
+
+	<insert id="createReservation">
+	INSERT  INTO
+	at_user_reservation 
+       ( 
+              id, 
+              user_id, 
+              project_id, 
+              user_email, 
+              create_date 
+       )
+	VALUES  ( 
+              user_reservation_id_seq.NEXTVAL, 
+              #{userId},
+              #{projectId},
+              #{userEmail},
+              sysdate
+       )
+	</insert>
+	
+	<select id="userList" resultType="com.keb.atic.userReservation.domain.UserReservation">
+	SELECT UNIQUE user_id as "userId",
+	user_email as "userEmail"
+	FROM   at_user_reservation 
+	WHERE  To_char(create_date, 'yyyymm') = To_char(SYSDATE, 'yyyymm') 
+	</select>
+	
+	<select id="reservationList" resultType="com.keb.atic.userReservation.domain.UserReservation">
+	SELECT  
+       p.name as "projectName" 
+	FROM   at_user_reservation ur 
+       join at_project p 
+         ON ur.project_id = p.id 
+	WHERE  ur.user_id = #{userId}
+       AND To_char(ur.create_date, 'yyyymm') = To_char(SYSDATE, 'yyyymm')
+	</select>
+	
+</mapper>
