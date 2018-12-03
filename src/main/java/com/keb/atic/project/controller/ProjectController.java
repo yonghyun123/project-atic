@@ -201,7 +201,6 @@ public class ProjectController {
 		} else {
 			preMap.put("month", String.valueOf(nextMonth));
 		}
-		preMap.put("month", String.valueOf(nextMonth));
 		preMap.put("count", "20");
 		model.addAttribute("preList", projectService.readMonthProjectByGoal(preMap));
 		model.addAttribute("project", projectService.readProject(projectId));
