@@ -62,11 +62,15 @@ public class UserController {
 	@GetMapping(value="/mypage/{id}")
 	public String getMyInfoById(Model model, @PathVariable("id") String userId) throws Exception{
 		UserStatus userStatus = userStatusService.getMaxStatus(userId);
+		int listSize = userProjectService.readUserProjectsByUser(userId).size();
+		UserProject project = userProjectService.readUserProjectsByUser(userId).get(listSize - 1);
 		User user = userService.readUser(userId);
+		
 		log.info(userStatus);
 		log.info(user);
 		
 		model.addAttribute("userStatus",userStatus);
+		model.addAttribute("date", project.getCreateDate());
 		model.addAttribute("user",user);
 		return "my-page/mypage";
 	}

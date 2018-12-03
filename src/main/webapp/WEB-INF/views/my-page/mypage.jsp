@@ -246,17 +246,17 @@
     	var year= now.getFullYear();  
     	var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);  
     	var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();  
-    	var curDate = year + '-'+ mon+ '-' + day
-    	var lastDate = "2019-06-30";
+    	var curDate = year + '-' + mon + '-' + day;
+    	var lastDate = "${date}";
         var arr1 = curDate.split('-');
         var arr2 = lastDate.split('-');
         var dat1 = new Date(arr1[0], arr1[1], arr1[2]);
-        var dat2 = new Date(arr2[0], arr2[1], arr2[2]);
+        var dat2 = new Date(parseInt(arr2[0]) + 1, arr2[1], arr2[2]);
         var diff = dat2 - dat1;
         var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
         var difDate = parseInt(diff/currDay);
+        const datePerc = Math.round((365 - difDate) / 365 * 100,2) + "%";
         
-        const datePerc = Math.round(difDate / 365 * 100,2) + "%";
         //percent 동적삽입
         $("#prog-date").css("width",datePerc);
         $("#prog-date").text(datePerc+"달성!");
