@@ -267,6 +267,18 @@ input.invalid {
 	height: 360px;
 }
 
+#rankingList a:hover {
+	color: #70c745 !important;
+}
+
+.fadeInUp:hover {
+	color: #70c745 !important;
+} 
+
+ol > li > em {
+	height: 8%;
+}
+
 /* shop CSS */
 
 #shop-sec {
@@ -330,12 +342,27 @@ input.invalid {
 	margin: 0 auto;
 }
 
+#send-date-btn {
+	width: 10%;
+	display: inline-block;
+	vertical-align: bottom;
+	padding: 0.4% 0;
+}
+
+/* preShopDetails CSS */
+
+.navText:hover {
+  	color: black;
+  	text-decoration:none;
+}
+
 /* popup을 위한 css */
 
 #popup-message-login-success, 
 #popup-message-logout-success, 
 #popup-message-create-deposit-success,
-#popup-message-change-profile-success {
+#popup-message-change-profile-success,
+#popup-message-deposit-success {
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
@@ -354,7 +381,8 @@ input.invalid {
 #popup-message-login-success.show, 
 #popup-message-logout-success.show, 
 #popup-message-create-deposit-success.show,
-#popup-message-change-profile-success.show {
+#popup-message-change-profile-success.show,
+#popup-message-deposit-success.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;

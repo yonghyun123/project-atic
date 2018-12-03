@@ -170,20 +170,20 @@
     			    
     			    <!-- 투자한 기업 리스트 보여줘야 하는 부분 -->
     			    <div id="comp-list" class="tab-pane fade">
-    			      <h3 class="ml-15">투자 기업 리스트</h3>
     			      <div class="container">
-      				    <h2>기업 현황</h2>
-      				    <h4>기간 선택</h4>
-      				      <div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;" >
-    				        <label for="fromDate">시작일</label>
-    				        <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-    				      </div>
-    				
-    				    <div class="input-group input-group-sm mb-3" style="width: 45%; display: inline-block;">
-    				      <label for="toDate">종료일</label>
-    		       	      <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-    				    </div>
-    			        <input type="button" style="width: 90.5%" class="btn btn-success btn-block" value="검색하기" id="send-date-btn"/>
+      				    <h2>기간 검색</h2>
+                        <div class="col-md-12 pl-0 mb-3">
+      				      <div class="input-group input-group-sm" style="width: 15%; display: inline-block;" >
+      				          <label for="fromDate">시작일</label>
+      				        <input type="text" class="form-control" name="fromDate" id="fromDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      				      </div>
+  				
+    				      <div class="input-group input-group-sm" style="width: 15%; display: inline-block;">
+  				            <label for="toDate">종료일</label>
+  		       	            <input type="text" class="form-control" name="toDate" id="toDate" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  				          </div>
+                          <input type="button" class='btn btn-success btn-block' value="검색하기" id="send-date-btn"/>
+                        </div>
     				    <table class="table table-striped">
       				      <thead>
       				        <tr>

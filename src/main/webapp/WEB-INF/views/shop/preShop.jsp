@@ -103,13 +103,13 @@
                                         <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
                                         <!-- Product Tag -->
                                         <div class="product-tag">
-                                            <a href="#">Hot</a>
+                                            <a href="/shop/detail/pre/${project.id }">Hot</a>
                                         </div>
                          
                                     </div>
                                     <!-- Product Info -->
                                     <div class="product-info mt-15 text-center">
-                                        <a href="/shop-details">
+                                        <a href="/shop/detail/pre/${project.id }">
                                             <h6> ${project.name } </h6>
                                         </a>
                                         <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
