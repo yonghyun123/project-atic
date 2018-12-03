@@ -63,7 +63,7 @@ color: rgba(0,0,0,.84);
 /* login-modal CSS */
 
 .modal-dialog {
-	margin-top: 15% !important;
+	margin-top: 15%;
 	max-width: 400px;
 }
 

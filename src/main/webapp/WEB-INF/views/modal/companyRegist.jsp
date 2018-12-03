@@ -6,7 +6,7 @@
   <!-- Modal -->
   <div class="modal fade" id="com-Reg" role="dialog" tabindex="-1"
     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" id="detailModal" style="margin-top: 5%">
+    <div class="modal-dialog" id="detailModal">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-body">
@@ -56,7 +56,7 @@
               <div>
                <p>사업자 번호:</p>
               <input type="text" placeholder="-빼고 입력"
-                 id="comNum" class="regText">
+                 id="comNum" name="comNum" class="regText">
                 <p>사업자등록증 상의 사업자 번호를 입력해주세요.</p>
               </div>
             </div>
