@@ -1,6 +1,5 @@
 package com.keb.atic.common.controller;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Properties;
@@ -85,29 +84,34 @@ public class SchedulerController {
 			System.out.println(userStatus.toString());
 			userStatusService.createUserStatus(userStatus);
 		}
+		
+		List<UserReservation> list = userReservationService.userList();
+		for (UserReservation userReservation : list) {
+			String userId2 = userReservation.getUserId();
+			String email = userReservation.getUserEmail();
+			List<UserReservation> resList = userReservationService.reservationList(userId2);
+			sendEmail(email, resList);
+		}
 
 	}
 
-	@Scheduled(cron = "*/30 * * * * *")
-	public void sendReservation() {
-		System.out.println("실행되따!!!!!!!!!!!!!");
-		Calendar cal = Calendar.getInstance();
-		System.out.println(cal.get(Calendar.DATE));
-		System.out.println(cal.getActualMaximum(Calendar.DATE));
-		// 오늘이 월의 마지막 일인지 확인
-		boolean isLastDay = cal.get(Calendar.DATE) == cal.getActualMaximum(Calendar.DATE);
-		//if (isLastDay) {
-			// 실행 내용
-			List<UserReservation> list = userReservationService.userList();
-			for (UserReservation userReservation : list) {
-				String userId = userReservation.getUserId();
-				String email = userReservation.getUserEmail();
-				List<UserReservation> resList = userReservationService.reservationList(userId);
-				sendEmail(email, resList);
-			}
-			
-		}
-	//}
+//	@Scheduled(cron = "*/30 * * * * *")
+//	public void sendReservation() {
+//		Calendar cal = Calendar.getInstance();
+//		// 오늘이 월의 마지막 일인지 확인
+//		boolean isLastDay = cal.get(Calendar.DATE) == cal.getActualMaximum(Calendar.DATE);
+//		//if (isLastDay) {
+//			// 실행 내용
+//			List<UserReservation> list = userReservationService.userList();
+//			for (UserReservation userReservation : list) {
+//				String userId = userReservation.getUserId();
+//				String email = userReservation.getUserEmail();
+//				List<UserReservation> resList = userReservationService.reservationList(userId);
+//				sendEmail(email, resList);
+//			}
+//			
+//		}
+//	//}
 	
 	private void sendEmail(String email, List<UserReservation> list) {
 		String host = "smtp.gmail.com";
@@ -116,13 +120,16 @@ public class SchedulerController {
 		String from = "gmlwls008@gmail.com";
 		String to1 = email;
 		
-		String content = "예약하신 프로젝트 투자가 곧 시작됩니다! "+"<br>"
-				+ "고객님께서 알림 신청하신 프로젝트 입니다."+"<br>"
-				+ "=============================="+"<br>";
+		
+		String content = "<h1>예약하신 프로젝트 투자가 곧 시작됩니다! </h1>"+"<br>"
+				+ "<h2>고객님께서 알림 신청하신 프로젝트 입니다.</h2>"+"<br>"
+				+ "======================================================================"+"<br><br>";
 		for (UserReservation userReservation : list) {
 			String projectName = userReservation.getProjectName();
-			content += projectName+"<br>";
+			String projectId = userReservation.getProjectId();
+			content += "<h3><a href='http://localhost/shop/detail/"+projectId+"'>"+projectName+"</a></h3><br>";
 		}
+		
 		
 		try {
 			Properties props = new Properties();
