@@ -467,7 +467,7 @@
 			}
 
 			function connect() {
-				wsocket = new WebSocket("ws://localhost:9090/hanaSocket");
+				wsocket = new WebSocket("ws://localhost/hanaSocket");
 				wsocket.onopen = onOpen;
 				wsocket.onmessage = onMessage;
 				wsocket.onclose = onClose;

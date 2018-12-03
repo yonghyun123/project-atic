@@ -16,7 +16,7 @@
 <div class="preloader d-flex align-items-center justify-content-center">
   <div class="preloader-circle"></div>
   <div class="preloader-img">
-    <img src="/resources/img/core-img/leaf.png" alt="">
+    <img src="/resources/img/hanalogo.png" alt="">
   </div>
 </div>
 
@@ -32,7 +32,7 @@
 
           <!-- Nav Brand -->
           <a href="/" class="nav-brand"><img
-            src="/resources/img/aticLogo.png" style="height: 90px; width: 150px"></a>
+            src="/resources/img/logoss.png" style="height: 90px; width: 200px"></a>
 
           <!-- Navbar Toggler -->
           <div class="classy-navbar-toggler">
