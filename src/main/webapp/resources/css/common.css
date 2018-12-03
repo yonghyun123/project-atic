@@ -208,12 +208,13 @@ input[type="checkbox"] {
 }
 
 .modal-content .modal-body .deposit-cancel {
-	width: 83%;
+	width: 70%;
 }
 
 .deposit-body {
 	margin-bottom: 5%;
 }
+
 /* Style the input fields */
 
 input {
