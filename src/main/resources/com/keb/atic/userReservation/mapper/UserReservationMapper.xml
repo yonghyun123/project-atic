@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="reservationList" resultType="com.keb.atic.userReservation.domain.UserReservation">
-	SELECT  
+	SELECT  ur.project_id as "projectId",
        p.name as "projectName" 
 	FROM   at_user_reservation ur 
        join at_project p 
