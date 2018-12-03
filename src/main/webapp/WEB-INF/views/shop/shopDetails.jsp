@@ -27,20 +27,32 @@
 
 <!-- table CSS -->
 <link rel="stylesheet" href="/resources/css/shop_detail.css">
+<link rel="stylesheet"
+  href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<style type="text/css">
+.card {
+  flex-direction: row;
+}
+
+</style>
 </head>
 
 <body>
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
+  <div style="height: 90px; border-bottom: 1px solid #ebebe0"></div>
 
   <div class="breadcrumb-area">
-    <nav id="investNav" style="height:6%">
+    <nav id="investNav" style="height: 6%">
       <ul>
-        <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
-        <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>
-        <li class="monthProject"><a href="/shop/preShop" class="navText">오픈예정</a></li>
+        <li id="investMain"><a href="/shop/" class="navText">펀딩
+            홈</a></li>
+        <li class="monthProject"><a href="/shop/currentShop"
+          class="navText">진행중</a></li>
+        <li class="monthProject"><a href="/shop/preShop"
+          class="navText">오픈예정</a></li>
       </ul>
     </nav>
     <!-- Top Breadcrumb Area -->
@@ -127,6 +139,33 @@
                     class="btn alazea-btn">
                 </form>
 
+              </div>
+
+              <div id="graph" class="tab-pane">
+                <div class="container">
+                  <div class="row my-2">
+                    <div class="col-md-12">
+                      <div class="card" style="">
+                        <div class="card-body"
+                          style="width: 40%; display: inline;">
+                          <div id="average"
+                            style="margin-top: 15%; margin-left: 20%;">
+                            <p style="margin-left: 15">평균 평점</p>
+
+                            <div style="margin-left: 20%" id="averPoint">
+                              <h1>4.5</h1>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body"
+                          style="width: 55%; display: inline;">
+                          <canvas id="bar-chart-paral" width="100"
+                            height="50"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="products--meta">
@@ -231,57 +270,11 @@
 
               <div role="tabpanel" class="tab-pane fade" id="evaluation">
                 <div class="reviews_area">
-                  <ul>
-                    <li>
-                      <div class="single_user_review mb-15">
-                        <div class="review-rating">
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <span>for Quality</span>
-                        </div>
-                        <div class="review-details">
-                          <p>
-                            by <a href="#">Colorlib</a> on <span>12
-                              Sep 2018</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="single_user_review mb-15">
-                        <div class="review-rating">
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <span>for Design</span>
-                        </div>
-                        <div class="review-details">
-                          <p>
-                            by <a href="#">Colorlib</a> on <span>12
-                              Sep 2018</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="single_user_review">
-                        <div class="review-rating">
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <span>for Value</span>
-                        </div>
-                        <div class="review-details">
-                          <p>
-                            by <a href="#">Colorlib</a> on <span>12
-                              Sep 2018</span>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+                  <div id="calCount">
+                    <div id="count"></div>
+                  </div>
+                  <ul id="userEvalList">
+
                   </ul>
                 </div>
               </div>
@@ -310,8 +303,7 @@
                     <div class="col-12">
                       <button class="btn alazea-btn"
                         style="margin-bottom: 50px;"
-                        id="review-send-btn">Submit Your
-                        Review</button>
+                        id="review-send-btn">Submit Your Review</button>
                     </div>
                   </div>
 
@@ -374,105 +366,6 @@
             </c:forEach>
           </c:when>
         </c:choose>
-
-        <!-- Product Tag 
-							<div class="product-tag">
-								<a href="#">Hot</a>
-							</div>
-							<div class="product-meta d-flex">
-								<a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-								<a href="cart.html" class="add-to-cart-btn">Add to cart</a> <a
-									href="#" class="compare-btn"><i
-									class="arrow_left-right_alt"></i></a>
-							</div>
-						</div>
-						-->
-        <!-- Product Info 
-						<div class="product-info mt-15 text-center">
-							<a href="shop-details.html">
-								<p>Cactus Flower</p>
-							</a>
-							<h6>$10.99</h6>
-						</div>
-					
--->
-        <!-- Single Product Area 
-				<div class="col-12 col-sm-6 col-lg-3">
-					<div class="single-product-area mb-100">
-						<!-- Product Image 
-						<div class="product-img">
-							<a href="shop-details.html"><img
-								src="/resources/img/bg-img/41.png" alt=""></a>
-							<div class="product-meta d-flex">
-								<a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-								<a href="cart.html" class="add-to-cart-btn">Add to cart</a> <a
-									href="#" class="compare-btn"><i
-									class="arrow_left-right_alt"></i></a>
-							</div>
-						</div>
-						-->
-        <!-- Product Info 
-						<div class="product-info mt-15 text-center">
-							<a href="shop-details.html">
-								<p>Cactus Flower</p>
-							</a>
-							<h6>$10.99</h6>
-						</div>
-					</div>
-				</div>
--->
-        <!-- Single Product Area 
-				<div class="col-12 col-sm-6 col-lg-3">
-					<div class="single-product-area mb-100">
-						<!-- Product Image 
-						<div class="product-img">
-							<a href="shop-details.html"><img
-								src="/resources/img/bg-img/42.png" alt=""></a>
-							<div class="product-meta d-flex">
-								<a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-								<a href="cart.html" class="add-to-cart-btn">Add to cart</a> <a
-									href="#" class="compare-btn"><i
-									class="arrow_left-right_alt"></i></a>
-							</div>
-						</div>
-						-->
-        <!-- Product Info 
-						<div class="product-info mt-15 text-center">
-							<a href="shop-details.html">
-								<p>Cactus Flower</p>
-							</a>
-							<h6>$10.99</h6>
-						</div>
-					</div>
-				</div>
--->
-        <!-- Single Product Area 
-				<div class="col-12 col-sm-6 col-lg-3">
-					<div class="single-product-area mb-100">
-					-->
-        <!-- 
-						<div class="product-img">
-							<a href="shop-details.html"><img
-								src="/resources/img/bg-img/43.png" alt=""></a>
-							<div class="product-tag sale-tag">
-								<a href="#">Hot</a>
-							</div>
-							<div class="product-meta d-flex">
-								<a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-								<a href="cart.html" class="add-to-cart-btn">Add to cart</a> <a
-									href="#" class="compare-btn"><i
-									class="arrow_left-right_alt"></i></a>
-							</div>
-						</div>
-						<div class="product-info mt-15 text-center">
-							<a href="shop-details.html">
-								<p>Cactus Flower</p>
-							</a>
-							<h6>$10.99</h6>
-						</div>
-					</div>
-				</div>
- -->
       </div>
     </div>
   </div>
@@ -490,6 +383,11 @@
   <script src="/resources/js/active.js"></script>
   <!-- Common js -->
   <script src="/resources/js/common.js"></script>
+  <!-- char.js -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 
   <script type="my-template" id="review-list">
@@ -500,6 +398,47 @@
 		<h4>{content}</h4>
 	</a>
 	</script>
+
+  <script type="my-template" id="userEval-list">
+   <li>
+     <div class="single_user_review mb-15">
+      <div class="review-rating">
+        <i class="fa fa-star" aria-hidden="true"></i>
+         <span>{totalAvg}</span>
+          </div>
+            <div class="review-details" id="userId">
+              <div id="showAll"><p style="margin-bottom: 0">전체점수 보기 <i class="fa fa-sort-desc"></i></p></div>
+               <div id="totalEval{userID}" style="display:none">
+          <div id="Favor"> 
+          <span>호감도</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Favor}
+          </div>
+          <div id="Growth"> 
+          <span>성장성</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Growth}
+          </div>
+          <div id="Market"> 
+          <span>수익성</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Market}
+          </div>
+          <div id="Stable"> 
+          <span>안정성</span>
+            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+            {Stable}
+          </div>
+
+        </div>
+        <p>
+                by <a>{userId}</a>
+                </p>
+                </div>
+                </div>
+             </li>
+  </script>
+
 
   <script type="text/javascript">
 			let wsocket;
@@ -851,6 +790,159 @@
 			connect();
 			onOpen();
 		</script>
+
+  <script type="text/javascript">
+			var evalPageService = (function() {
+				function get(projectId, callback, error) {
+					$.get("/shop/preEval/graph/" + projectId, function(result) {
+						if (callback) {
+							callback(result);
+						}
+
+					}).fail(function(xhr, status, err) {
+						if (error) {
+							error();
+						}
+					});
+				}
+				;
+
+				function getUserEvalList(projectId, callback, error) {
+					$.get("/shop/preEval/eval/" + projectId, function(result) {
+						if (callback) {
+							callback(result);
+						}
+
+					}).fail(function(xhr, status, err) {
+						if (error) {
+							error();
+						}
+					});
+				}
+				;
+
+				return {
+					get : get,
+					getUserEvalList : getUserEvalList
+				};
+			})();
+
+			//페이지 오픈시 graph 데이터를 받기위해 ajax 전송    
+			evalPageService
+					.get(
+							projectId,
+							function(Object) {
+								var test = (Object != null);
+								var userEvalByProject = [];
+								console.log("Object = " + test);
+								if (Object != null) {
+									userEvalByProject
+											.push(Math
+													.round(Object.Market * 100) / 100.0);
+									userEvalByProject
+											.push(Math
+													.round(Object.Stable * 100) / 100.0);
+									userEvalByProject
+											.push(Math
+													.round(Object.Growth * 100) / 100.0);
+									userEvalByProject.push(Math
+											.round(Object.Favor * 100) / 100.0);
+								} else {
+									userEvalByProject = [ 0, 0, 0, 0 ];
+								}
+								$('#averPoint')
+										.html(
+												'<div style="display:inline-block; margin-bottom: 5px"><i class="fa fa-star fa-2x" style="color: #ff9800"></i></div><div style="display:inline-block; margin-left: 10px;"><h3>'
+														+ Math
+																.round(Object.Total * 100)
+														/ 100.0 + '</h3></div>');
+								profitGraph(userEvalByProject);
+
+							});
+
+			//페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
+			evalPageService.getUserEvalList(projectId, function(list) {
+				$('#count').html(
+						'<span>총 <h5>' + list.userEvalList.length
+								+ '개</h5>의 매력도 평가가 있습니다.</span>');
+
+				userEvalListTemplate(list.userEvalList);
+
+				list.userEvalList.forEach(function(v) {
+					if (v.user_id == loginId) {
+						$('#pushAlert').val("신청하신 프로젝트입니다.");
+						$('#pushAlert').attr('disabled', true)
+						$('#pushAlert').attr('class', 'alazea-btn-disable')
+
+					}
+				})
+			});
+
+			//페이지 오픈시 사용자 평가 리스트 반영
+			function userEvalListTemplate(userEvalList) {
+				var originHtml = document.querySelector('#userEval-list').innerHTML;
+				var newHtml = '';
+				userEvalList.forEach(function(v) {
+					newHtml += originHtml.replace('{userId}', v.user_id)
+							.replace('{userID}', v.user_id).replace(
+									'{totalAvg}',
+									Math.round(v.total_avg * 100) / 100.0)
+							.replace('{Favor}',
+									Math.round(v.favor_grade * 100) / 100.0)
+							.replace('{Growth}',
+									Math.round(v.growth_grade * 100) / 100.0)
+							.replace('{Market}',
+									Math.round(v.market_grade * 100) / 100.0)
+							.replace('{Stable}',
+									Math.round(v.stable_grade * 100) / 100.0)
+				});
+				document.querySelector('#userEvalList').innerHTML = newHtml;
+			}
+
+			function profitGraph(userEvalByProject) {
+				/* 수평 바 chart 이윤 증가율 */
+				new Chart(document.getElementById("bar-chart-paral"), {
+					type : 'bar',
+					data : {
+						labels : [ "수익성", "안정성", "성장성", "호감도" ],
+						datasets : [ {
+							label : "점",
+							backgroundColor : [ "#3e95cd", "#8e5ea2",
+									"#3cba9f", "#e8c3b9", "#c45850" ],
+							data : userEvalByProject
+						} ]
+					},
+					options : {
+						legend : {
+							display : false
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									min : 0
+								}
+							} ]
+						},
+						title : {
+							display : true,
+							text : '[매력도 평가(점)]'
+
+						}
+					}
+				});
+			}
+		</script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+		$(document).on("click", "#showAll", function() {
+			if ($(this).next().css("display") == "none") {
+				$(this).next().show();
+			} else {
+				$(this).next().hide();
+			}
+		});
+	});
+    </script>
 </body>
 
 </html>

@@ -29,12 +29,21 @@ public class CommonController {
 	public String home(Locale locale, Model model) {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
+		
 		int nextMonth = thisMonth +1;
 
 		String count = "3";
+		String thisMonthString = null;
+		
+		if(thisMonth < 10) {
+			thisMonthString = "0" + String.valueOf(thisMonth);
+		}else {
+			thisMonthString = String.valueOf(thisMonth);
+		}
 		/**인기 프로젝트 리스트*/
 		Map<String, String>hotMap = new HashMap<String,String>();
-		hotMap.put("month", String.valueOf(thisMonth));
+		
+		hotMap.put("month",thisMonthString);
 		hotMap.put("count", count);
 		/**등록예정 프로젝트 리스트*/
 		Map<String, String>nextMap = new HashMap<String,String>();
@@ -122,7 +131,20 @@ public class CommonController {
 	
 	@RequestMapping(value = "/loan", method = RequestMethod.GET)
 	public String getLoanPage(Locale locale, Model model) {
-		log.info("Welcome loan-main");		
+		log.info("Welcome loan-main");
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
+		String count = "10";
+		String thisMonthString = null;
+		Map<String, String>hotMap = new HashMap<String,String>();
+		if(String.valueOf(thisMonth).length()==1) {
+			thisMonthString = "0" + String.valueOf(thisMonth);
+		}else {
+			thisMonthString = String.valueOf(thisMonth);
+		}
+		hotMap.put("month",thisMonthString);
+		hotMap.put("count", count);
+		model.addAttribute("successProjectList",projectService.readMonthProjectByGoal(hotMap));
 		return "loan/main";
 	}
 	
