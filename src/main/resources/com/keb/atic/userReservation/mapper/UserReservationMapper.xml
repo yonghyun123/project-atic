@@ -26,17 +26,17 @@
 	SELECT UNIQUE user_id as "userId",
 	user_email as "userEmail"
 	FROM   at_user_reservation 
-	WHERE  To_char(create_date, 'yyyymm') = To_char(SYSDATE, 'yyyymm') 
+	WHERE  To_char(create_date, 'yyyymm') = To_char(add_months(sysdate,-1), 'yyyymm') 
 	</select>
 	
 	<select id="reservationList" resultType="com.keb.atic.userReservation.domain.UserReservation">
 	SELECT  ur.project_id as "projectId",
        p.name as "projectName" 
-	FROM   at_user_reservation ur 
+	FROM   at_user_reservation ur
        join at_project p 
          ON ur.project_id = p.id 
 	WHERE  ur.user_id = #{userId}
-       AND To_char(ur.create_date, 'yyyymm') = To_char(SYSDATE, 'yyyymm')
+       AND To_char(ur.create_date, 'yyyymm') = To_char(add_months(sysdate,-1), 'yyyymm')
 	</select>
 	
 </mapper>
