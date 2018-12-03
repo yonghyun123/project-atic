@@ -10,7 +10,7 @@ import com.keb.atic.userEval.domain.UserEval;
  */
 public interface UserEvalService {
 	//userEval 등록
-	public void createUserEval(UserEval userEval);
+	public void createUserEval(UserEval userEval, String userEmail);
 	//사업별 평균 userEval 조회
 	public UserEval readUserEvalAvg(String product_id);
 	//사업별 사용자 평균 userEvalList 조회

@@ -53,10 +53,35 @@ public class MailController {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@PostMapping("/preauth")
+	public String RegisterPrePost(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("application/json; charset=utf-8");
+		String email = request.getParameter("email");
+		String authNum = "";
+		
+		authNum = RandomNum();
+		
+		sendEmail(email.toString(), authNum);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("email", email);
+		jsonObject.put("authNum", authNum);
+		
+		 PrintWriter out = null;
+         try {
+           out = response.getWriter();
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+		out.println(jsonObject.toJSONString());
+		return null;
+	}
+	
 	private void sendEmail(String email, String authNum) {
 		String host = "smtp.gmail.com";
-		String subject = "결제 인증번호 전달";
-		String fromName = "aticManager";
+		String subject = "A-TiC 인증번호 전달";
+		String fromName = "atic-Manager";
 		String from = "gmlwls008@gmail.com";
 		String to1 = email;
 		

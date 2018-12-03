@@ -47,9 +47,7 @@
 					</form>
                     <div class="text-center">
                       <button type="submit" class="btn btn-danger btn-default btn-cancel deposit-cancel"
-                        data-dismiss="modal">
-                        <span class="glyphicon glyphicon-remove"></span> Cancel
-                      </button>
+                        data-dismiss="modal">Cancel</button>
                     </div>
 				</div>
 			</div>

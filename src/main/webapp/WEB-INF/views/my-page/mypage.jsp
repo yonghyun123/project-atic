@@ -55,7 +55,7 @@
                   </div>
 				  <div class="card-body">
 				    <div class="uploadDiv">
-                      <p class="text-center">.png 파일만 업로드 가능합니다.</p>
+                      <p class="text-center" id="upload-text">.png 파일만 업로드 가능합니다.</p>
                       <input type="file" name="uploadFile" id="upload-form" multiple>
                       <button id="uploadBtn" disabled>Upload</button>
                     </div>
@@ -552,7 +552,10 @@
 		 if(inputFile == 'png') {
 			 $("#uploadBtn").attr("disabled", false);
 		 } else {
+			 $("#upload-form").val('');
 			 $("#uploadBtn").attr("disabled", true);
+			 $("#upload-text").css("color", "red");
+			 
 		 }
 	 })
     </script>
