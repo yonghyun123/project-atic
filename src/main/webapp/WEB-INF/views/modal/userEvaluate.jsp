@@ -21,12 +21,12 @@
             <!-- One "tab" for each step in the form: -->
             <div class="preTab">
               <h3 class="preExplainHead">오픈 알림을 신청하시겠어요?</h3>
-              <h3 class="preExplain">push 알림을 위한 휴대폰 번호를 입력해주세요</h3>
-              <p>휴대폰 번호:</p>
-              <input type="text" placeholder="Phone..."
-                oninput="this.className = ''" id="phonNum"> <input
+              <h3 class="preExplain">push 알림을 위한 이메일 주소를 입력해주세요</h3>
+              <p>이메일 주소:</p>
+              <input type="text" placeholder="Email..."
+                oninput="this.className = ''" id="EmailAddress" name="EmailAddress"> <input
                 class="authBtn" type="button" id="authPre"
-                value="휴대전화 인증"> <br>
+                value="이메일 인증"> <br>
               <p>인증 번호:</p>
               <input type="text" placeholder="인증번호를 입력해주세요."
                 oninput="this.className = ''" id="authPreNum"> <input
