@@ -47,7 +47,7 @@
     <div
       class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
       style="background-image: url(/resources/img/bg-img/24.jpg);">
-      <h2>SHOP DETAILS</h2>
+      <h2>PROJECT DETAILS</h2>
     </div>
 
     <div class="container">
@@ -685,6 +685,8 @@
 				case 3000:
 					var price = mObject.message;
 					$("#curprice").text(price);
+					$("#deposit").val("투자하신 프로젝트입니다.");
+					document.getElementById("deposit").disabled = true;
 					//document.getElementById("price").innerHTML = price;
 					break;
 				}
