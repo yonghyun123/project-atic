@@ -241,12 +241,12 @@
 				function addShow(i) {
 					$("#li" + i).addClass('show');
 				}
-
 				test = function() {
 					for (i = 1; i < 6; i++) {
 						(function(x) {
 							setTimeout(function() {
 								addShow(x);
+								
 							}, 700 * x);
 						})(i);
 					}
