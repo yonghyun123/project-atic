@@ -36,16 +36,14 @@
 <link href="/resources/css/slick-theme.css" rel="stylesheet">
 
 <style type="text/css">
-
-.card{
-flex-direction: row;
+.card {
+	flex-direction: row;
 }
 
-.navText:hover{
-  color: black;
-  text-decoration:none;
+.navText:hover {
+	color: black;
+	text-decoration: none;
 }
-
 </style>
 </head>
 
@@ -53,16 +51,19 @@ flex-direction: row;
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
+  <div style="height: 90px; border-bottom: 1px solid #ebebe0"></div>
   <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
-     <nav id="investNav"style="height:6%">
-        <ul>
-          <li id="investMain"><a class="navText" href="/shop/">펀딩 홈</a></li>
-          <li class="monthProject"><a class="navText" href="/shop/currentShop">진행중</a></li>
-          <li class="monthProject"><a class="navText" href="/shop/preShop">오픈예정</a></li>
-        </ul>
-      </nav>
+    <nav id="investNav" style="height: 6%">
+      <ul>
+        <li id="investMain"><a class="navText" href="/shop/">펀딩
+            홈</a></li>
+        <li class="monthProject"><a class="navText"
+          href="/shop/currentShop">진행중</a></li>
+        <li class="monthProject"><a class="navText"
+          href="/shop/preShop">오픈예정</a></li>
+      </ul>
+    </nav>
     <div
       class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
       style="background-image: url(/resources/img/bg-img/24.jpg);">
@@ -144,29 +145,37 @@ flex-direction: row;
                 <form class="cart clearfix d-flex align-items-center"
                   method="post">
                   <input type="button" id="pushAlert" value="알림 신청하기"
-                    class="btn alazea-btn" >
+                    class="btn alazea-btn">
                 </form>
               </div>
+              
               <div id="graph" class="tab-pane">
                 <div class="container">
                   <div class="row my-2">
                     <div class="col-md-12">
                       <div class="card" style="">
-                      <div class="card-body" style="width: 40%; display: inline;">
-                           <div id="average" style="margin-top: 15%; margin-left: 20%;">
-                            <p style="margin-left:15">평균 평점</p>
-                            
-                            <div style="margin-left:20%" id="averPoint"><h1>4.5</h1></div>
+                        <div class="card-body"
+                          style="width: 40%; display: inline;">
+                          <div id="average"
+                            style="margin-top: 15%; margin-left: 20%;">
+                            <p style="margin-left: 15">평균 평점</p>
+
+                            <div style="margin-left: 20%" id="averPoint">
+                              <h1>4.5</h1>
                             </div>
-                       </div>
-                        <div class="card-body" style="width: 55%; display: inline;">
-                          <canvas id="bar-chart-paral" width="100" height="50"></canvas>
+                          </div>
+                        </div>
+                        <div class="card-body"
+                          style="width: 55%; display: inline;">
+                          <canvas id="bar-chart-paral" width="100"
+                            height="50"></canvas>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
@@ -286,17 +295,30 @@ flex-direction: row;
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="responsive" style="width: 100%">
-        <!-- Single Product Area -->
-            <!-- Product Image -->
-          <c:forEach var="project" items="${preList }" varStatus="status">
-              <div class="product-img" style="padding: 0 10px 0 10px;">
-              <a href="/shop/detail/pre/${project.id }"> 
-              <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
-            </div>
-          </c:forEach>  
+          <!-- Single Product Area -->
+          <!-- Product Image -->
+          <c:choose>
+            <c:when test="${not empty preList }">
+              <c:forEach var="project" items="${preList}"
+                varStatus="status">
+                <div class="product-img" style="padding: 0 10px 0 10px;">
+                  <a href="/shop/detail/pre/${project.id }"> <img
+                    src="/resources/img/project-image/${project.fileName }"
+                    alt=""></a>
+                </div>
+              </c:forEach>
+            </c:when>
+            <c:otherwise>
+              <div class="col-12 col-md-12 col-lg-12 text-center"
+                style="margin-bottom: 20px">
+                <div style="width: 100%">
+                  <h1>프로젝트가 존재하지 않습니다.</h1>
+                </div>
+              </div>
+            </c:otherwise>
+          </c:choose>
         </div>
       </div>
     </div>
@@ -365,304 +387,287 @@ flex-direction: row;
              </li>
   </script>
   <script type="text/javascript">
-     var projectId = "${project.id}";
-     var loginId = "${loginId}";
-           //
-        $("#pushAlert").click(function() {
-            $("#user-Eval").modal('show');
-            
-            var authNum = 0;
-            $("#authPre").on("click", function(){
-            	var email = $("#EmailAddress").val();
-            	alert("인증번호가 발송되었습니다.");
-            	$.ajax({
-            		url : "/email/preauth",
-            		type : "post",
-            		async : false,
-            		data : {
-            			email : email
-            		},
-            		dataType : "text",
-            		success : function(data){
-            			var jsonData = JSON.parse(data);
-            			authNum = jsonData.authNum;
-            		}
-            	})
-            })
-            
-            $("#authPreB").on("click",function(){
-            	if($("#authPreNum").val() == authNum){
-     			   document.getElementById("nextBtnPre").disabled = false;
-     			  $("#nextBtnPre").on("click", function() {
-						//invest();
-						nextPrev(0);
-					})
-					alert("인증번호가 일치합니다.");
-            	}else{
-            		alert("인증번호가 일치하지 않습니다.");
-            	}
-            })
-            
+			var projectId = "${project.id}";
+			var loginId = "${loginId}";
+			//
+			$("#pushAlert").click(function() {
+				$("#user-Eval").modal('show');
 
-         });
-         
+			});
 
+			/*
+			javascript AJAX Service(read, put, post...)
+			created by yonghyun
+			 */
+			var evalPageService = (function() {
+				function get(projectId, callback, error) {
+					$.get("/shop/preEval/graph/" + projectId, function(result) {
+						if (callback) {
+							callback(result);
+						}
 
-          /*
-          javascript AJAX Service(read, put, post...)
-          created by yonghyun
-       */
-       var evalPageService = (function() {
-            function get(projectId, callback, error) {
-               $.get("/shop/preEval/graph/"+projectId, function(result) {
-                  if (callback) {
-                     callback(result);
-                  }
+					}).fail(function(xhr, status, err) {
+						if (error) {
+							error();
+						}
+					});
+				}
+				;
 
-               }).fail(function(xhr, status, err) {
-                  if (error) {   
-                     error();
-                  }
-               });
-            };
-            
-            function getUserEvalList(projectId, callback, error) {
-               $.get("/shop/preEval/eval/"+projectId, function(result) {
-                  if (callback) {
-                     callback(result);
-                  }
+				function getUserEvalList(projectId, callback, error) {
+					$.get("/shop/preEval/eval/" + projectId, function(result) {
+						if (callback) {
+							callback(result);
+						}
 
-               }).fail(function(xhr, status, err) {
-                  if (error) {   
-                     error();
-                  }
-               });
-            };
-                        
-            
-            
-            return {
-               get : get,
-               getUserEvalList: getUserEvalList
-            };
-         })();
-          
-          
-       //페이지 오픈시 graph 데이터를 받기위해 ajax 전송    
-       evalPageService.get(projectId, function(Object){
-         var userEvalByProject = [];
-          userEvalByProject.push(Math.round(Object.Market*100)/100.0);
-          userEvalByProject.push(Math.round(Object.Stable*100)/100.0);
-          userEvalByProject.push(Math.round(Object.Growth*100)/100.0);
-          userEvalByProject.push(Math.round(Object.Favor*100)/100.0);
-          $('#averPoint').html('<div style="display:inline-block; margin-bottom: 5px"><i class="fa fa-star fa-2x" style="color: #ff9800"></i></div><div style="display:inline-block; margin-left: 10px;"><h3>'+Math.round(Object.Total*100)/100.0+'</h3></div>');
-          profitGraph(userEvalByProject);
-          
-       });
-       
-       //페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
-       evalPageService.getUserEvalList(projectId, function(list){
-          $('#count').html('<span>총 <h5>'+list.userEvalList.length+'개</h5>의 매력도 평가가 있습니다.</span>');
-         
-          userEvalListTemplate(list.userEvalList);
-         
-          list.userEvalList.forEach(function(v){
-            if(v.user_id == loginId){
-            $('#pushAlert').val("신청하신 프로젝트입니다.");
-            $('#pushAlert').attr('disabled',true)
-            $('#pushAlert').attr('class','alazea-btn-disable')
-            
-            
-            }
-          })
-       });
-       
-       //페이지 오픈시 사용자 평가 리스트 반영
-       function userEvalListTemplate(userEvalList){
-          var originHtml = document.querySelector('#userEval-list').innerHTML;
-          var newHtml = '';
-          userEvalList.forEach(function(v) {
-             newHtml += originHtml.replace('{userId}', v.user_id)
-                      .replace('{userID}', v.user_id)
-                              .replace('{totalAvg}', Math.round(v.total_avg*100)/100.0)
-                              .replace('{Favor}', Math.round(v.favor_grade*100)/100.0)
-                              .replace('{Growth}', Math.round(v.growth_grade*100)/100.0)
-                              .replace('{Market}', Math.round(v.market_grade*100)/100.0)
-                              .replace('{Stable}', Math.round(v.stable_grade*100)/100.0)
-          });
-          document.querySelector('#userEvalList').innerHTML = newHtml;
-       }
-       
+					}).fail(function(xhr, status, err) {
+						if (error) {
+							error();
+						}
+					});
+				}
+				;
 
-         $('.starRev span').click(function() {
-            $(this).parent().children('span').removeClass('on');
-            $(this).addClass('on').prevAll('span').addClass('on');
-            console.log($(this).parent().children('p'));
-            $(this).parent().children('.scoreTable').html($(this).text());
-            $(this).parent().children('.scoreTable').val($(this).text());
-            return false;
-         });
+				return {
+					get : get,
+					getUserEvalList : getUserEvalList
+				};
+			})();
 
-         var currentTab = 0; // Current tab is set to be the first tab (0)
-         showTab(currentTab); // Display the current tab
+			//페이지 오픈시 graph 데이터를 받기위해 ajax 전송    
+			evalPageService
+					.get(
+							projectId,
+							function(Object) {
+								var test = (Object != null);
+								var userEvalByProject = [];
+								console.log("Object = " +  test );
+								if(Object != null){
+								userEvalByProject.push(Math
+										.round(Object.Market * 100) / 100.0);
+								userEvalByProject.push(Math
+										.round(Object.Stable * 100) / 100.0);
+								userEvalByProject.push(Math
+										.round(Object.Growth * 100) / 100.0);
+								userEvalByProject.push(Math
+										.round(Object.Favor * 100) / 100.0);
+								}else{
+									userEvalByProject = [0,0,0,0];
+								}
+								$('#averPoint')
+										.html(
+												'<div style="display:inline-block; margin-bottom: 5px"><i class="fa fa-star fa-2x" style="color: #ff9800"></i></div><div style="display:inline-block; margin-left: 10px;"><h3>'
+														+ Math
+																.round(Object.Total * 100)
+														/ 100.0 + '</h3></div>');
+								profitGraph(userEvalByProject);
 
-         function showTab(n) {
-            // This function will display the specified tab of the form ...
-            console.log(n);
-            var x = document.getElementsByClassName("preTab");
-            x[n].style.display = "block";
-            // ... and fix the Previous/Next buttons:
-            if (n == 0) {
-               document.getElementById("prevBtnPre").style.display = "none";
-               document.getElementById("nextBtnPre").disabled = true;
-            } else {
-               document.getElementById("prevBtnPre").style.display = "inline";
-            }
-            if (n == (x.length - 1)) {
-               document.getElementById("nextBtnPre").innerHTML = "Submit";
-			   //document.getElementById("nextBtnPre").disabled = true;
-			  
-            } else {
-               document.getElementById("nextBtnPre").innerHTML = "Next";
-            }
-            // ... and run a function that displays the correct step indicator:
-            fixStepIndicator(n)
-         }
+							});
 
-         function nextPrev(n) {
-            // This function will figure out which tab to display
-            var x = document.getElementsByClassName("preTab");
-            // Exit the function if any field in the current tab is invalid:
-            if (n == 1 && !validateForm())
-               return false;
-            // Hide the current tab:
-            x[currentTab].style.display = "none";
-            // Increase or decrease the current tab by 1:
-            currentTab = currentTab + n;
-            // if you have reached the end of the form... :
-            if (currentTab >= x.length) {
-               //...the form gets submitted:
-               document.getElementById("regPreForm").submit();
-               return false;
-            }
-            // Otherwise, display the correct tab:
-            showTab(currentTab);
-         }
+			//페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
+			evalPageService.getUserEvalList(projectId, function(list) {
+				$('#count').html(
+						'<span>총 <h5>' + list.userEvalList.length
+								+ '개</h5>의 매력도 평가가 있습니다.</span>');
 
-         function validateForm() {
-            // This function deals with validation of the form fields
-            var x, y, i, valid = true;
-            x = document.getElementsByClassName("preTab");
-            y = x[currentTab].getElementsByTagName("input");
-            // A loop that checks every input field in the current tab:
-            for (i = 0; i < y.length; i++) {
-               // If a field is empty...
-               if (y[i].value == "") {
-                  // add an "invalid" class to the field:
-                  y[i].className += " invalid";
-                  // and set the current valid status to false:
-                  valid = false;
-               }
-            }
-            // If the valid status is true, mark the step as finished and valid:
-            if (valid) {
-               document.getElementsByClassName("step")[currentTab].className += " finish";
-            }
-            return valid; // return the valid status
-         }
+				userEvalListTemplate(list.userEvalList);
 
-         function fixStepIndicator(n) {
-            // This function removes the "active" class of all steps...
-            var i, x = document.getElementsByClassName("step");
-            for (i = 0; i < x.length; i++) {
-               x[i].className = x[i].className.replace(" active", "");
-            }
-            //... and adds the "active" class to the current step:
-            console.log(x[n]);
-            x[n].className += " active";
-         }
+				list.userEvalList.forEach(function(v) {
+					if (v.user_id == loginId) {
+						$('#pushAlert').val("신청하신 프로젝트입니다.");
+						$('#pushAlert').attr('disabled', true)
+						$('#pushAlert').attr('class', 'alazea-btn-disable')
 
-          function profitGraph(userEvalByProject){
-             /* 수평 바 chart 이윤 증가율 */
-             new Chart(document.getElementById("bar-chart-paral"), {
-                type: 'bar',
-                data: {
-                  labels: ["수익성", "안정성", "성장성","호감도"],
-                  datasets: [
-                    {
-                      label: "점",
-                      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                      data: userEvalByProject
-                    }
-                  ]
-                },
-                options: {
-                  legend: { display: false },
-                  scales: {
-                      yAxes:[{
-                       ticks:{
-                          min:0
-                       }   
-                      }]
-                    },
-                  title: {
-                    display: true,
-                    text: '[매력도 평가(점)]'
-                    
-                  }
-                }
-            });
-          }
-      </script>
-      <!-- slick -->
-        <script type="text/javascript">
-         $(document).ready(function() {
-              $(document).on("click","#showAll",function(){
-                 if($(this).next().css("display") == "none"){
-                $(this).next().show();
-                 } else{
-                   $(this).next().hide();
-                 }
-                 });
-              
-            $('.responsive').slick({
-                dots: true,
-                infinite: false,
-                speed: 300,
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                responsive: [
-                  {
-                    breakpoint: 1024,
-                    settings: {
-                      slidesToShow: 3,
-                      slidesToScroll: 3,
-                      infinite: true,
-                      dots: true
-                    }
-                  },
-                  {
-                    breakpoint: 600,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 2
-                    }
-                  },
-                  {
-                    breakpoint: 480,
-                    settings: {
-                      slidesToShow: 1,
-                      slidesToScroll: 1
-                    }
-                  }
-                  // You can unslick at a given breakpoint now by adding:
-                  // settings: "unslick"
-                  // instead of a settings object
-                ]
-            });
+					}
+				})
+			});
 
-         });
-</script>
+			//페이지 오픈시 사용자 평가 리스트 반영
+			function userEvalListTemplate(userEvalList) {
+				var originHtml = document.querySelector('#userEval-list').innerHTML;
+				var newHtml = '';
+				userEvalList.forEach(function(v) {
+					newHtml += originHtml.replace('{userId}', v.user_id)
+							.replace('{userID}', v.user_id).replace(
+									'{totalAvg}',
+									Math.round(v.total_avg * 100) / 100.0)
+							.replace('{Favor}',
+									Math.round(v.favor_grade * 100) / 100.0)
+							.replace('{Growth}',
+									Math.round(v.growth_grade * 100) / 100.0)
+							.replace('{Market}',
+									Math.round(v.market_grade * 100) / 100.0)
+							.replace('{Stable}',
+									Math.round(v.stable_grade * 100) / 100.0)
+				});
+				document.querySelector('#userEvalList').innerHTML = newHtml;
+			}
+
+			$('.starRev span').click(function() {
+				$(this).parent().children('span').removeClass('on');
+				$(this).addClass('on').prevAll('span').addClass('on');
+				console.log($(this).parent().children('p'));
+				$(this).parent().children('.scoreTable').html($(this).text());
+				$(this).parent().children('.scoreTable').val($(this).text());
+				return false;
+			});
+
+			var currentTab = 0; // Current tab is set to be the first tab (0)
+			showTab(currentTab); // Display the current tab
+
+			function showTab(n) {
+				// This function will display the specified tab of the form ...
+				console.log(n);
+				var x = document.getElementsByClassName("preTab");
+				x[n].style.display = "block";
+				// ... and fix the Previous/Next buttons:
+				if (n == 0) {
+					document.getElementById("prevBtnPre").style.display = "none";
+				} else {
+					document.getElementById("prevBtnPre").style.display = "inline";
+				}
+				if (n == (x.length - 1)) {
+					document.getElementById("nextBtnPre").innerHTML = "Submit";
+				} else {
+					document.getElementById("nextBtnPre").innerHTML = "Next";
+				}
+				// ... and run a function that displays the correct step indicator:
+				fixStepIndicator(n)
+			}
+
+			function nextPrev(n) {
+				// This function will figure out which tab to display
+				var x = document.getElementsByClassName("preTab");
+				// Exit the function if any field in the current tab is invalid:
+				if (n == 1 && !validateForm())
+					return false;
+				// Hide the current tab:
+				x[currentTab].style.display = "none";
+				// Increase or decrease the current tab by 1:
+				currentTab = currentTab + n;
+				// if you have reached the end of the form... :
+				if (currentTab >= x.length) {
+					//...the form gets submitted:
+					document.getElementById("regPreForm").submit();
+					return false;
+				}
+				// Otherwise, display the correct tab:
+				showTab(currentTab);
+			}
+
+			function validateForm() {
+				// This function deals with validation of the form fields
+				var x, y, i, valid = true;
+				x = document.getElementsByClassName("preTab");
+				y = x[currentTab].getElementsByTagName("input");
+				// A loop that checks every input field in the current tab:
+				for (i = 0; i < y.length; i++) {
+					// If a field is empty...
+					if (y[i].value == "") {
+						// add an "invalid" class to the field:
+						y[i].className += " invalid";
+						// and set the current valid status to false:
+						valid = false;
+					}
+				}
+				// If the valid status is true, mark the step as finished and valid:
+				if (valid) {
+					document.getElementsByClassName("step")[currentTab].className += " finish";
+				}
+				return valid; // return the valid status
+			}
+
+			function fixStepIndicator(n) {
+				// This function removes the "active" class of all steps...
+				var i, x = document.getElementsByClassName("step");
+				for (i = 0; i < x.length; i++) {
+					x[i].className = x[i].className.replace(" active", "");
+				}
+				//... and adds the "active" class to the current step:
+				console.log(x[n]);
+				x[n].className += " active";
+			}
+
+			function profitGraph(userEvalByProject) {
+				/* 수평 바 chart 이윤 증가율 */
+				new Chart(document.getElementById("bar-chart-paral"), {
+					type : 'bar',
+					data : {
+						labels : [ "수익성", "안정성", "성장성", "호감도" ],
+						datasets : [ {
+							label : "점",
+							backgroundColor : [ "#3e95cd", "#8e5ea2",
+									"#3cba9f", "#e8c3b9", "#c45850" ],
+							data : userEvalByProject
+						} ]
+					},
+					options : {
+						legend : {
+							display : false
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									min : 0
+								}
+							} ]
+						},
+						title : {
+							display : true,
+							text : '[매력도 평가(점)]'
+
+						}
+					}
+				});
+			}
+		</script>
+  <!-- slick -->
+  <script type="text/javascript">
+			$(document).ready(function() {
+				$(document).on("click", "#showAll", function() {
+					if ($(this).next().css("display") == "none") {
+						$(this).next().show();
+					} else {
+						$(this).next().hide();
+					}
+				});
+
+				$('.responsive').slick({
+					dots : true,
+					infinite : false,
+					speed : 300,
+					slidesToShow : 4,
+					slidesToScroll : 4,
+					responsive : [ {
+						breakpoint : 1024,
+						settings : {
+							slidesToShow : 3,
+							slidesToScroll : 3,
+							infinite : true,
+							dots : true
+						}
+					}, {
+						breakpoint : 600,
+						settings : {
+							slidesToShow : 2,
+							slidesToScroll : 2
+						}
+					}, {
+						breakpoint : 480,
+						settings : {
+							slidesToShow : 1,
+							slidesToScroll : 1
+						}
+					}
+					// You can unslick at a given breakpoint now by adding:
+					// settings: "unslick"
+					// instead of a settings object
+					]
+				});
+
+			});
+		</script>
+
 </body>
 
 </html>

@@ -201,7 +201,6 @@ public class ProjectController {
 		} else {
 			preMap.put("month", String.valueOf(nextMonth));
 		}
-		preMap.put("month", String.valueOf(nextMonth));
 		preMap.put("count", "20");
 		model.addAttribute("preList", projectService.readMonthProjectByGoal(preMap));
 		model.addAttribute("project", projectService.readProject(projectId));
@@ -227,6 +226,7 @@ public class ProjectController {
 		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObject = null;
 		UserEval userEval = userEvalService.readUserEvalAvg(projectId);
+		if(userEval != null) {
 		jsonObject = new JSONObject();
 		jsonObject.put("id", userEval.getId());
 		jsonObject.put("Favor", userEval.getFavor_grade());
@@ -234,6 +234,16 @@ public class ProjectController {
 		jsonObject.put("Market", userEval.getMarket_grade());
 		jsonObject.put("Stable", userEval.getStable_grade());
 		jsonObject.put("Total", userEval.getTotal_avg());
+		}else {
+			jsonObject = new JSONObject();
+			jsonObject.put("id", projectId);
+			jsonObject.put("Favor", 0);
+			jsonObject.put("Growth",0);
+			jsonObject.put("Market",0);
+			jsonObject.put("Stable",0);
+			jsonObject.put("Total", 0);
+		}
+		
 		jsonArray.add(jsonObject);
 		PrintWriter out = null;
 		try {

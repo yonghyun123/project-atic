@@ -40,9 +40,8 @@
 							</p>
 						</div>
 						<div style="overflow: auto;">
-							<div style="float: right;">
-								<button type="button" id="prevBtn">Previous</button>
-								<button type="button" id="nextBtn">Next</button>
+							<div>
+                                <button type="button" class="btn btn-success btn-block" id="nextBtn">Next</button>
 							</div>
 						</div>
 					</form>

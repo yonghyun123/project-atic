@@ -26,37 +26,47 @@
 
 <!-- table CSS -->
 <link rel="stylesheet" href="/resources/css/shop_detail.css">
+
+<!-- slick CSS -->
+<link href="/resources/css/slick.css" rel="stylesheet">
+<link href="/resources/css/slick-theme.css" rel="stylesheet">
+
 </head>
 <style type="text/css">
-	p{
-		font-family: Roboto, 'Noto Sans KR', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-weight: 1000;
-    font-size: 20;
-    font:black;
-	}
-  
-  #comRegist, #regDir {
-    margin-bottom:50;
-  }
-  
-  .modal-dialog{
-    max-width: 1000px;
-  }
-  .regText{
-    width:60%;
-  }
-  
-  .regTab{
-    margin-left:20%;
-  }
+p {
+	font-family: Roboto, 'Noto Sans KR', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 1000;
+	font-size: 20;
+	font: black;
+}
+
+#comRegist, #regDir {
+	margin-bottom: 50;
+}
+
+.modal-dialog {
+	max-width: 1000px;
+}
+
+.regText {
+	width: 60%;
+}
+
+.regTab {
+	margin-left: 20%;
+}
+
+.slick-slide{
+  height: auto;
+}
 </style>
 
 <body>
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
   <%@ include file="/WEB-INF/views/modal/companyRegist.jsp"%>
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
+  <div style="height: 90px; border-bottom: 1px solid #ebebe0"></div>
   <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
     <div
@@ -65,24 +75,38 @@
       <h2>기업 대출 신청</h2>
     </div>
   </div>
-  <div class="row" style="margin-top:3%; margin-left:5%; background-color: ">
-      <div id="registBar" class="col-12" >
-      <div id =" registInfo" class="col-6" style="display:inline-block;">
-      	<div class="col-7" style="display:inline-block; margin-left:5%"><p>간단한 기업정보 등록 후,<br> 대출&펀딩 상담을 받고 싶으시다면? </p></div>
-      	<div class="col-2" style="display:inline-block;">
-      	  <input type="button" id="comRegist" value="기업정보 등록" class="btn alazea-btn ml-15">
-      	</div>
+  <div class="row"
+    style="margin-top: 3%; margin-left: 5%; background-color:">
+    <div id="registBar" class="col-12">
+      <div id=" registInfo" class="col-6" style="display: inline-block;">
+        <div class="col-7"
+          style="display: inline-block; margin-left: 5%">
+          <p>
+            간단한 기업정보 등록 후,<br> 대출&펀딩 상담을 받고 싶으시다면?
+          </p>
+        </div>
+        <div class="col-2" style="display: inline-block;">
+          <input type="button" id="comRegist" value="기업정보 등록"
+            class="btn alazea-btn ml-15">
+        </div>
       </div>
-      <div id =" registDir" class="col-5" style="display:inline-block;">
-      	<div class="col-7" style="display:inline-block; margin-left:5%"><p>서류 준비가 완료되어,<br> 바로 신청 가능 하다면? </p></div>
-      	<div class="col-2" style="display:inline-block;">
-      	  <input type="button" id="regDir" value="바로 신청하기" class="btn alazea-btn ml-15">
-      	</div>
+      <div id=" registDir" class="col-5" style="display: inline-block;">
+        <div class="col-7"
+          style="display: inline-block; margin-left: 5%">
+          <p>
+            서류 준비가 완료되어,<br> 바로 신청 가능 하다면?
+          </p>
+        </div>
+        <div class="col-2" style="display: inline-block;">
+          <input type="button" id="regDir" value="바로 신청하기"
+            class="btn alazea-btn ml-15">
+        </div>
       </div>
-      </div> 
-   </div>  
+    </div>
+  </div>
   <!-- ##### Related Product Area Start ##### -->
-  <div class="related-products-area" style="border-bottom: 1px solid #ebebe0"> 
+  <div class="related-products-area"
+    style="border-bottom: 1px solid #ebebe0">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -92,34 +116,40 @@
           </div>
         </div>
       </div>
-      <div class="row" >
-        <c:choose>
-          <c:when test="${not empty recommend }">
-            <c:forEach var="projects" items="${recommend}"
-              varStatus="status">
-              <div class="col-12 col-sm-6 col-lg-3" >
-                <div class="single-product-area mb-100">
-                  <!-- Product Image -->
-                  <div class="product-img">
-                    <a href="/shop/detail/${projects.id }"> <img
-                      src="/resources/img/project-image/${projects.id }_th.png"
-                      alt=""></a>
+      <div class="row">
+        <div class="responsive" style="width: 100%">
+          <c:choose>
+            <c:when test="${not empty successProjectList }">
+              <c:forEach var="projects" items="${successProjectList}"
+                varStatus="status">
+                <div class="col-12 col-sm-6 col-lg-3">
+                  <div class="single-product-area mb-100">
+                    <!-- Product Image -->
+                    <div class="product-img">
+                      <a href="/shop/detail/${projects.id }"> <img
+                        src="/resources/img/project-image/${projects.id }_th.png"
+                        alt=""></a>
+                    </div>
                   </div>
                 </div>
+              </c:forEach>
+            </c:when>
+            <c:otherwise>
+              <div class="col-12 col-md-12 col-lg-12 text-center"
+                style="margin-bottom: 20px">
+                <div style="width: 100%">
+                  <h1>훌륭한 성공 사례가 존재하지 않습니다.</h1>
+                </div>
               </div>
-            </c:forEach>
-          </c:when>
-          <c:otherwise>
-            <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
-              <div style="width:100%"><h1 >훌륭한 성공 사례가 존재하지 않습니다.</h1></div>
-            </div>
-          </c:otherwise>
-        </c:choose>
+            </c:otherwise>
+          </c:choose>
+        </div>
       </div>
     </div>
   </div>
-  
-  <div class="related-products-area" style="border-bottom: 1px solid #ebebe0"> 
+
+  <div class="related-products-area"
+    style="border-bottom: 1px solid #ebebe0">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -129,34 +159,43 @@
           </div>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
     </div>
   </div>
-  
-    <div class="related-products-area" style="border-bottom: 1px solid #ebebe0"> 
+
+  <div class="related-products-area"
+    style="border-bottom: 1px solid #ebebe0">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -166,34 +205,43 @@
           </div>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
     </div>
   </div>
-  
-      <div class="related-products-area" style="border-bottom: 1px solid #ebebe0"> 
+
+  <div class="related-products-area"
+    style="border-bottom: 1px solid #ebebe0">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -203,28 +251,36 @@
           </div>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
-      <div class="row" >
-        <div><h1>header</h1></div>
+      <div class="row">
         <div>
-        <h4>contents</h4>
+          <h1>header</h1>
+        </div>
+        <div>
+          <h4>contents</h4>
         </div>
       </div>
     </div>
@@ -243,6 +299,9 @@
   <script src="/resources/js/active.js"></script>
   <!-- Common js -->
   <script src="/resources/js/common.js"></script>
+  <!-- slick js -->
+  <script type="text/javascript" src="/resources/js/slick.min.js"></script>
+
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 
   <script type="my-template" id="review-list">
@@ -258,8 +317,6 @@
 
   $("#comRegist").click(function() {
       $("#com-Reg").modal('show');
-     	
-
    });
    
 			var currentTab = 0; // Current tab is set to be the first tab (0)
@@ -343,6 +400,41 @@
 			}
 
 		</script>
+  <script type="text/javascript">
+     $(document).ready(function() {
+			$('.responsive').slick({
+				infinite : false,
+				speed : 300,
+				slidesToShow : 4,
+				slidesToScroll : 4,
+				responsive : [ {
+					breakpoint : 1024,
+					settings : {
+						slidesToShow : 3,
+						slidesToScroll : 3,
+						infinite : true,
+						dots : true
+					}
+				}, {
+					breakpoint : 600,
+					settings : {
+						slidesToShow : 2,
+						slidesToScroll : 2
+					}
+				}, {
+					breakpoint : 480,
+					settings : {
+						slidesToShow : 1,
+						slidesToScroll : 1
+					}
+				}
+				// You can unslick at a given breakpoint now by adding:
+				// settings: "unslick"
+				// instead of a settings object
+				]
+			});
+     });
+     </script>
 </body>
 
 </html>
