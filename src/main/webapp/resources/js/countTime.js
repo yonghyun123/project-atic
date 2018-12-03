@@ -53,10 +53,10 @@ if(month > 12){
 			
 			if(d!=0) {
 				str = 'D'+(d*(-1)) ;
-				$('#countTime').css("color","black").css("font-size","larger").css("font-weight","bold");
+				$('#countTime').css("color","black").css("font-size","larger").css("font-weight","bold").css("font-family","fantasy");
 				} else if(d==0){
 				str = 'D-day';
-				$('#countTime').css("color","red").css("font-size","larger").css("font-weight","bold");
+				$('#countTime').css("color","red").css("font-size","larger").css("font-weight","bold").css("font-family","fantasy");
 			};
 			
 			if(h<0) h = addZero(h*(-1),2);
