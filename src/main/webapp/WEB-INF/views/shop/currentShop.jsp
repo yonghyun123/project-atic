@@ -115,16 +115,16 @@
                               </div>
                               <!-- Product Info -->
                               <div class="product-info mt-15 text-center">
-                                  <a href="/shop/detail/${project.id }">
-                                      <h6> ${project.name } </h6>
-                                  </a>
-                                  <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
                                   <div class="progress">
                                     <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
                                       ${project.progress }%
                                     </div>
                                   </div>
-                              </div>
+                                  <a href="/shop/detail/${project.id }">
+                                      <h6> ${project.name } </h6>
+                                  
+                                  <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                              </a></div>
                           </div>
                           </div>
                     </c:forEach>

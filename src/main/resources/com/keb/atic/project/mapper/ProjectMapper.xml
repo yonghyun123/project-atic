@@ -56,7 +56,8 @@
            "company",
            "category",
            "createDate",
-           "fileName"
+           "fileName",
+           "progress"
     FROM (
       SELECT p.id			AS "id", 
       		 p.NAME         AS "name", 
@@ -64,7 +65,8 @@
 			 p.company      AS "company", 
 			 c.NAME         AS "category", 
 			 p.create_date  AS "createDate", 
-			 f.file_name    AS "fileName"
+			 f.file_name    AS "fileName",
+			 round((p.CUR_PRICE/ p.goal)*100) AS "progress"
 			from AT_project p join at_category c
 				on p.category_id = c.ID join AT_PROJECT_IMAGE pi
 				on p.id = pi.PROJECT_ID join AT_FILE_INFO f
