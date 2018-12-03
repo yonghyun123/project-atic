@@ -256,7 +256,7 @@
                           varStatus="status">
                           <tr>
                             <td>${status.index+1 }</td>
-                            <td>${project.userId }</td>
+                            <td>****</td>
                             <td>${project.deposit }</td>
                             <td>${project.createDate }</td>
                           </tr>
@@ -467,7 +467,7 @@
 			}
 
 			function connect() {
-				wsocket = new WebSocket("ws://localhost/hanaSocket");
+				wsocket = new WebSocket("ws://localhost:9090/hanaSocket");
 				wsocket.onopen = onOpen;
 				wsocket.onmessage = onMessage;
 				wsocket.onclose = onClose;
@@ -657,7 +657,12 @@
 				nextPrev(-1);
 			})
 
-			$("#deposit").click(function() {
+$("#deposit").click(function() {
+				$("#depositMoney").val('');
+				$("#depositPasswd").val('');
+				document.getElementsByClassName("tab")[1].style.display = '';
+				currentTab = 0;
+				nextPrev(0);
 				$("#deposit-modal").modal('show');
 
 				var authNum = 0;
@@ -705,6 +710,9 @@
 					loginId : loginId,
 					curPrice : curPrice
 				}
+				sessionStorage.flag = "popup-message-deposit-success";
+				popup(sessionStorage.getItem('flag'));
+			    sessionStorage.clear();
 				send(messageObject);
 			}
 
@@ -717,11 +725,8 @@
 				x[n].style.display = "block";
 				// ... and fix the Previous/Next buttons:
 				if (n == 0) {
-					document.getElementById("prevBtn").style.display = "none";
 					document.getElementById("nextBtn").disabled = false;
-				} else {
-					document.getElementById("prevBtn").style.display = "inline";
-				}
+				} 
 				if (n == (x.length - 1)) {
 					document.getElementById("nextBtn").innerHTML = "Submit";
 					document.getElementById("nextBtn").disabled = true;

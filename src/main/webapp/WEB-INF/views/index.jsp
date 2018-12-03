@@ -78,7 +78,7 @@
         </div>
       </div>
       <div id="rankingSection">
-        <div class="hotClipWrapper" style="width: 300px">
+        <div class="hotClipWrapper">
           <div id="clipHeader">
             <h5>금일 투자 급등 종목</h5>
           </div>

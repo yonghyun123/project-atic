@@ -5,6 +5,8 @@
   $(document).ready(function(){
 	// 로그인 이베트
     $("#login").on("click", function(e) {
+	  $("#id").val('');
+	  $("#psw").val('');
       $("#login-modal").modal('show');
     });
     
@@ -32,7 +34,8 @@
 <footer class="footer-area bg-img" style="background-image: url(/resources/img/gravel.png);">
     <div id="popup-message-login-success">로그인 성공!</div>
     <div id="popup-message-logout-success">로그아웃 성공!</div>
-    <div id="popup-message-create-deposit-success">계좌생성 성공!</div>
+    <div id="popup-message-create-deposit-success">가상계좌가 성공적으로 생성되었습니다.</div>
+    <div id="popup-message-deposit-success">투자에 성공하셨습니다.</div>
     <div id="popup-message-change-profile-success">프로필 사진이 변경되었습니다.</div>
     <!-- Main Footer Area -->
     <div class="main-footer-area">
