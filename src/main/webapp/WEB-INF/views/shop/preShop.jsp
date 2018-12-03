@@ -111,9 +111,9 @@
                                     <div class="product-info mt-15 text-center">
                                         <a href="/shop/detail/pre/${project.id }">
                                             <h6> ${project.name } </h6>
-                                        </a>
+                                        
                                         <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
-                                    </div>
+                                    </a></div>
                                 </div>
                                 </div>
                               </c:forEach>

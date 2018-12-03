@@ -66,7 +66,7 @@
               <br>
               <br> 한우의 프리미엄화를 선도하고 있습니다!<br>
             </p>
-          </a> <a href="#"
+          </a> <a href="/loan"
             style="background-image: url('/resources/img/slider-img/index-slide3.png')">
             <p class="index-slider-text-title">
              펀딩형 자유적금 'ATIC'<br>
@@ -136,6 +136,11 @@
               <!-- Product Info -->
               <div class="product-info mt-15 text-center">
                 <a href="/shop/detail/${project.id }">
+                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
+                                      ${project.progress }%
+                                    </div>
+                                  </div>
                   <p>
                   <h5>${project.name }</h5>
                   </p>
