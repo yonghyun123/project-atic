@@ -3,13 +3,18 @@
 <script src="/resources/js/countTime.js"></script>    
 <script>
   $(document).ready(function(){
-	// 로그인 이베트
+	// 로그인 이벤트
     $("#login").on("click", function(e) {
 	  $("#id").val('');
 	  $("#psw").val('');
       $("#login-modal").modal('show');
     });
     
+	// 로그인하지 않고 투자하기 눌렀을 경우의 이벤트
+	$("#shop-login").on("click", function(e) {
+		$("#login-modal").modal('show');
+	})
+	
     // 로그아웃 이벤트
     $("#logout").on("click", function(e) {
   	  $("#logout-modal").modal('show');
