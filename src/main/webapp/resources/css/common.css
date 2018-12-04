@@ -275,7 +275,7 @@ input.invalid {
 /* index CSS */
 
 .product-img a img {
-	height: 360px;
+	height: 300px;
 }
 
 #rankingList a:hover {
@@ -310,6 +310,23 @@ ol > li > em {
 
 .single_product_details_area {
 	margin: 0 auto;
+}
+
+#graph {
+	width: 40.7%;
+	margin: 30px 0;
+}
+
+.products--meta {
+	margin: 2.5% 0 0 10.5%; 
+}
+
+.shop-products--meta {
+	margin: 1.5% 0 0 10.5%; 
+}
+
+.produts-details--content .shop-detail-inform-area {
+	border-top: 1px solid #ebebeb;	
 }
 
 /* myPage CSS */

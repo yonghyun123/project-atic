@@ -61,10 +61,11 @@
       style="background-image: url(/resources/img/bg-img/24.jpg);">
       <h2>PROJECT DETAILS</h2>
     </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
+    
+ 
+    <div class="col-md-10" style="margin: 0 auto;">
+      <div class="col-md-10">
+        <div>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#"><i
@@ -80,9 +81,10 @@
   </div>
   <!-- ##### Breadcrumb Area End ##### -->
 
+  <div class="col-md-10" style="margin: 0 auto;">
   <!-- ##### Single Product Details Area Start ##### -->
   <section class="single_product_details_area mb-50">
-    <div class="produts-details--content mb-50">
+    <div class="produts-details--content">
       <div class="container">
         <div class="row justify-content-between">
 
@@ -97,11 +99,10 @@
                     title="Product Image"> <img
                     class="d-block w-100"
                     src="/resources/img/project-image/<c:out value='${project.fileName }'/>"
-                    alt="1">
+                    alt="1" style="height: 305px;">
                   </a>
                 </div>
               </div>
-
 
             </div>
           </div>
@@ -144,41 +145,45 @@
                 </c:otherwise>
                 </c:choose>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row shop-detail-inform-area">
+        <div id="graph" class="tab-pane">
+          <div class="container ml-15">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card" style="">
+                  <div class="card-body"
+                    style="width: 40%; display: inline;">
+                    <div id="average"
+                      style="margin-top: 15%; margin-left: 20%;">
+                      <p style="margin-left: 15">평균 평점</p>
 
-              <div id="graph" class="tab-pane">
-                <div class="container">
-                  <div class="row my-2">
-                    <div class="col-md-12">
-                      <div class="card" style="">
-                        <div class="card-body"
-                          style="width: 40%; display: inline;">
-                          <div id="average"
-                            style="margin-top: 15%; margin-left: 20%;">
-                            <p style="margin-left: 15">평균 평점</p>
-
-                            <div style="margin-left: 20%" id="averPoint">
-                              <h1>4.5</h1>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card-body"
-                          style="width: 55%; display: inline;">
-                          <canvas id="bar-chart-paral" width="100"
-                            height="50"></canvas>
-                        </div>
+                      <div style="margin-left: 20%" id="averPoint">
+                        <h1>4.5</h1>
                       </div>
                     </div>
                   </div>
+                  <div class="card-body"
+                    style="width: 55%; display: inline;">
+                    <canvas id="bar-chart-paral" width="100"
+                      height="50"></canvas>
+                  </div>
                 </div>
-              </div>
-
-              <div class="products--meta">
-                <img src="/resources/img/heart.gif"><span>이
-                  페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="shop-products--meta">
+          <p class="mt-50">
+            <img src="/resources/img/heart.gif"><span>이
+              페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
+          </p>
+        </div>
+  
       </div>
     </div>
 
@@ -373,7 +378,7 @@
       </div>
     </div>
   </div>
-
+</div>
   <!-- ##### All Javascript Files ##### -->
   <!-- jQuery-2.2.4 js -->
   <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
@@ -872,7 +877,7 @@ $("#deposit").click(function() {
 			//페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
 			evalPageService.getUserEvalList(projectId, function(list) {
 				$('#count').html(
-						'<span>총 <h5>' + list.userEvalList.length
+						'<span>총 <h5 style="display: inline;">' + list.userEvalList.length
 								+ '개</h5>의 매력도 평가가 있습니다.</span>');
 
 				userEvalListTemplate(list.userEvalList);
