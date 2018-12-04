@@ -50,6 +50,9 @@
             <div class="row">
               <div class="card-area">
 				<div class="card card-inform">
+                  <ul class="list-group list-group-flush mb-0">
+                    <li class="list-group-item mt-0"><h4>프로필 사진</h4></li>
+                  </ul>
 				  <div class="profile-row">
                     <img class="card-img-top profile-img" src="/user/profile/${user.id }" alt="Card image cap">
                   </div>

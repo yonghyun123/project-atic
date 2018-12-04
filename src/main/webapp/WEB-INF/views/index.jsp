@@ -46,7 +46,7 @@
   <!-- ##### Hero Area Start ##### -->
   <div style="height: 90px; border-bottom: 1px solid #ebebe0" ></div>
   <section class="sector01">
-    <div class="container" style="height: 90%">
+    <div class="container">
       <div id="mainVisual">
         <div class="single-item">
           <a href="/shop/detail/pre/12"
@@ -88,7 +88,7 @@
                 <c:choose>
                   <c:when test="${not empty riseProject }">
                     <c:forEach items="${riseProject}" var="project"
-                      varStatus="status">
+                      varStatus="status" end="5">
                       <li id="li${status.index+1 }"><em>${status.index+1 }</em><a
                         href="/shop/detail/${project.projectId }">${project.projectName }</a></li>
                     </c:forEach>
@@ -109,7 +109,7 @@
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2>마감 임박!!</h2>
+            <h2 class="mt-50">마감 임박!!</h2>
             <p>인기 사업에 투자하시고 금리해택 받아가세요.</p>
           </div>
         </div>
