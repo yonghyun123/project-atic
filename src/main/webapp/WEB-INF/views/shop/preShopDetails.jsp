@@ -70,9 +70,9 @@
       <h2>오픈 예정사업</h2>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
+    <div class="col-md-10" style="margin: 0 auto;">
+      <div class="col-md-10">
+        <div>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#"><i
@@ -87,10 +87,11 @@
     </div>
   </div>
   <!-- ##### Breadcrumb Area End ##### -->
-
+ 
+  <div class="col-md-10" style="margin: 0 auto;">
   <!-- ##### Single Product Details Area Start ##### -->
   <section class="single_product_details_area mb-50">
-    <div class="produts-details--content mb-50">
+    <div class="produts-details--content">
       <div class="container">
         <div class="row justify-content-between">
 
@@ -105,11 +106,10 @@
                     title="Product Image"> <img
                     class="d-block w-100"
                     src="/resources/img/project-image/<c:out value='${project.fileName }'/>"
-                    alt="1">
+                    alt="1" style="height: 305px;">
                   </a>
                 </div>
               </div>
-
 
             </div>
           </div>
@@ -139,8 +139,7 @@
                 </p>
               </div>
 
-              <div
-                class="cart--area d-flex flex-wrap align-items-center">
+              <div class="cart--area d-flex flex-wrap align-items-center">
                 <!-- Add to Cart Form -->
                 <c:choose>
                 <c:when test="${empty loginId }">
@@ -154,40 +153,53 @@
                 </c:otherwise>
                 </c:choose>
               </div>
-              
-              <div id="graph" class="tab-pane">
-                <div class="container">
-                  <div class="row my-2">
-                    <div class="col-md-12">
-                      <div class="card" style="">
-                        <div class="card-body"
-                          style="width: 40%; display: inline;">
-                          <div id="average"
-                            style="margin-top: 15%; margin-left: 20%;">
-                            <p style="margin-left: 15">평균 평점</p>
-
-                            <div style="margin-left: 20%" id="averPoint">
-                              <h1>4.5</h1>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card-body"
-                          style="width: 55%; display: inline;">
-                          <canvas id="bar-chart-paral" width="100"
-                            height="50"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="row shop-detail-inform-area">
+        <div id="graph" class="tab-pane">
+          <div class="container ml-15">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card" style="">
+                  <div class="card-body"
+                    style="width: 40%; display: inline;">
+                    <div id="average"
+                      style="margin-top: 15%; margin-left: 20%;">
+                      <p style="margin-left: 15">평균 평점</p>
 
+                      <div style="margin-left: 20%" id="averPoint">
+                        <h1>4.5</h1>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body"
+                    style="width: 55%; display: inline;">
+                    <canvas id="bar-chart-paral" width="100"
+                      height="50"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="products--meta">
+            <h4 style="color: #707070;">회사 정보</h4>
+            <div style="margin: 15px 0;">
+              <h5 style="display: inline; color: #707070;">회사 명 : </h5>${project.company }
+            </div>
+            <div style="margin: 15px 0;">
+              <h5 style="display: inline; color: #707070;">전화번호 : </h5>${project.tel }
+            </div>
+            <div>
+              <h5 style="display: inline; color: #707070;">업종 : </h5>${project.category }
+            </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -198,8 +210,6 @@
               <li class="nav-item"><a href="#description"
                 class="nav-link active" data-toggle="tab" role="tab">상세
                   설명</a></li>
-              <li class="nav-item"><a href="#addi-info"
-                class="nav-link" data-toggle="tab" role="tab">회사 정보</a></li>
               <li class="nav-item"><a href="#reviews"
                 class="nav-link" data-toggle="tab" role="tab">예비 평가</a></li>
             </ul>
@@ -219,26 +229,6 @@
                     <img
                       src="/resources/img/project-image/<c:out value="${project.id }"/>_et_3.png">
 
-                  </p>
-
-                </div>
-              </div>
-              <div role="tabpanel" class="tab-pane fade" id="addi-info">
-                <div class="additional_info_area">
-                  <p>
-                    회사 이름<br> <span> <c:out
-                        value="${project.company }" />
-                    </span>
-                  </p>
-                  <p>
-                    회사 전화번호 <br> <span> <c:out
-                        value="${project.tel }" />
-                    </span>
-                  </p>
-                  <p>
-                    회사 업종 <br> <span> <c:out
-                        value="${project.category }" />
-                    </span>
                   </p>
 
                 </div>
@@ -329,7 +319,7 @@
       </div>
     </div>
   </div>
-
+</div>
   <!-- ##### All Javascript Files ##### -->
   <!-- jQuery-2.2.4 js -->
   <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
