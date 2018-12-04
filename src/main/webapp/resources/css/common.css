@@ -74,7 +74,7 @@ color: rgba(0,0,0,.84);
 
 .modal-dialog {
 	margin-top: 15% !important;
-	max-width: 400px;
+	max-width: 400px !important;
 }
 
 .modal-body .btn-cancel {
@@ -160,11 +160,11 @@ input[type="checkbox"] {
 }
 
 .menual-cancel-bt {
-	padding: 0 8% 2% 8%;
+	padding: 0 4% 2% 4%;
 }
 
 #deposit-menual-modal .deposit-menual-modal-dialog {
-	max-width: 1000px;
+	max-width: 900px !important;
 	margin-top: 1% !important;
 }
 
@@ -218,7 +218,7 @@ input[type="checkbox"] {
 }
 
 .modal-content .modal-body .deposit-cancel {
-	width: 70%;
+	width: 82%;
 }
 
 .deposit-body {
@@ -290,6 +290,9 @@ ol > li > em {
 	height: 8%;
 }
 
+.top-row {
+	margin-botom
+}
 /* shop CSS */
 
 #shop-sec {

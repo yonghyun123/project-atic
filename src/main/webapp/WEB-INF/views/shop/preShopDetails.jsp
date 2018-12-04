@@ -142,11 +142,17 @@
               <div
                 class="cart--area d-flex flex-wrap align-items-center">
                 <!-- Add to Cart Form -->
-                <form class="cart clearfix d-flex align-items-center"
+                <c:choose>
+                <c:when test="${empty loginId }">
+                  <input type="button" id="shop-login" value="지금 투자하기" class="btn alazea-btn" style="width: 20%;">
+                </c:when>
+                <c:otherwise>
+                  <form class="cart clearfix d-flex align-items-center"
                   method="post">
-                  <input type="button" id="pushAlert" value="알림 신청하기"
-                    class="btn alazea-btn">
-                </form>
+                    <input type="button" id="pushAlert" value="지금 투자하기" class="btn alazea-btn">
+                  </form>
+                </c:otherwise>
+                </c:choose>
               </div>
               
               <div id="graph" class="tab-pane">
