@@ -39,8 +39,6 @@ public class ProfileUploadController {
 		
 		String fileName = id + ".png";
 		String uploadFolder = request.getSession().getServletContext().getRealPath("resources/img/profile-img/");
-//		여기 경로 읽어서 거기에 고대로 default 이미지 넣기
-		System.out.println(uploadFolder);
 		File saveFile = new File(uploadFolder, fileName);
 		try {
 			uploadFile.transferTo(saveFile);
@@ -57,9 +55,11 @@ public class ProfileUploadController {
 	public ResponseEntity<Resource> getImage(@PathVariable("id") String id, HttpServletRequest request) throws Exception {
 		String imagePath = "/resources/img/profile-img/";
 		User user = userService.readUser(id);
+		String profile = null;
+		profile = user.getProfile();
 		String imageName = null;
 		
-		if(user.getProfile() != null) {
+		if(!profile.equals("0")) {
 			imageName = user.getProfile() + ".png";
 		} else {
 			imageName = "default.png";

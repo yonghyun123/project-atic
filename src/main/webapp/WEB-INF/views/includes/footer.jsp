@@ -3,13 +3,18 @@
 <script src="/resources/js/countTime.js"></script>    
 <script>
   $(document).ready(function(){
-	// 로그인 이베트
+	// 로그인 이벤트
     $("#login").on("click", function(e) {
 	  $("#id").val('');
 	  $("#psw").val('');
       $("#login-modal").modal('show');
     });
     
+	// 로그인하지 않고 투자하기 눌렀을 경우의 이벤트
+	$("#shop-login").on("click", function(e) {
+		$("#login-modal").modal('show');
+	})
+	
     // 로그아웃 이벤트
     $("#logout").on("click", function(e) {
   	  $("#logout-modal").modal('show');
@@ -44,12 +49,15 @@
                 <!-- Single Footer Widget -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer-widget">
-                    <!-- 
                         <div class="footer-logo mb-30">
-                            <a href="#"><img src="/resources/img/aticLogo.png" alt=""></a>
+                          <div class="row">
+                            <img src="/resources/img/aticLogo.png" alt="" style="width:200px; height: 160px; margin-top: -20px;">
+                            <div class="widget-title" style="display: inline-block;">
+                              <h5>A-TIC이란?</h5>
+                              <p class="pt-20">A-Tic는 스타트업 투자 활성화를 <br/>위한 적금 플랫폼입니다.</p>
+                            </div>
+                          </div>
                         </div>
-                         -->
-                        <p>A-Tic는 스타트업 투자 활성화를 위한 <br/>적금 플랫폼입니다.</p>
                     </div>
                 </div>
 
@@ -61,8 +69,8 @@
                         </div>
                         <nav class="widget-nav">
                             <ul>
-                                <li><a href="/about">A-Tic?</a></li>
-                                <li><a href="/shop">투자 홈</a></li>
+                                <li class="mt-0"><a href="/about">A-Tic?</a></li>
+                                <li class="mt-0"><a href="/shop">투자 홈</a></li>
                                 <li><a href="/shop/preShop/">오픈 예정</a></li>
                                 <li><a href="/shop/currentShop">오픈한 상품</a></li>
                             </ul>

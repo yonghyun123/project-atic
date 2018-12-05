@@ -60,11 +60,21 @@ color: rgba(0,0,0,.84);
 	cursor: default;
 }
 
+/* footer CSS */
+
+.footer-logo img {
+	display: inline-block;
+}
+
+.footer-logo p {
+	display: inline-block;
+}
+
 /* login-modal CSS */
 
 .modal-dialog {
-	margin-top: 15%;
-	max-width: 400px;
+	margin-top: 15% !important;
+	max-width: 400px !important;
 }
 
 .modal-body .btn-cancel {
@@ -125,7 +135,7 @@ input[type="checkbox"] {
 }
 
 .dropdown div label {
-	margin-left: 32%;
+	margin-left: 28%;
 	display: block;
 }
 
@@ -154,7 +164,7 @@ input[type="checkbox"] {
 }
 
 #deposit-menual-modal .deposit-menual-modal-dialog {
-	max-width: 1000px;
+	max-width: 900px !important;
 	margin-top: 1% !important;
 }
 
@@ -208,7 +218,7 @@ input[type="checkbox"] {
 }
 
 .modal-content .modal-body .deposit-cancel {
-	width: 70%;
+	width: 82%;
 }
 
 .deposit-body {
@@ -265,7 +275,7 @@ input.invalid {
 /* index CSS */
 
 .product-img a img {
-	height: 360px;
+	height: 300px;
 }
 
 #rankingList a:hover {
@@ -280,6 +290,9 @@ ol > li > em {
 	height: 8%;
 }
 
+.top-row {
+	margin-botom
+}
 /* shop CSS */
 
 #shop-sec {
@@ -297,6 +310,23 @@ ol > li > em {
 
 .single_product_details_area {
 	margin: 0 auto;
+}
+
+#graph {
+	width: 40.7%;
+	margin: 30px 0;
+}
+
+.products--meta {
+	margin: 2.5% 0 0 10.5%; 
+}
+
+.shop-products--meta {
+	margin: 1.5% 0 0 10.5%; 
+}
+
+.produts-details--content .shop-detail-inform-area {
+	border-top: 1px solid #ebebeb;	
 }
 
 /* myPage CSS */
@@ -323,8 +353,8 @@ ol > li > em {
 
 .profile-img {
 	margin-top: 10%;
-	width: 250px;
-	height: 250px;
+	width: 180px;
+	height: 150px;
 }
 
 .profile-row {
@@ -350,6 +380,9 @@ ol > li > em {
 	padding: 0.4% 0;
 }
 
+.my-graph {
+	width: 100% !important;
+}
 /* preShopDetails CSS */
 
 .navText:hover {

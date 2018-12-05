@@ -61,10 +61,11 @@
       style="background-image: url(/resources/img/bg-img/24.jpg);">
       <h2>PROJECT DETAILS</h2>
     </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
+    
+ 
+    <div class="col-md-10" style="margin: 0 auto;">
+      <div class="col-md-10">
+        <div>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#"><i
@@ -80,9 +81,10 @@
   </div>
   <!-- ##### Breadcrumb Area End ##### -->
 
+  <div class="col-md-10" style="margin: 0 auto;">
   <!-- ##### Single Product Details Area Start ##### -->
   <section class="single_product_details_area mb-50">
-    <div class="produts-details--content mb-50">
+    <div class="produts-details--content">
       <div class="container">
         <div class="row justify-content-between">
 
@@ -97,11 +99,10 @@
                     title="Product Image"> <img
                     class="d-block w-100"
                     src="/resources/img/project-image/<c:out value='${project.fileName }'/>"
-                    alt="1">
+                    alt="1" style="height: 305px;">
                   </a>
                 </div>
               </div>
-
 
             </div>
           </div>
@@ -110,14 +111,15 @@
               <h4 class="title">
                 <c:out value='${project.name }' />
               </h4>
-              목표 자금
+              목표 금액
               <c:out value="${project.goal }" />
               <input type="hidden"
                 value="<c:out value="${project.id }"/>" id="projectId">
               <input type="hidden" value="${loginId }" id="loginId">
               <h4 class="price">
-                <span id="curprice"><c:out
-                    value="${project.curPrice }" /></span> 원 달성
+                <span id="curprice">
+                  <c:out value="${project.curPrice }" />
+                </span> 원 달성
               </h4>
               <div class="short_overview">
                 <p>
@@ -130,51 +132,58 @@
                 </p>
               </div>
 
-              <div
-                class="cart--area d-flex flex-wrap align-items-center">
-                <!-- Add to Cart Form -->
-                <form class="cart clearfix d-flex align-items-center"
-                  method="post">
-                  <input type="button" id="deposit" value="지금 투자하기"
-                    class="btn alazea-btn">
-                </form>
-
-              </div>
-
-              <div id="graph" class="tab-pane">
-                <div class="container">
-                  <div class="row my-2">
-                    <div class="col-md-12">
-                      <div class="card" style="">
-                        <div class="card-body"
-                          style="width: 40%; display: inline;">
-                          <div id="average"
-                            style="margin-top: 15%; margin-left: 20%;">
-                            <p style="margin-left: 15">평균 평점</p>
-
-                            <div style="margin-left: 20%" id="averPoint">
-                              <h1>4.5</h1>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card-body"
-                          style="width: 55%; display: inline;">
-                          <canvas id="bar-chart-paral" width="100"
-                            height="50"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="products--meta">
-                <img src="/resources/img/heart.gif"><span>이
-                  페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
+              <div class="cart--area d-flex flex-wrap align-items-center">
+                <c:choose>
+                  <c:when test="${empty loginId }">
+                    <input type="button" id="shop-login" value="지금 투자하기" class="btn alazea-btn" style="width: 20%;">
+                  </c:when>
+                  <c:otherwise>
+                    <form class="cart clearfix d-flex align-items-center"
+                    method="post">
+                      <button type="button" id="deposit" class="btn alazea-btn">지금 투자하기</button>
+                    </form>
+                  </c:otherwise>
+                </c:choose>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="row shop-detail-inform-area">
+        <div id="graph" class="tab-pane">
+          <div class="container ml-15">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card" style="">
+                  <div class="card-body"
+                    style="width: 40%; display: inline;">
+                    <div id="average"
+                      style="margin-top: 15%; margin-left: 20%;">
+                      <p style="margin-left: 15">평균 평점</p>
+
+                      <div style="margin-left: 20%" id="averPoint">
+                        <h1>4.5</h1>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body"
+                    style="width: 55%; display: inline;">
+                    <canvas id="bar-chart-paral" width="100"
+                      height="50"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="shop-products--meta">
+          <p class="mt-50">
+            <img src="/resources/img/heart.gif"><span>이
+              페이지를 보고 있는 사람들</span> <span id="currentCount"></span>
+          </p>
+        </div>
+  
       </div>
     </div>
 
@@ -369,7 +378,7 @@
       </div>
     </div>
   </div>
-
+</div>
   <!-- ##### All Javascript Files ##### -->
   <!-- jQuery-2.2.4 js -->
   <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
@@ -392,8 +401,8 @@
 
   <script type="my-template" id="review-list">
 	<a class="list-group-item">
-		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "> <img class="card-img-top profile-img" style="width:50px; height:50px" src="/user/profile/{profile}" alt="Card image cap"></h6>
-		<p  style="float: left; margin-right: 50px; ">아이디:{userId}</p>
+		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "> <img class="card-img-top profile-img" style="width:50px; height:50px" src="/user/profile/{userId}" alt="Card image cap"></h6>
+		<p  style="float: left; margin-right: 50px;">아이디:{userId}</p>
 		<p>{createDate}</p>
 		<h4>{content}</h4>
 	</a>
@@ -595,10 +604,10 @@
 				var newHtml = '';
 
 				list.forEach(function(v) {
-					newHtml += originHtml.replace('{profile}', v.profile)
-							.replace('{userId}', v.userId).replace(
-									'{createDate}', v.regDate).replace(
-									'{content}', v.content)
+					newHtml += originHtml.replace('{userId}', v.userId)
+										 .replace('{userId}', v.userId)
+										 .replace('{createDate}', v.regDate)
+										 .replace('{content}', v.content)
 				})
 				document.querySelector('#reply-body').innerHTML = newHtml;
 
@@ -613,7 +622,7 @@
 					$("#currentCount").text(count + "명");
 					var flag = mObject.message;
 					if (flag == "false") {
-						$("#deposit").val("투자하신 프로젝트입니다.");
+						$("#deposit").text("이미 투자하신 프로젝트입니다");
 						document.getElementById("deposit").disabled = true;
 					}
 					break;
@@ -624,7 +633,6 @@
 				case 3000:
 					var price = mObject.message;
 					$("#curprice").text(price);
-					$("#deposit").val("투자하신 프로젝트입니다.");
 					document.getElementById("deposit").disabled = true;
 					//document.getElementById("price").innerHTML = price;
 					break;
@@ -657,14 +665,23 @@
 				nextPrev(-1);
 			})
 
-$("#deposit").click(function() {
-				$("#depositMoney").val('');
-				$("#depositPasswd").val('');
-				document.getElementsByClassName("tab")[1].style.display = '';
-				currentTab = 0;
-				nextPrev(0);
-				$("#deposit-modal").modal('show');
-
+			$("#deposit").click(function() {
+				$.ajax({
+    				type: 'get',
+    				url: '/users/' + '${loginId}',
+    				success: function(result, status, xhr) {
+    					if(result.vt_acc_num) {
+    						$("#depositMoney").val('');
+    						$("#depositPasswd").val('');
+    						document.getElementsByClassName("tab")[1].style.display = '';
+    						currentTab = 0;
+    						nextPrev(0);
+    						$('#deposit-modal').modal('show');
+    					} else {
+    						$('#deposit-menual-modal').modal('show');
+    					}
+    				}
+    			})
 				var authNum = 0;
 				$("#auth").on("click", function() {
 					var email = $("#email").val();
@@ -708,7 +725,7 @@ $("#deposit").click(function() {
 					projectId : projectId,
 					deposit : depositM,
 					loginId : loginId,
-					curPrice : curPrice
+					curPrice : parseInt(curPrice)
 				}
 				sessionStorage.flag = "popup-message-deposit-success";
 				popup(sessionStorage.getItem('flag'));
@@ -796,7 +813,7 @@ $("#deposit").click(function() {
 			onOpen();
 		</script>
 
-  <script type="text/javascript">
+        <script type="text/javascript">
 			var evalPageService = (function() {
 				function get(projectId, callback, error) {
 					$.get("/shop/preEval/graph/" + projectId, function(result) {
@@ -868,7 +885,7 @@ $("#deposit").click(function() {
 			//페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
 			evalPageService.getUserEvalList(projectId, function(list) {
 				$('#count').html(
-						'<span>총 <h5>' + list.userEvalList.length
+						'<span>총 <h5 style="display: inline;">' + list.userEvalList.length
 								+ '개</h5>의 매력도 평가가 있습니다.</span>');
 
 				userEvalListTemplate(list.userEvalList);
@@ -937,17 +954,16 @@ $("#deposit").click(function() {
 				});
 			}
 		</script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-		$(document).on("click", "#showAll", function() {
-			if ($(this).next().css("display") == "none") {
-				$(this).next().show();
-			} else {
-				$(this).next().hide();
-			}
-		});
-	});
-    </script>
-</body>
-
+        <script type="text/javascript">
+        $(document).ready(function() {
+    		$(document).on("click", "#showAll", function() {
+    			if ($(this).next().css("display") == "none") {
+    				$(this).next().show();
+    			} else {
+    				$(this).next().hide();
+    			}
+    		});
+    	});
+        </script>
+    </body>
 </html>

@@ -17,7 +17,7 @@
 			       p.goal        AS "goal", 
 			       p.company     AS "company", 
 			       c.NAME        AS "category", 
-			       p.create_date AS "createDate", 
+			       TO_CHAR(p.create_date,'YYYY-MM-DD') AS "createDate", 
 			       f.file_name   AS "fileName" 
 			FROM   at_project p 
 			       JOIN at_category c 
