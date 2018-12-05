@@ -135,7 +135,7 @@ input[type="checkbox"] {
 }
 
 .dropdown div label {
-	margin-left: 32%;
+	margin-left: 28%;
 	display: block;
 }
 
@@ -160,7 +160,7 @@ input[type="checkbox"] {
 }
 
 .menual-cancel-bt {
-	padding: 0 4% 2% 4%;
+	padding: 0 8% 2% 8%;
 }
 
 #deposit-menual-modal .deposit-menual-modal-dialog {
@@ -380,6 +380,9 @@ ol > li > em {
 	padding: 0.4% 0;
 }
 
+.my-graph {
+	width: 100% !important;
+}
 /* preShopDetails CSS */
 
 .navText:hover {

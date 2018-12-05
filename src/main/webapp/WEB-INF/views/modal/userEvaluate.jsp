@@ -95,8 +95,6 @@
 
             <div style="overflow: auto;">
               <div style="float: right;">
-                <button type="button" id="prevBtnPre"
-                  onclick="nextPrev(-1)" class="btn">Previous</button>
                 <button type="button" id="nextBtnPre"
                   onclick="nextPrev(1)" class="btn">Next</button>
               </div>
