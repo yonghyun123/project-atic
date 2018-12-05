@@ -38,6 +38,7 @@
           <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
           <li class="monthProject active"><a href="/shop/currentShop" class="navText active">진행중</a></li>
           <li class="monthProject"><a href="/shop/preShop" class="navText">오픈예정</a></li>
+          <li class="monthProject"><a href="/shop/finishShop" class="navText">마감</a></li>
         </ul>
       </nav>
       <div class="col-md-12 shop-slide-row" style="height: 90%">
@@ -101,33 +102,33 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row" id="templateBody">
-                <c:forEach var="project" items="${curList }" varStatus="status">
-                        <div class="col-12 col-sm-6 col-lg-4">
-                          <div class="single-product-area mb-50">
-                              <!-- Product Image -->
-                              <div class="product-img">
-                                  <a href="/shop/detail/${project.id }">
-                                  <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
-                                  <!-- Product Tag -->
-                                  <div class="product-tag">
-                                      <a href="#">Hot</a>
-                                  </div>
-                              </div>
-                              <!-- Product Info -->
-                              <div class="product-info mt-15 text-center">
-                                  <div class="progress">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
-                                      ${project.progress }%
+                          <c:forEach var="project" items="${curList }" varStatus="status">
+                          <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="single-product-area mb-50">
+                                <!-- Product Image -->
+                                <div class="product-img">
+                                    <a href="/shop/detail/${project.id }">
+                                    <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
+                                    <!-- Product Tag -->
+                                    <div class="product-tag">
+                                        <a href="#">Hot</a>
                                     </div>
-                                  </div>
-                                  <a href="/shop/detail/${project.id }">
-                                      <h6> ${project.name } </h6>
-                                  
-                                  <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
-                              </a></div>
-                          </div>
-                          </div>
-                    </c:forEach>
+                                </div>
+                                <!-- Product Info -->
+                                <div class="product-info mt-15 text-center">
+                                    <div class="progress">
+                                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
+                                        ${project.progress }%
+                                      </div>
+                                    </div>
+                                    <a href="/shop/detail/${project.id }">
+                                        <h6> ${project.name } </h6>
+                                    
+                                    <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                                </a></div>
+                              </div>
+                            </div>
+                          </c:forEach>
                         </div>
                     </div>
                 </div>
