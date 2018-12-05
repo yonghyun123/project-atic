@@ -171,7 +171,7 @@
                             <h6>${project.name }</h6>
                           </a>
                           <h6>업종 : ${project.category } / 목표금액 :
-                            ${project.goal }</h6>
+                            <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                         </div>
                       </div>
                     </div>
