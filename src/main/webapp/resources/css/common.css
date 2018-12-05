@@ -441,3 +441,11 @@ ol > li > em {
     from {bottom: 50%; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+a.active {
+	color: #70c745 !important;
+}
+
+a:hover {
+	cursor: pointer;
+}

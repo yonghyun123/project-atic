@@ -14,7 +14,7 @@
     <title>A-TiC</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="/resources/img/core-img/favicon.ico">
+<link rel="icon" href="/resources/img/hanalogo.png">
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/resources/css/style.css">
@@ -36,7 +36,7 @@
       <nav id="investNav"style="height: 11% " >
         <ul>
           <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
-          <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>
+          <li class="monthProject active"><a href="/shop/currentShop" class="navText active">진행중</a></li>
           <li class="monthProject"><a href="/shop/preShop" class="navText">오픈예정</a></li>
         </ul>
       </nav>
@@ -180,6 +180,9 @@
    </script>
    <script type="text/javascript">
       $(document).ready(function() {
+    	  $("#funding").addClass("active");
+		  //$("#guide").removeClass("active");
+		  //$("#my-page").removeClass("active");
         $('.single-item').slick({
           autoplay:true,
           autoplaySpeed:3000,

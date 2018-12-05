@@ -14,7 +14,7 @@
     <title>A-TiC</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="/resources/img/core-img/favicon.ico">
+<link rel="icon" href="/resources/img/hanalogo.png">
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/resources/css/style.css">
@@ -37,7 +37,7 @@
         <ul>
           <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
           <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>
-          <li class="monthProject"><a href="/shop/preShop" class="navText">오픈예정</a></li>
+          <li class="monthProject"><a href="/shop/preShop" class="navText active">오픈예정</a></li>
         </ul>
       </nav>
       <div class="shop-slide-row">
@@ -112,7 +112,7 @@
                                         <a href="/shop/detail/pre/${project.id }">
                                             <h6> ${project.name } </h6>
                                         
-                                        <h6>업종 : ${project.category } / 목표금액 : ${project.goal }</h6>
+                                        <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                                     </a></div>
                                 </div>
                                 </div>
@@ -149,6 +149,10 @@
     <script type="text/javascript" src="/resources/js/slick.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+    	  $("#funding").addClass("active");
+    	  $("#guide").removeClass("active");
+    	  $("#my-page").removeClass("active");
+    	  
         $('.single-item').slick({
           autoplay:true,
           autoplaySpeed:3000,

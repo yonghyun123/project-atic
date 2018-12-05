@@ -17,7 +17,7 @@
 <title>A-TiC</title>
 
 <!-- Favicon -->
-<link rel="icon" href="/resources/img/core-img/favicon.ico">
+<link rel="icon" href="/resources/img/hanalogo.png">
 
 <!-- Core Stylesheet -->
 <link href="/resources/css/style.css" rel="stylesheet">
