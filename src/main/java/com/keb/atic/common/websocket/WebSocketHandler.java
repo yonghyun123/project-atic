@@ -99,6 +99,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			//String price = project.getCurPrice();
 			Gson gs3 = new Gson();
 			Message msg3 = new Message(3000, String.valueOf(money));
+			String str = String.format("%,d", money);
+			msg3.setCurPrice(str);
 			String json3 = gs3.toJson(msg3);
 			TextMessage tm3 = new TextMessage(json3);
 			sendMessageToAll(tm3, projectId);

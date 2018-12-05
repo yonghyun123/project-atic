@@ -16,7 +16,7 @@
 <title>A-TiC</title>
 
 <!-- Favicon -->
-<link rel="icon" href="/resources/img/core-img/favicon.ico">
+<link rel="icon" href="/resources/img/hanalogo.png">
 
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -47,7 +47,7 @@
   <section class="sector01" id="shop-sec">
     <nav id="investNav"">
       <ul>
-        <li id="investMain"><a href="/shop/" class="navText">펀딩
+        <li id="investMain"><a href="/shop/" class="navText active">펀딩
             홈</a></li>
         <li class="monthProject"><a href="/shop/currentShop"
           class="navText">진행중</a></li>
@@ -125,7 +125,7 @@
                           <h6>${project.name }</h6>
                         </a>
                         <h6>업종 : ${project.category } / 목표금액 :
-                          ${project.goal }</h6>
+                          <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                       </div>
                     </div>
                   </div>
@@ -210,7 +210,12 @@
   <!-- slick js -->
   <script type="text/javascript" src="/resources/js/slick.min.js"></script>
   <script type="text/javascript">
+  
 			$(document).ready(function() {
+				$("#funding").addClass("active");
+				  //$("#guide").removeClass("active");
+				  //$("#my-page").removeClass("active");
+				
 				$('.single-item').slick({
 					autoplay : true,
 					autoplaySpeed : 3000,
