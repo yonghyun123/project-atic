@@ -84,3 +84,43 @@ name : companyDirRegist.js
 		//... and adds the "active" class to the current step:
 		x[n].className += " active";
 	}
+	
+  	var FirstCategory = "";
+  	var SecondCategory = "";
+  	var ThirdCategory = "";
+  	
+  	$('.firstClass').change(function(){
+  		FirstCategory = $('.firstClass option:selected').val();
+  		SecondCategory = "";
+  		ThirdCategory = "";
+  		cleanSelector();
+  		$('#'+FirstCategory).css('display','block');
+   		console.log('FirstCategory= ' + FirstCategory);
+   		console.log('SecondCategory= ' + SecondCategory);
+   		console.log('ThirdCategory= ' + ThirdCategory);
+   		
+  	});
+  	
+  	$('.secondClass').change(function(){
+  		$(".thirdSel").css('display','none');
+  		ThirdCategory = "";
+  		SecondCategory = $('#'+this.id+' option:selected').val();
+  		$("#"+SecondCategory).css('display','block');
+   		console.log('FirstCategory= ' + FirstCategory);
+   		console.log('SecondCategory= ' + SecondCategory);
+   		console.log('ThirdCategory= ' + ThirdCategory);
+  	});
+  	
+  	$('.thirdClass').change(function(){
+  		ThirdCategory =$('#'+this.id+' option:selected').val();
+   		console.log('FirstCategory= ' + FirstCategory);
+   		console.log('SecondCategory= ' + SecondCategory);
+   		console.log('ThirdCategory= ' + ThirdCategory);
+  	})
+  	
+  	function cleanSelector(){
+  		$(".secondSel").css('display','none');
+  		$(".thirdSel").css('display','none');
+  	}
+  	
+  	
