@@ -119,7 +119,7 @@
               <h4 class="title">
                 <c:out value='${project.name }' />
               </h4>
-              목표 자금
+              목표 금액
               <c:out value="${project.goal }" />
               <input type="hidden"
                 value="<c:out value="${project.id }"/>" id="projectId">
@@ -143,12 +143,12 @@
                 <!-- Add to Cart Form -->
                 <c:choose>
                 <c:when test="${empty loginId }">
-                  <input type="button" id="shop-login" value="지금 투자하기" class="btn alazea-btn" style="width: 20%;">
+                  <input type="button" id="shop-login" value="오픈 알람받기" class="btn alazea-btn" style="width: 20%;">
                 </c:when>
                 <c:otherwise>
                   <form class="cart clearfix d-flex align-items-center"
                   method="post">
-                    <input type="button" id="pushAlert" value="지금 투자하기" class="btn alazea-btn">
+                    <input type="button" id="pushAlert" value="오픈 알람받기" class="btn alazea-btn">
                   </form>
                 </c:otherwise>
                 </c:choose>
@@ -496,14 +496,14 @@
 			//페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
 			evalPageService.getUserEvalList(projectId, function(list) {
 				$('#count').html(
-						'<span>총 <h5>' + list.userEvalList.length
+						'<span>총 <h5 style="display: inline-block;">' + list.userEvalList.length
 								+ '개</h5>의 매력도 평가가 있습니다.</span>');
 
 				userEvalListTemplate(list.userEvalList);
 
 				list.userEvalList.forEach(function(v) {
 					if (v.user_id == loginId) {
-						$('#pushAlert').val("신청하신 프로젝트입니다.");
+						$('#pushAlert').val("알람 신청이 완료되었습니다.");
 						$('#pushAlert').attr('disabled', true)
 						$('#pushAlert').attr('class', 'alazea-btn-disable')
 

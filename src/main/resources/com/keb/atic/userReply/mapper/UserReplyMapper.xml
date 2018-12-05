@@ -27,8 +27,7 @@
 		SELECT ur.user_id as "userId",
 	 	   ur.project_id as projectId,
 	 	   ur.content as "content",
-	 	   TO_CHAR(ur.create_date,'YYYY-MM-DD') as "regDate",
-	 	   u.profile as "profile"
+	 	   TO_CHAR(ur.create_date,'YYYY-MM-DD') as "regDate"
 	FROM AT_user_reply ur, AT_user u
 	WHERE ur.project_id = #{projectId} and ur.user_id = u.id
 	ORDER BY ur.create_date

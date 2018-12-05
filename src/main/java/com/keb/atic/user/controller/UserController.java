@@ -52,7 +52,7 @@ public class UserController {
 	@Inject
 	private UserProjectService userProjectService;
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<User> get(@PathVariable("id") String id) throws Exception {
 		return userService.readUser(id) != null ? new ResponseEntity<User>(userService.readUser(id), HttpStatus.OK)
 				: new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,15 +63,17 @@ public class UserController {
 	public String getMyInfoById(Model model, @PathVariable("id") String userId) throws Exception{
 		UserStatus userStatus = userStatusService.getMaxStatus(userId);
 		int listSize = userProjectService.readUserProjectsByUser(userId).size();
-		UserProject project = userProjectService.readUserProjectsByUser(userId).get(listSize - 1);
 		User user = userService.readUser(userId);
 		
 		log.info(userStatus);
 		log.info(user);
 		
 		model.addAttribute("userStatus",userStatus);
-		model.addAttribute("date", project.getCreateDate());
 		model.addAttribute("user",user);
+		if(listSize != 0) {
+			UserProject project = userProjectService.readUserProjectsByUser(userId).get(listSize - 1);
+			model.addAttribute("date", project.getCreateDate());
+		}
 		return "my-page/mypage";
 	}
 	
@@ -116,12 +118,7 @@ public class UserController {
 		log.info("가상계좌 생성");
 		response.setContentType("text/html; charset=utf-8");
 		
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		userService.updateUserVt(id);
 		return null; 
 	}
 	/* 유저별 투자한 기업 리스트 조회 */

@@ -111,14 +111,15 @@
               <h4 class="title">
                 <c:out value='${project.name }' />
               </h4>
-              목표 자금
+              목표 금액
               <c:out value="${project.goal }" />
               <input type="hidden"
                 value="<c:out value="${project.id }"/>" id="projectId">
               <input type="hidden" value="${loginId }" id="loginId">
               <h4 class="price">
-                <span id="curprice"><c:out
-                    value="${project.curPrice }" /></span> 원 달성
+                <span id="curprice">
+                  <c:out value="${project.curPrice }" />
+                </span> 원 달성
               </h4>
               <div class="short_overview">
                 <p>
@@ -132,17 +133,16 @@
               </div>
 
               <div class="cart--area d-flex flex-wrap align-items-center">
-                <!-- Add to Cart Form -->
                 <c:choose>
-                <c:when test="${empty loginId }">
-                  <input type="button" id="shop-login" value="지금 투자하기" class="btn alazea-btn" style="width: 20%;">
-                </c:when>
-                <c:otherwise>
-                  <form class="cart clearfix d-flex align-items-center"
-                  method="post">
-                    <input type="button" id="deposit" value="지금 투자하기" class="btn alazea-btn">
-                  </form>
-                </c:otherwise>
+                  <c:when test="${empty loginId }">
+                    <input type="button" id="shop-login" value="지금 투자하기" class="btn alazea-btn" style="width: 20%;">
+                  </c:when>
+                  <c:otherwise>
+                    <form class="cart clearfix d-flex align-items-center"
+                    method="post">
+                      <button type="button" id="deposit" class="btn alazea-btn">지금 투자하기</button>
+                    </form>
+                  </c:otherwise>
                 </c:choose>
               </div>
             </div>
@@ -401,8 +401,8 @@
 
   <script type="my-template" id="review-list">
 	<a class="list-group-item">
-		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "> <img class="card-img-top profile-img" style="width:50px; height:50px" src="/user/profile/{profile}" alt="Card image cap"></h6>
-		<p  style="float: left; margin-right: 50px; ">아이디:{userId}</p>
+		<h6 class="list-group-item-heading" style="float: left; margin-right: 50px; "> <img class="card-img-top profile-img" style="width:50px; height:50px" src="/user/profile/{userId}" alt="Card image cap"></h6>
+		<p  style="float: left; margin-right: 50px;">아이디:{userId}</p>
 		<p>{createDate}</p>
 		<h4>{content}</h4>
 	</a>
@@ -476,7 +476,7 @@
 			}
 
 			function connect() {
-				wsocket = new WebSocket("ws://localhost/hanaSocket");
+				wsocket = new WebSocket("ws://localhost:9090/hanaSocket");
 				wsocket.onopen = onOpen;
 				wsocket.onmessage = onMessage;
 				wsocket.onclose = onClose;
@@ -604,10 +604,10 @@
 				var newHtml = '';
 
 				list.forEach(function(v) {
-					newHtml += originHtml.replace('{profile}', v.profile)
-							.replace('{userId}', v.userId).replace(
-									'{createDate}', v.regDate).replace(
-									'{content}', v.content)
+					newHtml += originHtml.replace('{userId}', v.userId)
+										 .replace('{userId}', v.userId)
+										 .replace('{createDate}', v.regDate)
+										 .replace('{content}', v.content)
 				})
 				document.querySelector('#reply-body').innerHTML = newHtml;
 
@@ -622,7 +622,7 @@
 					$("#currentCount").text(count + "명");
 					var flag = mObject.message;
 					if (flag == "false") {
-						$("#deposit").val("투자하신 프로젝트입니다.");
+						$("#deposit").text("이미 투자하신 프로젝트입니다");
 						document.getElementById("deposit").disabled = true;
 					}
 					break;
@@ -633,7 +633,6 @@
 				case 3000:
 					var price = mObject.message;
 					$("#curprice").text(price);
-					$("#deposit").val("투자하신 프로젝트입니다.");
 					document.getElementById("deposit").disabled = true;
 					//document.getElementById("price").innerHTML = price;
 					break;
@@ -666,14 +665,23 @@
 				nextPrev(-1);
 			})
 
-$("#deposit").click(function() {
-				$("#depositMoney").val('');
-				$("#depositPasswd").val('');
-				document.getElementsByClassName("tab")[1].style.display = '';
-				currentTab = 0;
-				nextPrev(0);
-				$("#deposit-modal").modal('show');
-
+			$("#deposit").click(function() {
+				$.ajax({
+    				type: 'get',
+    				url: '/users/' + '${loginId}',
+    				success: function(result, status, xhr) {
+    					if(result.vt_acc_num) {
+    						$("#depositMoney").val('');
+    						$("#depositPasswd").val('');
+    						document.getElementsByClassName("tab")[1].style.display = '';
+    						currentTab = 0;
+    						nextPrev(0);
+    						$('#deposit-modal').modal('show');
+    					} else {
+    						$('#deposit-menual-modal').modal('show');
+    					}
+    				}
+    			})
 				var authNum = 0;
 				$("#auth").on("click", function() {
 					var email = $("#email").val();
@@ -717,7 +725,7 @@ $("#deposit").click(function() {
 					projectId : projectId,
 					deposit : depositM,
 					loginId : loginId,
-					curPrice : curPrice
+					curPrice : parseInt(curPrice)
 				}
 				sessionStorage.flag = "popup-message-deposit-success";
 				popup(sessionStorage.getItem('flag'));
@@ -805,7 +813,7 @@ $("#deposit").click(function() {
 			onOpen();
 		</script>
 
-  <script type="text/javascript">
+        <script type="text/javascript">
 			var evalPageService = (function() {
 				function get(projectId, callback, error) {
 					$.get("/shop/preEval/graph/" + projectId, function(result) {
@@ -946,17 +954,16 @@ $("#deposit").click(function() {
 				});
 			}
 		</script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-		$(document).on("click", "#showAll", function() {
-			if ($(this).next().css("display") == "none") {
-				$(this).next().show();
-			} else {
-				$(this).next().hide();
-			}
-		});
-	});
-    </script>
-</body>
-
+        <script type="text/javascript">
+        $(document).ready(function() {
+    		$(document).on("click", "#showAll", function() {
+    			if ($(this).next().css("display") == "none") {
+    				$(this).next().show();
+    			} else {
+    				$(this).next().hide();
+    			}
+    		});
+    	});
+        </script>
+    </body>
 </html>
