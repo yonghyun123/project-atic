@@ -84,4 +84,9 @@ public class ProjectServiceImpl implements ProjectService{
 	public List<Project> recommendProject(String projectId) {
 		return mapper.recommendProject(projectId);
 	}
+
+	@Override
+	public List<Project> readFinishProject() {
+		return mapper.readFinishProject();
+	}
 }

@@ -38,4 +38,7 @@ public interface ProjectService {
 
 	// 추천 프로젝트
 	public List<Project> recommendProject(String projectId);
+	
+	// 종료된 프로젝트
+	public List<Project> readFinishProject();
 }
