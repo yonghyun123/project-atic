@@ -33,7 +33,7 @@
     <div class="breadcrumb-area">
         <div style="height: 90px"></div>
         <!-- Top Breadcrumb Area -->
-        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/bg-img/24.jpg);">
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/gravel.png);">
             <h2>My Page</h2>
         </div>
     </div>
@@ -242,6 +242,7 @@
 	</script>
     <script type="text/javascript">
     var userId = "${loginId}";
+    $("#my-page").addClass("active");
     
     /* 날짜계산하기 */
     function calculDate(){
