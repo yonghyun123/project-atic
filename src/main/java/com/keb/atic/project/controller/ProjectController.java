@@ -192,6 +192,7 @@ public class ProjectController {
 		model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
 		model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
 		model.addAttribute("recommend", projectService.recommendProject(projectId));
+		model.addAttribute("succRate", projectService.getSuccessCagetory(projectId));
 		return "/shop/shopDetails";
 	}
 

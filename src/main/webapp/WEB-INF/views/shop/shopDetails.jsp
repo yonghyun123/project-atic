@@ -53,6 +53,7 @@
           class="navText active">진행중</a></li>
         <li class="monthProject"><a href="/shop/preShop"
           class="navText">오픈예정</a></li>
+          <li class="monthProject"><a href="/shop/finishShop" class="navText active">마감</a></li>
       </ul>
     </nav>
     <!-- Top Breadcrumb Area -->
@@ -145,6 +146,16 @@
                     </form>
                   </c:otherwise>
                 </c:choose>
+               	<c:set var="rate" value="${ succRate}"></c:set>
+                <c:choose>
+                	<c:when test="${rate eq '-1'}">
+                	 <span></span>
+                	</c:when>
+               	   <c:otherwise>
+               	   <span id="succ-rate" class="btn"> 업종별 예측률: ${succRate}</span>
+               	   </c:otherwise>
+                </c:choose>
+               
               </div>
             </div>
           </div>
@@ -501,6 +512,15 @@
 			function onClose(event) {
 				sayBye();
 			}
+			
+			/* 기업 분류별 성공률 clickEvent */
+			function succRateEvent(){
+				$('#succ-rate').click(function(){
+				   	$("#desc-succ-rate").modal('show');
+				})
+			};
+			
+			succRateEvent();
 
 			/* 댓글 ajax */
 			/*

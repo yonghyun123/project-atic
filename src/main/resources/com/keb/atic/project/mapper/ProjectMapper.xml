@@ -242,4 +242,10 @@
 	where id = #{projectId}
 	) 
 	</select>
+	
+	<select id="getSuccessCagetory" resultType="int">
+	SELECT category_id
+	FROM AT_project
+	WHERE id = #{projectId}
+	</select>
 </mapper>

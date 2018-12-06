@@ -41,4 +41,7 @@ public interface ProjectService {
 	
 	// 종료된 프로젝트
 	public List<Project> readFinishProject();
+	
+	//카테고리별 추천 (Linear Regression)
+	public Double getSuccessCagetory(String projectId);
 }
