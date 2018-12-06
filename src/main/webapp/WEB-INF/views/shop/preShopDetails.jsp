@@ -475,7 +475,6 @@
 							function(Object) {
 								var test = (Object != null);
 								var userEvalByProject = [];
-								console.log("Object = " +  test );
 								if(Object != null){
 								userEvalByProject.push(Math
 										.round(Object.Market * 100) / 100.0);
@@ -501,7 +500,7 @@
 			//페이지 오픈시 사용자평점리스트를 받아기위한 ajax 전송
 			evalPageService.getUserEvalList(projectId, function(list) {
 				$('#count').html(
-						'<span>총 <h5 style="display: inline-block;">' + list.userEvalList.length
+						'<span>총 <h5 style="display:inline-block;">' + list.userEvalList.length
 								+ '개</h5>의 매력도 평가가 있습니다.</span>');
 
 				userEvalListTemplate(list.userEvalList);
@@ -540,7 +539,6 @@
 			$('.starRev span').click(function() {
 				$(this).parent().children('span').removeClass('on');
 				$(this).addClass('on').prevAll('span').addClass('on');
-				console.log($(this).parent().children('p'));
 				$(this).parent().children('.scoreTable').html($(this).text());
 				$(this).parent().children('.scoreTable').val($(this).text());
 				return false;
@@ -551,16 +549,14 @@
 
 			function showTab(n) {
 				// This function will display the specified tab of the form ...
-				console.log(n);
 				var x = document.getElementsByClassName("preTab");
 				x[n].style.display = "block";
 				// ... and fix the Previous/Next buttons:
 				if (n == 0) {
-					document.getElementById("prevBtnPre").style.display = "none";
 		            document.getElementById("nextBtnPre").disabled = true;
 
 				} else {
-					document.getElementById("prevBtnPre").style.display = "inline";
+					document.getElementById("nextBtnpre").innerHTML = "Submit";
 				}
 				if (n == (x.length - 1)) {
 					document.getElementById("nextBtnPre").innerHTML = "Submit";
@@ -620,7 +616,6 @@
 					x[i].className = x[i].className.replace(" active", "");
 				}
 				//... and adds the "active" class to the current step:
-				console.log(x[n]);
 				x[n].className += " active";
 			}
 
