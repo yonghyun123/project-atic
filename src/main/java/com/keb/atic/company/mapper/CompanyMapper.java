@@ -12,11 +12,11 @@ public interface CompanyMapper {
 	//심사업체 등록
 	public void registCompanyInfo(Company company);
 	// 심사업체 별 조회 	
-	public Company readCompanyInfo(String id);
+	public Company readCompanyInfo(String email);
 	// 전체 심사업체 조회
 	public List<Company> companyListAll();
 	// 심사업체 삭제 
-	public void deleteCompany(String id);
+	public void deleteCompany(String email);
 	// 심사업체 업데이트
 	public void updateCompanyInfo(Company company);
 }

@@ -18,7 +18,7 @@ name : companyDirRegist.js
 		// ... and fix the Previous/Next buttons:
 		if (n == 0) {
 			document.getElementById("prevBtnDirReg").style.display = "none";
-			document.getElementById("nextBtnDirReg").disabled = false;
+			document.getElementById("nextBtnDirReg").disabled = true;
 		} else {
 			document.getElementById("prevBtnDirReg").style.display = "inline";
 			
@@ -26,7 +26,9 @@ name : companyDirRegist.js
 		if (n == (x.length - 1)) {
 			document.getElementById("nextBtnDirReg").innerHTML = "Submit";
 			
-
+			$('#nextBtnDirReg').click(function(){
+				$('#regDirComForm').submit();
+			})
 		} else {
 			document.getElementById("nextBtnDirReg").innerHTML = "Next";
 		}
@@ -126,15 +128,17 @@ name : companyDirRegist.js
   	}
   	
   	$('.investHistory').change(function(){
+  		
   		var investHistory = $('.investHistory option:selected').val();
+  		console.log(investHistory);
   		$('.Invest').css('display','none');
   		$('.firstInvestContents').css('display','none');
   		$('.secondInvestContents').css('display','none');
   		
-  		if(investHistory == 'firstInvest'){
+  		if(investHistory == '2'){
   		$('.firstInvestContents').css('display','inline-block');
   		$('#firstInvest').css('display','block');
-  		}else if(investHistory == 'secondInvest'){
+  		}else if(investHistory == '3'){
   			$('.firstInvestContents').css('display','inline-block');
   			$('.secondInvestContents').css('display','inline-block');
   			$('#firstInvest').css('display','block');
@@ -153,8 +157,19 @@ name : companyDirRegist.js
   						email:email
   					},
   					dataType: "text",
-  					success:function(){
-  						console.log("done");
+  					success:function(data){
+  						console.log(data);
+  						if(data != ""){
+  						var company = JSON.parse(data)
+  						$('#comDirName').val(company.name);
+  						$('#comDirType').val(company.comType);
+  						$('#comDirNum').val(company.busiNum);
+  						$('#comDirDate').val(company.createDate);
+  						$('#authStatus').html('');
+  						document.getElementById("nextBtnDirReg").disabled = false;
+  						}else{
+  							$('#authStatus').html('예비등록 정보가 존재하지 않습니다.');
+  						}
   					}
   			});
   		});

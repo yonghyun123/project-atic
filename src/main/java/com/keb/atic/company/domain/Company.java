@@ -54,8 +54,16 @@ public class Company {
 	private String secondFund;
 	//2차 유치 일자
 	private String secondDate;
+	//승인여뷰
+	private String flag;
 	//특허권 보유여부
 	private String hasPatent;
+	//홍보활동 수
+	private String marketingCount; 
+	//평가점수
+	private String totalResult;
+	//ceo연락처
+	private String ceoTel;
 	//사업자 등록증
 	private String fileBusiRegistration;
 	//기업 인증서

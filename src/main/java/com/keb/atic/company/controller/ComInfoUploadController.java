@@ -1,13 +1,19 @@
 package com.keb.atic.company.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.keb.atic.company.domain.Company;
 import com.keb.atic.company.service.CompanyService;
@@ -37,31 +43,66 @@ public class ComInfoUploadController {
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/checkMail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody boolean emailAuth( @RequestBody String email) {
+	public @ResponseBody Company emailAuth( @RequestBody String email) {
 		String[] emailArray = email.split("=");
 		String[] emailSplit = emailArray[1].split("%40");
 		String emailOrigin = emailSplit[0]+"@"+emailSplit[1];
 		log.info(emailOrigin);
-		return false;
+		Company company = companyService.readCompanyInfo(emailOrigin);
+		return company;
 	}
-/*	@GetMapping("/user/profile/{id}")
-	@ResponseBody
-	public ResponseEntity<Resource> getImage(@PathVariable("id") String id, HttpServletRequest request) throws Exception {
-		String imagePath = "/resources/img/profile-img/";
-		User user = userService.readUser(id);
-		String imageName = null;
-		
-		if(user.getProfile() != null) {
-			imageName = user.getProfile() + ".png";
-		} else {
-			imageName = "default.png";
-		}
-		
-		String fullPath = imagePath + imageName;
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.IMAGE_PNG);
-		Resource resource = new ServletContextResource(servletContext, fullPath);
-		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
-	}*/
+	
+	@PostMapping("/comregist")
+	public String componyRegist(Company company, Model model, @RequestParam("uploadBiz") MultipartFile uploadBiz,
+			@RequestParam("uploadBizAuth") MultipartFile uploadBizAuth,@RequestParam("uploadPatent") MultipartFile uploadPatent,
+			@RequestParam("uploadBInvest") MultipartFile uploadBInvest, HttpServletRequest request) {
+			//사업자등록증
+			company.setFileBusiRegistration(uploadBiz.getOriginalFilename());
+			//사업증명서
+			company.setFileCompCertification(uploadBizAuth.getOriginalFilename());
+			//투자유치증명서
+			company.setFileInvestCertification(uploadBInvest.getOriginalFilename());
+			//특허증명서
+			company.setFilePatentCertification(uploadPatent.getOriginalFilename());
+			
+			log.info(company.getFileBusiRegistration());
+			log.info(company.getFileCompCertification());
+			log.info(company.getFileInvestCertification());
+			log.info(company.getFilePatentCertification());
+				
+			String bizRegistDir = request.getSession().getServletContext().getRealPath("resources/document/사업자등록증/");
+			String bizAuthDir = request.getSession().getServletContext().getRealPath("resources/document/사업자인증서/");
+			String bizPatentDir = request.getSession().getServletContext().getRealPath("resources/document/특허인증서/");
+			String bizInvestDir = request.getSession().getServletContext().getRealPath("resources/document/투자유치증명/");
+			
+			String[] uploadDirArray = new String[]{
+					bizRegistDir,bizAuthDir,bizPatentDir,bizInvestDir
+			};
+			for (String eachDir : uploadDirArray) {
+				File uploadDir = new File(eachDir);
+				if(!uploadDir.isDirectory()) {
+					uploadDir.mkdirs();
+				}
+			}
+			
+			File bizRegist = new File(bizRegistDir, uploadBiz.getOriginalFilename());
+			File bizAuth = new File(bizAuthDir, uploadBizAuth.getOriginalFilename());
+			File bizPatent = new File(bizPatentDir, uploadPatent.getOriginalFilename());
+			File bizInvest = new File(bizInvestDir, uploadBInvest.getOriginalFilename());
+			
+			try {
+				uploadBiz.transferTo(bizRegist);
+				uploadBizAuth.transferTo(bizAuth);
+				uploadPatent.transferTo(bizPatent);
+				uploadBInvest.transferTo(bizInvest);
+				
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+		companyService.updateCompanyInfo(company);
+		return "redirect:/loan";
+	}
 	
 }

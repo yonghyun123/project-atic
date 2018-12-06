@@ -10,7 +10,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-body">
-          <form id="regDirComForm" method="post" action="">
+          <form id="regDirComForm" method="post" action="/company/comregist" enctype="multipart/form-data">
             <!-- Circles which indicates the steps of the form: -->
             <div style="text-align: center; margin-bottom: 40px;">
               <button type="button" class="close" data-dismiss="modal">
@@ -30,9 +30,10 @@
               </div>
               <p>이메일:</p>
               <div>
-                <input type="text" placeholder="이메일을 입력해주세요"
-                  id="eMailDir" name="emailDir" class="regText" style="display: inline-block;">
+                <input type="text" placeholder="이메일을 입력해주세요" name="email"
+                  id="eMailDir" class="regText" style="display: inline-block;">
                 <div style="display: inline-block;"><button type="button" id="emailAuth" class="btn" >인증</button></div>
+                <p id="authStatus" style="color:blue"></p>
                 <p>기업정보 입력시 사용한 eMail을 입력해주세요</p>
               </div>
             </div>
@@ -44,20 +45,26 @@
               </h3>
               <div>
                 <p>회사명:</p>
-                <input type="text" placeholder="현우상사" id="comDirName"
-                  name="comDirName" class="regText" disabled="disabled"
+                <input type="text" placeholder="현우상사" id="comDirName" 
+                  class="regText" disabled="disabled"
                   value="현우상사">
               </div>
               <div>
                 <p>사업형태:</p>
-                <input type="text" id="comDirType" name="comDirType"
-                  class="regText" disabled="disabled" value="개인사업">
+                <input type="text" id="comDirType"
+                  class="regText" disabled="disabled" value="">
               </div>
               <div>
                 <p>사업자 번호:</p>
                 <input type="text" placeholder="-빼고 입력" id="comDirNum"
-                  class="regText" disabled="disabled" value="1234-5678">
+                  class="regText" disabled="disabled" value="">
               </div>
+              <div>
+                <p>설립일:</p>
+                <input type="text" placeholder="-빼고 입력" id="comDirDate"
+                  class="regText" disabled="disabled" value="">
+              </div>
+              
             </div>
             <div class="regDirTab" style="display: none">
               <h3 class="preExplainHead">대출 심사 & 기업평가를 위한 기업정보를 입력해
@@ -90,7 +97,7 @@
                 <!-- it기업 3차분류 platForm -->
                 <div class="thirdSel" id="platForm"
                   style="display: none;">
-                  <select class="thirdClass" id="platFormSel" name="platFormSel">
+                  <select class="thirdClass" id="platFormSel" name="categoryId">
                     <option value="" selected disabled hidden>플랫폼
                       분류</option>
                     <option value="43">홍보/마케팅</option>
@@ -104,7 +111,7 @@
                 <!-- it기업 3차분류 ITdevelope -->
                 <div class="thirdSel" id="ITdevelope"
                   style="display: none;">
-                  <select class="thirdClass" id="ITdevelopeSel" name="ITdevelopeSel">
+                  <select class="thirdClass" id="ITdevelopeSel" name="categoryId">
                     <option value="" selected disabled hidden>IT 개발 분류</option>
                     <option value="49">하드웨어 개발</option>
                     <option value="50">소프트웨어 개발</option>
@@ -113,7 +120,7 @@
                 <!-- it기업 3차분류 game -->
                 <div class="thirdSel" id="game"
                   style="display: none;">
-                  <select class="thirdClass" id="gameSel" name="gameSel">
+                  <select class="thirdClass" id="gameSel" name="categoryId">
                     <option value="" selected disabled hidden>게임 분류</option>
                     <option value="51">웹&앱 게임</option>
                   </select>
@@ -121,7 +128,7 @@
                 <!-- it기업 3차분류 security -->
                 <div class="thirdSel" id="security"
                   style="display: none;">
-                  <select class="thirdClass" id="securitySel" name="securitySel">
+                  <select class="thirdClass" id="securitySel" name="categoryId">
                     <option value="" selected disabled hidden>보안 분류</option>
                     <option value="52">IT 보안</option>
                   </select>
@@ -146,7 +153,7 @@
                  <!-- 비IT 3차 분류 Food -->
                 <div class="thirdSel" id="Food"
                   style="display: none;">
-                  <select  class="thirdClass" id="FoodSel" name="thirdTypeByNonITByFood">
+                  <select  class="thirdClass" id="FoodSel" name="categoryId">
                     <option value="" selected disabled hidden>요식업
                       분류</option>
                     <option value="14">일식</option>
@@ -162,7 +169,7 @@
                 <!-- 비IT 3차 분류 Edu -->
                 <div class="thirdSel" id="Edu"
                   style="display: none;">
-                  <select   class="thirdClass" id="EduSel" name="thirdTypeByNonITByEdu">
+                  <select   class="thirdClass" id="EduSel" name="categoryId">
                     <option value="" selected disabled hidden>교육업
                       분류</option>
                     <option value="9">외국어/취미</option>
@@ -174,7 +181,7 @@
                 <!-- 비IT 3차 분류 broker -->
                 <div class="thirdSel" id="broker"
                   style="display: none;">
-                  <select   class="thirdClass" id="brokerSel" name="thirdTypeByNonITByIntro">
+                  <select   class="thirdClass" id="brokerSel" name="categoryId">
                     <option value="" selected disabled hidden>중개/유통업
                       분류</option>
                     <option value="1">부동산 중개업</option>
@@ -185,7 +192,7 @@
                 <!-- 비IT 3차 분류 sales -->
                 <div class="thirdSel" id="sales"
                   style="display: none;">
-                  <select  class="thirdClass"  name="thirdTypeByNonITBySale">
+                  <select  class="thirdClass"  name="categoryId">
                     <option value="" selected disabled hidden>판매업
                       분류</option>
                     <option value="4">컴퓨터 판매/수리</option>
@@ -203,7 +210,7 @@
                 <!-- 비IT 3차 분류 inn -->
                 <div  class="thirdSel" id="inn"
                   style="display: none;">
-                  <select   class="thirdClass" id="innSel" name="thirdTypeByNonITByInn">
+                  <select   class="thirdClass" id="innSel" name="categoryId">
                     <option value="" selected disabled hidden>숙박업
                       분류</option>
                     <option value="7">여관/모텔/호텔</option>
@@ -212,7 +219,7 @@
                 <!-- 비IT 3차 분류 beauty -->
                 <div class="thirdSel" id="beauty"
                   style="display: none;">
-                  <select  class="thirdClass" id="beautySel" name="thirdTypeByNonITByBeauty">
+                  <select  class="thirdClass" id="beautySel" name="categoryId">
                     <option value="" selected disabled hidden>미용업
                       분류</option>
                     <option value="6">네일 샵</option>
@@ -223,7 +230,7 @@
                 <!-- 비IT 3차 분류 medi -->
                 <div class="thirdSel" id="medi"
                   style="display: none;">
-                  <select   class="thirdClass" id="mediSel" name="thirdTypeByNonITByMedi">
+                  <select   class="thirdClass" id="mediSel" name="categoryId">
                     <option value="" selected disabled hidden>의료/건강사업
                       분류</option>
                     <option value="8">헬스클럽</option>
@@ -236,7 +243,7 @@
                 <!-- 비IT 3차 분류 free -->
                 <div class="thirdSel" id="free"
                   style="display: none;">
-                  <select   class="thirdClass" id="freeSel" name="thirdTypeByNonITByFree">
+                  <select   class="thirdClass" id="freeSel" name="categoryId">
                     <option value="" selected disabled hidden>자유업종
                       분류</option>
                     <option value="2">PC방</option>
@@ -253,10 +260,10 @@
 
               <div>
                 <p>연락처</p>
-                <input type="text" id="ceoPhone" name="ceoPhone"
+                <input type="text" id="ceoPhone" name="ceoTel"
                   class="regDirForm">
                 <p>초기 자본금</p>
-                <input type="text" id="estMoney" name="estMoney"
+                <input type="text" id="estMoney" name="baseFund"
                   class="regText">
                 <p>투자 유치금을 제외한 순수 자본금 만을 입력해주세요.</p>
                 <p>특허권 보유 여부</p>
@@ -268,10 +275,10 @@
 
               <div>
                 <p>투자 유치 이력</p>
-                <select class="investHistory" name="investHis">
-                  <option>없음</option>
-                  <option value="firstInvest">Seed(1회)</option>
-                  <option value="secondInvest">2회 이상</option>
+                <select class="investHistory" name="fundHistory">
+                  <option value="1">없음</option>
+                  <option value="2">Seed(1회)</option>
+                  <option value="3">2회 이상</option>
                 </select>
               </div>
 
@@ -279,21 +286,21 @@
                 <div class="Invest" id="firstInvest"  style="display: none">
                   <div class="firstInvestContents" style="width: 45%; display:none">
                     <p>1차 투자 유치액</p>
-                    <input type="text" name="firstInvest" value="0" class="regTextInline">
+                    <input type="text" name="firstFund" value="0" class="regTextInline">
                   </div>
                   <div class="firstInvestContents" style="width: 45%; display:none">
                     <p>1차 투자 유치일</p>
-                    <input type="date" name="firstInvestDate"  class="regDateInline">
+                    <input type="date" name="firstDate"  class="regDateInline">
                   </div>
                 </div>
                 <div class="Invest"  id="secondInvest" style="display: none">
                   <div class="secondInvestContents" style="width: 45%; display:none">
                   <p>2차 투자 유치액</p>
-                  <input type="text" name="secondInvest" value="0" class="regTextInline">
+                  <input type="text" name="secondFund" value="0" class="regTextInline">
                   </div>
                   <div class="secondInvestContents" style="width: 45%; display:none">
                   <p>2차 투자 유치일</p>
-                  <input type="date" name="secondInvestDate"  class="regDateInline" >
+                  <input type="date" name="secondDate"  class="regDateInline" >
                   </div>
                 </div>
               </div>
@@ -308,25 +315,25 @@
               </h3>
               <div class="authList">
                 <p>사업자 등록증</p>
-                <input type="file" id="bziReg" name="bizReg"
-                  class="regForm">
+                <input type="file" id="bziReg" name="uploadBiz"
+                  class="regForm" >
               </div>
-              <div class="authList">
+               <div class="authList">
                 <p>사업 인증서</p>
-                <input type="file" id="bizAuth" name="bizAuth"
+                <input type="file" id="bizAuth" name="uploadBizAuth"
                   class="regForm">
               </div>
               <div class="authList">
                 <p>특허 인증서</p>
-                <input type="file" id="patentReg" name="patentReg"
+                <input type="file" id="patentReg" name="uploadPatent"
                   class="regForm">
               </div>
               
               <div class="authList">
                 <p>투자 유치 증명</p>
-                <input type="file" id="investReg" name="investReg"
+                <input type="file" id="investReg" name="uploadBInvest"
                   class="regForm">
-              </div>
+              </div> 
             </div>
             <div style="overflow: auto;">
               <div style="float: right;">

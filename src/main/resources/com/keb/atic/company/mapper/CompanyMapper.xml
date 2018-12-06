@@ -28,16 +28,16 @@ VALUES      (
 	<select id="readCompanyInfo" resultType="com.keb.atic.company.domain.Company">
 		SELECT email, 
        name, 
-       t.title, 
-       busi_num, 
-       c.title, 
-       create_date, 
+       t.title as "comType", 
+       busi_num as "busiNum", 
+       c.title as "certiNum", 
+       create_date as "createDate", 
        sns 
 	FROM   at_company_judge j, 
        at_company_type t, 
        at_company_certi c 
 	WHERE  J.company_type = T.id 
-       AND J.certi_num = C.id; 
+       AND J.certi_num = C.id 
        AND j.email = #{value}
 	</select>
 	
@@ -60,7 +60,19 @@ VALUES      (
 	
 	</delete>
 
-	<update id="updateCompanyInfo">
-	
+	<update id="updateCompanyInfo" parameterType="com.keb.atic.company.domain.Company">
+	UPDATE at_company_judge 
+	SET    category_id = #{categoryId}, 
+       base_fund = #{baseFund}, 
+       fund_history = #{fundHistory}, 
+       first_fund = #{firstFund}, 
+       first_date = #{firstDate}, 
+       hasPatent = #{hasPatent},  
+       ceo_tel = #{ceoTel},
+       file_busi_registration = #{fileBusiRegistration},
+       file_comp_certification = #{fileCompCertification},
+       file_patent_certification =#{filePatentCertification},
+       file_invest_certification = #{fileInvestCertification} 
+	WHERE  email = #{email} 
 	</update>
 </mapper>
