@@ -168,24 +168,24 @@
 	</select>
 	
 	<select id="readFinishProject" resultType="com.keb.atic.project.domain.Project">
-		SELECT ap.id   AS "id",
-					   round((ap.CUR_PRICE/ ap.goal)*100) AS "progress",
-					   ap.NAME         AS "name", 
-				       ap.goal         AS "goal", 
-				       ap.company      AS "company", 
-				       ac.NAME         AS "category", 
-				       ap.create_date  AS "createDate", 
-				       afi.file_name   AS "fileName"
-		FROM at_project ap
-		JOIN at_project_image api
-		ON ap.id = api.project_id
-		JOIN at_category ac
-		ON ap.category_id = ac.id
-		JOIN at_file_info afi
-		ON api.file_id = afi.file_id  
-		WHERE ap.create_date <![CDATA[ < ]]> to_date('20181130', 'YYYYMMDD')
-		AND api.image_type = 'th'
-		ORDER BY ap.id desc
+	SELECT ap.id   AS "id",
+				   round((ap.CUR_PRICE/ ap.goal)*100) AS "progress",
+				   ap.NAME         AS "name", 
+			       ap.goal         AS "goal", 
+			       ap.company      AS "company", 
+			       ac.NAME         AS "category", 
+			       ap.create_date  AS "createDate", 
+			       afi.file_name   AS "fileName"
+	FROM at_project ap
+	JOIN at_project_image api
+	ON ap.id = api.project_id
+	JOIN at_category ac
+	ON ap.category_id = ac.id
+	JOIN at_file_info afi
+	ON api.file_id = afi.file_id  
+	WHERE to_char(ap.create_date,'YYYYMM') <![CDATA[ < ]]> #{month}
+	AND api.image_type = 'th'
+	ORDER BY ap.id desc
 	</select>
 	
 	<select id="projectListAll"  resultType="com.keb.atic.project.domain.Project">
