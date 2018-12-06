@@ -9,6 +9,7 @@
 <%@ include file="/WEB-INF/views/modal/deposit-menual.jsp"%>
 <%@ include file="/WEB-INF/views/modal/nickname.jsp"%>
 <%@ include file="/WEB-INF/views/modal/userEvaluate.jsp"%>
+<%@ include file="/WEB-INF/views/modal/descSuccRate.jsp"%>
 
 <!-- Modal Area End -->
 
