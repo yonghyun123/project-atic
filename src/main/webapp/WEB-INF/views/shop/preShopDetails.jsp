@@ -64,6 +64,7 @@
           href="/shop/currentShop">진행중</a></li>
         <li class="monthProject"><a class="navText active"
           href="/shop/preShop">오픈예정</a></li>
+        <li class="monthProject"><a href="/shop/finishShop" class="navText">마감</a></li>
       </ul>
     </nav>
     <div

@@ -1,5 +1,7 @@
 package com.keb.atic.common.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -27,19 +29,21 @@ public class CommonController {
 	private UserProjectService userProjectService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
-		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
 		
-		int nextMonth = thisMonth +1;
-
+		int thisMonth = 11;
+		int nextMonth = thisMonth + 1;
+		
+		Date date = new Date();
+		SimpleDateFormat hour = new SimpleDateFormat("hh");
+		SimpleDateFormat minute = new SimpleDateFormat("mm");
+			
+		if (Integer.parseInt(minute.format(date)) >= 10 && Integer.parseInt(hour.format(date)) == 8) {
+			thisMonth = 0;
+		}
 		String count = "3";
 		String thisMonthString = null;
 		
-		if(thisMonth < 10) {
-			thisMonthString = "0" + String.valueOf(thisMonth);
-		}else {
-			thisMonthString = String.valueOf(thisMonth);
-		}
+		thisMonthString = String.valueOf(thisMonth);
 		/**인기 프로젝트 리스트*/
 		Map<String, String>hotMap = new HashMap<String,String>();
 		
@@ -47,14 +51,7 @@ public class CommonController {
 		hotMap.put("count", count);
 		/**등록예정 프로젝트 리스트*/
 		Map<String, String>nextMap = new HashMap<String,String>();
-		if (nextMonth > 12) {
-			nextMonth -= 12;
-			nextMap.put("month", "0" + String.valueOf(nextMonth));
-		} else if (String.valueOf(nextMonth).length() == 1) {
-			nextMap.put("month", "0" + String.valueOf(nextMonth));
-		} else {
-			nextMap.put("month", String.valueOf(nextMonth));
-		}
+		nextMap.put("month", String.valueOf(nextMonth));
 		nextMap.put("count", count);
 		
 		model.addAttribute("hotList",projectService.readMonthProjectByGoal(hotMap));
@@ -132,17 +129,16 @@ public class CommonController {
 	@RequestMapping(value = "/loan", method = RequestMethod.GET)
 	public String getLoanPage(Locale locale, Model model) {
 		log.info("Welcome loan-main");
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
-		int thisMonth = cal.get(GregorianCalendar.MONTH)+1;
-		String count = "10";
-		String thisMonthString = null;
-		Map<String, String>hotMap = new HashMap<String,String>();
-		if(String.valueOf(thisMonth).length()==1) {
-			thisMonthString = "0" + String.valueOf(thisMonth);
-		}else {
-			thisMonthString = String.valueOf(thisMonth);
+		Date date = new Date();
+		SimpleDateFormat hour = new SimpleDateFormat("hh");
+		SimpleDateFormat minute = new SimpleDateFormat("mm");
+		int thisMonth = 11;
+		if (Integer.parseInt(minute.format(date)) >= 10 && Integer.parseInt(hour.format(date)) == 8) {
+			thisMonth ++;
 		}
-		hotMap.put("month",thisMonthString);
+		String count = "10";
+		Map<String, String>hotMap = new HashMap<String,String>();
+		hotMap.put("month",String.valueOf(thisMonth));
 		hotMap.put("count", count);
 		model.addAttribute("successProjectList",projectService.readMonthProjectByGoal(hotMap));
 		return "loan/main";

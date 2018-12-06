@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <html>
 <head>
     <meta charset="UTF-8">
@@ -86,6 +87,7 @@
                             <p>진행중인 펀딩이 <c:out value="${curList.size() }"/>건 있습니다</p>
                         </div>
                         <!-- Search by Terms -->
+                        <c:if test="${fn:length(curList) != 0}">
                         <div class="search_by_terms">
                                 <select id="search_by" class="custom-select widget-title">
                                   <option selected value="goal">정렬</option>
@@ -94,6 +96,7 @@
                                   <option value="eval">예비 평점 순</option>
                                 </select>
                         </div>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -102,6 +105,8 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row" id="templateBody">
+                        <c:choose>
+                <c:when test="${fn:length(curList) != 0}">
                           <c:forEach var="project" items="${curList }" varStatus="status">
                           <div class="col-12 col-sm-6 col-lg-4">
                             <div class="single-product-area mb-50">
@@ -129,6 +134,16 @@
                               </div>
                             </div>
                           </c:forEach>
+                          </c:when>
+                          <c:otherwise>
+                                            <div class="col-12 col-md-12 col-lg-12 text-center"
+                    style="margin-bottom: 20px">
+                    <div style="width: 100%">
+                      <h1>진행중인 프로젝트가 존재하지 않습니다.</h1>
+                    </div>
+                  </div>
+                </c:otherwise>
+                          </c:choose>
                         </div>
                     </div>
                 </div>
