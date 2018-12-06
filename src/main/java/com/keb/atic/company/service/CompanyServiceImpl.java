@@ -25,9 +25,8 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public Company readCompanyInfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Company readCompanyInfo(String email) {
+		return companyMapper.readCompanyInfo(email);
 	}
 
 	@Override
@@ -44,8 +43,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public void updateCompanyInfo(Company company) {
-		// TODO Auto-generated method stub
-		
+		companyMapper.updateCompanyInfo(company);
 	}
 
 
