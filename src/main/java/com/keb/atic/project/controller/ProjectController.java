@@ -77,6 +77,7 @@ public class ProjectController {
 
 		model.addAttribute("curList", projectService.readMonthProjectByGoal(curMap));
 		model.addAttribute("preList", projectService.readMonthProjectByGoal(preMap));
+		model.addAttribute("finishList", projectService.readFinishProject());
 		model.addAttribute("count", projectService.projectListAll().size());
 		return "/shop/shop";
 	}
@@ -115,6 +116,13 @@ public class ProjectController {
 		model.addAttribute("preList", projectService.readMonthProjectByGoal(preMap));
 	}
 
+	@GetMapping("/finishShop")
+	public void finishShop(Model model) {
+		log.info("종료 펀딩 리스트");
+		List<Project> finishProjects = projectService.readFinishProject();
+		model.addAttribute("finishList", finishProjects);
+	}
+	
 	/** 프로젝트 검색 */
 	@PostMapping("/search")
 	public String listByConditon(@RequestParam("condition") String condition,
@@ -184,6 +192,7 @@ public class ProjectController {
 		model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
 		model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
 		model.addAttribute("recommend", projectService.recommendProject(projectId));
+		model.addAttribute("succRate", projectService.getSuccessCagetory(projectId));
 		return "/shop/shopDetails";
 	}
 

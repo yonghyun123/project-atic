@@ -3,11 +3,14 @@ package com.keb.atic.project.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.keb.atic.project.domain.Project;
 import com.keb.atic.project.mapper.ProjectMapper;
+import com.keb.atic.tensorflow.RegressionModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -19,6 +22,8 @@ import lombok.extern.log4j.Log4j;
 public class ProjectServiceImpl implements ProjectService{
 	@Setter(onMethod_ = { @Autowired })
 	private ProjectMapper mapper;
+	@Inject
+	private RegressionModel regressionModel;
 	
 	@Override
 	public void createProject(Project project) {
@@ -83,5 +88,17 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public List<Project> recommendProject(String projectId) {
 		return mapper.recommendProject(projectId);
+	}
+
+	@Override
+	public List<Project> readFinishProject() {
+		return mapper.readFinishProject();
+	}
+	
+	@Override
+	public Double getSuccessCagetory(String projectId) {
+		int category = mapper.getSuccessCagetory(projectId);
+		String categoryId = Integer.toString(category);
+		return (double)regressionModel.returnResult(categoryId);
 	}
 }

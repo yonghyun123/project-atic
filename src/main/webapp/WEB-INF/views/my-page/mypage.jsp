@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
-    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+    <title>A-TiC</title>
     <!-- Favicon -->
     <link rel="icon" href="/resources/img/core-img/favicon.ico">
 
@@ -33,7 +33,7 @@
     <div class="breadcrumb-area">
         <div style="height: 90px"></div>
         <!-- Top Breadcrumb Area -->
-        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/bg-img/24.jpg);">
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/resources/img/gravel.png);">
             <h2>My Page</h2>
         </div>
     </div>
@@ -242,6 +242,7 @@
 	</script>
     <script type="text/javascript">
     var userId = "${loginId}";
+    $("#my-page").addClass("active");
     
     /* 날짜계산하기 */
     function calculDate(){

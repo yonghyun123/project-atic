@@ -37,8 +37,8 @@
         <ul>
           <li id="investMain"><a href="/shop/" class="navText">펀딩 홈</a></li>
           <li class="monthProject"><a href="/shop/currentShop" class="navText">진행중</a></li>
-          <li class="monthProject"><a href="/shop/preShop" class="navText active">오픈예정</a></li>
-          <li class="monthProject"><a href="/shop/finishShop" class="navText">마감</a></li>
+          <li class="monthProject"><a href="/shop/preShop" class="navText">오픈예정</a></li>
+          <li class="monthProject"><a href="/shop/finishShop" class="navText active">마감</a></li>
         </ul>
       </nav>
       <div class="shop-slide-row">
@@ -83,48 +83,43 @@
                     <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
                         <!-- Shop Page Count -->
                         <div class="shop-page-count" id="countBody">
-                            <p>오픈예정인 펀딩이 <c:out value="${preList.size() }"/>건 있습니다</p>
+                            <p>마감된 펀딩이 <c:out value="${finishList.size() }"/>건 있습니다</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <!-- All Products Area -->
+              <!-- All Products Area -->
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="shop-products-area">
                         <div class="row" id="templateBody">
-                        <c:choose>
-                          <c:when test="${not empty preList }">
-                            <c:forEach var="project" items="${preList }" varStatus="status">
-                              <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-area mb-50">
-                                    <!-- Product Image -->
-                                    <div class="product-img">
-                                       <a href="/shop/detail/pre/${project.id }">
-                                        <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
-                                        <!-- Product Tag -->
-                                        <div class="product-tag">
-                                            <a href="/shop/detail/pre/${project.id }">Hot</a>
-                                        </div>
-                         
+                          <c:forEach var="project" items="${finishList }" varStatus="status">
+                          <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="single-product-area mb-50">
+                                <!-- Product Image -->
+                                <div class="product-img">
+                                    <a href="#">
+                                    <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
+                                    <!-- Product Tag -->
+                                    <div class="product-tag">
+                                        <a href="#">Hot</a>
                                     </div>
-                                    <!-- Product Info -->
-                                    <div class="product-info mt-15 text-center">
-                                        <a href="/shop/detail/pre/${project.id }">
-                                            <h6> ${project.name } </h6>
-                                        
-                                        <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
-                                    </a></div>
                                 </div>
-                                </div>
-                              </c:forEach>
-                            </c:when>
-                          <c:otherwise>
-                          <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
-                            <div style="width:100%"><h1>오픈예정인 프로젝트가 존재하지 않습니다.</h1></div>
-                          </div>
-                          </c:otherwise>
-                        </c:choose>
+                                <!-- Product Info -->
+                                <div class="product-info mt-15 text-center">
+                                    <div class="progress">
+                                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
+                                        ${project.progress }%
+                                      </div>
+                                    </div>
+                                    <a href="#">
+                                        <h6> ${project.name } </h6>
+                                    
+                                    <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                                </a></div>
+                              </div>
+                            </div>
+                          </c:forEach>
                         </div>
                     </div>
                 </div>

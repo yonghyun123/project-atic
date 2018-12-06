@@ -16,7 +16,7 @@
 <title>A-TiC</title>
 
 <!-- Favicon -->
-<link rel="icon" href="/resources/img/core-img/favicon.ico">
+<link rel="icon" href="/resources/img/hanalogo.png">
 
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -47,12 +47,14 @@
   <section class="sector01" id="shop-sec">
     <nav id="investNav"">
       <ul>
-        <li id="investMain"><a href="/shop/" class="navText">펀딩
+        <li id="investMain"><a href="/shop/" class="navText active">펀딩
             홈</a></li>
         <li class="monthProject"><a href="/shop/currentShop"
           class="navText">진행중</a></li>
         <li class="monthProject"><a href="/shop/preShop"
           class="navText">오픈예정</a></li>
+        <li class="monthProject"><a href="/shop/finishShop"
+          class="navText">마감</a></li>
       </ul>
     </nav>
     <div class="shop-slide-row">
@@ -125,7 +127,7 @@
                           <h6>${project.name }</h6>
                         </a>
                         <h6>업종 : ${project.category } / 목표금액 :
-                          ${project.goal }</h6>
+                          <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                       </div>
                     </div>
                   </div>
@@ -171,7 +173,7 @@
                             <h6>${project.name }</h6>
                           </a>
                           <h6>업종 : ${project.category } / 목표금액 :
-                            ${project.goal }</h6>
+                            <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                         </div>
                       </div>
                     </div>
@@ -182,6 +184,55 @@
                     style="margin-bottom: 20px">
                     <div style="width: 100%">
                       <h1>진행 예정 프로젝트가 존재하지 않습니다.</h1>
+                    </div>
+                  </div>
+                </c:otherwise>
+              </c:choose>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="titleRow">최근 종료된 프로젝트</div>
+      <div class="row">
+        <!-- All Products Area -->
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="shop-products-area">
+            <div class="row" id="templateBody">
+              <c:choose>
+                <c:when test="${fn:length(finishList) != 0}">
+                  <c:forEach var="project" items="${finishList }" end="2"
+                    varStatus="status">
+                    <div class="col-12 col-sm-6 col-lg-4">
+                      <div class="single-product-area mb-50">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                          <a href="#">
+                            <img
+                            src="/resources/img/project-image/${project.fileName }"
+                            alt="">
+                          </a>
+                          <!-- Product Tag -->
+                          <div class="product-tag">
+                            <a href="#">Hot</a>
+                          </div>
+                        </div>
+                        <!-- Product Info -->
+                        <div class="product-info mt-15 text-center">
+                          <a href="#">
+                            <h6>${project.name }</h6>
+                          </a>
+                          <h6>업종 : ${project.category } / 목표금액 :
+                            <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                        </div>
+                      </div>
+                    </div>
+                  </c:forEach>
+                </c:when>
+                <c:otherwise>
+                  <div class="col-12 col-md-12 col-lg-12 text-center"
+                    style="margin-bottom: 20px">
+                    <div style="width: 100%">
+                      <h1>마감된 프로젝트가 존재하지 않습니다.</h1>
                     </div>
                   </div>
                 </c:otherwise>
@@ -210,7 +261,12 @@
   <!-- slick js -->
   <script type="text/javascript" src="/resources/js/slick.min.js"></script>
   <script type="text/javascript">
+  
 			$(document).ready(function() {
+				$("#funding").addClass("active");
+				  //$("#guide").removeClass("active");
+				  //$("#my-page").removeClass("active");
+				
 				$('.single-item').slick({
 					autoplay : true,
 					autoplaySpeed : 3000,

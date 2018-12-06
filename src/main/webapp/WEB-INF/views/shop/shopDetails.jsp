@@ -17,7 +17,7 @@
 <title>A-TiC</title>
 
 <!-- Favicon -->
-<link rel="icon" href="/resources/img/core-img/favicon.ico">
+<link rel="icon" href="/resources/img/hanalogo.png">
 
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -50,15 +50,16 @@
         <li id="investMain"><a href="/shop/" class="navText">펀딩
             홈</a></li>
         <li class="monthProject"><a href="/shop/currentShop"
-          class="navText">진행중</a></li>
+          class="navText active">진행중</a></li>
         <li class="monthProject"><a href="/shop/preShop"
           class="navText">오픈예정</a></li>
+          <li class="monthProject"><a href="/shop/finishShop" class="navText active">마감</a></li>
       </ul>
     </nav>
     <!-- Top Breadcrumb Area -->
     <div
       class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
-      style="background-image: url(/resources/img/bg-img/24.jpg);">
+      style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);">
       <h2>PROJECT DETAILS</h2>
     </div>
     
@@ -68,9 +69,9 @@
         <div>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#"><i
+              <li class="breadcrumb-item"><a href="/"><i
                   class="fa fa-home"></i> Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Project</a></li>
+              <li class="breadcrumb-item"><a href="/shop/currentShop">Project</a></li>
               <li class="breadcrumb-item active" aria-current="page">Project
                 Details</li>
             </ol>
@@ -112,14 +113,15 @@
                 <c:out value='${project.name }' />
               </h4>
               목표 금액
-              <c:out value="${project.goal }" />
+              <fmt:formatNumber value="${project.goal }" pattern="#,###"/>
               <input type="hidden"
                 value="<c:out value="${project.id }"/>" id="projectId">
               <input type="hidden" value="${loginId }" id="loginId">
               <h4 class="price">
-                <span id="curprice">
-                  <c:out value="${project.curPrice }" />
+                <span id="curprice2">
+                  <fmt:formatNumber value="${project.curPrice }" pattern="#,###"/>
                 </span> 원 달성
+                <input type="hidden" id="curPrice" value="${project.curPrice }">
               </h4>
               <div class="short_overview">
                 <p>
@@ -144,6 +146,16 @@
                     </form>
                   </c:otherwise>
                 </c:choose>
+               	<c:set var="rate" value="${ succRate}"></c:set>
+                <c:choose>
+                	<c:when test="${rate eq '-1'}">
+                	 <span></span>
+                	</c:when>
+               	   <c:otherwise>
+               	   <span id="succ-rate" class="btn"> 업종별 예측률: ${succRate}</span>
+               	   </c:otherwise>
+                </c:choose>
+               
               </div>
             </div>
           </div>
@@ -450,6 +462,10 @@
 
 
   <script type="text/javascript">
+  $("#funding").addClass("active");
+  //$("#guide").removeClass("active");
+  //$("#my-page").removeClass("active");
+  
 			let wsocket;
 			var projectId = $("#projectId").val();
 			var loginId = $("#loginId").val();
@@ -496,6 +512,15 @@
 			function onClose(event) {
 				sayBye();
 			}
+			
+			/* 기업 분류별 성공률 clickEvent */
+			function succRateEvent(){
+				$('#succ-rate').click(function(){
+				   	$("#desc-succ-rate").modal('show');
+				})
+			};
+			
+			succRateEvent();
 
 			/* 댓글 ajax */
 			/*
@@ -632,7 +657,10 @@
 					break;
 				case 3000:
 					var price = mObject.message;
-					$("#curprice").text(price);
+					$("#curprice").val(price);
+					$("#curprice2").text(mObject.curPrice);
+					//document.getElementById("curPrice2")
+
 					document.getElementById("deposit").disabled = true;
 					//document.getElementById("price").innerHTML = price;
 					break;
@@ -719,7 +747,7 @@
 
 			function invest() {
 				var depositM = $("#depositMoney").val();
-				var curPrice = document.getElementById("curprice").innerHTML;
+				var curPrice = $("#curPrice").val();
 				var messageObject = {
 					type : 3000,
 					projectId : projectId,

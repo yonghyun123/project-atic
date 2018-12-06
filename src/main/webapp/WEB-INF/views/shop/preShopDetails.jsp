@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <html>
 
 <head>
@@ -16,8 +18,8 @@
 
 
 
-<!-- Favicon -->
-<link rel="icon" href="/resources/img/core-img/favicon.ico">
+ <!-- Favicon -->
+<link rel="icon" href="/resources/img/hanalogo.png">
 
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -60,13 +62,13 @@
             홈</a></li>
         <li class="monthProject"><a class="navText"
           href="/shop/currentShop">진행중</a></li>
-        <li class="monthProject"><a class="navText"
+        <li class="monthProject"><a class="navText active"
           href="/shop/preShop">오픈예정</a></li>
       </ul>
     </nav>
     <div
       class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
-      style="background-image: url(/resources/img/bg-img/24.jpg);">
+      style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);">
       <h2>오픈 예정사업</h2>
     </div>
 
@@ -75,9 +77,9 @@
         <div>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#"><i
+              <li class="breadcrumb-item"><a href="/"><i
                   class="fa fa-home"></i> Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Project</a></li>
+              <li class="breadcrumb-item"><a href="/shop/preShop">Project</a></li>
               <li class="breadcrumb-item active" aria-current="page">Project
                 Details</li>
             </ol>
@@ -120,7 +122,7 @@
                 <c:out value='${project.name }' />
               </h4>
               목표 금액
-              <c:out value="${project.goal }" />
+             <fmt:formatNumber value="${project.goal }" pattern="#,###"/>
               <input type="hidden"
                 value="<c:out value="${project.id }"/>" id="projectId">
               <h4 class="price">
@@ -383,6 +385,9 @@
              </li>
   </script>
   <script type="text/javascript">
+  $("#funding").addClass("active");
+  $("#guide").removeClass("active");
+  $("#my-page").removeClass("active");
 			var projectId = "${project.id}";
 			var loginId = "${loginId}";
 			//

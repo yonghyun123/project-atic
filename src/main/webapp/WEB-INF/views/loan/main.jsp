@@ -13,10 +13,10 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title -->
-<title>기업대출 신청</title>
+<title>A-TiC</title>
 
 <!-- Favicon -->
-<link rel="icon" href="/resources/img/core-img/favicon.ico">
+<link rel="icon" href="/resources/img/hanalogo.png">
 
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -113,7 +113,7 @@ max-width: 1000px !important;
     <!-- Top Breadcrumb Area -->
     <div
       class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
-      style="background-image: url(/resources/img/bg-img/24.jpg);">
+      style="background-image: url(/resources/img/hanabank2.jpg);">
       <h2>기업 대출 신청</h2>
     </div>
   </div>

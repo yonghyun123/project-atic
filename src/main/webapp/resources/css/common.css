@@ -28,7 +28,7 @@ body .PreProjctSector01 {
 	z-index: 1;
 	color: white;
 	font-size: 28px;
-	top: 200;
+	top: 170;
 	margin-left: 30px;
 }
 
@@ -42,7 +42,7 @@ color: rgba(0,0,0,.84);
 	z-index: 1;
 	color: white;
 	font-size: 18px;
-	top: 250;
+	top: 220;
 	margin-left: 30px;
 }
 
@@ -440,4 +440,12 @@ ol > li > em {
 @keyframes fadeout {
     from {bottom: 50%; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+a.active {
+	color: #70c745 !important;
+}
+
+a:hover {
+	cursor: pointer;
 }
