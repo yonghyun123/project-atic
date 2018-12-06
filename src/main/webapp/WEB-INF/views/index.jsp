@@ -145,6 +145,9 @@
             </div>
           </div>
         </c:forEach>
+        <div class="col-12 text-center">
+          <a href="/shop/currentShop" class="btn alazea-btn">View All</a>
+        </div>
         </c:when>
         <c:otherwise>
           <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
@@ -152,9 +155,6 @@
             </div>
         </c:otherwise>
         </c:choose>
-        <div class="col-12 text-center">
-          <a href="/shop/currentShop" class="btn alazea-btn">View All</a>
-        </div>
       </div>
     </div>
   </section>
@@ -195,6 +195,9 @@
               </div>
             </div>
           </c:forEach>
+         <div class="col-12 text-center" style="margin-bottom:20px">
+          <a href="/shop/preShop" class="btn alazea-btn">View All</a>
+        </div>
           </c:when>
           <c:otherwise>
             <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
@@ -202,9 +205,6 @@
             </div>
           </c:otherwise>
         </c:choose>
-         <div class="col-12 text-center" style="margin-bottom:20px">
-          <a href="/shop/preShop" class="btn alazea-btn">View All</a>
-        </div>
       </div>
     </div>
   </section>

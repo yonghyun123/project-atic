@@ -33,7 +33,7 @@ public interface ProjectMapper {
 	// 추천 프로젝트
 	public List<Project> recommendProject(String projectId);
 	// 종료된 프로젝트
-	public List<Project> readFinishProject();
+	public List<Project> readFinishProject(String yearMonth);
 	//카테고리별 추천 (Linear Regression)
 	public int getSuccessCagetory(String projectId);
 }

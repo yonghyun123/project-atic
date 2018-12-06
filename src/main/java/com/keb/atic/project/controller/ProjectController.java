@@ -2,7 +2,8 @@ package com.keb.atic.project.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,24 +52,21 @@ public class ProjectController {
 	public String listAll(Model model) {
 		Map<String, String> curMap = new HashMap<String, String>();
 		Map<String, String> preMap = new HashMap<String, String>();
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
-		int thisMonth = cal.get(GregorianCalendar.MONTH) + 1;
+		
+		int thisMonth = 11;
 		int nextMonth = thisMonth + 1;
-
-		if (String.valueOf(thisMonth).length() == 1) {
-			curMap.put("month", "0" + String.valueOf(thisMonth));
+		
+		Date date = new Date();
+		SimpleDateFormat hour = new SimpleDateFormat("hh");
+		SimpleDateFormat minute = new SimpleDateFormat("mm");
+		if (Integer.parseInt(minute.format(date)) >= 10 && Integer.parseInt(hour.format(date)) == 8) {
+				model.addAttribute("finishList", projectService.readFinishProject("2018" + String.valueOf(thisMonth+1)));
+				thisMonth = 0;
 		} else {
+			model.addAttribute("finishList", projectService.readFinishProject("2018" + String.valueOf(thisMonth)));
+		}
 			curMap.put("month", String.valueOf(thisMonth));
-		}
-
-		if (nextMonth > 12) {
-			nextMonth -= 12;
-			preMap.put("month", "0" + String.valueOf(nextMonth));
-		} else if (String.valueOf(nextMonth).length() == 1) {
-			preMap.put("month", "0" + String.valueOf(nextMonth));
-		} else {
 			preMap.put("month", String.valueOf(nextMonth));
-		}
 
 		String count = "3";
 		curMap.put("count", count);
@@ -77,41 +75,33 @@ public class ProjectController {
 
 		model.addAttribute("curList", projectService.readMonthProjectByGoal(curMap));
 		model.addAttribute("preList", projectService.readMonthProjectByGoal(preMap));
-		model.addAttribute("finishList", projectService.readFinishProject());
 		model.addAttribute("count", projectService.projectListAll().size());
 		return "/shop/shop";
 	}
 
 	@GetMapping("/currentShop")
 	public void currentShop(Model model) {
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		Map<String, String> curMap = new HashMap<String, String>();
-		int thisMonth = cal.get(GregorianCalendar.MONTH) + 1;
-		if (String.valueOf(thisMonth).length() == 1) {
-			curMap.put("month", "0" + String.valueOf(thisMonth));
-		} else {
-			curMap.put("month", String.valueOf(thisMonth));
+		
+		int thisMonth = 11;
+		
+		Date date = new Date();
+		SimpleDateFormat hour = new SimpleDateFormat("hh");
+		SimpleDateFormat minute = new SimpleDateFormat("mm");
+		
+		if (Integer.parseInt(minute.format(date)) >= 10 && Integer.parseInt(hour.format(date)) == 8) {
+				thisMonth = 0;
 		}
-		System.out.println("0" + String.valueOf(thisMonth));
-
+		curMap.put("month", String.valueOf(thisMonth));
 		curMap.put("condition", "goal");
 		model.addAttribute("curList", projectService.readProjectByCondition(curMap));
 	}
 
 	@GetMapping("/preShop")
 	public void preShop(Model model) {
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		Map<String, String> preMap = new HashMap<String, String>();
-		int nextMonth = cal.get(GregorianCalendar.MONTH) + 2;
-		if (nextMonth > 12) {
-			nextMonth -= 12;
-			preMap.put("month", "0" + String.valueOf(nextMonth));
-		} else if (String.valueOf(nextMonth).length() == 1) {
-			preMap.put("month", "0" + String.valueOf(nextMonth));
-		} else {
-			preMap.put("month", String.valueOf(nextMonth));
-		}
-
+		int nextMonth = 12;
+		preMap.put("month", String.valueOf(nextMonth));
 		preMap.put("count", "20");
 		model.addAttribute("preList", projectService.readMonthProjectByGoal(preMap));
 	}
@@ -119,10 +109,17 @@ public class ProjectController {
 	@GetMapping("/finishShop")
 	public void finishShop(Model model) {
 		log.info("종료 펀딩 리스트");
-		List<Project> finishProjects = projectService.readFinishProject();
-		model.addAttribute("finishList", finishProjects);
+		int thisMonth = 11;
+		Date date = new Date();
+		SimpleDateFormat hour = new SimpleDateFormat("hh");
+		SimpleDateFormat minute = new SimpleDateFormat("mm");
+		if (Integer.parseInt(minute.format(date)) >= 10 && Integer.parseInt(hour.format(date)) == 8) {
+				model.addAttribute("finishList", projectService.readFinishProject("2018" + String.valueOf(thisMonth+1)));
+		} else {
+			model.addAttribute("finishList", projectService.readFinishProject("2018" + String.valueOf(thisMonth)));
+		}
 	}
-	
+
 	/** 프로젝트 검색 */
 	@PostMapping("/search")
 	public String listByConditon(@RequestParam("condition") String condition,
@@ -133,35 +130,18 @@ public class ProjectController {
 		List<Project> list = null;
 		log.info("list by condition");
 		log.info(whichProject);
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		Map<String, String> map = new HashMap<String, String>();
-		int thisMonth = cal.get(GregorianCalendar.MONTH) + 1;
-		int nextMonth = thisMonth + 1;
-		if (nextMonth > 12) {
-			nextMonth -= 12;
-		}
 
+		int thisMonth = 11;
+		
 		if (condition != null) {
 			map.put("condition", condition);
 		}
 
 		if (whichProject.equals("curProject")) {
-			if (String.valueOf(thisMonth).length() == 1) {
-				map.put("month", "0" + String.valueOf(thisMonth));
-			} else {
 				map.put("month", String.valueOf(thisMonth));
-			}
 
-		} else {
-			if (nextMonth > 12) {
-				nextMonth -= 12;
-				map.put("month", "0" + String.valueOf(nextMonth));
-			} else if (String.valueOf(nextMonth).length() == 1) {
-				map.put("month", "0" + String.valueOf(nextMonth));
-			} else {
-				map.put("month", String.valueOf(nextMonth));
-			}
-		}
+		} 
 		list = projectService.readProjectByCondition(map);
 
 		for (Project project : list) {
@@ -199,19 +179,18 @@ public class ProjectController {
 // 등록 예정프로젝트 상세
 	@GetMapping("/detail/pre/{projectId}")
 	public String shopPreDetails(@PathVariable("projectId") String projectId, Model model) {
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		int nextMonth = 12;
+		
 		Map<String, String> preMap = new HashMap<String, String>();
-		int nextMonth = cal.get(GregorianCalendar.MONTH) + 2;
-		if (nextMonth > 12) {
-			nextMonth -= 12;
-			preMap.put("month", "0" + String.valueOf(nextMonth));
-		} else if (String.valueOf(nextMonth).length() == 1) {
-			preMap.put("month", "0" + String.valueOf(nextMonth));
-		} else {
-			preMap.put("month", String.valueOf(nextMonth));
-		}
+		preMap.put("month", String.valueOf(nextMonth));
 		preMap.put("count", "20");
-		model.addAttribute("preList", projectService.readMonthProjectByGoal(preMap));
+		List<Project> list = projectService.readMonthProjectByGoal(preMap);
+		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i).getId().equals(projectId)) {
+				list.remove(i);
+			}
+		}
+		model.addAttribute("preList", list);
 		model.addAttribute("project", projectService.readProject(projectId));
 		model.addAttribute("userProject", userProjectService.readUserProjectsByProject(projectId));
 		model.addAttribute("countOfInvestor", userProjectService.countOfInvestor(projectId));
@@ -222,7 +201,8 @@ public class ProjectController {
 	@PostMapping("/preEval/{projectId}/{loginId}")
 	public String userEvaluate(@PathVariable("loginId") String loginId, @PathVariable("projectId") String projectId,
 			@RequestParam("profit") String profit, @RequestParam("stable") String stable,
-			@RequestParam("potential") String potential, @RequestParam("favor") String favor, @RequestParam("EmailAddress") String userEmail) {
+			@RequestParam("potential") String potential, @RequestParam("favor") String favor,
+			@RequestParam("EmailAddress") String userEmail) {
 		UserEval userEval = new UserEval(loginId, projectId, stable, profit, favor, potential);
 		userEvalService.createUserEval(userEval, userEmail);
 		return "redirect:/shop/detail/pre/" + projectId;
@@ -235,24 +215,24 @@ public class ProjectController {
 		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObject = null;
 		UserEval userEval = userEvalService.readUserEvalAvg(projectId);
-		if(userEval != null) {
-		jsonObject = new JSONObject();
-		jsonObject.put("id", userEval.getId());
-		jsonObject.put("Favor", userEval.getFavor_grade());
-		jsonObject.put("Growth", userEval.getGrowth_grade());
-		jsonObject.put("Market", userEval.getMarket_grade());
-		jsonObject.put("Stable", userEval.getStable_grade());
-		jsonObject.put("Total", userEval.getTotal_avg());
-		}else {
+		if (userEval != null) {
+			jsonObject = new JSONObject();
+			jsonObject.put("id", userEval.getId());
+			jsonObject.put("Favor", userEval.getFavor_grade());
+			jsonObject.put("Growth", userEval.getGrowth_grade());
+			jsonObject.put("Market", userEval.getMarket_grade());
+			jsonObject.put("Stable", userEval.getStable_grade());
+			jsonObject.put("Total", userEval.getTotal_avg());
+		} else {
 			jsonObject = new JSONObject();
 			jsonObject.put("id", projectId);
 			jsonObject.put("Favor", 0);
-			jsonObject.put("Growth",0);
-			jsonObject.put("Market",0);
-			jsonObject.put("Stable",0);
+			jsonObject.put("Growth", 0);
+			jsonObject.put("Market", 0);
+			jsonObject.put("Stable", 0);
 			jsonObject.put("Total", 0);
 		}
-		
+
 		jsonArray.add(jsonObject);
 		PrintWriter out = null;
 		try {

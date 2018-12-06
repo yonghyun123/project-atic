@@ -91,8 +91,8 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public List<Project> readFinishProject() {
-		return mapper.readFinishProject();
+	public List<Project> readFinishProject(String yearMonth) {
+		return mapper.readFinishProject(yearMonth);
 	}
 	
 	@Override

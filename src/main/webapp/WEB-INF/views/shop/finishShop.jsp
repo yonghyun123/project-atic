@@ -97,26 +97,21 @@
                           <div class="col-12 col-sm-6 col-lg-4">
                             <div class="single-product-area mb-50">
                                 <!-- Product Image -->
-                                <div class="product-img">
-                                    <a href="#">
-                                    <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
-                                    <!-- Product Tag -->
-                                    <div class="product-tag">
-                                        <a href="#">Hot</a>
-                                    </div>
+                                <div class="product-img" style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);  background-repeat: no-repeat; width: 100%; height: 300px; background-size: cover;">
+                                  <p style="background-color: rgba(17, 17, 17, 0.5);height: 100%;margin: 0;">
+                                  </p>
                                 </div>
                                 <!-- Product Info -->
-                                <div class="product-info mt-15 text-center">
+                                <div class="product-info mt-15 text-center finish-product">
                                     <div class="progress">
                                       <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
                                         ${project.progress }%
                                       </div>
                                     </div>
-                                    <a href="#">
-                                        <h6> ${project.name } </h6>
+                                    <h6> ${project.name } </h6>
                                     
                                     <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
-                                </a></div>
+                                </div>
                               </div>
                             </div>
                           </c:forEach>
