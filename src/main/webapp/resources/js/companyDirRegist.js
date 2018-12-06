@@ -4,6 +4,7 @@ name : companyDirRegist.js
   $("#regDir").click(function() {
       $("#com-dir-Reg").modal('show');
    });
+
   
   var currentDirTab = 0; // Current tab is set to be the first tab (0)
 	showDirTab(currentDirTab); // Display the current tab
@@ -20,10 +21,11 @@ name : companyDirRegist.js
 			document.getElementById("nextBtnDirReg").disabled = false;
 		} else {
 			document.getElementById("prevBtnDirReg").style.display = "inline";
+			
 		}
 		if (n == (x.length - 1)) {
 			document.getElementById("nextBtnDirReg").innerHTML = "Submit";
-			document.getElementById("nextBtnDirReg").disabled = true;
+			
 
 		} else {
 			document.getElementById("nextBtnDirReg").innerHTML = "Next";
@@ -61,7 +63,7 @@ name : companyDirRegist.js
 		// A loop that checks every input field in the current tab:
 		for (i = 0; i < y.length; i++) {
 			// If a field is empty...
-			if (y[i].value == "") {
+			if (y[i].value == "" && y[i].type != 'date' && y[i].type != 'file') {
 				// add an "invalid" class to the field:
 				y[i].className += " invalid";
 				// and set the current valid status to false:
@@ -94,7 +96,7 @@ name : companyDirRegist.js
   		SecondCategory = "";
   		ThirdCategory = "";
   		cleanSelector();
-  		$('#'+FirstCategory).css('display','block');
+  		$('#'+FirstCategory).css('display','inline');
    		console.log('FirstCategory= ' + FirstCategory);
    		console.log('SecondCategory= ' + SecondCategory);
    		console.log('ThirdCategory= ' + ThirdCategory);
@@ -105,7 +107,7 @@ name : companyDirRegist.js
   		$(".thirdSel").css('display','none');
   		ThirdCategory = "";
   		SecondCategory = $('#'+this.id+' option:selected').val();
-  		$("#"+SecondCategory).css('display','block');
+  		$("#"+SecondCategory).css('display','inline');
    		console.log('FirstCategory= ' + FirstCategory);
    		console.log('SecondCategory= ' + SecondCategory);
    		console.log('ThirdCategory= ' + ThirdCategory);
@@ -122,5 +124,41 @@ name : companyDirRegist.js
   		$(".secondSel").css('display','none');
   		$(".thirdSel").css('display','none');
   	}
+  	
+  	$('.investHistory').change(function(){
+  		var investHistory = $('.investHistory option:selected').val();
+  		$('.Invest').css('display','none');
+  		$('.firstInvestContents').css('display','none');
+  		$('.secondInvestContents').css('display','none');
+  		
+  		if(investHistory == 'firstInvest'){
+  		$('.firstInvestContents').css('display','inline-block');
+  		$('#firstInvest').css('display','block');
+  		}else if(investHistory == 'secondInvest'){
+  			$('.firstInvestContents').css('display','inline-block');
+  			$('.secondInvestContents').css('display','inline-block');
+  			$('#firstInvest').css('display','block');
+  			$('#secondInvest').css('display','block');
+  		}
+  	})
+  	
+  	$(document).ready(function(){
+  		$('#emailAuth').click(function(){
+  			var email = $('#eMailDir').val();
+  			$.ajax({
+  					url : "/company/checkMail",
+  					type:"post",
+  					async: false,
+  					data:{
+  						email:email
+  					},
+  					dataType: "text",
+  					success:function(){
+  						console.log("done");
+  					}
+  			});
+  		});
+  	});
+    
   	
   	

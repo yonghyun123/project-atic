@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keb.atic.company.mapper.CompanyMapper">
+	<!-- 심사기업 임시등록 -->
+	<insert id="registCompanyInfo">
+		INSERT INTO at_company_judge 
+            (id, 
+             email, 
+             name, 
+             company_type, 
+             busi_num, 
+             certi_num, 
+             create_date, 
+             sns) 
+VALUES      (
+			 company_judge_id_seq.NEXTVAL, 
+             #{email}, 
+             #{name}, 
+             #{comType}, 
+             #{busiNum}, 
+             #{certiNum}, 
+             #{createDate}, 
+             #{sns}
+             ) 
+	</insert>
+	
+	<select id="readCompanyInfo" resultType="com.keb.atic.company.domain.Company">
+		SELECT email, 
+       name, 
+       t.title, 
+       busi_num, 
+       c.title, 
+       create_date, 
+       sns 
+	FROM   at_company_judge j, 
+       at_company_type t, 
+       at_company_certi c 
+	WHERE  J.company_type = T.id 
+       AND J.certi_num = C.id; 
+       AND j.email = #{value}
+	</select>
+	
+	<select id="companyListAll" resultType="com.keb.atic.company.domain.Company">
+	SELECT email, 
+       name, 
+       t.title, 
+       busi_num, 
+       c.title, 
+       create_date, 
+       sns 
+	FROM   at_company_judge j, 
+       at_company_type t, 
+       at_company_certi c 
+	WHERE  J.company_type = T.id 
+       AND J.certi_num = C.id; 
+	</select>
+
+	<delete id="deleteCompany" >
+	
+	</delete>
+
+	<update id="updateCompanyInfo">
+	
+	</update>
+</mapper>

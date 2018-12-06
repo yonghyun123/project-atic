@@ -6,7 +6,7 @@
   <!-- Modal -->
   <div class="modal fade" id="com-dir-Reg" role="dialog" tabindex="-1"
     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" id="detailModal">
+    <div class="modal-dialog dirRegist" id="detailModal">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-body">
@@ -17,6 +17,8 @@
                 <span>X</span>
               </button>
               <span class="step"></span> <span class="step"></span>
+              <span class="step"></span> <span class="step"></span>
+              
             </div>
             <!-- One "tab" for each step in the form: -->
             <div class="regDirTab">
@@ -29,7 +31,8 @@
               <p>이메일:</p>
               <div>
                 <input type="text" placeholder="이메일을 입력해주세요"
-                  id="eMailDir" name="emailDir" class="regText">
+                  id="eMailDir" name="emailDir" class="regText" style="display: inline-block;">
+                <div style="display: inline-block;"><button type="button" id="emailAuth" class="btn" >인증</button></div>
                 <p>기업정보 입력시 사용한 eMail을 입력해주세요</p>
               </div>
             </div>
@@ -66,7 +69,7 @@
                 <p>업종 분류</p>
                 <!-- 대분류 -->
                 <div class="firstSel" id="firstSel" >
-                  <select class ="firstClass" name="firstClass">
+                  <select class ="firstClass" name="firstClass" style="display:inline">
                     <option value="" selected disabled hidden>1차
                       분류</option>
                     <option value="IT">IT</option>
@@ -82,7 +85,6 @@
                     <option value="ITdevelope">IT 개발</option>
                     <option value="security">보안</option>
                     <option value="game">게임</option>
-                    <option value="ITetc">기타</option>
                   </select>
                 </div>
                 <!-- it기업 3차분류 platForm -->
@@ -125,13 +127,6 @@
                   </select>
                 </div>
                 
-              <!-- it기업 3차분류 ITetc -->
-                <div class="thirdSel" id="ITetc"
-                  style="display: none;">
-                  <input type="text" id="etcSel" name="thirdTypeByITByETC">업종을
-                  입력해주세요
-                </div>
-                
                 <!-- 비IT 2차 분류 -->
                 <div class="secondSel" id="nonIT"
                   style="display: none;">
@@ -146,7 +141,6 @@
                     <option value="beauty">미용</option>
                     <option value="medi">의료</option>
                     <option value="free">자유</option>
-                    <option value="nonITetc">기타</option>
                   </select>
                 </div>
                  <!-- 비IT 3차 분류 Food -->
@@ -255,45 +249,52 @@
                     <option value="3">자동차 미용</option>
                   </select>
                 </div>
-              <!-- 비IT 3차 분류 nonITetc -->
-                <div class="thirdSel" id="nonITetc"
-                  style="display: none;">
-                  <input type="text" id="" name="thirdTypeByNonITByETC">업종을
-                  입력해주세요
-                </div>
               </div>
 
               <div>
-                <p>회사 설립일</p>
-                <input type="date" id="estDate" name="estDate"
+                <p>연락처</p>
+                <input type="text" id="ceoPhone" name="ceoPhone"
                   class="regDirForm">
                 <p>초기 자본금</p>
-                <input type="date" id="estMoney" name="estMoney"
-                  class="regDirForm">
-                <p>투자 유치금 제외</p>
+                <input type="text" id="estMoney" name="estMoney"
+                  class="regText">
+                <p>투자 유치금을 제외한 순수 자본금 만을 입력해주세요.</p>
+                <p>특허권 보유 여부</p>
+                  <select name="hasPatent">
+                    <option value=0>보유
+                    <option value=1>미보유
+                  </select>
               </div>
 
               <div>
                 <p>투자 유치 이력</p>
-                <select name="investHis">
+                <select class="investHistory" name="investHis">
                   <option>없음</option>
-                  <option>Seed(1회)</option>
-                  <option>2회 이상</option>
+                  <option value="firstInvest">Seed(1회)</option>
+                  <option value="secondInvest">2회 이상</option>
                 </select>
               </div>
 
               <div>
-                <div id="firstInvest">
-                  <p>1차 투자 유치액</p>
-                  <input type="text" name="firstInvest" value="0">
-                  <p>1차 투자 유치일</p>
-                  <input type="date" name="firstInvestDate">
+                <div class="Invest" id="firstInvest"  style="display: none">
+                  <div class="firstInvestContents" style="width: 45%; display:none">
+                    <p>1차 투자 유치액</p>
+                    <input type="text" name="firstInvest" value="0" class="regTextInline">
+                  </div>
+                  <div class="firstInvestContents" style="width: 45%; display:none">
+                    <p>1차 투자 유치일</p>
+                    <input type="date" name="firstInvestDate"  class="regDateInline">
+                  </div>
                 </div>
-                <div style="display: none">
+                <div class="Invest"  id="secondInvest" style="display: none">
+                  <div class="secondInvestContents" style="width: 45%; display:none">
                   <p>2차 투자 유치액</p>
-                  <input type="text" name="secondInvest" value="0">
+                  <input type="text" name="secondInvest" value="0" class="regTextInline">
+                  </div>
+                  <div class="secondInvestContents" style="width: 45%; display:none">
                   <p>2차 투자 유치일</p>
-                  <input type="date" name="secondInvestDate">
+                  <input type="date" name="secondInvestDate"  class="regDateInline" >
+                  </div>
                 </div>
               </div>
             </div>
@@ -305,19 +306,25 @@
                 아래 항목중 보유한 모든 증명을 업로드 해주세요.<br> 정확한 평가와 대출심사를 위해
                 필요합니다.
               </h3>
-              <div>
+              <div class="authList">
                 <p>사업자 등록증</p>
                 <input type="file" id="bziReg" name="bizReg"
                   class="regForm">
               </div>
-              <div>
+              <div class="authList">
                 <p>사업 인증서</p>
                 <input type="file" id="bizAuth" name="bizAuth"
                   class="regForm">
               </div>
-              <div>
+              <div class="authList">
                 <p>특허 인증서</p>
                 <input type="file" id="patentReg" name="patentReg"
+                  class="regForm">
+              </div>
+              
+              <div class="authList">
+                <p>투자 유치 증명</p>
+                <input type="file" id="investReg" name="investReg"
                   class="regForm">
               </div>
             </div>

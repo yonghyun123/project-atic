@@ -23,8 +23,10 @@ name : companyRegist.js
 		}
 		if (n == (x.length - 1)) {
 			document.getElementById("nextBtnReg").innerHTML = "Submit";
-			document.getElementById("nextBtnReg").disabled = true;
-
+			$('#nextBtnReg').click(function(){
+				$('#regComForm').submit();
+			})
+		
 		} else {
 			document.getElementById("nextBtnReg").innerHTML = "Next";
 		}
@@ -84,4 +86,5 @@ name : companyRegist.js
 		//... and adds the "active" class to the current step:
 		x[n].className += " active";
 	} 
+	
 

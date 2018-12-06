@@ -46,13 +46,22 @@ p {
 	margin-bottom: 50;
 }
 
-.modal-dialog {
-	max-width: 1000px;
-   margin-top: 5%;
+#com-dir-Reg .dirRegist{
+	max-width: 1000px !important;
+    max-height:100%;
+   margin-top: 5% !important;
+}
+#com-Reg .Regist{
+max-width: 1000px !important;
+   margin-top: 5% !important;
+}
+.regText, .regForm, .regDirForm {
+	width: 60% !important;
 }
 
-.regText, .regForm {
-	width: 60%;
+
+.regTextInline, .regDateInline{
+  width: 80% !important;
 }
 
 .regTab, .regDirTab {
@@ -66,6 +75,31 @@ p {
   margin-left:10;
 }
 
+.firstClass, .secondClass, .thirdClass{
+    padding: 10px;
+    width: 23%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  display: inline-block;
+}
+
+ .investHistory {
+    padding: 10px;
+    width: 23%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  display: inline-block;
+}
+
+.Invest{
+  margin-bottom: 10px;
+}
+
+.authList{
+  margin-bottom: 10px;
+}
 </style>
 
 <body>
