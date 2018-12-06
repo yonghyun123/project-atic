@@ -45,7 +45,7 @@
   <!-- ##### slide Area Start ##### -->
   <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
   <section class="sector01" id="shop-sec">
-    <nav id="investNav"">
+    <nav id="investNav">
       <ul>
         <li id="investMain"><a href="/shop/" class="navText active">펀딩
             홈</a></li>
@@ -61,7 +61,7 @@
       <div>
         <div class="single-item">
           <a href="#"
-            style="background-image: url('/resources/img/slider-img/shop-slide1.png')">
+            style="background-image: url('/resources/img/slider-img/index-slide1.png')">
             <p class="index-slider-text-title">
               A-TIC x 하나은행<br>
             </p>
@@ -69,7 +69,7 @@
               기존과는 다른 새로운 개념의 적금 플랫폼!<br>
             </p>
           </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/shop-slide2.png')">
+            style="background-image: url('/resources/img/slider-img/index-slide2.png')">
             <p class="index-slider-text-title">
               함께할수록 올라가는 이율
               <br>
@@ -78,7 +78,7 @@
               모금액 100% 달성 기업을 맞춰보세요!<br>
             </p>
           </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/shop-slide3.png')">
+            style="background-image: url('/resources/img/slider-img/index-slide3.png')">
             <p class="index-slider-text-title">
               유망 스타트업 진흥 프로젝트
             </p>
@@ -162,10 +162,6 @@
                             src="/resources/img/project-image/${project.fileName }"
                             alt="">
                           </a>
-                          <!-- Product Tag -->
-                          <div class="product-tag">
-                            <a href="#">Hot</a>
-                          </div>
                         </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
@@ -204,10 +200,11 @@
                     varStatus="status">
                     <div class="col-12 col-sm-6 col-lg-4">
                       <div class="single-product-area mb-50">
-                                                <!-- Product Image -->
+                        <!-- Product Image -->
                         <div class="product-img" style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);  background-repeat: no-repeat; width: 100%; height: 300px; background-size: cover;">
                                   <p style="background-color: rgba(17, 17, 17, 0.5);height: 100%;margin: 0;">
                                   </p>
+                                  <h2 class="closeProject" style="margin-top: -195px; text-align: center; font-size: 67px; color: #ffffff;">마감</h2>
                                 </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
@@ -265,6 +262,7 @@
 					arrows : true,
 					pauseOnHover : true
 				});
+				$('.closeProject').css("font-size","36px").css("color","#ffffff");
 			});
 		</script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
