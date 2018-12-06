@@ -1,11 +1,13 @@
 package com.keb.atic.user.controller;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -72,4 +74,24 @@ public class ProfileUploadController {
 		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/user/download/{fileName}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@ResponseBody
+	public ResponseEntity<Resource> downloadFile(@PathVariable("fileName") String fileName, HttpServletRequest request) {
+		log.info("download");
+		String folder = "/resources/img/profile-img/";
+		Resource resource = new FileSystemResource(folder + fileName);
+		log.info("resource : " + resource);
+		String resourceName = resource.getFilename();
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+			headers.add("Content-Disposition",  "attachment; filename=" + new String(resourceName.getBytes("UTF-8"),
+					"ISO-8859-1"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+	}
 }
