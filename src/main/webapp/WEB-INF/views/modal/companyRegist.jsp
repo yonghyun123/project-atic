@@ -6,11 +6,11 @@
   <!-- Modal -->
   <div class="modal fade" id="com-Reg" role="dialog" tabindex="-1"
     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" id="detailModal" style="margin-top: 5%">
+    <div class="modal-dialog Regist" id="detailModal">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-body">
-          <form id="regComForm"  method="post" action="">
+          <form id="regComForm"  method="post" action="/company/demoregist">
             <!-- Circles which indicates the steps of the form: -->
             <div style="text-align: center; margin-bottom: 40px;">
               <button type="button" class="close" data-dismiss="modal">
@@ -40,23 +40,23 @@
               <div>
               <p>회사명:</p>
               <input type="text" placeholder="회사명을 입력해주세요"
-                id="comName" name="comName" class="regText">
+                id="comName" name="name" class="regText">
                 <p>ex)주식회사 현우상사</p>
               </div>
               <div>
               <p>사업형태:</p>
-              <select name="bigCategory" class="comSelect">
-                <option>법인 사업자</option>
-                <option>개인 사업자</option>
-                <option>사회적 기업</option>
-                <option>기타</option>
+              <select name="comType" class="comSelect">
+                <option value="1">법인 사업자</option>
+                <option value="2">개인 사업자</option>
+                <option value="3">사회적 기업</option>
+                <option value="4">기타</option>
               </select>
                 <p>category: 법인/개인사업/사회적기업/기타</p>
               </div>
               <div>
                <p>사업자 번호:</p>
               <input type="text" placeholder="-빼고 입력"
-                 id="comNum" class="regText">
+                 id="comNum" name="busiNum" class="regText">
                 <p>사업자등록증 상의 사업자 번호를 입력해주세요.</p>
               </div>
             </div>
@@ -68,24 +68,23 @@
               </h3>
               <div>
               <p>설립년월:</p>
-              <input type="text" placeholder="설립년월을 입력해주세요"
-                id="regDate" name="regDate" class="regText">
-                <p>ex)yyyy/mm/dd</p>
+              <input type="date" placeholder="설립년월을 입력해주세요"
+                id="regDate" name="createDate" class="regText">
               </div>
               <div>
               <p>인증내역:</p>
-              <select name="authType" class="comSelect">
-                <option>이노비즈 인증</option>
-                <option>메인비즈 인증</option>
-                <option>밴처기업 인증</option>
-                <option>기타(해당없음)</option>
+              <select name="certiNum" class="comSelect">
+                <option value="1">이노비즈 인증</option>
+                <option value="2">메인비즈 인증</option>
+                <option value="3">밴처기업 인증</option>
+                <option value="4">기타(해당없음)</option>
               </select>
                 <p>현재 보유한 인증서의 종류를 입력해주세요</p>
               </div>
               <div>
                <p>SNS 채널:</p>
               <input type="text" placeholder="url입력"
-                 id="snsNum" class="regText">
+                 id="snsInfo" name="sns" class="regText">
                 <p>보유하신 홈페이지 또는 SNS 채널을 입력해주세요.</p>
               </div>
             </div>
