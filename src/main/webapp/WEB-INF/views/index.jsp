@@ -49,30 +49,30 @@
     <div class="container">
       <div id="mainVisual">
         <div class="single-item">
-          <a href="/shop/detail/pre/12"
+          <a href="#"
             style="background-image: url('/resources/img/slider-img/index-slide1.png')">
             <p class="index-slider-text-title">
-              서울 카페쇼에서 혁신상 수상!<br>
+              A-TIC x 하나은행<br>
             </p>
             <p class="index-slider-text-content">
-              음악과 함께하는 콜드브루 커피머신<br>
+              기존과는 다른 새로운 개념의 적금 플랫폼!<br>
             </p>
-          </a> <a href="/shop/detail/pre/4"
+          </a> <a href="#"
             style="background-image: url('/resources/img/slider-img/index-slide2.png')">
             <p class="index-slider-text-title">
-              수요미식회 인정 한우<br>삼정하누<br>
+              함께할수록 올라가는 이율
+              <br>
             </p>
             <p class="index-slider-text-content">
-              <br>
-              <br> 한우의 프리미엄화를 선도하고 있습니다!<br>
+              모금액 100% 달성 기업을 맞춰보세요!<br>
             </p>
           </a> <a href="#"
             style="background-image: url('/resources/img/slider-img/index-slide3.png')">
             <p class="index-slider-text-title">
-             펀딩형 자유적금 'ATIC'<br>
+              유망 스타트업 진흥 프로젝트
             </p>
             <p class="index-slider-text-content">
-              우수 스타트업에 펀딩하면 늘어나는 적금 이율!<br>
+              스타트업들의 성장을 목표로합니다.
             </p>
           </a>
         </div>
