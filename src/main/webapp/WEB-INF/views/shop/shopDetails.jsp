@@ -57,7 +57,7 @@ pageContext.setAttribute("LF", "\n");
           class="navText active">진행중</a></li>
         <li class="monthProject"><a href="/shop/preShop"
           class="navText">오픈예정</a></li>
-          <li class="monthProject"><a href="/shop/finishShop" class="navText active">마감</a></li>
+          <li class="monthProject"><a href="/shop/finishShop" class="navText">마감</a></li>
       </ul>
     </nav>
     <!-- Top Breadcrumb Area -->
