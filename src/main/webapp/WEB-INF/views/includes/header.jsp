@@ -54,7 +54,7 @@
             <div class="classynav">
               <ul style="margin-top:10; margin-right: 70px;">
                 <li class="time-li"><span id="countTime"></span>&emsp;</li>
-                <li><a href="/shop" id="guide">이용가이드</a>
+                <li><a href="/about" id="guide">이용가이드</a>
                 <li><a href="/shop" id="funding">펀딩</a>
                   
                 </li>
