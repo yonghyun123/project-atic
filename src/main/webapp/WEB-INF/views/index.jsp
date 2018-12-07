@@ -179,7 +179,7 @@
           <c:forEach items="${nextList}" var="preProject">
             <!-- Single Blog Post Area -->
             <div class="col-12 col-md-6 col-lg-4 text-center">
-              <div class="single-blog-post mb-100">
+              <div class="single-blog-post mb-50">
                 <div class="product-img mb-30">
                   <a href="/shop/detail/pre/${preProject.id }"><img
                     src="/resources/img/project-image/${preProject.fileName}"
@@ -195,7 +195,7 @@
               </div>
             </div>
           </c:forEach>
-         <div class="col-12 text-center" style="margin-bottom:20px">
+         <div class="col-12 text-center" style="margin-bottom: 50px">
           <a href="/shop/preShop" class="btn alazea-btn">View All</a>
         </div>
           </c:when>
