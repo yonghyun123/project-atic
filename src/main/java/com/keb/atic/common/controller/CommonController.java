@@ -34,13 +34,6 @@ public class CommonController {
 		
 		int thisMonth = 11;
 		int nextMonth = thisMonth + 1;
-		String id = null;
-		
-		if(request.getAttribute("loginId") != null) {
-			if(request.getAttribute("loginId").equals("admin")) {
-				id = (String)request.getAttribute("loginId");
-			}
-		}
 		
 		Date date = new Date();
 		SimpleDateFormat hour = new SimpleDateFormat("hh");
@@ -67,17 +60,23 @@ public class CommonController {
 		model.addAttribute("nextList",projectService.readMonthProjectByGoal(nextMap));
 		model.addAttribute("riseProject",userProjectService.riseProject());
 		log.info("Welcome IndexPage");	
-		if(id == null) {
-			return "index";
-		} else {
-			return "admin/admin";
-		}
+		return "index";
 	}
 
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String about(Locale locale, Model model) {
 		log.info("Welcome AboutPage");		
 		return "about";
+	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String getAdminPage(Locale locale, Model model, HttpServletRequest request) {
+		if(request.getAttribute("loginId").equals("admin")) {
+			return "admin/admin";
+		} else {
+			return "index";
+		}
+		
 	}
 	
 	@RequestMapping(value = "/loan", method = RequestMethod.GET)
