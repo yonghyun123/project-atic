@@ -123,8 +123,9 @@ pageContext.setAttribute("LF", "\n");
               <input type="hidden" value="${loginId }" id="loginId">
               <h4 class="price">
                 <span id="curprice2">
-                  <fmt:formatNumber value="${project.curPrice }" pattern="#,###"/>
-                </span> 원 달성
+                달성 금액은 투자를 하신 후에 보실 수 있습니다.
+<!--                   <fmt:formatNumber value="${project.curPrice }" pattern="#,###"/> -->
+                </span>
                 <input type="hidden" id="curPrice" value="${project.curPrice }">
               </h4>
               <div class="short_overview">
@@ -215,7 +216,7 @@ pageContext.setAttribute("LF", "\n");
                   설명</a></li>
               <li class="nav-item"><a href="#addi-info"
                 class="nav-link" data-toggle="tab" role="tab">회사 정보</a></li>
-              <li class="nav-item"><a href="#investor"
+              <li class="nav-item" style="display: none;" id="investorList"><a href="#investor"
                 class="nav-link" data-toggle="tab" role="tab">투자자 현황<span
                   class="text-muted"> (<c:out
                       value="${countOfInvestor }" />)
@@ -502,11 +503,14 @@ pageContext.setAttribute("LF", "\n");
 			}
 
 			function onOpen(event) {
+				var price = $("#curPrice").val();
 
 				var messageObject = {
 					type : 1000,
 					projectId : projectId,
-					loginId : loginId
+					loginId : loginId,
+					curPrice : price
+					
 
 				}
 				send(messageObject);
@@ -594,7 +598,6 @@ pageContext.setAttribute("LF", "\n");
 			// 리뷰 등록 버튼 이벤트
 			function sendReviewDdta() {
 				if (loginId == null || loginId.length == 0) {
-					console.log('ddddd');
 					$('#review-send-btn').css('display', 'none');
 				} else {
 					$('#review-send-btn').css('display', 'block');
@@ -650,8 +653,10 @@ pageContext.setAttribute("LF", "\n");
 					$("#currentCount").text(count + "명");
 					var flag = mObject.message;
 					if (flag == "false") {
+						$("#curprice2").text(mObject.curPrice+'원 달성');
 						$("#deposit").text("이미 투자하신 프로젝트입니다");
 						document.getElementById("deposit").disabled = true;
+						$("#investorList").css("display", "block");
 					}
 					break;
 				case 2000:
@@ -661,11 +666,10 @@ pageContext.setAttribute("LF", "\n");
 				case 3000:
 					var price = mObject.message;
 					$("#curprice").val(price);
-					$("#curprice2").text(mObject.curPrice);
-					//document.getElementById("curPrice2")
-
+					$("#curprice2").text(mObject.curPrice+"원 달성");
+					$("#deposit").text("이미 투자하신 프로젝트입니다");
 					document.getElementById("deposit").disabled = true;
-					//document.getElementById("price").innerHTML = price;
+					$("#investorList").css("display", "block");
 					break;
 				 case 4000:
 	                    alert('이달의 투자액이 100만원을 초과하였습니다.');
