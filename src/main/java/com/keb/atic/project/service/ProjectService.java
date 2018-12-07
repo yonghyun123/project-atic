@@ -19,7 +19,7 @@ public interface ProjectService {
 	public List<Project> readMonthProjectByGoal(Map<String, String> map);
 
 	// 조건별 프로젝트 조회(condition key: 달성률 순)
-	public List<Project> readProjectsByPercent();
+	public List<Project> readProjectsByPercent(Map<String, String> map);
 
 	// 조건별 프로젝트 조회(condition key: 매력도 순)
 	public List<Project> readProjectsByEval();
