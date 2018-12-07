@@ -102,6 +102,7 @@
                                 <div class="product-img" style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);  background-repeat: no-repeat; width: 100%; height: 300px; background-size: cover;">
                                   <p style="background-color: rgba(17, 17, 17, 0.5);height: 100%;margin: 0;">
                                   </p>
+                                  <h2 class="closeProject" >마감</h2>
                                 </div>
                                 <!-- Product Info -->
                                 <div class="product-info mt-15 text-center finish-product">
@@ -142,6 +143,7 @@
     <script type="text/javascript" src="/resources/js/slick.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+    	  $('.closeProject').css("font-size","65px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
     	  $("#funding").addClass("active");
     	  $("#guide").removeClass("active");
     	  $("#my-page").removeClass("active");
