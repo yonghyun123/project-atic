@@ -667,6 +667,10 @@ pageContext.setAttribute("LF", "\n");
 					document.getElementById("deposit").disabled = true;
 					//document.getElementById("price").innerHTML = price;
 					break;
+				 case 4000:
+	                    alert('이달의 투자액이 100만원을 초과하였습니다.');
+	                    location.reload();
+	                    break;
 				}
 			}
 
@@ -821,6 +825,12 @@ pageContext.setAttribute("LF", "\n");
 						valid = false;
 					}
 				}
+				if($("#depositMoney").val() < 10000){
+                    $("#depositMoney").val('');
+                    $("#depositMoney").focus();
+                    $("#depositMoney").attr("placeholder","10,000원 이상의 금액을 입력해 주세요.");
+                    valid = false;
+                }
 				// If the valid status is true, mark the step as finished and valid:
 				if (valid) {
 					document.getElementsByClassName("step")[currentTab].className += " finish";
