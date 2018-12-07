@@ -116,10 +116,10 @@
 <p class="preExplain"><strong>투자받은 날짜</strong>: {firstDate} <span class="ml-15" style="color:#70c745;">1차 투자액: {firstFund}원</span></p>
 <p class="preExplain"><strong>투자받은 날짜</strong>: {secondDate} <span class="ml-15" style="color:#70c745;">2차 투자액: {secondFund}원</span></p>
 <p class="preExplain"><strong>특허 보유</strong>: {hasPatent}</p> 			    
-<p class="preExplain"><strong>사업자등록증</strong>: <span class="selectFile"><a href="/user/download/{fileBusiRegistration}?suffix={suffix1}">{fileBusiRegistration}</a></span></p>
-<p class="preExplain"><strong>기업 인증서</strong>: <span class="selectFile"><a href="/user/download/{fileCompCertification}?suffix={suffix2}">{fileCompCertification}</a></span></p>
-<p class="preExplain"><strong>특허 인증서</strong>: <span class="selectFile"><a href="/user/download/{filePatentCertification}?suffix={suffix3}">{filePatentCertification}</a></span></p>
-<p class="preExplain"><strong>투자유치 인증서</strong>: <span class="selectFile"><a href="/user/download/{fileInvestCertification}?suffix={suffix4}">{fileInvestCertification}</a></span></p>
+<p class="preExplain">사업자등록증: <span class="selectFile"><a href="/user/download/{fileBusiRegistration}?suffix={suffix1}"&dir=사업자등록증>{fileBusiRegistration}</a></span></p>
+<p class="preExplain">기업 인증서: <span class="selectFile"><a href="/user/download/{fileCompCertification}?suffix={suffix2}"&dir=사업자인증서>{fileCompCertification}</a></span></p>
+<p class="preExplain">특허 인증서: <span class="selectFile"><a href="/user/download/{filePatentCertification}?suffix={suffix3}"&dir=특허인증서>{filePatentCertification}</a></span></p>
+<p class="preExplain">투자유치 인증서: <span class="selectFile"><a href="/user/download/{fileInvestCertification}?suffix={suffix4}"&dir=투자유치인증>{fileInvestCertification}</a></span></p>
  			    
 <h1 style="color: #70c745;">총 평가 점수 : {totalResult}</h1>
   </script>
