@@ -94,4 +94,11 @@
  	group by up.project_id, p.name
  	order by sum(deposit) desc
 	</select>
+	
+	<select id="checkDeposit" resultType="int">
+	SELECT Nvl(SUM(deposit), 0) 
+	FROM   at_user_project 
+	WHERE  user_id = #{userId} 
+       AND To_char(create_date, 'YYYYMM') = To_char(SYSDATE, 'YYYYMM') 
+	</select>
 </mapper>

@@ -26,4 +26,7 @@ public interface UserProjectService {
 	
 	//오늘의 투자액 상승 순위
 	public List<UserProject> riseProject();
+	
+	//투자액 100만원 이상인지 체크하는 함수
+	public int checkDeposit(String userId);
 }
