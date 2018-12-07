@@ -56,7 +56,7 @@ public class CommonController {
 		nextMap.put("month", String.valueOf(nextMonth));
 		nextMap.put("count", count);
 		
-		model.addAttribute("hotList",projectService.readMonthProjectByGoal(hotMap));
+		model.addAttribute("hotList",projectService.readProjectsByPercent(hotMap));
 		model.addAttribute("nextList",projectService.readMonthProjectByGoal(nextMap));
 		model.addAttribute("riseProject",userProjectService.riseProject());
 		log.info("Welcome IndexPage");	
