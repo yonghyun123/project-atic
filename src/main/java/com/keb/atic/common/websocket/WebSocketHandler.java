@@ -48,6 +48,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		String loginId = msg.getLoginId();
 		switch (msg.getType()) {
 		case 1000:
+			String curPrice1 = msg.getCurPrice();
 			if (connectedClients.get(projectId) == null) {
 				connectedClients.put(projectId, new ArrayList<>());
 			}
@@ -65,6 +66,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			count = connectedClients.get(projectId).size();
 			Gson gs1 = new Gson();
 			Message msg1 = new Message(1000, count,sendMsg);
+			String str1 = String.format("%,d", Integer.parseInt(curPrice1));
+			msg1.setCurPrice(str1);
 			String json1 = gs1.toJson(msg1);
 			TextMessage tm1 = new TextMessage(json1);
 			sendMessageToAll(tm1, projectId);
