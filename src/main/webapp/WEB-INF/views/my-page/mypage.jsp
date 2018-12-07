@@ -405,16 +405,18 @@
 		 var curDepositMonth = [];
 		 // 월별 이자율
 		 var profitMonth = [];
+		 // 달
+		 var month = [];
 		 
 		 list.graphList.forEach(function(v) {
+			month.push(v.month+'월');
 		 	totalDepositMonth.push(v.totalMoney);
 		 	curDepositMonth.push(v.curMoney);
 		 	v.totalProfit = Number(v.totalProfit) * 100;
 		 	profitMonth.push(v.totalProfit);
 		 });
-		 
-		 totalDepoitGraph(curDepositMonth,totalDepositMonth);
-		 profitGraph(profitMonth);
+		 totalDepoitGraph(curDepositMonth,totalDepositMonth,month);
+		 profitGraph(profitMonth,month);
 	 })
 	 
 	 /*Ajax로 기업리스트 불러오기 */
@@ -438,7 +440,7 @@
 		 document.querySelector('#table-body-in').innerHTML = newHtml;
 	 }
 	 
-	 function totalDepoitGraph(depositDataset, totalDataset){
+	 function totalDepoitGraph(depositDataset, totalDataset,month){
 		 /* chart.js chart examples */
 		 // chart colors
 		 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
@@ -446,7 +448,7 @@
 		 /* large line chart */
 		 
 		 var chartData = {
-		   labels: ["7월", "8월", "9월", "10월", "11월"],
+		   labels: month,
 		   datasets: [{
 			 label: "월별 적금 금액",
 		     data: depositDataset,
@@ -502,12 +504,12 @@
 	 	}
 	 }
 	 
-	 function profitGraph(profitDataset){
+	 function profitGraph(profitDataset,month){
 		 /* 수평 바 chart 이윤 증가율 */
 		 new Chart(document.getElementById("bar-chart-horizontal"), {
 		    type: 'horizontalBar',
 		    data: {
-		      labels: ["7월", "8월", "9월", "10월", "11월"],
+		      labels: month,
 		      datasets: [
 		        {
 		          label: "profit (%)",

@@ -83,7 +83,7 @@
 			         ON p.id = up.project_id 
 			WHERE  up.project_id IN (SELECT id 
 			                         FROM   at_project 
-			                         WHERE  goal > cur_price 
+			                         WHERE  goal <![CDATA[ <= ]]> cur_price 
 			                                AND To_char(create_date, 'MM') = ( 
 			                                    To_char(sysdate, 'MM') - 1 )) 
 			GROUP  BY up.user_id 
