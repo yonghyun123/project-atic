@@ -90,7 +90,8 @@ VALUES      (
 		   file_busi_registration AS "fileBusiRegistration",
 		   file_comp_certification AS "fileCompCertification",
 		   file_patent_certification AS "filePatentCertification",
-		   file_invest_certification AS "fileInvestCertification"
+		   file_invest_certification AS "fileInvestCertification",
+		   CATEGORY_ID AS "categoryId"
 	FROM AT_company_judge
 	WHERE id = #{id}
 	</select>
