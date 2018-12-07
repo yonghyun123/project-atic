@@ -64,17 +64,23 @@ public class ComInfoUploadController {
 			company.setFileInvestCertification(uploadBInvest.getOriginalFilename());
 			//특허증명서
 			company.setFilePatentCertification(uploadPatent.getOriginalFilename());
-			
-			log.info(company.getFileBusiRegistration());
-			log.info(company.getFileCompCertification());
-			log.info(company.getFileInvestCertification());
-			log.info(company.getFilePatentCertification());
-				
 			String bizRegistDir = request.getSession().getServletContext().getRealPath("resources/document/사업자등록증/");
 			String bizAuthDir = request.getSession().getServletContext().getRealPath("resources/document/사업자인증서/");
 			String bizPatentDir = request.getSession().getServletContext().getRealPath("resources/document/특허인증서/");
 			String bizInvestDir = request.getSession().getServletContext().getRealPath("resources/document/투자유치증명/");
-			
+			log.info("CertiNum=" + company.getCertiNum());
+			if(company.getCertiNum().equals("이노비즈인증")) {
+				company.setCertiNum("1");
+			}else if(company.getCertiNum().equals("메인비즈인증")) {
+				company.setCertiNum("2");
+			}else if(company.getCertiNum().equals("벤처비즈인증")) {
+				company.setCertiNum("3");
+			}else if(company.getCertiNum().equals("기타")) {
+				company.setCertiNum("4");
+			}else {
+				company.setCertiNum("5");
+			}
+			log.info("CertiNum=" + company.getCertiNum());
 			String[] uploadDirArray = new String[]{
 					bizRegistDir,bizAuthDir,bizPatentDir,bizInvestDir
 			};
@@ -89,11 +95,14 @@ public class ComInfoUploadController {
 			File bizAuth = new File(bizAuthDir, uploadBizAuth.getOriginalFilename());
 			File bizPatent = new File(bizPatentDir, uploadPatent.getOriginalFilename());
 			File bizInvest = new File(bizInvestDir, uploadBInvest.getOriginalFilename());
-			
 			try {
+				if(bizRegist.isFile())
 				uploadBiz.transferTo(bizRegist);
+				if(bizAuth.isFile())
 				uploadBizAuth.transferTo(bizAuth);
+				if(bizPatent.isFile())
 				uploadPatent.transferTo(bizPatent);
+				if(bizInvest.isFile())
 				uploadBInvest.transferTo(bizInvest);
 				
 			} catch (IllegalStateException | IOException e) {

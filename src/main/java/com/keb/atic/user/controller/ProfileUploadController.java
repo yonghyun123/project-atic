@@ -31,8 +31,8 @@ import lombok.extern.log4j.Log4j;
 public class ProfileUploadController {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private ServletContext servletContext;
+/*	@Autowired
+	private ServletContext servletContext;*/
 	
 	@PostMapping("/upload/profile/{id}")
 	@ResponseBody
@@ -70,8 +70,9 @@ public class ProfileUploadController {
 		String fullPath = imagePath + imageName;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_PNG);
-		Resource resource = new ServletContextResource(servletContext, fullPath);
-		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+/*		Resource resource = new ServletContextResource(servletContext, fullPath);
+		return new ResponseEntity<>(resource, headers, HttpStatus.OK);*/
+		return null;
 	}
 	
 	@GetMapping(value = "/user/download/{fileName}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)

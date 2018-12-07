@@ -52,17 +52,22 @@
               <div>
                 <p>사업형태:</p>
                 <input type="text" id="comDirType"
-                  class="regText" disabled="disabled" value="">
+                  class="regText" readonly="readonly" value="">
               </div>
               <div>
                 <p>사업자 번호:</p>
                 <input type="text" placeholder="-빼고 입력" id="comDirNum"
-                  class="regText" disabled="disabled" value="">
+                  class="regText" readonly="readonly" value="">
               </div>
               <div>
                 <p>설립일:</p>
                 <input type="text" placeholder="-빼고 입력" id="comDirDate"
-                  class="regText" disabled="disabled" value="">
+                  class="regText" readonly="readonly" value="">
+              </div>
+              <div>
+                <p>기업인증:</p>
+                <input type="text" placeholder="-빼고 입력" id="comAuth" name="certiNum"
+                  class="regText" readonly="readonly" value="">
               </div>
               
             </div>
@@ -265,9 +270,13 @@
                 <p>초기 자본금</p>
                 <input type="text" id="estMoney" name="baseFund"
                   class="regText">
+                <p>임직원 수</p>
+                <input type="text" id="empCount" name="empCount"
+                  class="regText">
+                  
                 <p>투자 유치금을 제외한 순수 자본금 만을 입력해주세요.</p>
                 <p>특허권 보유 여부</p>
-                  <select name="hasPatent">
+                  <select class="hasPatent" name="hasPatent">
                     <option value=0>보유
                     <option value=1>미보유
                   </select>

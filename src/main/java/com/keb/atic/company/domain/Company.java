@@ -44,6 +44,8 @@ public class Company {
 	private String categoryId;
 	//초기자본금
 	private String baseFund;
+	//임직원수
+	private String empCount;
 	//투자 유치이력
 	private String fundHistory;
 	//1차 유치액

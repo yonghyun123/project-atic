@@ -62,17 +62,36 @@ VALUES      (
 
 	<update id="updateCompanyInfo" parameterType="com.keb.atic.company.domain.Company">
 	UPDATE at_company_judge 
-	SET    category_id = #{categoryId}, 
-       base_fund = #{baseFund}, 
-       fund_history = #{fundHistory}, 
+	  <trim prefix="SET" suffixOverrides=",">
+	   category_id = #{categoryId}, 
+       base_fund = #{baseFund},
+       emp_count = #{empCount}, 
+       fund_history = #{fundHistory},
+       <choose>
+       <when test='fundHistory.equals("2")'> 
        first_fund = #{firstFund}, 
-       first_date = #{firstDate}, 
+       first_date = #{firstDate},
+       </when>
+       <when test='fundHistory.equals("3")'> 
+       first_fund = #{firstFund}, 
+       first_date = #{firstDate},
+       second_fund = #{secondFund}, 
+       second_date = #{secondDate},
+       </when>
+        </choose>
        hasPatent = #{hasPatent},  
        ceo_tel = #{ceoTel},
        file_busi_registration = #{fileBusiRegistration},
+       <if test='!certiNum.equals("5")'>
        file_comp_certification = #{fileCompCertification},
+       </if>
+       <if test='!hasPatent.equals("1")'>
        file_patent_certification =#{filePatentCertification},
-       file_invest_certification = #{fileInvestCertification} 
+       </if>
+       <if test='!fundHistory.equals("1")'>
+       file_invest_certification = #{fileInvestCertification}
+       </if>
+       </trim>
 	WHERE  email = #{email} 
 	</update>
 </mapper>
