@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +30,17 @@ public class CommonController {
 	private ProjectService projectService;
 	private UserProjectService userProjectService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
 		
 		int thisMonth = 11;
 		int nextMonth = thisMonth + 1;
+		String id = null;
+		
+		if(request.getAttribute("loginId") != null) {
+			if(request.getAttribute("loginId").equals("admin")) {
+				id = (String)request.getAttribute("loginId");
+			}
+		}
 		
 		Date date = new Date();
 		SimpleDateFormat hour = new SimpleDateFormat("hh");
@@ -57,73 +66,18 @@ public class CommonController {
 		model.addAttribute("hotList",projectService.readMonthProjectByGoal(hotMap));
 		model.addAttribute("nextList",projectService.readMonthProjectByGoal(nextMap));
 		model.addAttribute("riseProject",userProjectService.riseProject());
-		log.info("Welcome IndexPage");		
-		return "index";
+		log.info("Welcome IndexPage");	
+		if(id == null) {
+			return "index";
+		} else {
+			return "admin/admin";
+		}
 	}
 
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String about(Locale locale, Model model) {
 		log.info("Welcome AboutPage");		
 		return "about";
-	}
-	@RequestMapping(value = "/blog", method = RequestMethod.GET)
-	public String blog(Locale locale, Model model) {
-		log.info("Welcome BlogPage");		
-		return "blog";
-	}
-	
-	@RequestMapping(value = "/cart", method = RequestMethod.GET)
-	public String cart(Locale locale, Model model) {
-		log.info("Welcome CartPage");		
-		return "cart";
-	}
-	
-	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
-	public String checkout(Locale locale, Model model) {
-		log.info("Welcome CheckoutPage");		
-		return "checkout";
-	}
-	
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
-	public String contact(Locale locale, Model model) {
-		log.info("Welcome ContactPage");		
-		return "contact";
-	}
-	
-	@RequestMapping(value = "/portfolio", method = RequestMethod.GET)
-	public String portfolio(Locale locale, Model model) {
-		log.info("Welcome PortfolioPage");		
-		return "portfolio";
-	}
-	
-	@RequestMapping(value="/preshop" , method = RequestMethod.GET)
-	public String preShop(Locale locale, Model model) {
-		log.info("Welcome preShop");		
-		return "preShop";
-	}
-	
-	@RequestMapping(value = "/shop-details", method = RequestMethod.GET)
-	public String shopDetails(Locale locale, Model model) {
-		log.info("Welcome Shop-DetailsPage");		
-		return "shop-details";
-	}
-	
-	@RequestMapping(value = "/single-portfolio", method = RequestMethod.GET)
-	public String singlePortfolio(Locale locale, Model model) {
-		log.info("Welcome Single-PortfolioPage");		
-		return "single-portfolio";
-	}
-	
-	@RequestMapping(value = "/single-post", method = RequestMethod.GET)
-	public String singlePost(Locale locale, Model model) {
-		log.info("Welcome Single-PostPage");		
-		return "single-post";
-	}
-	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String getAdminPage(Locale locale, Model model) {
-		log.info("Welcome Admin-page");		
-		return "admin/admin";
 	}
 	
 	@RequestMapping(value = "/loan", method = RequestMethod.GET)

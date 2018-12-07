@@ -23,9 +23,10 @@
     	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     
     </head>
-    <body class="skin-black">
+    <body class="container">
+        <%@ include file="/WEB-INF/views/modal/logout.jsp"%>
         <!-- header logo: style can be found in header.less -->
-        <div class="wrapper row-offcanvas row-offcanvas-left">
+        <div class="wrapper row-offcanvas row-offcanvas-left col-md-10" style="margin: 0 auto;">
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
 
@@ -35,11 +36,12 @@
                         <div class="col-md-12">
                             <div class="panel">
                                 <header class="panel-heading">
-                                    <img alt="" src="/resources/img/logoss.png"><br>
-                                    Bordered Table
+                                    <img alt="" src="/resources/img/logoss.png" style="width: 300px; margin-left: -2.5%;"><br>
+                                    <h4 class="mt-15 mb-15 mr-15" style="display: inline-block;">관리자 페이지</h4>
+                                    <button class="admin-logout" id="logout">로그아웃</button>
                                 </header>
                                 <div class="panel-body">
-                                    <table class="table table-bordered" style="width: 90%;">
+                                    <table class="table table-bordered">
                                         <tr>
                                             <th>No.</th>
                                             <th>회사명</th>
@@ -108,21 +110,25 @@
   </script>
   
   <script type="my-template" id="comp-detail">
-<h2 class="ml-15">기업 정보</h2>
-<p class="preExplain">기업이름: {name}</p>
-<p class="preExplain">이메일: {email}</p>
-<p class="preExplain">설립일: {createDate}</p>
-<p class="preExplain">투자받은 날짜: {firstDate} <span style="color:green;">1차 투자액: {firstFund}원</span></p>
-<p class="preExplain">투자받은 날짜: {secondDate} <span style="color:green;">2차 투자액: {secondFund}원</span></p>
-<p class="preExplain">특허 보유: {hasPatent}</p> 			    
+<p class="preExplain"><strong>기업이름</strong>: {name}</p>
+<p class="preExplain"><strong>이메일</strong>: {email}</p>
+<p class="preExplain"><strong>설립일</strong>: {createDate}</p>
+<p class="preExplain"><strong>투자받은 날짜</strong>: {firstDate} <span class="ml-15" style="color:#70c745;">1차 투자액: {firstFund}원</span></p>
+<p class="preExplain"><strong>투자받은 날짜</strong>: {secondDate} <span class="ml-15" style="color:#70c745;">2차 투자액: {secondFund}원</span></p>
+<p class="preExplain"><strong>특허 보유</strong>: {hasPatent}</p> 			    
 <p class="preExplain">사업자등록증: <span class="selectFile"><a href="/user/download/{fileBusiRegistration}?suffix={suffix1}"&dir=사업자등록증>{fileBusiRegistration}</a></span></p>
 <p class="preExplain">기업 인증서: <span class="selectFile"><a href="/user/download/{fileCompCertification}?suffix={suffix2}"&dir=사업자인증서>{fileCompCertification}</a></span></p>
 <p class="preExplain">특허 인증서: <span class="selectFile"><a href="/user/download/{filePatentCertification}?suffix={suffix3}"&dir=특허인증서>{filePatentCertification}</a></span></p>
 <p class="preExplain">투자유치 인증서: <span class="selectFile"><a href="/user/download/{fileInvestCertification}?suffix={suffix4}"&dir=투자유치인증>{fileInvestCertification}</a></span></p>
  			    
-<h1 style="color: green;">총 평가 점수 : {totalResult}</h1>
+<h1 style="color: #70c745;">총 평가 점수 : {totalResult}</h1>
   </script>
   <script>
+  //로그아웃 이벤트
+  $("#logout").on("click", function(e) {
+	  $("#logout-modal").modal('show');
+  });
+  
   eventRegist();
   
   function eventRegist(){
@@ -192,7 +198,10 @@
 	  		success: function(data){
 	  			console.log(data.detailCompany);
 	  			makeCompanyDetail(data.detailCompany);
-	  		  	$("#id01").modal('show');
+	  			$("#company").addClass("active in show");
+	  			$("#company-desc").removeClass('active in show');
+	  			changeActive(1);
+	  		  	$("#adminCompany").modal('show');
 	  		  	
 	  		}
 	  	})
@@ -244,6 +253,17 @@
   
   getCompanyListAjax();
   
+  function changeActive(index) {
+	  if(index == 1) {
+		  $("#tab" + index).css("color", "#70c745");
+		  index = parseInt(index) + 1;
+		  $("#tab" + index).css("color", "black");
+	  } else {
+		  $("#tab" + index).css("color", "#70c745");
+		  index = index - 1;
+		  $("#tab" + index).css("color", "black");
+	  }
+  }
   </script>
     </body>
 </html>
