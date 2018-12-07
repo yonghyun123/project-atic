@@ -46,6 +46,8 @@
         			$('#login-modal').modal('hide');
               		$('#nickname-modal').modal('show');
               		$("body").css("overflow-y", "hidden");
+        		} else if(data.trim() == 'admin'){
+        			location.href="/admin";
         		} else {
         			window.location.reload();
         			sessionStorage.flag = "popup-message-login-success";
