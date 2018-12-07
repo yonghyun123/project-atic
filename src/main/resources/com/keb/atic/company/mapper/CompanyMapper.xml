@@ -75,4 +75,32 @@ VALUES      (
        file_invest_certification = #{fileInvestCertification} 
 	WHERE  email = #{email} 
 	</update>
+	
+		<select id="getCompanyDetail" resultType="com.keb.atic.company.domain.Company">
+	SELECT id AS "id", 
+		   email AS "email",
+		   name AS "name",
+		   TO_CHAR(create_date,'YYYY-MM-DD') AS "createDate",
+		   TO_CHAR(first_date,'YYYY-MM-DD') AS "firstDate",
+		   first_fund AS "firstFund",
+		   TO_CHAR(second_date,'YYYY-MM-DD') AS "secondDate",
+		   second_fund AS "secondFund",
+		   hasPatent AS "hasPatent",
+		   total_Result AS "totalResult",
+		   file_busi_registration AS "fileBusiRegistration",
+		   file_comp_certification AS "fileCompCertification",
+		   file_patent_certification AS "filePatentCertification",
+		   file_invest_certification AS "fileInvestCertification"
+	FROM AT_company_judge
+	WHERE id = #{id}
+	</select>
+	<select id="getCompanyList" resultType="com.keb.atic.company.domain.Company">
+	SELECT cj.id AS "id", 
+		   cj.email AS "email",
+		   cj.name AS "name",
+		   cj.flag AS "flag",
+		   ct.title AS "comType"
+	FROM AT_company_judge cj, AT_company_type ct
+	WHERE cj.company_type = ct.id
+	</select>
 </mapper>

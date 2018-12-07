@@ -16,4 +16,8 @@ public interface CompanyService {
 	public void deleteCompany(String id);
 	// 심사업체 업데이트
 	public void updateCompanyInfo(Company company);
+	// 기업 정보 디테일
+	public Company getCompanyDetail(String id);
+	//전체 조회
+	public List<Company> getCompanyList();
 }
