@@ -97,7 +97,7 @@
 				WHERE  To_char(p.create_date, 'MM') = #{month}
 				       AND pi.image_type = 'th' 
 				       AND ROWNUM <![CDATA[ <= ]]> #{count}
-				ORDER  BY ( p.cur_price / p.goal ) DESC
+				ORDER  BY DBMS_RANDOM.RANDOM 
 	</select>
 	
 	<select id="readProjectsByEval"  resultType="com.keb.atic.project.domain.Project">

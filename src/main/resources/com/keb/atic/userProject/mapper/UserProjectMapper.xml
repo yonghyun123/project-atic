@@ -14,8 +14,13 @@
              sysdate)
 	</insert>
 	
-	<select id="readUserProject" resultType="com.keb.atic.userProject.domain.UserProject">
-	
+	<select id="readUserTotalDeposit" parameterType="string" resultType="com.keb.atic.userProject.domain.UserProject">
+	SELECT user_id      AS "userId", 
+       SUM(deposit) AS "totalDeposit" 
+	FROM   at_user_project 
+	WHERE  To_char(create_date, 'YYYYMM') = To_char(SYSDATE, 'YYYYMM') 
+	AND user_id = #{userId}
+	GROUP  BY user_id
 	</select>
 	
 	<select id="userProjectListAll" resultType="com.keb.atic.userProject.domain.UserProject">

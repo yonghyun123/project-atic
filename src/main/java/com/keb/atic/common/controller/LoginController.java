@@ -52,12 +52,15 @@ public class LoginController {
 			cookie.setPath("/");
 			response.addCookie(cookie);
 			
-			if(user.getId() == null) {
-				out.println("nickNone");
-			} else if (user.getId().equals("admin")) {
+			if (user.getId().equals("admin")) {
 				log.info("admin");
 				out.println("admin");
+				return null;
 			}
+			
+			if(user.getNickname() == null) {
+				out.println("nickNone");
+			} 
 			
 		} else {
 			out.println("userNone");

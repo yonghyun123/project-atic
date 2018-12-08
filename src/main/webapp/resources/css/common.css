@@ -481,6 +481,12 @@ ol > li > em {
 .admin-modal-dialog {
 	max-width: 600px !important;
 } 
+
+/* userEvaluate CSS */
+#user-Eval #detailModal {
+	margin-top: 5% !important;	
+}
+
 /* popup을 위한 css */
 
 #popup-message-login-success, 

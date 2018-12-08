@@ -129,35 +129,21 @@ public class MailController {
 			// TODO: handle exception
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-//		JSONObject jsonObject = new JSONObject();
-//		jsonObject.put("email", email);
-//		jsonObject.put("authNum", authNum);
-//		
-//		 PrintWriter out = null;
-//         try {
-//           out = response.getWriter();
-//        } catch (IOException e) {
-//           e.printStackTrace();
-//        }
-//		out.println(jsonObject.toJSONString());
+
 		return null;
 	}
 	
 	private void sendEmail(String email, String authNum) {
 		String host = "smtp.gmail.com";
-		String subject = "A-TiC 인증번호 전달";
+		String subject = "A-TiC 인증번호 입니다.";
 		String fromName = "atic-Manager";
 		String from = "gmlwls008@gmail.com";
 		String to1 = email;
 		
-		String content = "인증번호 [" + authNum + "]";
+		String content = " <div style=\"background-image: url(http://localhost/resources/img/mailbackground.jpg);\">" 
+				+ "<img src='http://localhost/resources/img/logoss.png' style='width: 300px; height:90px; margin-left: 35%;'><br><br>"
+				+ "<p style='font-size:12pt; margin-left: 30%;'>고객님의 인증번호는 <span style=\"font-weight: 1000; font-size:15pt\">"+ authNum +"</span> 입니다. 정확하게 입력해주세요.</p>"
+				+"<br><br>    </div>";
 		
 		try {
 			Properties props = new Properties();
