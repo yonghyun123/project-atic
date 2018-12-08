@@ -49,11 +49,11 @@ p {
 #com-dir-Reg .dirRegist{
 	max-width: 1000px !important;
     max-height:100%;
-   margin-top: 5% !important;
+   margin-top: 1% !important;
 }
 #com-Reg .Regist{
 max-width: 1000px !important;
-   margin-top: 5% !important;
+   margin-top: 1% !important;
 }
 .regText, .regForm, .regDirForm {
 	width: 60% !important;
@@ -84,7 +84,7 @@ max-width: 1000px !important;
   display: inline-block;
 }
 
- .investHistory {
+ .investHistory, .hasPatent, .comSelect {
     padding: 10px;
     width: 23%;
     font-size: 17px;

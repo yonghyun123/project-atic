@@ -77,7 +77,9 @@
                 <option value="1">이노비즈 인증</option>
                 <option value="2">메인비즈 인증</option>
                 <option value="3">밴처기업 인증</option>
-                <option value="4">기타(해당없음)</option>
+                <option value="4">기타</option>
+                <option value="5">해당없음</option>
+                
               </select>
                 <p>현재 보유한 인증서의 종류를 입력해주세요</p>
               </div>
