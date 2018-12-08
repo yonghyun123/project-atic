@@ -49,9 +49,10 @@
 		total_profit as "totalProfit",
 		cur_profit as "curProfit",
 		total_money as "totalMoney",
-		cur_money as "curMoney"
+		cur_money as "curMoney",
+    	SUM(cur_Money) OVER(order by month) as "accumulateMoney"
 		FROM at_user_status
-		WHERE user_id = #{userId}
+		WHERE user_id =#{userId}
 	</select>
 
 	<delete id="deleteUserStatus">

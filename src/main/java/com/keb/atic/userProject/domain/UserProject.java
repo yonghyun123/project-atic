@@ -32,7 +32,8 @@ public class UserProject {
 	private String company;
 	//투자한 날짜
 	private String createDate;
-	
+	//매달 적금금액합계
+	private String totalDeposit;
 	/*도메인 추가 (희진) 2018-11-30*/
 	private String projectName;
 	

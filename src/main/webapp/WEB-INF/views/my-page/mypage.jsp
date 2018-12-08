@@ -99,19 +99,32 @@
 				    <c:set var="profit" value="${userStatus.totalProfit*100}"/>
 				    <p class="card-text" style="color: blue">${profit}%</p>
 				    </div>
+                      <div class="card-body">
+                       <h4 class="card-title">이번달 적금금액</h4>
+                       <p class="card-text" style="color: blue">
+                        <c:choose>
+                          <c:when test="${empty userProject.totalDeposit }">
+                            0원
+                          </c:when>
+                          <c:otherwise>
+                            <fmt:formatNumber value="${userProject.totalDeposit}" pattern="#,###" />원
+                          </c:otherwise>
+                        </c:choose>
+                      </p>
+                      </div>				  
 				    <div class="card-body">
-				  	<h4 class="card-title">총 적금액</h4>
+				  	<h4 class="card-title">만기시 환급금액</h4>
 				  	<p class="card-text" style="color: blue">
                     <c:choose>
                       <c:when test="${empty userStatus.totalMoney }">
                         0원
                       </c:when>
                       <c:otherwise>
-                        <fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원</p>
+                        <fmt:formatNumber value="${userStatus.totalMoney}" pattern="#,###" />원
                       </c:otherwise>
                     </c:choose>
-                      
-					</div>				  
+                      </p>
+					</div>
 				</div>	
               </div>	
             </div>
@@ -411,7 +424,7 @@
 		 list.graphList.forEach(function(v) {
 			month.push(v.month+'월');
 		 	totalDepositMonth.push(v.totalMoney);
-		 	curDepositMonth.push(v.curMoney);
+		 	curDepositMonth.push(v.accumulateMoney);
 		 	v.totalProfit = Number(v.totalProfit) * 100;
 		 	profitMonth.push(v.totalProfit);
 		 });

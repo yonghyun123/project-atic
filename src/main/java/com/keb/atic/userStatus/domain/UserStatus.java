@@ -32,5 +32,6 @@ public class UserStatus {
 	private String sumInterest;
 	
 	private String sumDeposit;
-	
+	//월별 누적금액
+	private String accumulateMoney;
 }

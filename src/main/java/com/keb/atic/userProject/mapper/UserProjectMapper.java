@@ -13,7 +13,7 @@ public interface UserProjectMapper {
 	//userProject 등록
 	public void createUserProject(UserProject userProject);
 	//개별 userProject 조회
-	public UserProject readUserProject(String id);
+	public UserProject readUserTotalDeposit(String id);
 	// 전체 userProject 조회
 	public List<UserProject> userProjectListAll();
 	// 회원별 userProject 조회

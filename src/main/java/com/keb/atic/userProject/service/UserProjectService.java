@@ -8,7 +8,8 @@ import com.keb.atic.userProject.domain.UserProject;
 public interface UserProjectService {
 	// userProject 등록
 	public void createUserProject(UserProject userProject);
-
+	//개별 userProject 조회
+	public UserProject readUserTotalDeposit(String id);
 	// 사업별 userProject 조회
 	public List<UserProject> readUserProjectsByProject(String projectId);
 
