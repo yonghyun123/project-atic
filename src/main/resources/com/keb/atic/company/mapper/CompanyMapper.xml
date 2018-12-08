@@ -26,10 +26,12 @@ VALUES      (
 	</insert>
 	
 	<select id="readCompanyInfo" resultType="com.keb.atic.company.domain.Company">
-		SELECT email, 
-       name, 
+		SELECT
+	   j.id,
+	   j.email, 
+       j.name, 
        t.title as "comType", 
-       busi_num as "busiNum", 
+       j.busi_num as "busiNum", 
        c.title as "certiNum", 
        to_char(create_date,'yyyy-mm-dd') as "createDate", 
        sns 
@@ -67,6 +69,7 @@ VALUES      (
        base_fund = #{baseFund},
        emp_count = #{empCount}, 
        fund_history = #{fundHistory},
+       total_Result = #{totalResult},
        <choose>
        <when test='fundHistory.equals("2")'> 
        first_fund = #{firstFund}, 
