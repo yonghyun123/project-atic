@@ -123,7 +123,7 @@ pageContext.setAttribute("LF", "\n");
               <input type="hidden" value="${loginId }" id="loginId">
               <h4 class="price">
                 <span id="curprice2">
-                달성 금액은 투자를 하신 후에 보실 수 있습니다.
+                달성 금액은 적금을 납입하신 후에 볼 수 있습니다.
 <!--                   <fmt:formatNumber value="${project.curPrice }" pattern="#,###"/> -->
                 </span>
                 <input type="hidden" id="curPrice" value="${project.curPrice }">
@@ -132,9 +132,10 @@ pageContext.setAttribute("LF", "\n");
                 <p>
                   <c:out value="${project.title }" />
                 </p>
+                
                 <p>
                   이 프로젝트가 목표자금을 달성할 시
-                  <c:out value="${project.interest }" />
+                  <c:out value="${project.interest*100 }" />
                   %의 금리혜택을 받으실 수 있습니다.
                 </p>
               </div>
@@ -142,12 +143,12 @@ pageContext.setAttribute("LF", "\n");
               <div class="cart--area d-flex flex-wrap align-items-center">
                 <c:choose>
                   <c:when test="${empty loginId }">
-                    <input type="button" id="shop-login" value="지금 투자하기" class="btn alazea-btn" style="width: 20%;">
+                    <input type="button" id="shop-login" value="지금 적금하기" class="btn alazea-btn" style="width: 20%;">
                   </c:when>
                   <c:otherwise>
                     <form class="cart clearfix d-flex align-items-center"
                     method="post">
-                      <button type="button" id="deposit" class="btn alazea-btn">지금 투자하기</button>
+                      <button type="button" id="deposit" class="btn alazea-btn">지금 적금하기</button>
                     </form>
                   </c:otherwise>
                 </c:choose>
@@ -175,10 +176,10 @@ pageContext.setAttribute("LF", "\n");
                   <div class="card-body"
                     style="width: 40%; display: inline;">
                     <div id="average"
-                      style="margin-top: 15%; margin-left: 20%;">
+                      style="margin-top: 5%; margin-left: 20%;">
                       <p style="margin-left: 15">평균 평점</p>
 
-                      <div style="margin-left: 20%" id="averPoint">
+                      <div style="margin-left: 10%" id="averPoint">
                         <h1>4.5</h1>
                       </div>
                     </div>
@@ -217,14 +218,14 @@ pageContext.setAttribute("LF", "\n");
               <li class="nav-item"><a href="#addi-info"
                 class="nav-link" data-toggle="tab" role="tab">회사 정보</a></li>
               <li class="nav-item" style="display: none;" id="investorList"><a href="#investor"
-                class="nav-link" data-toggle="tab" role="tab">투자자 현황<span
+                class="nav-link" data-toggle="tab" role="tab">적금고객 현황<span
                   class="text-muted"> (<c:out
                       value="${countOfInvestor }" />)
                 </span></a></li>
               <li class="nav-item"><a href="#evaluation"
                 class="nav-link" data-toggle="tab" role="tab">예비 평가</a></li>
               <li class="nav-item"><a href="#reviews"
-                class="nav-link" data-toggle="tab" role="tab">리뷰</a></li>
+                class="nav-link" data-toggle="tab" role="tab">문의</a></li>
             </ul>
             <!-- Tab Content -->
             <div class="tab-content">
@@ -272,9 +273,9 @@ pageContext.setAttribute("LF", "\n");
                   <table id="customers">
                     <tr>
                       <th>No</th>
-                      <th>투자자</th>
-                      <th>투자액</th>
-                      <th>투자 날짜</th>
+                      <th>적금고객</th>
+                      <th>적금액</th>
+                      <th>적금 날짜</th>
                     </tr>
                     <c:choose>
                       <c:when test="${not empty userProject }">
@@ -306,8 +307,6 @@ pageContext.setAttribute("LF", "\n");
               </div>
               <div role="tabpanel" class="tab-pane fade" id="reviews">
                 <div class="submit_a_review_area mt-50">
-                  <h4>Submit A Review</h4>
-
                   <div class="row">
                     <div class="col-12 col-md-6">
                       <div class="form-group">
@@ -315,7 +314,7 @@ pageContext.setAttribute("LF", "\n");
                           class="form-control" id="options">
                           <option>상품성</option>
                           <option>가치</option>
-                          <option>Q&A</option>
+                          <option>기타 문의</option>
                         </select>
                       </div>
                     </div>
@@ -329,7 +328,7 @@ pageContext.setAttribute("LF", "\n");
                     <div class="col-12">
                       <button class="btn alazea-btn"
                         style="margin-bottom: 50px;"
-                        id="review-send-btn">Submit Your Review</button>
+                        id="review-send-btn">문의 작성</button>
                     </div>
                   </div>
 
@@ -365,7 +364,7 @@ pageContext.setAttribute("LF", "\n");
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2>이 프로젝트에 투자하신 분들은 이런 프로젝트에도 투자하셨어요!</h2>
+            <h2>이 프로젝트에 적금을 납입하신 분들은 이런 프로젝트에도 참여하셨어요!</h2>
           </div>
         </div>
       </div>
@@ -430,39 +429,32 @@ pageContext.setAttribute("LF", "\n");
      <div class="single_user_review mb-15">
       <div class="review-rating">
         <i class="fa fa-star" aria-hidden="true"></i>
-         <span>{totalAvg}</span>
+         <span style="font-size: 20px;">{totalAvg}</span>
+		  <span style="font-size: 16px;">
+              by <strong style="font-size: 20px;">{userId}</strong>
+          </span>
           </div>
-            <div class="review-details" id="userId">
-              <div id="showAll"><p style="margin-bottom: 0">전체점수 보기 <i class="fa fa-sort-desc"></i></p></div>
+            <div id="userId">
+              <div id="showAll"><p style="margin-bottom: 0">상세점수 보기 <i class="fa fa-sort-desc"></i></p></div>
                <div id="totalEval{userID}" style="display:none">
-          <div id="Favor"> 
-          <span>호감도</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
-            {Favor}
-          </div>
-          <div id="Growth"> 
-          <span>성장성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
-            {Growth}
-          </div>
-          <div id="Market"> 
-          <span>수익성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+          <div> 
+          	<span><strong>호감도</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
+            {Favor} 
+     	    <span><strong>성장성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
+            {Growth} 
+          	<span><strong>수익성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
             {Market}
-          </div>
-          <div id="Stable"> 
-          <span>안정성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+          	<span><strong>안정성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
             {Stable}
           </div>
-
         </div>
-        <p>
-                by <a>{userId}</a>
-                </p>
-                </div>
-                </div>
-             </li>
+        </div>
+        </div>
+   </li>
   </script>
 
 
@@ -654,7 +646,7 @@ pageContext.setAttribute("LF", "\n");
 					var flag = mObject.message;
 					if (flag == "false") {
 						$("#curprice2").text(mObject.curPrice+'원 달성');
-						$("#deposit").text("이미 투자하신 프로젝트입니다");
+						$("#deposit").text("이미 참여하신 프로젝트입니다");
 						document.getElementById("deposit").disabled = true;
 						$("#investorList").css("display", "block");
 					}
@@ -667,12 +659,12 @@ pageContext.setAttribute("LF", "\n");
 					var price = mObject.message;
 					$("#curprice").val(price);
 					$("#curprice2").text(mObject.curPrice+"원 달성");
-					$("#deposit").text("이미 투자하신 프로젝트입니다");
+					$("#deposit").text("이미 참여하신 프로젝트입니다");
 					document.getElementById("deposit").disabled = true;
 					$("#investorList").css("display", "block");
 					break;
 				 case 4000:
-	                    alert('이달의 투자액이 100만원을 초과하였습니다.');
+	                    alert('이달의 적금액이 100만원을 초과하였습니다.');
 	                    location.reload();
 	                    break;
 				}

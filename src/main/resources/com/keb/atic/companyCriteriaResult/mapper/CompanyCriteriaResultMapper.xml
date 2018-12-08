@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keb.atic.companyCriteriaResult.mapper.CompanyCriteriaResultMapper">
+	<!-- 심사기업 임시등록 -->
+	<insert id="registCompanyCriteriaResult" >
+INSERT INTO at_saving_judge 
+            (id, 
+             email, 
+             company_id, 
+             first_eval, 
+             second_eval, 
+             third_eval, 
+             fourth_eval, 
+             fifth_eval, 
+             sixth_eval, 
+             seventh_eval, 
+             eighth_eval, 
+             nineth_eval) 
+VALUES      ( 
+			saving_judge_id_seq.NEXTVAL, 
+             #{email}, 
+             #{companyId}, 
+             #{firstEval}, 
+             #{secondEval}, 
+             #{thirdEval}, 
+             #{fourthEval}, 
+             #{fifthEval}, 
+             #{sixthEval}, 
+             #{seventhEval}, 
+             #{eighthEval},
+             #{ninethEval}
+              ) 
+	</insert>
+	
+	<select id="readCompanyCriteriaResult" resultType="com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult">
+		SELECT id, 
+		       email, 
+		       company_id as "companyId", 
+		       first_eval as "firstEval", 
+		       second_eval as "secondEval", 
+		       third_eval as "thirdEval", 
+		       fourth_eval as "fourthEval", 
+		       fifth_eval as "fifthEval", 
+		       sixth_eval as "sixthEval", 
+		       seventh_eval as "seventhEval", 
+		       eighth_eval as "eighthEval", 
+		       nineth_eval as "ninethEval" 
+		FROM   at_saving_judge 
+		WHERE  company_id = #{companyId} 
+	</select>
+	
+	<select id="companyCriteriaResultListAll" resultType="com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult">
+ 
+	</select>
+
+	<update id="updateCompanyCriteriaResult" parameterType="com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult">
+
+	</update>
+	
+	<select id="getCompanyCriteriaResultDetail" resultType="com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult">
+	
+	</select>
+
+</mapper>

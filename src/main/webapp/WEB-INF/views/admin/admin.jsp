@@ -144,7 +144,7 @@
 	  $("#logout-modal").modal('show');
   });
   
-  eventRegist();
+  
   
   function eventRegist(){
   	$("input[type='button']").on("click",function(){
@@ -159,6 +159,7 @@
   /*메일 발송*/
   function sendInfo(value){
   	var email = $(value).closest("tr").find(".email").text();
+  	alert("메일수신을 완료하였습니다.");
   	$.ajax({
   		url:"/email/filelist",
   		type: "post",
@@ -167,7 +168,7 @@
   		},
   		dataType: "text",
   		success: function(data){
-  			alert("메일수신을 완료하였습니다.");
+  			
   		}
   	})
   }
@@ -203,6 +204,7 @@
 		  }
 	  })
 	  document.querySelector('#comp-list-in').innerHTML = newhtml;
+	  eventRegist();
   }
   
   function getCompanyDetailAjax(id){

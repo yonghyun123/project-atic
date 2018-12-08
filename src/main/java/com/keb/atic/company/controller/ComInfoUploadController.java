@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.keb.actic.common.evaluation.EvaluationModel;
 import com.keb.atic.company.domain.Company;
 import com.keb.atic.company.service.CompanyService;
+import com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult;
+import com.keb.atic.companyCriteriaResult.mapper.CompanyCriteriaResultMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -30,6 +32,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ComInfoUploadController {
 	private CompanyService companyService;
+	private CompanyCriteriaResultMapper companyCriteriaResultMapper;
 	@PostMapping("/demoregist")
 	public String componyDemoRegist(Company company, Model model) {
 		log.info(company.getEmail());
@@ -115,19 +118,26 @@ public class ComInfoUploadController {
 				e.printStackTrace();
 			}
 			List<Integer>ninethList = new ArrayList<Integer>();
-			float firstResult = evalModel.firstCriteria(company);
-			float secondResult =  evalModel.secondCriteria(company);
-			float thirdResult = evalModel.thirdCriteria(company);
-			double fourthResult = evalModel.fourthCriteria(company);
-			double fifthResult = evalModel.fifthCriteria(company);
-			int sixthResult = evalModel.sixthCriteria(company);
-			float sevenResult = evalModel.seventhCriteria(company);
-			float eighthResult = evalModel.eighthCriteria(company);	
+			String firstEval = String.valueOf(evalModel.firstCriteria(company));
+			String secondEval = String.valueOf(evalModel.secondCriteria(company));
+			String thirdEval = String.valueOf(evalModel.thirdCriteria(company));
+			String fourthEval = String.valueOf(evalModel.fourthCriteria(company));
+			String fifthEval = String.valueOf(evalModel.fifthCriteria(company));
+			String sixthEval = String.valueOf(evalModel.sixthCriteria(company));
+			String seventhEval = String.valueOf(evalModel.seventhCriteria(company));
+			String eighthEval = String.valueOf(evalModel.eighthCriteria(company));	
 			ninethList = evalModel.ninethCriteria(company);
-			int ninethResult = ninethList.get(ninethList.size()-1);
+			String ninethEval = String.valueOf(ninethList.get(ninethList.size()-1));
+			CompanyCriteriaResult result = new CompanyCriteriaResult(company.getEmail(), company.getId(), firstEval, secondEval, thirdEval, fourthEval, fifthEval, sixthEval, seventhEval, eighthEval, ninethEval);
+			//개별점수 등록
+			companyCriteriaResultMapper.registCompanyCriteriaResult(result);
 			
-		companyService.updateCompanyInfo(company);
-
+			String totalEval = String.valueOf(evalModel.firstCriteria(company) + evalModel.secondCriteria(company) + evalModel.thirdCriteria(company)+evalModel.fourthCriteria(company)
+								+evalModel.fifthCriteria(company) +evalModel.sixthCriteria(company) + evalModel.seventhCriteria(company) + evalModel.eighthCriteria(company)
+								+ninethList.get(ninethList.size()-1));
+			company.setTotalResult(totalEval);
+			//총점수 등록
+			companyService.updateCompanyInfo(company);
 		return "redirect:/loan";
 	}
 	

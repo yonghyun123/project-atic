@@ -68,6 +68,7 @@
                 <p>기업인증:</p>
                 <input type="text" placeholder="-빼고 입력" id="comAuth" name="certiNum"
                   class="regText" readonly="readonly" value="">
+                <input type="hidden" id="comid" name="id" value="">
               </div>
               
             </div>

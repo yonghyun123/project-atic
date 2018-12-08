@@ -3,6 +3,7 @@ package com.keb.atic.company.mapper;
 import java.util.List;
 
 import com.keb.atic.company.domain.Company;
+import com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult;
 
 /**심사기업 관련 Mapper 
  * @author 권현우
@@ -23,4 +24,6 @@ public interface CompanyMapper {
 	public Company getCompanyDetail(String id);
 	//전체 조회
 	public List<Company> getCompanyList();
+	//기업 평가 조회
+	public CompanyCriteriaResult getEvalById(String id);
 }

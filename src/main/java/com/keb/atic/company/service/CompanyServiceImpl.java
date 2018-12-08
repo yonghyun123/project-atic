@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.keb.atic.company.domain.Company;
 import com.keb.atic.company.mapper.CompanyMapper;
+import com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -53,6 +54,12 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public List<Company> getCompanyList() {
 		return companyMapper.getCompanyList();
+	}
+
+	@Override
+	public CompanyCriteriaResult getEvalById(String id) {
+
+		return companyMapper.getEvalById(id);
 	}
 
 
