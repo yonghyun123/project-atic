@@ -98,6 +98,10 @@
   <script src="/resources/js/active.js"></script>
   <!-- Common js -->
   <script src="/resources/js/common.js"></script>
+      <!-- char.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  
   <script type="my-template" id="comp-list">
 	<tr>
 	<td class="comp-id">{id}</td>
@@ -124,6 +128,17 @@
 <h1 style="color: #70c745;">총 평가 점수 : {totalResult}</h1>
   </script>
   <script>
+  window.chartColors = {
+		  red: 'rgb(255, 99, 132)',
+		  orange: 'rgb(255, 159, 64)',
+		  yellow: 'rgb(255, 205, 86)',
+		  green: 'rgb(75, 192, 192)',
+		  blue: 'rgb(54, 162, 235)',
+		  purple: 'rgb(153, 102, 255)',
+		  grey: 'rgb(231,233,237)'
+  };
+  var color = Chart.helpers.color;
+  
   //로그아웃 이벤트
   $("#logout").on("click", function(e) {
 	  $("#logout-modal").modal('show');
@@ -188,7 +203,6 @@
 		  }
 	  })
 	  document.querySelector('#comp-list-in').innerHTML = newhtml;
-
   }
   
   function getCompanyDetailAjax(id){
@@ -239,16 +253,36 @@
 	  
   }
   
-  function downLoad(){
+  
+  function getEvalCompanyAjax(id){
 	  
-	  
+	  	$.ajax({
+	  		url:"/judge/eval/"+id,
+	  		type: "get",
+	  		success: function(data){
+	  			console.log(data.evalCompany);
+	  			var dataset = [];
+	  			dataset.push(data.evalCompany.firstResult);
+	  			dataset.push(data.evalCompany.secondResult);
+	  			dataset.push(data.evalCompany.thirdResult);
+	  			dataset.push(data.evalCompany.fourthResult);
+	  			dataset.push(data.evalCompany.fifthResult);
+	  			dataset.push(data.evalCompany.sixthResult);
+	  			dataset.push(data.evalCompany.seventhResult);
+	  			dataset.push(data.evalCompany.eighthResult);
+	  			dataset.push(data.evalCompany.ninethResult);
+	  			
+	  			evalGraph(dataset);
+	  		}
+	  	})
   }
+
   
   function showModal(value){
   	var email = $(value).closest("tr").find(".email").text();
   	var id = $(value).closest("tr").find(".comp-id").text();
   	getCompanyDetailAjax(id);
-  	
+  	getEvalCompanyAjax(id);
   }
   
   getCompanyListAjax();
@@ -264,6 +298,52 @@
 		  $("#tab" + index).css("color", "black");
 	  }
   }
+  
+ function evalGraph(evalDataset){
+	 /* 수평 바 chart 이윤 증가율 */
+	 new Chart(document.getElementById("bar-horizontal"), {
+	    type: 'radar',
+	    data: {
+	      labels: ['투자시기', '평균 임직원 수', '설립일 일치빈도', '업종별 가중치', '업종별 투자액', '투자액 상승폭', '1차 투자 가중치', '업력별 가중치', '홍보활동'],
+	      datasets: [
+	        {
+	          label: "심사결과",
+	          backgroundColor: color(window.chartColors.green).alpha(0.2).rgbString(),
+	          data: evalDataset,
+	          notes:["투자 시기 데이터 평균: 19.572개월"+' 평균점수: 8점','asdfsadf','asdfasdfasdf','asdfasdfsdf']
+	        }
+	      ]
+	    },
+	    options: {
+	      legend: { display: false },
+	      scales: {
+	    	   min:0,
+	    	   display: false
+		     },
+	      title: {
+	        display: true,
+	        text: '전체 평가 심사'
+	        
+	      },
+	      scale: {
+	          ticks: {
+	            beginAtZero: true
+	          }
+	      },
+	      tooltips:{
+    	  	callbacks:{
+    	        label: function(tooltipItem, data){
+    	          var datasetLabel = data.datasets[tooltipItem.datasetIndex].label || '';
+    	          //This will be the tooltip.body
+    	          return datasetLabel + ': ' + tooltipItem.yLabel +'->'+ data.datasets[tooltipItem.datasetIndex].notes[tooltipItem.index];
+    	        }
+    	     },
+	      }
+	    }
+	});
+ }
+ 
+  
   </script>
     </body>
 </html>
