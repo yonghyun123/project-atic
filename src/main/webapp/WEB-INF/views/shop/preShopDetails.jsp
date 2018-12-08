@@ -169,10 +169,10 @@
                   <div class="card-body"
                     style="width: 40%; display: inline;">
                     <div id="average"
-                      style="margin-top: 15%; margin-left: 20%;">
+                      style="margin-top: 5%; margin-left: 20%;">
                       <p style="margin-left: 15">평균 평점</p>
 
-                      <div style="margin-left: 20%" id="averPoint">
+                      <div style="margin-left: 10%" id="averPoint">
                         <h1>4.5</h1>
                       </div>
                     </div>
@@ -231,7 +231,6 @@
                       src="/resources/img/project-image/<c:out value="${project.id }"/>_et_2.png">
                     <img
                       src="/resources/img/project-image/<c:out value="${project.id }"/>_et_3.png">
-
                   </p>
 
                 </div>
@@ -269,7 +268,7 @@
                   <div id="calCount">
                     <div id="count"></div>
                   </div>
-                  <ul id="userEvalList">
+                  <ul id="userEvalList" style="font-size: 16px;">
 
                   </ul>
                 </div>
@@ -351,39 +350,32 @@
      <div class="single_user_review mb-15">
       <div class="review-rating">
         <i class="fa fa-star" aria-hidden="true"></i>
-         <span>{totalAvg}</span>
+         <span style="font-size: 20px;">{totalAvg}</span>
+		  <span style="font-size: 16px;">
+              by <strong style="font-size: 20px;">{userId}</strong>
+          </span>
           </div>
-            <div class="review-details" id="userId">
-              <div id="showAll"><p style="margin-bottom: 0">전체점수 보기 <i class="fa fa-sort-desc"></i></p></div>
+            <div id="userId">
+              <div id="showAll"><p style="margin-bottom: 0">상세점수 보기 <i class="fa fa-sort-desc"></i></p></div>
                <div id="totalEval{userID}" style="display:none">
-          <div id="Favor"> 
-          <span>호감도</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
-            {Favor}
-          </div>
-          <div id="Growth"> 
-          <span>성장성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
-            {Growth}
-          </div>
-          <div id="Market"> 
-          <span>수익성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+          <div> 
+          	<span><strong>호감도</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
+            {Favor} 
+     	    <span><strong>성장성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
+            {Growth} 
+          	<span><strong>수익성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
             {Market}
-          </div>
-          <div id="Stable"> 
-          <span>안정성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+          	<span><strong>안정성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
             {Stable}
           </div>
-
         </div>
-        <p>
-                by <a>{userId}</a>
-                </p>
-                </div>
-                </div>
-             </li>
+        </div>
+        </div>
+   </li>
   </script>
   <script type="text/javascript">
   $("#funding").addClass("active");
@@ -502,7 +494,7 @@
 			evalPageService.getUserEvalList(projectId, function(list) {
 				$('#count').html(
 						'<span>총 <h5 style="display:inline-block;">' + list.userEvalList.length
-								+ '개</h5>의 매력도 평가가 있습니다.</span>');
+								+ '개</h5>의 평가가 있습니다.</span>');
 
 				userEvalListTemplate(list.userEvalList);
 
@@ -555,9 +547,8 @@
 				// ... and fix the Previous/Next buttons:
 				if (n == 0) {
 		            document.getElementById("nextBtnPre").disabled = true;
-
 				} else {
-					document.getElementById("nextBtnpre").innerHTML = "Submit";
+					$("#nextBtnpre").html('submit');
 				}
 				if (n == (x.length - 1)) {
 					document.getElementById("nextBtnPre").innerHTML = "Submit";
@@ -580,9 +571,9 @@
 				currentTab = currentTab + n;
 				// if you have reached the end of the form... :
 				if (currentTab >= x.length) {
-					//...the form gets submitted:
-					document.getElementById("regPreForm").submit();
-					return false;
+					$("#user-Eval").modal("hide");
+					$("#regPreForm").submit();
+					return ;
 				}
 				// Otherwise, display the correct tab:
 				showTab(currentTab);

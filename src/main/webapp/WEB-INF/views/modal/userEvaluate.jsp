@@ -32,11 +32,10 @@
                 oninput="this.className = ''" id="authPreNum"> <input
                 class="authBtn" type="button" id="authPreB" value="인증하기">
             </div>
-
             <div class="preTab" style="display: none">
               <h3 class="preExplainHead">예비 평가점수를 등록해주세요.</h3>
               <h3 class="preExplain">
-                오픈 알림 신청이 완료되었습니다.<br> 정확한 기업분석을 위해 고객님의 사전 평가가 필요합니다.
+                오픈 알림 신청이 완료되었습니다.<br>기업분석을 위해 고객님의 사전 평가가 필요합니다.
               </h3>
               <div id="evalTable">
               <p class="preP">수익성</p>
