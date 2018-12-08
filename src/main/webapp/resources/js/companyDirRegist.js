@@ -166,6 +166,8 @@ name : companyDirRegist.js
   						$('#comDirNum').val(company.busiNum);
   						$('#comDirDate').val(company.createDate);
   						$('#comAuth').val(company.certiNum)
+  						$('#comid').val(company.id)
+  						
   						$('#authStatus').html('');
   						document.getElementById("nextBtnDirReg").disabled = false;
   						}else{
