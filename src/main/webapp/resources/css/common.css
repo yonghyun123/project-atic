@@ -33,7 +33,7 @@ body .PreProjctSector01 {
 }
 
 .navText{
-	color: rgba(0,0,0,.84);
+	color: rgba(0,0,0,84);
     font-weight: 1000;
 }
 
@@ -469,7 +469,7 @@ ol > li > em {
 
 .guide-detail:hover {
 	cursor: pointer;
-	color: #70c745;
+	color: #6300CC;
 }
 
 /* admin CSS */
