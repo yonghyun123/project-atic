@@ -2,6 +2,8 @@ package com.keb.atic.company.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.keb.actic.common.evaluation.EvaluationModel;
 import com.keb.atic.company.domain.Company;
 import com.keb.atic.company.service.CompanyService;
 
@@ -63,18 +66,26 @@ public class ComInfoUploadController {
 			//투자유치증명서
 			company.setFileInvestCertification(uploadBInvest.getOriginalFilename());
 			//특허증명서
-			company.setFilePatentCertification(uploadPatent.getOriginalFilename());
-			
-			log.info(company.getFileBusiRegistration());
-			log.info(company.getFileCompCertification());
-			log.info(company.getFileInvestCertification());
-			log.info(company.getFilePatentCertification());
-				
+			company.setFilePatentCertification(uploadPatent.getOriginalFilename());			
+			//평가모델
+			EvaluationModel evalModel = new EvaluationModel();
 			String bizRegistDir = request.getSession().getServletContext().getRealPath("resources/document/사업자등록증/");
 			String bizAuthDir = request.getSession().getServletContext().getRealPath("resources/document/사업자인증서/");
 			String bizPatentDir = request.getSession().getServletContext().getRealPath("resources/document/특허인증서/");
 			String bizInvestDir = request.getSession().getServletContext().getRealPath("resources/document/투자유치증명/");
-			
+			log.info("company=" + company.toString());
+			if(company.getCertiNum().equals("이노비즈인증")) {
+				company.setCertiNum("1");
+			}else if(company.getCertiNum().equals("메인비즈인증")) {
+				company.setCertiNum("2");
+			}else if(company.getCertiNum().equals("벤처비즈인증")) {
+				company.setCertiNum("3");
+			}else if(company.getCertiNum().equals("기타")) {
+				company.setCertiNum("4");
+			}else {
+				company.setCertiNum("5");
+			}
+			log.info("CertiNum=" + company.getCertiNum());
 			String[] uploadDirArray = new String[]{
 					bizRegistDir,bizAuthDir,bizPatentDir,bizInvestDir
 			};
@@ -89,19 +100,34 @@ public class ComInfoUploadController {
 			File bizAuth = new File(bizAuthDir, uploadBizAuth.getOriginalFilename());
 			File bizPatent = new File(bizPatentDir, uploadPatent.getOriginalFilename());
 			File bizInvest = new File(bizInvestDir, uploadBInvest.getOriginalFilename());
-			
 			try {
+				if(bizRegist.isFile())
 				uploadBiz.transferTo(bizRegist);
+				if(bizAuth.isFile())
 				uploadBizAuth.transferTo(bizAuth);
+				if(bizPatent.isFile())
 				uploadPatent.transferTo(bizPatent);
+				if(bizInvest.isFile())
 				uploadBInvest.transferTo(bizInvest);
 				
 			} catch (IllegalStateException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	
+			List<Integer>ninethList = new ArrayList<Integer>();
+			float firstResult = evalModel.firstCriteria(company);
+			float secondResult =  evalModel.secondCriteria(company);
+			float thirdResult = evalModel.thirdCriteria(company);
+			double fourthResult = evalModel.fourthCriteria(company);
+			double fifthResult = evalModel.fifthCriteria(company);
+			int sixthResult = evalModel.sixthCriteria(company);
+			float sevenResult = evalModel.seventhCriteria(company);
+			float eighthResult = evalModel.eighthCriteria(company);	
+			ninethList = evalModel.ninethCriteria(company);
+			int ninethResult = ninethList.get(ninethList.size()-1);
+			
 		companyService.updateCompanyInfo(company);
+
 		return "redirect:/loan";
 	}
 	
