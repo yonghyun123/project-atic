@@ -23,6 +23,10 @@
  			    <!-- 수익률 그래프 그려져야 하는 부분 -->
  			    <div id="company-desc" class="tab-pane fade">
  			      <h3 class="ml-15">평가 상세 정보</h3>
+ 			      
+ 			      <h6>심사기준 1 (투자시기)</h6>
+ 			      <canvas id="bar-horizontal" width="800" height="700"></canvas>
+ 			      
  			    </div>
  			  </div>
  			</div>	

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.keb.atic.company.domain.Company;
 import com.keb.atic.company.service.CompanyService;
+import com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult;
 import com.keb.atic.userStatus.domain.UserStatus;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +43,15 @@ public class CompanyJudgeController {
 		List<Company> company = companyService.getCompanyList();
 		Map<String, Object> companyMap = new HashMap<>();
 		companyMap.put("companyList", company);
+		return companyMap;
+	}
+	
+	
+	@GetMapping(value="/eval/{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody Map<String, Object> getEvalById(@PathVariable("id") String id) throws Exception{
+		CompanyCriteriaResult company = companyService.getEvalById(id);
+		Map<String, Object> companyMap = new HashMap<>();
+		companyMap.put("evalCompany", company);
 		return companyMap;
 	}
 	

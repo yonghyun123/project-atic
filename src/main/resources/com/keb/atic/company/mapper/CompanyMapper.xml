@@ -126,4 +126,17 @@ VALUES      (
 	FROM AT_company_judge cj, AT_company_type ct
 	WHERE cj.company_type = ct.id
 	</select>
+	<select id="getEvalById" resultType="com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult">
+	SELECT first_eval AS "firstResult",
+		   second_eval AS "secondResult",
+		   third_eval AS "thirdResult",
+		   fourth_eval AS "fourthResult",
+		   fifth_eval AS "fifthResult",
+		   sixth_eval AS "sixthResult",
+		   seventh_eval AS "seventhResult",
+		   eighth_eval AS "eighthResult",
+		   nineth_eval AS "ninethResult"
+	FROM AT_saving_judge
+	WHERE company_id = #{id}
+	</select>
 </mapper>
