@@ -109,8 +109,8 @@
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2 class="mt-50">마감 임박!!</h2>
-            <p>인기 사업에 투자하시고 금리해택 받아가세요.</p>
+            <h2 class="mt-50">진행중인 프로젝트</h2>
+            <p>진행중인 프로젝트에 참여하시고 금리혜택을 받아가세요.</p>
           </div>
         </div>
       </div>
@@ -168,7 +168,7 @@
           <!-- Section Heading -->
           <div class="section-heading text-center">
             <h2>등록 예정 사업</h2>
-            <p>다음 달 시작할 모금 사업을 미리 확인 &amp; 예비평가 해주세요</p>
+            <p>다음 달 시작할 모금 사업을 미리 확인하시고 예비평가 해주세요</p>
           </div>
         </div>
       </div>
