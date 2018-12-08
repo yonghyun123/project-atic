@@ -66,7 +66,7 @@
                   최초 적금 이율은 3%입니다.<br>
                   매달 모금액 100%를 달성하는 기업에 적금을 넣었을 경우, 최저 0.02% ~ 최대 0.04%의 이율을 추가적으로 얻으실 수<br> 있습니다.<br>
                 </div>
-                <div classs="qna-guide" id="3">
+                <div class="qna-guide" id="3">
                   <p class="qna-num">03</p><p class="qna-dot">.</p>
                   <p id="question3">적금 형태는 어떻게 되나요?</p>
                 </div>
