@@ -354,10 +354,18 @@
 	      tooltips:{
     	  	callbacks:{
     	        label: function(tooltipItem, data){
-    	          var datasetLabel = data.datasets[tooltipItem.datasetIndex].label || '';
-    	          //This will be the tooltip.body
-    	          return datasetLabel + ': ' + tooltipItem.yLabel +'-> '+ data.datasets[tooltipItem.datasetIndex].notes[tooltipItem.index];
-    	        }
+    	        	var datasetLabel = data.datasets[tooltipItem.datasetIndex].label || '';
+    	        	var result = datasetLabel + ': ' + tooltipItem.yLabel + '점' 
+    	        	var temp = [];
+    	        	temp.push(result);
+    	        	temp.push('------심사기준--------');
+    	        	var str = data.datasets[tooltipItem.datasetIndex].notes[tooltipItem.index].split(', ');
+    	        	for(key in str){
+    	        		temp.push(str[key]);
+    	        	}
+    	            return temp;
+    	        },
+
     	     },
 	      }
 	    }
