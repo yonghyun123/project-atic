@@ -62,6 +62,12 @@ public class UserProjectServiceImpl implements UserProjectService{
 	public int checkDeposit(String userId) {
 		return userProjectMapper.checkDeposit(userId);
 	}
+
+	@Override
+	public UserProject readUserTotalDeposit(String id) {
+		// TODO Auto-generated method stub
+		return userProjectMapper.readUserTotalDeposit(id);
+	}
 	
 	
 }

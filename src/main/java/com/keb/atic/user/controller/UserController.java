@@ -64,10 +64,11 @@ public class UserController {
 		UserStatus userStatus = userStatusService.getMaxStatus(userId);
 		int listSize = userProjectService.readUserProjectsByUser(userId).size();
 		User user = userService.readUser(userId);
+		UserProject userProject = userProjectService.readUserTotalDeposit(userId);
 		
 		log.info(userStatus);
 		log.info(user);
-		
+		model.addAttribute("userProject",userProject);
 		model.addAttribute("userStatus",userStatus);
 		model.addAttribute("user",user);
 		if(listSize != 0) {
