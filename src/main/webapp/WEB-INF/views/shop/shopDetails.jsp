@@ -176,10 +176,10 @@ pageContext.setAttribute("LF", "\n");
                   <div class="card-body"
                     style="width: 40%; display: inline;">
                     <div id="average"
-                      style="margin-top: 15%; margin-left: 20%;">
+                      style="margin-top: 5%; margin-left: 20%;">
                       <p style="margin-left: 15">평균 평점</p>
 
-                      <div style="margin-left: 20%" id="averPoint">
+                      <div style="margin-left: 10%" id="averPoint">
                         <h1>4.5</h1>
                       </div>
                     </div>
@@ -225,7 +225,7 @@ pageContext.setAttribute("LF", "\n");
               <li class="nav-item"><a href="#evaluation"
                 class="nav-link" data-toggle="tab" role="tab">예비 평가</a></li>
               <li class="nav-item"><a href="#reviews"
-                class="nav-link" data-toggle="tab" role="tab">리뷰</a></li>
+                class="nav-link" data-toggle="tab" role="tab">문의</a></li>
             </ul>
             <!-- Tab Content -->
             <div class="tab-content">
@@ -307,8 +307,6 @@ pageContext.setAttribute("LF", "\n");
               </div>
               <div role="tabpanel" class="tab-pane fade" id="reviews">
                 <div class="submit_a_review_area mt-50">
-                  <h4>Submit A Review</h4>
-
                   <div class="row">
                     <div class="col-12 col-md-6">
                       <div class="form-group">
@@ -316,7 +314,7 @@ pageContext.setAttribute("LF", "\n");
                           class="form-control" id="options">
                           <option>상품성</option>
                           <option>가치</option>
-                          <option>Q&A</option>
+                          <option>기타 문의</option>
                         </select>
                       </div>
                     </div>
@@ -330,7 +328,7 @@ pageContext.setAttribute("LF", "\n");
                     <div class="col-12">
                       <button class="btn alazea-btn"
                         style="margin-bottom: 50px;"
-                        id="review-send-btn">Submit Your Review</button>
+                        id="review-send-btn">문의 작성</button>
                     </div>
                   </div>
 
@@ -431,39 +429,32 @@ pageContext.setAttribute("LF", "\n");
      <div class="single_user_review mb-15">
       <div class="review-rating">
         <i class="fa fa-star" aria-hidden="true"></i>
-         <span>{totalAvg}</span>
+         <span style="font-size: 20px;">{totalAvg}</span>
+		  <span style="font-size: 16px;">
+              by <strong style="font-size: 20px;">{userId}</strong>
+          </span>
           </div>
-            <div class="review-details" id="userId">
-              <div id="showAll"><p style="margin-bottom: 0">전체점수 보기 <i class="fa fa-sort-desc"></i></p></div>
+            <div id="userId">
+              <div id="showAll"><p style="margin-bottom: 0">상세점수 보기 <i class="fa fa-sort-desc"></i></p></div>
                <div id="totalEval{userID}" style="display:none">
-          <div id="Favor"> 
-          <span>호감도</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
-            {Favor}
-          </div>
-          <div id="Growth"> 
-          <span>성장성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
-            {Growth}
-          </div>
-          <div id="Market"> 
-          <span>수익성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+          <div> 
+          	<span><strong>호감도</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
+            {Favor} 
+     	    <span><strong>성장성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
+            {Growth} 
+          	<span><strong>수익성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
             {Market}
-          </div>
-          <div id="Stable"> 
-          <span>안정성</span>
-            <i class="fa fa-star" aria-hidden="true" style="color: #ff9800"></i>
+          	<span><strong>안정성</strong></span>
+			<i class="fa fa-star" aria-hidden="true" style="color: #ff9800;"></i>
             {Stable}
           </div>
-
         </div>
-        <p>
-                by <a>{userId}</a>
-                </p>
-                </div>
-                </div>
-             </li>
+        </div>
+        </div>
+   </li>
   </script>
 
 
