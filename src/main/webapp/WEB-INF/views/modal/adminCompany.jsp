@@ -24,9 +24,11 @@
  			    <div id="company-desc" class="tab-pane fade">
  			      <h3 class="ml-15">평가 상세 정보</h3>
  			      
- 			      <h6>심사기준 1 (투자시기)</h6>
- 			      <canvas id="bar-horizontal" width="800" height="700"></canvas>
+ 			      <h6>전체 평가 상세 graph</h6>
+ 			      <canvas id="bar-horizontal" width="1000" height="700"></canvas>
+ 			      <div id="total-eval">
  			      
+ 			      </div>
  			    </div>
  			  </div>
  			</div>	
