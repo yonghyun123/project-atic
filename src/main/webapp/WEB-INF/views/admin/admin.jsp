@@ -127,6 +127,10 @@
  			    
 <h1 style="color: #70c745;">총 평가 점수 : {totalResult}</h1>
   </script>
+  <script type="my-template" id="detail-eval">
+	<h1 style="color: #70c745;">총 평가 점수 : {totalResult}</h1>
+  </script>
+  
   <script>
   window.chartColors = {
 		  red: 'rgb(255, 99, 132)',
@@ -225,8 +229,9 @@
 
   function makeCompanyDetail(data){
 	  var originHtml = document.querySelector('#comp-detail').innerHTML;
+	  var deHtml =  document.querySelector('#detail-eval').innerHTML;
 	  var newhtml = '';
-	  
+	  var detailHtml = '';
 	  newhtml = originHtml.replace("{id}", data.id)
 						   .replace("{name}", data.name)
 					       .replace("{email}", data.email)
@@ -245,7 +250,11 @@
 						   .replace('{suffix3}', data.filePatentCertification.split('.')[1])
 						   .replace(/{fileInvestCertification}/gi, data.fileInvestCertification)
 						   .replace('{suffix4}', data.fileInvestCertification.split('.')[1])
-	  document.querySelector('#company').innerHTML = newhtml; 	
+	  document.querySelector('#company').innerHTML = newhtml;
+	  
+	  detailHtml = deHtml.replace('{totalResult}', data.totalResult);
+	  document.querySelector('#total-eval').innerHTML = detailHtml;
+	  
 	  var downList = document.querySelectorAll('.selectFile');
 	  $('.selectFile').click(function(e){
 		 	var fileName = e.target.innerText;
@@ -264,17 +273,19 @@
 	  		success: function(data){
 	  			console.log(data.evalCompany);
 	  			var dataset = [];
-	  			dataset.push(data.evalCompany.firstResult);
-	  			dataset.push(data.evalCompany.secondResult);
-	  			dataset.push(data.evalCompany.thirdResult);
-	  			dataset.push(data.evalCompany.fourthResult);
-	  			dataset.push(data.evalCompany.fifthResult);
-	  			dataset.push(data.evalCompany.sixthResult);
-	  			dataset.push(data.evalCompany.seventhResult);
-	  			dataset.push(data.evalCompany.eighthResult);
-	  			dataset.push(data.evalCompany.ninethResult);
+	  			dataset.push(data.evalCompany.firstEval);
+	  			dataset.push(data.evalCompany.secondEval);
+	  			dataset.push(data.evalCompany.thirdEval);
+	  			dataset.push(data.evalCompany.fourthEval);
+	  			dataset.push(data.evalCompany.fifthEval);
+	  			dataset.push(data.evalCompany.sixthEval);
+	  			dataset.push(data.evalCompany.seventhEval);
+	  			dataset.push(data.evalCompany.eighthEval);
+	  			dataset.push(data.evalCompany.ninethEval);
 	  			
 	  			evalGraph(dataset);
+	  			
+	  			
 	  		}
 	  	})
   }
@@ -306,13 +317,21 @@
 	 new Chart(document.getElementById("bar-horizontal"), {
 	    type: 'radar',
 	    data: {
-	      labels: ['투자시기', '평균 임직원 수', '설립일 일치빈도', '업종별 가중치', '업종별 투자액', '투자액 상승폭', '1차 투자 가중치', '업력별 가중치', '홍보활동'],
+	      labels: ['투자시기', '평균 임직원 수', '설립일 일치빈도', '업종별 가중치', '업종별 투자액', '투자액 상승폭', '1차 투자 가중치', '업력별 가중치', '홍보활동 상승률'],
 	      datasets: [
 	        {
 	          label: "심사결과",
 	          backgroundColor: color(window.chartColors.green).alpha(0.2).rgbString(),
 	          data: evalDataset,
-	          notes:["투자 시기 데이터 평균: 19.572개월"+' 평균점수: 8점','asdfsadf','asdfasdfasdf','asdfasdfsdf']
+	          notes:['1.투자 시기 데이터 평균: 19.572개월, 2.평균점수: 8점',
+	        	  '1.임직원 데이터 평균: 0.944명, 2.평균점수: 8점',
+	        	  '2008: 1.74%, 2009: 0.75%, 2010: 4.48%, 2011: 7.22%, 2012: 9.2%, 2013: 8.2%, 2014: 10%',
+	        	  '비IT: 1점, Game: 9.2점, IT dev: 8.2점, Platform: 2.7점, Security: 9.95점',
+	        	  'Game: 53.818억원, IT dev: 8.152억원, Security: 15억원, Platform: 20.63억원',
+	        	  '1.초기->1차투자: 0.874억원, 2.1차투자->2차투자: 1.061억원',
+	        	  '6개월이하: 10점, 12개월이하: 8점, 18개월이하: 6점, 그 이후:4점'
+	        	  ,'6개월이하: 10점, 12개월이하: 9점, 18개월이하: 8점',
+	        	  '상승시: 10점, 하락시: 6점, 기본: 4점, 미홍보: 0점']
 	        }
 	      ]
 	    },
@@ -337,7 +356,7 @@
     	        label: function(tooltipItem, data){
     	          var datasetLabel = data.datasets[tooltipItem.datasetIndex].label || '';
     	          //This will be the tooltip.body
-    	          return datasetLabel + ': ' + tooltipItem.yLabel +'->'+ data.datasets[tooltipItem.datasetIndex].notes[tooltipItem.index];
+    	          return datasetLabel + ': ' + tooltipItem.yLabel +'-> '+ data.datasets[tooltipItem.datasetIndex].notes[tooltipItem.index];
     	        }
     	     },
 	      }
