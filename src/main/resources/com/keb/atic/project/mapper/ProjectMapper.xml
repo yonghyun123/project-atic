@@ -78,8 +78,9 @@
         where rownum <![CDATA[ <= ]]> #{count}
 	</select>
 	
-	<select id="readProjectsByPercent"  resultType="com.keb.atic.project.domain.Project">
-			SELECT p.id			  AS "id",
+	<select id="readProjectsByPercent"  parameterType="map" resultType="com.keb.atic.project.domain.Project">
+					SELECT p.id	  AS "id",
+				   round((p.CUR_PRICE/ p.goal)*100) AS "progress",
 				   p.NAME         AS "name", 
 			       p.goal         AS "goal", 
 			       p.company      AS "company", 
@@ -93,8 +94,9 @@
 				         ON p.id = pi.project_id 
 				       JOIN at_file_info f 
 				         ON pi.file_id = f.file_id 
-				WHERE  To_char(p.create_date, 'MM') = To_char(sysdate, 'MM') 
+				WHERE  To_char(p.create_date, 'MM') = #{month}
 				       AND pi.image_type = 'th' 
+				       AND ROWNUM <![CDATA[ <= ]]> #{count}
 				ORDER  BY ( p.cur_price / p.goal ) DESC
 	</select>
 	

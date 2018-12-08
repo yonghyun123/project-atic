@@ -51,9 +51,14 @@ public class LoginController {
 			Cookie cookie = new Cookie("loginId", username);
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			if(user.getNickname() == null) {
+			
+			if(user.getId() == null) {
 				out.println("nickNone");
+			} else if (user.getId().equals("admin")) {
+				log.info("admin");
+				out.println("admin");
 			}
+			
 		} else {
 			out.println("userNone");
 		}

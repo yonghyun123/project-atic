@@ -48,6 +48,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		String loginId = msg.getLoginId();
 		switch (msg.getType()) {
 		case 1000:
+			String curPrice1 = msg.getCurPrice();
 			if (connectedClients.get(projectId) == null) {
 				connectedClients.put(projectId, new ArrayList<>());
 			}
@@ -65,6 +66,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			count = connectedClients.get(projectId).size();
 			Gson gs1 = new Gson();
 			Message msg1 = new Message(1000, count,sendMsg);
+			String str1 = String.format("%,d", Integer.parseInt(curPrice1));
+			msg1.setCurPrice(str1);
 			String json1 = gs1.toJson(msg1);
 			TextMessage tm1 = new TextMessage(json1);
 			sendMessageToAll(tm1, projectId);
@@ -86,17 +89,22 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			sendMessageToAll(tm, projectId);
 			break;
 		case 3000:
-			log.info(msg);
-			
 			String deposit = msg.getDeposit();
+			int sumDeposit = userProjectService.checkDeposit(loginId);
+			if(Integer.parseInt(deposit)+sumDeposit > 1000000) {
+				Gson gs4 = new Gson();
+				Message msg4 = new Message();
+				msg4.setType(4000);
+				String json4 = gs4.toJson(msg4);
+				TextMessage tm4 = new TextMessage(json4);
+				session.sendMessage(tm4);
+			}else {
 			String curPrice = msg.getCurPrice();
 			int money = Integer.parseInt(deposit) + Integer.parseInt(curPrice); 
 			UserProject userProject1 = new UserProject(deposit, loginId, projectId);
 			userProjectService.createUserProject(userProject1);
 			Project project = new Project(projectId, String.valueOf(money));
 			projectService.updateProject(project);
-			//project = projectService.readProject(projectId);
-			//String price = project.getCurPrice();
 			Gson gs3 = new Gson();
 			Message msg3 = new Message(3000, String.valueOf(money));
 			String str = String.format("%,d", money);
@@ -104,6 +112,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			String json3 = gs3.toJson(msg3);
 			TextMessage tm3 = new TextMessage(json3);
 			sendMessageToAll(tm3, projectId);
+			}
 			break;
 		}
 

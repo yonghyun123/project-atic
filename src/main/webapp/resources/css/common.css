@@ -33,7 +33,7 @@ body .PreProjctSector01 {
 }
 
 .navText{
-color: rgba(0,0,0,.84);
+	color: rgba(0,0,0,84);
     font-weight: 1000;
 }
 
@@ -469,9 +469,18 @@ ol > li > em {
 
 .guide-detail:hover {
 	cursor: pointer;
-	color: #70c745;
+	color: #6300CC;
 }
 
+/* admin CSS */
+
+.admin-logout {
+	padding: 0.2% 1%;
+}
+
+.admin-modal-dialog {
+	max-width: 600px !important;
+} 
 /* popup을 위한 css */
 
 #popup-message-login-success, 

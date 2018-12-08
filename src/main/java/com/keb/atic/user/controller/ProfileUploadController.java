@@ -1,13 +1,15 @@
 package com.keb.atic.user.controller;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.multipart.MultipartFile;
@@ -75,24 +78,27 @@ public class ProfileUploadController {
 		return null;
 	}
 	
-	@GetMapping(value = "/user/download/{fileName}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@GetMapping(value = "/user/download/{fileName}")
 	@ResponseBody
-	public ResponseEntity<Resource> downloadFile(@PathVariable("fileName") String fileName, HttpServletRequest request) {
+	public ResponseEntity<InputStreamResource> downloadFile(@PathVariable("fileName") String fileName, @RequestParam(value="suffix") String suffix, HttpServletRequest request) {
 		log.info("download");
-		String folder = "/resources/img/profile-img/";
-		Resource resource = new FileSystemResource(folder + fileName);
-		log.info("resource : " + resource);
-		String resourceName = resource.getFilename();
+		String folder = "/Users/yonghyun/Desktop/ATIC/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project_ATIC/resources/img/profile-img/";
 		
-		HttpHeaders headers = new HttpHeaders();
-		
+		File file = new File(folder + fileName+ "."+suffix);
+	    InputStreamResource resource = null;
 		try {
-			headers.add("Content-Disposition",  "attachment; filename=" + new String(resourceName.getBytes("UTF-8"),
-					"ISO-8859-1"));
-		} catch (UnsupportedEncodingException e) {
+			resource = new InputStreamResource(new FileInputStream(file));
+			System.out.println(resource.getDescription());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+
+	      return ResponseEntity.ok()
+	            .header(HttpHeaders.CONTENT_DISPOSITION,
+	                  "attachment;filename=" + file.getName())
+	            .contentType(MediaType.APPLICATION_PDF).contentLength(file.length())
+	            .body(resource);
+        
 	}
 }

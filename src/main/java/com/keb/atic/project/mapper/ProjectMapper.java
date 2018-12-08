@@ -19,7 +19,7 @@ public interface ProjectMapper {
 	// 조건별  등록 예정 프로젝트 조회(condition key: 목표 금액 순);
 	public List<Project> readMonthProjectByGoal(Map<String, String> map);
 	// 조건별 프로젝트 조회(condition key: 달성률 순)
-	public List<Project> readProjectsByPercent();
+	public List<Project> readProjectsByPercent(Map<String, String> map);
 	// 조건별 프로젝트 조회(condition key: 매력도 순)
 	public List<Project> readProjectsByEval();
 	// 전체 프로젝트 조회

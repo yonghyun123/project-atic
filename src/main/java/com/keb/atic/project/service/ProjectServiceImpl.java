@@ -44,9 +44,9 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 	
 	@Override
-	public List<Project> readProjectsByPercent() {
+	public List<Project> readProjectsByPercent(Map<String, String> map) {
 		log.info("list by Percent..   " );
-		return mapper.readProjectsByPercent();
+		return mapper.readProjectsByPercent(map);
 	}
 	
 	@Override

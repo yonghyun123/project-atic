@@ -247,19 +247,13 @@
 							setTimeout(function() {
 								addShow(x);
 								
-							}, 700 * x);
+							}, 800 * x);
 						})(i);
 					}
 				}();
 
-				//if(i-1 != 0){
-				// preList.removeClass("show");
-				//}
-				//}
 			});
-			//while(true){
-
-			//}
+			
 		</script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 </body>

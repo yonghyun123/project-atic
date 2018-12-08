@@ -45,7 +45,15 @@ public class CompanyServiceImpl implements CompanyService {
 	public void updateCompanyInfo(Company company) {
 		companyMapper.updateCompanyInfo(company);
 	}
+	@Override
+	public Company getCompanyDetail(String id) {
+		return companyMapper.getCompanyDetail(id);
+	}
 
+	@Override
+	public List<Company> getCompanyList() {
+		return companyMapper.getCompanyList();
+	}
 
 
 }

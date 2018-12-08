@@ -66,7 +66,7 @@
                   최초 적금 이율은 3%입니다.<br>
                   매달 모금액 100%를 달성하는 기업에 적금을 넣었을 경우, 최저 0.02% ~ 최대 0.04%의 이율을 추가적으로 얻으실 수<br> 있습니다.<br>
                 </div>
-                <div class="qna-guide" id="3">
+                <div classs="qna-guide" id="3">
                   <p class="qna-num">03</p><p class="qna-dot">.</p>
                   <p id="question3">적금 형태는 어떻게 되나요?</p>
                 </div>
@@ -80,6 +80,13 @@
                 <div class="dropdown-content dropdown-guide" id="answer4">
                   적금 만기 전, 해지를 하게되면 최저이율 3%의 이율이 적용됩니다. <br>
                 </div>
+                <div class="qna-guide" id="5">
+                  <p class="qna-num">05</p><p class="qna-dot">.</p>
+                  <p id="question5">상품별 모금률은 어디서 확인할 수 있나요?</p>
+                </div>
+                <div class="dropdown-content dropdown-guide" id="answer5">
+                  공정하고 신중한 적금을 위해 상품에 투자한 후, 마이페이지에서 확인하실 수 있습니다.<br>
+                  또한 종료된 프로젝트는 마감 페이지에서 바로 확인하실 수 있습니다.
               </div>
             </div>
         </section>	
@@ -89,26 +96,26 @@
                 <div class="guide-inform">
                   <p><strong style="margin-right: 5px;">계정</strong>관련 질문</p>
                 </div>  
-                <div class="qna-guide" id="5">
+                <div class="qna-guide" id="8">
                   <p class="qna-num">01</p><p class="qna-dot" style="margin-right: 5px !important;">.</p>
-                  <p id="question5">회원가입은 어떻게 하는건가요?</p>
+                  <p id="question8">회원가입은 어떻게 하는건가요?</p>
                 </div>
-                <div class="dropdown-content dropdown-guide" id="answer5">
+                <div class="dropdown-content dropdown-guide" id="answer8">
                   <Strong>A-TIC</Strong>은 공인인증서로 로그인하기 때문에 회원가입이 따로 필요 없습니다.<br><br>
                   하지만 댓글 작성, 예비평가등의 기능을 이용하기 위해 닉네임을 설정합니다.<br>
                 </div>
-                <div class="qna-guide" id="6">
+                <div class="qna-guide" id="9">
                   <p class="qna-num">02</p><p class="qna-dot">.</p>
-                  <p id="question6">1인당 여러 계정을 사용할 수 있나요?</p>
+                  <p id="question9">1인당 여러 계정을 사용할 수 있나요?</p>
                 </div>
-                <div class="dropdown-content dropdown-guide" id="answer6">
+                <div class="dropdown-content dropdown-guide" id="answer9">
                   공인인증서를 이용해 로그인하기 때문에 1인 1계정만 사용 가능합니다.<br>
                 </div>
-                <div class="qna-guide" id="7">
+                <div class="qna-guide" id="10">
                   <p class="qna-num">03</p><p class="qna-dot">.</p>
-                  <p id="question7">프로필 사진은 변경할 수 있나요?</p>
+                  <p id="question10">프로필 사진은 변경할 수 있나요?</p>
                 </div>
-                <div class="dropdown-content dropdown-guide" id="answer7">
+                <div class="dropdown-content dropdown-guide" id="answer10">
                   로그인 후, 마이페이지에서 변경 가능합니다.<br>
                 </div>
               </div>
@@ -147,6 +154,7 @@
     		document.getElementById("answer" + id).classList.toggle("show");
     		if(document.getElementById("answer" + id).classList.contains("show") == true) {
     			document.getElementById("question" + id).style.color = '#6300CC';
+    			scrollMove(id);
     		} else {
     			document.getElementById("question" + id).style.color = '#707070';
     		}
@@ -157,8 +165,11 @@
     		if(id == 'deposit-area') {
     			var offset = $('#deposit-area').offset();
     			$("html, body").animate({scrollTop:offset.top},500);	
-    		} else {
+    		} else if(id == 'account-area'){
     			var offset = $('.account-section').offset();
+    			$("html, body").animate({scrollTop:offset.top},500);
+    		} else {
+    			var offset = $('#' + id).offset();
     			$("html, body").animate({scrollTop:offset.top},500);
     		}
     	}
