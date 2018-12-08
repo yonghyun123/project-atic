@@ -152,6 +152,7 @@ public class ProjectController {
 			jsonObject.put("category", project.getCategory());
 			jsonObject.put("goal", project.getGoal());
 			jsonObject.put("progress", project.getProgress());
+			jsonObject.put("finish", project.getFinish());
 			jsonArray.add(jsonObject);
 		}
 		PrintWriter out = null;
