@@ -45,7 +45,7 @@
               </h3>
               <div>
                 <p>회사명:</p>
-                <input type="text" placeholder="현우상사" id="comDirName" 
+                <input type="text" placeholder="현우상사" id="comDirName" name="name"
                   class="regText" disabled="disabled"
                   value="현우상사">
               </div>
@@ -56,12 +56,12 @@
               </div>
               <div>
                 <p>사업자 번호:</p>
-                <input type="text" placeholder="-빼고 입력" id="comDirNum"
+                <input type="text" placeholder="-빼고 입력" id="comDirNum" name="busiNum"
                   class="regText" readonly="readonly" value="">
               </div>
               <div>
                 <p>설립일:</p>
-                <input type="text" placeholder="-빼고 입력" id="comDirDate"
+                <input type="text" placeholder="-빼고 입력" id="comDirDate" name="createDate"
                   class="regText" readonly="readonly" value="">
               </div>
               <div>
