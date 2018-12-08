@@ -109,6 +109,25 @@
                         <c:choose>
                 <c:when test="${fn:length(curList) != 0}">
                           <c:forEach var="project" items="${curList }" varStatus="status">
+                          <c:choose>
+                          <c:when test="${fn:contains(project.finish,'end')}">
+                          <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="single-product-area mb-50">
+                                <!-- Product Image -->
+                                <div class="product-img" style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);  background-repeat: no-repeat; width: 100%; height: 300px; background-size: cover;">
+                                  <p style="background-color: rgba(17, 17, 17, 0.5);height: 100%;margin: 0;">
+                                  </p>
+                                  <h2 class="closeProject" >마감</h2>
+                                </div>
+                                <!-- Product Info -->
+                                <div class="product-info mt-15 text-center finish-product">
+                                    <h6> ${project.name } </h6>
+                                    <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                                </div>
+                              </div>
+                            </div>
+                          </c:when>
+                          <c:otherwise>
                           <div class="col-12 col-sm-6 col-lg-4">
                             <div class="single-product-area mb-50">
                                 <!-- Product Image -->
@@ -123,12 +142,14 @@
                                 <!-- Product Info -->
                                 <div class="product-info mt-15 text-center">
                                     <a href="/shop/detail/${project.id }">
-                                        <h6> ${project.name } </h6>
+                                        <h6> ${project.name } //// ${project.finish }</h6>
                                     
                                     <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                                 </a></div>
                               </div>
                             </div>
+                          </c:otherwise>
+                          </c:choose>
                           </c:forEach>
                           </c:when>
                           <c:otherwise>
@@ -186,8 +207,25 @@
       </div>
    </div>
    </script>
+   <script id="endTemplateList" type="text/template">
+    <div class="col-12 col-sm-6 col-lg-4">
+    	<div class="single-product-area mb-50">
+        	<!-- Product Image -->
+            	<div class="product-img" style="background-image: url(/resources/img/project-image/{fileName});  background-repeat: no-repeat; width: 100%; height: 300px; background-size: cover;">
+                	<p style="background-color: rgba(17, 17, 17, 0.5);height: 100%;margin: 0;"></p>
+                   	<h2 class="closeProject" >마감</h2>
+                </div>
+            <!-- Product Info -->
+            	<div class="product-info mt-15 text-center finish-product">
+                	<h6> {name} </h6>
+                    <h6>업종 : {category} / 목표금액 : {goal}</h6>
+                </div>
+        </div>
+   </div>
+   </script>
    <script type="text/javascript">
       $(document).ready(function() {
+    	  $('.closeProject').css("font-size","65px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
     	  $("#funding").addClass("active");
 		  //$("#guide").removeClass("active");
 		  //$("#my-page").removeClass("active");
@@ -224,23 +262,33 @@ $(document).on("change", "#search_by", function(event) {
 function searchTemplate(jsonModifyData) {
 	//템플릿 내용
     var templateHtml = document.querySelector('#templateList').innerHTML;
+    var endTemplateHtml = document.querySelector('#endTemplateList').innerHTML;
     //
 	var originHtml = document.querySelector('#templateBody');
     var newHtml = '';
     var projectCount = 0;
     jsonModifyData.forEach(function(v, i) {
     	projectCount++;
+    	if(v.finish=='end'){
+    		 newHtml += endTemplateHtml.replace(/{id}/gi, v.id)
+				  .replace('{fileName}', v.fileName)
+				  .replace('{name}', v.name)
+				  .replace('{category}', v.category)
+				  .replace('{goal}', v.goal)
+				  .replace(/{progress}/gi,v.progress)
+    	} else {
       newHtml += templateHtml.replace(/{id}/gi, v.id)
           				  .replace('{fileName}', v.fileName)
           				  .replace('{name}', v.name)
           				  .replace('{category}', v.category)
           				  .replace('{goal}', v.goal)
           				  .replace(/{progress}/gi,v.progress)
-          				  
+    	}
     });
     originHtml.innerHTML = newHtml;
     var counterHtml = document.querySelector("#countBody")
     counterHtml.innerHTML = "<p>진행중인 펀딩이 "+ projectCount + "건 있습니다.</p>" ;
+    $('.closeProject').css("font-size","65px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
   }
 </script>
 

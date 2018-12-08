@@ -44,6 +44,8 @@ public class Project {
 	private String fileName;
 	//project 목표율
 	private String progress;
+	//projcet 달성여부
+	private String finish;
 	public Project(String id, String curPrice) {
 		super();
 		this.id = id;

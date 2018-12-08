@@ -131,7 +131,9 @@
 			       p.company      AS "company", 
 			       c.NAME         AS "category", 
 			       p.create_date  AS "createDate", 
-			       f.file_name    AS "fileName"
+			       f.file_name    AS "fileName",
+			       (CASE WHEN ( round((p.CUR_PRICE/ p.goal)*100)>= '100' ) THEN 'end'
+        			ELSE '0' END) AS "finish"
 			       <choose>
 			       <when test='condition != null and condition.equals("goal")'>
 			       From AT_project p join at_category c
