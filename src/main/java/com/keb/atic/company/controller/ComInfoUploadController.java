@@ -2,10 +2,14 @@ package com.keb.atic.company.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -34,7 +38,7 @@ public class ComInfoUploadController {
 	private CompanyService companyService;
 	private CompanyCriteriaResultMapper companyCriteriaResultMapper;
 	@PostMapping("/demoregist")
-	public String componyDemoRegist(Company company, Model model) {
+	public void componyDemoRegist(Company company, Model model, HttpServletResponse response) throws Exception {
 		log.info(company.getEmail());
 		log.info(company.getName());
 		log.info(company.getComType());
@@ -42,9 +46,18 @@ public class ComInfoUploadController {
 		log.info(company.getCertiNum());
 		log.info(company.getCreateDate());
 		log.info(company.getSns());
-		companyService.registCompanyInfo(company);
 		
-		return "redirect:/loan";
+		companyService.registCompanyInfo(company);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(companyService.readCompanyInfo(company.getEmail())!=null) {
+			out.println("<script>alert('계정이 등록 되었습니다'); location.href='/loan';</script>");
+			out.flush();
+		}else {
+			out.println("<script>alert('오류로인해 등록에 실패했습니다.'); location.href='/loan';</script>");
+			out.flush();
+		}
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -130,14 +143,17 @@ public class ComInfoUploadController {
 			String ninethEval = String.valueOf(ninethList.get(ninethList.size()-1));
 			CompanyCriteriaResult result = new CompanyCriteriaResult(company.getEmail(), company.getId(), firstEval, secondEval, thirdEval, fourthEval, fifthEval, sixthEval, seventhEval, eighthEval, ninethEval);
 			//개별점수 등록
-			companyCriteriaResultMapper.registCompanyCriteriaResult(result);
+			/*companyCriteriaResultMapper.registCompanyCriteriaResult(result);*/
 			
 			String totalEval = String.valueOf(evalModel.firstCriteria(company) + evalModel.secondCriteria(company) + evalModel.thirdCriteria(company)+evalModel.fourthCriteria(company)
 								+evalModel.fifthCriteria(company) +evalModel.sixthCriteria(company) + evalModel.seventhCriteria(company) + evalModel.eighthCriteria(company)
 								+ninethList.get(ninethList.size()-1));
 			company.setTotalResult(totalEval);
+			Map<String, Object> mapInfo = new HashMap<String, Object>();
+			mapInfo.put("result", result);
+			mapInfo.put("company", company);
 			//총점수 등록
-			companyService.updateCompanyInfo(company);
+			companyService.updateCompanyInfo(mapInfo);
 		return "redirect:/loan";
 	}
 	

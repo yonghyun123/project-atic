@@ -25,16 +25,17 @@ name : companyDirRegist.js
 		}
 		if (n == (x.length - 1)) {
 			document.getElementById("nextBtnDirReg").innerHTML = "Submit";
-			
-			$('#nextBtnDirReg').click(function(){
-				$('#regDirComForm').submit();
-			})
+			$('#nextBtnDirReg').attr("id","nextBtnDirSubmit");
+
 		} else {
+			$('#nextBtnDirSubmit').attr("id","nextBtnDirReg");
 			document.getElementById("nextBtnDirReg").innerHTML = "Next";
+			
 		}
 		// ... and run a function that displays the correct step indicator:
 		fixStepIndicatorDir(n)
 	}
+
 
 	function nextDirPrev(n) {
 		// This function will figure out which tab to display
@@ -50,6 +51,7 @@ name : companyDirRegist.js
 		// if you have reached the end of the form... :
 		if (currentDirTab >= x.length) {
 			//...the form gets submitted:
+			$('#regDirComForm').submit();
 			$("#com-dir-Reg").modal('hide');
 			return false;
 		}
@@ -99,10 +101,6 @@ name : companyDirRegist.js
   		ThirdCategory = "";
   		cleanSelector();
   		$('#'+FirstCategory).css('display','inline');
-   		console.log('FirstCategory= ' + FirstCategory);
-   		console.log('SecondCategory= ' + SecondCategory);
-   		console.log('ThirdCategory= ' + ThirdCategory);
-   		
   	});
   	
   	$('.secondClass').change(function(){
