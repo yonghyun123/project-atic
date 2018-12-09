@@ -70,6 +70,12 @@ body .PreProjctSector01 {
 	display: inline-block;
 }
 
+.widget-title .pt-20 {
+	margin-top: 0;
+	font-weight: 400;
+	font-size: 16px;
+}
+
 /* login-modal CSS */
 
 .modal-dialog {
