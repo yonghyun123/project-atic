@@ -24,7 +24,7 @@ name : companyRegist.js
 		if (n == (x.length - 1)) {
 			document.getElementById("nextBtnReg").innerHTML = "Submit";
 			$('#nextBtnReg').click(function(){
-				$('#regComForm').submit();
+				
 			})
 		
 		} else {
@@ -48,6 +48,7 @@ name : companyRegist.js
 		// if you have reached the end of the form... :
 		if (currentTab >= x.length) {
 			//...the form gets submitted:
+			$('#regComForm').submit();
 			$("#com-Reg").modal('hide');
 			return false;
 		}

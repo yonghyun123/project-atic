@@ -1,6 +1,7 @@
 package com.keb.atic.company.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.keb.atic.company.domain.Company;
 import com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult;
@@ -15,7 +16,7 @@ public interface CompanyService {
 	// 심사업체 삭제 
 	public void deleteCompany(String id);
 	// 심사업체 업데이트
-	public void updateCompanyInfo(Company company);
+	public void updateCompanyInfo(Map<String, Object> infoMap);
 	// 기업 정보 디테일
 	public Company getCompanyDetail(String id);
 	//전체 조회

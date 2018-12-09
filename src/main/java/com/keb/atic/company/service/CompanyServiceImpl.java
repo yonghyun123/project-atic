@@ -1,14 +1,17 @@
 package com.keb.atic.company.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.keb.atic.company.domain.Company;
 import com.keb.atic.company.mapper.CompanyMapper;
 import com.keb.atic.companyCriteriaResult.domain.CompanyCriteriaResult;
+import com.keb.atic.companyCriteriaResult.mapper.CompanyCriteriaResultMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -18,6 +21,9 @@ import lombok.extern.log4j.Log4j;
 public class CompanyServiceImpl implements CompanyService {	
 	@Inject
 	private CompanyMapper companyMapper;
+	@Inject
+	private CompanyCriteriaResultMapper companyCriteriaResultMapper;
+
 
 
 	@Override
@@ -41,10 +47,11 @@ public class CompanyServiceImpl implements CompanyService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Transactional
 	@Override
-	public void updateCompanyInfo(Company company) {
-		companyMapper.updateCompanyInfo(company);
+	public void updateCompanyInfo(Map<String, Object> infoMap) {
+		companyCriteriaResultMapper.registCompanyCriteriaResult((CompanyCriteriaResult)infoMap.get("result"));
+		companyMapper.updateCompanyInfo((Company)infoMap.get("company"));
 	}
 	@Override
 	public Company getCompanyDetail(String id) {
