@@ -85,10 +85,10 @@
                         </div>
 
                         <div class="contact-information">
-                            <p><span>Address:</span> 성남시 분당구 정자동 80-17</p>
-                            <p><span>Phone:</span> 02-123-1234</p>
-                            <p><span>Email:</span> lcw9206@gmail.com</p>
-                            <p><span>Open hours:</span> Mon - Sun: 8 AM to 9 PM</p>
+                            <p class="pt-20"><span>Address:</span> 성남시 분당구 정자동 80-17</p>
+                            <p class="pt-20"><span>Phone:</span> 02-123-1234</p>
+                            <p class="pt-20"><span>Email:</span> lcw9206@gmail.com</p>
+                            <p class="pt-20"><span>Open hours:</span> Mon - Sun: 8 AM to 9 PM</p>
                         </div>
                     </div>
                 </div>

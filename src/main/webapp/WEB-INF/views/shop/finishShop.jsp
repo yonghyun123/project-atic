@@ -107,12 +107,20 @@
                                 <!-- Product Info -->
                                 <div class="product-info mt-15 text-center finish-product">
                                     <div class="progress">
-                                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%">
+                                    <c:choose>
+                                    <c:when test="${project.progress >= 5}">
+                                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%;background-color: #70c745;">
                                         ${project.progress }%
                                       </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${project.progress }" aria-valuemin="0" aria-valuemax="100" style="width:${project.progress }%; color:black; background-color: #70c745;">
+                                        ${project.progress }%
+                                      </div>
+                                    </c:otherwise>
+                                    </c:choose>
                                     </div>
                                     <h6> ${project.name } </h6>
-                                    
                                     <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                                 </div>
                               </div>
@@ -143,6 +151,10 @@
     <script type="text/javascript" src="/resources/js/slick.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+    	  $('.progress').css("height","1.5rem");
+    	  console.log(document.querySelector('.progress-bar').style.width);
+    	  console.log(document.querySelector('.progress-bar'));
+    	  console.log(document.querySelector('.progress-bar').style);
     	  $('.closeProject').css("font-size","65px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
     	  $("#funding").addClass("active");
     	  $("#guide").removeClass("active");
