@@ -142,8 +142,7 @@
                                 <!-- Product Info -->
                                 <div class="product-info mt-15 text-center">
                                     <a href="/shop/detail/${project.id }">
-                                        <h6> ${project.name } //// ${project.finish }</h6>
-                                    
+                                        <h6> ${project.name }</h6>
                                     <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
                                 </a></div>
                               </div>
