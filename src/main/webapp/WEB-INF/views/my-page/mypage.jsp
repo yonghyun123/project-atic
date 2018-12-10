@@ -97,11 +97,11 @@
 				  <div class="card-body pt-0">
 				    <h4 class="card-title">총 이자율</h4>
 				    <c:set var="profit" value="${userStatus.totalProfit*100}"/>
-				    <p class="card-text" style="color: blue">${profit}%</p>
+				    <p class="card-text" style="color: #70c745; font-weight:bold;">${profit}%</p>
 				    </div>
                       <div class="card-body">
                        <h4 class="card-title">이번달 적금금액</h4>
-                       <p class="card-text" style="color: blue">
+                       <p class="card-text" style="color: #70c745; font-weight:bold;">
                         <c:choose>
                           <c:when test="${empty userProject.totalDeposit }">
                             0원
@@ -114,7 +114,7 @@
                       </div>				  
 				    <div class="card-body">
 				  	<h4 class="card-title">만기시 환급금액</h4>
-				  	<p class="card-text" style="color: blue">
+				  	<p class="card-text" style="color: #70c745;font-weight:bold;">
                     <c:choose>
                       <c:when test="${empty userStatus.totalMoney }">
                         0원
@@ -155,11 +155,14 @@
     	
     	                   <!-- Progress Bar Content Area -->
                            <p>만기 도달 개월수(%)</p>
-    	                   <div class="progress">
-    						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" id="prog-date" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                           
+    	                   <div class="progress" style="height: 3.5rem;">
+                         
+    						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" id="prog-date" aria-valuemin="0" aria-valuemax="100" style="width:50%; ">
     						    50% Complete (info)
     						  </div>
     						</div>
+                
     	               </div>
     			    </div>
     			    <!-- 수익률 그래프 그려져야 하는 부분 -->
@@ -276,12 +279,17 @@
             const datePerc = Math.round((365 - difDate) / 365 * 100,2) + "%";
     		
           	//percent 동적삽입
-            $("#prog-date").css("width",datePerc);
-            $("#prog-date").text(datePerc+" 달성!");
+          	if(datePerc >= 5){
+            	$("#prog-date").css("width",datePerc).css("background-color","#70c745").css("font-size","15px");
+                $("#prog-date").text(datePerc+" 달성!").css("color","black");
+          	} else {
+          		$("#prog-date").css("width",datePerc).css("background-color","#70c745").css("font-size","15px");
+                $("#prog-date").text(datePerc+" 달성!");
+          	}
     	}  else {
     		//percent 동적삽입
             $("#prog-date").css("width", 0);
-            $("#prog-date").text("시작 전!");
+            $("#prog-date").text("시작 전!").css("color","black").css("font-size","15px");
     	}
     }
     

@@ -199,7 +199,7 @@
 				.replace("{email}", v.email)
 				.replace('{comType}',v.comType)
 				.replace('{flag}', '가입신청완료')
-		  } else if(v.flag == '0'){
+		  } else if(v.flag == '1'){
 			  newhtml += originHtml.replace("{id}", v.id)
 				.replace("{name}", v.name)
 				.replace("{email}", v.email)
