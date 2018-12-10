@@ -28,8 +28,8 @@ public class UserStatusServiceImpl implements UserStatusService {
 	}
 
 	@Override
-	public List<UserStatus> updateListByMonth() {
-		return userStatusMapper.updateListByMonth();
+	public List<UserStatus> updateListByMonth(String month) {
+		return userStatusMapper.updateListByMonth(month);
 	}
 
 	@Override
@@ -40,6 +40,11 @@ public class UserStatusServiceImpl implements UserStatusService {
 	@Override
 	public void createUserStatus(UserStatus userStatus) {
 		userStatusMapper.createUserStatus(userStatus);
+	}
+
+	@Override
+	public List<UserStatus> leftListByMonth(String month) {
+		return userStatusMapper.leftListByMonth(month);
 	}
 
 }

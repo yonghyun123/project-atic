@@ -45,7 +45,7 @@
         <div>
           <div class="single-item">
             <a href="#"
-            style="background-image: url('/resources/img/slider-img/shop-slide1.png')">
+            style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/shop-slide1.png'); background-size: 100% 100%">
             <p class="index-slider-text-title">
               A-TIC x 하나은행<br>
             </p>
@@ -53,7 +53,7 @@
               기존과는 다른 새로운 개념의 적금 플랫폼!<br>
             </p>
           </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/shop-slide2.png')">
+            style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/shop-slide2.png'); background-size: 100% 100%">
             <p class="index-slider-text-title">
               함께할수록 올라가는 이율
               <br>
@@ -62,7 +62,7 @@
               모금액 100% 달성 기업을 맞춰보세요!<br>
             </p>
           </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/shop-slide3.png')">
+            style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/shop-slide3.png'); background-size: 100% 100%">
             <p class="index-slider-text-title">
               유망 스타트업 진흥 프로젝트
             </p>
@@ -78,7 +78,7 @@
 
     <!-- ##### Shop Area Start ##### -->
     <section class="shop-page section-padding-20-100">
-        <div class="container">
+        <div class="col-md-10" style="margin: 0 auto;">
             <div class="row">
                 <!-- Shop Sorting Data -->
                 <div class="col-12">
@@ -232,7 +232,7 @@
           autoplay:true,
           autoplaySpeed:3000,
           dots: false,
-          arrows: true,
+          arrows: false,
           pauseOnHover:true
         });
         
