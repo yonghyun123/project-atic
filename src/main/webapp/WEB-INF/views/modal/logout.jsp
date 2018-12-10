@@ -13,8 +13,8 @@
         <div class="modal-body logout-body">
           <form method="get" action="/user/logout" class="logout-form">
             <input type="submit" class="btn btn-success btn-block" id="logout-bt" value="로그아웃">
+            <button type="submit" class="btn btn-danger btn-default btn-cancel logout" data-dismiss="modal">취소</button>
           </form>
-          <button type="submit" class="btn btn-danger btn-default btn-cancel logout" data-dismiss="modal">취소</button>
         </div>
       </div>
     </div>
