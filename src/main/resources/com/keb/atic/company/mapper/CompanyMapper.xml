@@ -24,7 +24,7 @@ VALUES      (
              #{sns}
              ) 
 	</insert>
-	
+		
 	<select id="readCompanyInfo" resultType="com.keb.atic.company.domain.Company">
 		SELECT
 	   j.id,
@@ -39,10 +39,10 @@ VALUES      (
        at_company_type t, 
        at_company_certi c 
 	WHERE  J.company_type = T.id 
-       AND J.certi_num = C.id 
+       AND J.certi_num = C.id
        AND j.email = #{value}
 	</select>
-	
+		
 	<select id="companyListAll" resultType="com.keb.atic.company.domain.Company">
 	SELECT email, 
        name, 
@@ -55,7 +55,7 @@ VALUES      (
        at_company_type t, 
        at_company_certi c 
 	WHERE  J.company_type = T.id 
-       AND J.certi_num = C.id; 
+       AND J.certi_num = C.id 
 	</select>
 
 	<delete id="deleteCompany" >
@@ -85,6 +85,7 @@ VALUES      (
        hasPatent = #{hasPatent},  
        ceo_tel = #{ceoTel},
        file_busi_registration = #{fileBusiRegistration},
+       flag = 2,
        <if test='!certiNum.equals("5")'>
        file_comp_certification = #{fileCompCertification},
        </if>
@@ -140,4 +141,10 @@ VALUES      (
 	FROM AT_saving_judge
 	WHERE company_id = #{id}
 	</select>
+	
+	<update id="updateFlag">
+	update at_company_judge
+	set flag = 1 
+	where flag = 0 and id = #{id}
+	</update>
 </mapper>
