@@ -46,7 +46,7 @@
        deposit AS "deposit", 
        user_id AS "userId", 
        project_id AS "projectId",
-       create_date AS "createDate"
+       TO_CHAR(create_date,'YYYY-MM-DD') AS "createDate"
 	FROM   at_user_project 
 	WHERE  project_id = #{projectId}
 	ORDER BY deposit desc
