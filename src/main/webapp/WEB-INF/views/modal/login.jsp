@@ -20,9 +20,12 @@
               <input type="password" class="form-control" name="password" id="psw" placeholder="Enter Password" required>
               <span id="login-fail-text"></span>
             </div>
+            <div style="margin-top: 3%;">
               <button type="button" class="btn btn-success btn-block" id="login-bt">Login</button>
+              <button type="submit" class="btn btn-danger btn-default btn-cancel" id="login-cancel" data-dismiss="modal">Cancel</button>
+            </div>
           </form>
-          <button type="submit" class="btn btn-danger btn-default btn-cancel" data-dismiss="modal">Cancel</button>
+          
         </div>
       </div>
     </div>

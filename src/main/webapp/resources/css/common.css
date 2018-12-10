@@ -2,7 +2,7 @@
 
 /* header CSS */
 
-.classynav ul .time-li {
+.cassynav ul .time-li {
 	font-size: 32px;
 	margin-bottom: 25px;
 	vertical-align: middle;
@@ -83,11 +83,6 @@ body .PreProjctSector01 {
 	max-width: 400px !important;
 }
 
-.modal-body .btn-cancel {
-	width: 100%;
-	margin-top: 1%;
-}
-
 #login-fail-text, #nickname-fail-text, #menual-fail-text {
 	color: red;
 	visibility: hidden;
@@ -97,19 +92,17 @@ body .PreProjctSector01 {
 	font-size: 24px;
 }
 
-#login-bt {
-	margin-top: 4%;
+#login-cancel, #login-bt {
+	width: 49.4%;
+	display: inline-block;
+	margin: 0;
 }
 
 /* logout-modal CSS */
 
 .logout-body {
-	padding: 0 20% 10% 20% !important;
+	padding: 0 17% 10% 17% !important;
 	display: inherit;
-}
-
-.logout-body .logout {
-	margin: 0 0 0 1%;
 }
 
 .logout-text {
@@ -121,6 +114,12 @@ body .PreProjctSector01 {
 }
 
 .modal-body .form-group {
+	margin: 0;
+}
+
+.logout-body .logout, #logout-bt {
+	width: 49.1%;
+	display: inline-block;
 	margin: 0;
 }
 
@@ -402,6 +401,8 @@ ol > li > em {
 .our-services-area .col-md-10 {
 	background-color: white;
 	margin: 0 auto;
+	box-shadow: 1px 3px 0px #D2D2D2;
+	border-color: #DADADA;
 }
 
 .guide-box {
@@ -426,7 +427,6 @@ ol > li > em {
 .qna-num {
 	color: #6300CC;
 	font-weight: 700;
-	
 }
 
 .qna-dot {
@@ -468,14 +468,15 @@ ol > li > em {
 
 .guide-detail {
 	padding: 20px 0;
-	border-left: 1px solid #dddfe1;
-	border-top: 1px solid #dddfe1;
-	border-bottom: 1px solid #dddfe1;
 }
 
 .guide-detail:hover {
 	cursor: pointer;
 	color: #6300CC;
+}
+
+#deposit-area {
+	border-bottom: 1px solid #dddfe1;
 }
 
 /* admin CSS */
