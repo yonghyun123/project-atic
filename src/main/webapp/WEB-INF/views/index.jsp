@@ -24,7 +24,6 @@
 <link href="/resources/css/slick.css" rel="stylesheet">
 <link href="/resources/css/slick-theme.css" rel="stylesheet">
 <link href="/resources/css/common.css" rel="stylesheet">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <style type="text/css">
 .slide-fade li {
@@ -234,7 +233,7 @@ text-decoration:none;
         </c:choose>
       </div>
         <div style="margin-bottom:5px">
-        <a style="font-weight: 100;" href="/shop/currentShop">전체 보기 <i class="glyphicon glyphicon-menu-right"></i></a>
+        <a style="font-weight: 100;" href="/shop/currentShop">전체 보기&gt &gt</a>
         </div>
     </div>
   </section>
@@ -247,7 +246,7 @@ text-decoration:none;
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2 class="mt-50" id="projecthead">
+            <h2 class="mt-15" id="projecthead">
             <p id="projectContext">다음 달 데뷔예정</p>
             </h2>
           </div>
@@ -260,7 +259,7 @@ text-decoration:none;
           <c:forEach items="${nextList}" var="preProject">
             <!-- Single Blog Post Area -->
             <div class="col-12 col-md-6 col-lg-4 text-center">
-              <div class="single-blog-post mb-50">
+              <div class="single-blog-post mb-30">
                 <div class="product-img mb-0">
                   <a href="/shop/detail/pre/${preProject.id }"><img
                     src="/resources/img/project-image/${preProject.fileName}"
@@ -279,9 +278,6 @@ text-decoration:none;
               </div>
             </div>
           </c:forEach>
-         <div class="col-12 text-center" style="margin-bottom: 50px">
-          <a href="/shop/preShop" class="btn alazea-btn">View All</a>
-        </div>
           </c:when>
           <c:otherwise>
             <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
@@ -289,6 +285,9 @@ text-decoration:none;
             </div>
           </c:otherwise>
         </c:choose>
+      </div>
+      <div style="padding-bottom:50px">
+         <a style="font-weight: 100;" href="/shop/preShop">전체 보기&gt &gt</a>
       </div>
     </div>
   </section>
