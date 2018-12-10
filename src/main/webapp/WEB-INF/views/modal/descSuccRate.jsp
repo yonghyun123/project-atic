@@ -10,10 +10,12 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-body">
-        <label><span class="glyphicon glyphicon-user"></span> 성공률 상세</label>
+        <label><span class="glyphicon glyphicon-user"></span> 폐업률 상세</label>
         <p>
         저희 사이트에서 수집한 데이터를 이용한 수치입니다.<br>
-        기반데이터를 분석한 사업 업종별 성공 예측 비율입니다.
+        데이터를 기준으로 분기별 기간동안 폐업 점포수를 전체 점포수로 나누어 산출한 정보입니다.<br>
+        산출식: (분기별 기간동안 폐업 점포수 / 전체 점포수)X100<br>
+		* 전체 점포수 : 현재 영업중인 전체 점포 수 + 당 기간 폐업 점포수
         </p>
         </div>
       </div>
