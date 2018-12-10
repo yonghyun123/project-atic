@@ -135,8 +135,8 @@ pageContext.setAttribute("LF", "\n");
                 
                 <p>
                   이 프로젝트가 목표자금을 달성할 시
-                  <c:out value="${project.interest*100 }" />
-                  %의 금리혜택을 받으실 수 있습니다.
+                  <strong style="font-size: 18px; color: #70c745;"><c:out value="${project.interest*100 }"/>%</strong>
+                  의 금리혜택을 받으실 수 있습니다.
                 </p>
               </div>
 
@@ -285,7 +285,7 @@ pageContext.setAttribute("LF", "\n");
                           <tr>
                             <td>${status.index+1 }</td>
                             <td>****</td>
-                            <td>${project.deposit }</td>
+                            <td><fmt:formatNumber value="${project.deposit }" pattern="#,###"/></td>
                             <td>${project.createDate }</td>
                           </tr>
                         </c:forEach>

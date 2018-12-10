@@ -814,7 +814,8 @@ em{
     position: relative;
     z-index: 1;
     -webkit-transition-duration: 500ms;
-    transition-duration: 500ms; }
+    transition-duration: 500ms; 
+    box-shadow: 0px 1px 3px 0px #D2D2D2;}
     .single-product-area .product-img a {
       display: block; }
     .single-product-area .product-img img {
@@ -1061,7 +1062,7 @@ em{
     font-size: 26px;
     font-weight: 600;
     color: #70c745;
-    margin-bottom: 30px; }
+    margin: 15px 0; }
   .single_product_desc .short_overview {
     margin-bottom: 30px; }
     .single_product_desc .short_overview p {
