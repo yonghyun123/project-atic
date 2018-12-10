@@ -24,16 +24,94 @@
 <link href="/resources/css/slick.css" rel="stylesheet">
 <link href="/resources/css/slick-theme.css" rel="stylesheet">
 <link href="/resources/css/common.css" rel="stylesheet">
-
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <style type="text/css">
 .slide-fade li {
-	transition: all 0.4s ease-out;
-	opacity: 0;
+  transition: all 0.4s ease-out;
+  opacity: 0;
 }
 
 .slide-fade li.show {
-	opacity: 1;
+  opacity: 1;
+}
+
+.section-heading{
+  margin-bottom:20px;
+}
+
+#projecthead{
+  background: url("/resources/img/bg-img/bg_line_title.png") repeat-x 0 center;
+  text-align: center
+}
+#projecthead #projectContext{
+    padding: 0 20px;
+    display: inline-block;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    font-size: 24px;
+    font-weight: normal;
+    background: #f8f8f8;
+    color:#4a4a4a;
+}
+
+.nowName{
+  color:white;
+  font-weight: 1000;
+}
+.preName{
+  color:white;
+  font-weight: 1000;
+}
+
+  .thisMonth-tag{
+  border-radius: 2px;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    text-align:center;
+    z-index: 10;
+}
+
+.nowNameSub{
+  color:white;
+  font-size:13;
+}
+
+a{
+  color:#303030;
+}
+
+p:hover, a:hover, a:focus, p:focus{
+text-decoration:none;
+}
+
+#mainVisual {
+    float: left;
+    width: 63%;
+    margin: 0 0 0 0%;
+
+}
+#rankingSection {
+    float: right;
+    width: 32%;
+    height: 100%;
+    margin-right: 1%:;
+}
+.new-arrivals-products-area {
+    padding-bottom: 0px;
+}
+.containerOne{
+  margin-left: 1.5%;
+  width:100%;
 }
 
 
@@ -44,13 +122,14 @@
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Hero Area Start ##### -->
-  <div style="height: 90px; border-bottom: 1px solid #ebebe0" ></div>
+<div style="background:#f8f8f8;">
+ <div style="margin: 0 15% 0 15%;" >
   <section class="sector01">
-    <div class="container">
+    <div class="containerOne">
       <div id="mainVisual">
         <div class="single-item">
           <a href="#"
-            style="background-image: url('/resources/img/slider-img/index-slide1.png')">
+            style="background-image: url('/resources/img/slider-img/index-slide1.png'); background-size: contain">
             <p class="index-slider-text-title">
               A-TIC x 하나은행<br>
             </p>
@@ -58,7 +137,7 @@
               기존과는 다른 새로운 개념의 적금 플랫폼!<br>
             </p>
           </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/index-slide2.png')">
+            style="background-image: url('/resources/img/slider-img/index-slide2.png'); background-size: contain">
             <p class="index-slider-text-title">
               함께할수록 올라가는 이율
               <br>
@@ -67,7 +146,7 @@
               모금액 100% 달성 기업을 맞춰보세요!<br>
             </p>
           </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/index-slide3.png')">
+            style="background-image: url('/resources/img/slider-img/index-slide3.png');background-size: contain ">
             <p class="index-slider-text-title">
               유망 스타트업 진흥 프로젝트
             </p>
@@ -79,8 +158,8 @@
       </div>
       <div id="rankingSection">
         <div class="hotClipWrapper">
-          <div id="clipHeader">
-            <h5>금일 투자 급등 종목</h5>
+          <div id="clipHeader" style="background-color: #efefef">
+            <p>실시간 Best 투자</p>
           </div>
           <div id="clipBody">
             <div id="rankingList">
@@ -103,51 +182,46 @@
   </section>
   <!-- ##### Hero Area End ##### -->
   <!-- ##### Product Area Start ##### -->
-  <section class="new-arrivals-products-area bg-gray section-padding-50">
+  <section class="new-arrivals-products-area bg-gray section-padding-50" style="margin-top:50px;">
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <!-- Section Heading -->
-          <div class="section-heading text-center">
-            <h2 class="mt-50">진행중인 프로젝트</h2>
-            <p>진행중인 프로젝트에 참여하시고 금리혜택을 받아가세요.</p>
-          </div>
-        </div>
-      </div>
 
       <div class="row">
        <c:choose>
         <c:when test="${fn:length(hotList) != 0}">
         <c:forEach items="${hotList}" var="project">
           <!-- Single Product Area -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="single-product-area mb-50 wow fadeInUp"
-              data-wow-delay="100ms">
+          <div class="col-12 col-sm-6 col-lg-4" >
+            <div class="single-product-area mb-30  wow fadeInUp"
+            
+              data-wow-delay="100ms" style="border:1px solid #e4e4e4">
               <!-- Product Image -->
               <div class="product-img">
                 <a href="/shop/detail/${project.id }"><img
                   src="/resources/img/project-image/${project.fileName}"
                   alt=""></a>
                 <!-- Product Tag -->
-                <div class="product-tag">
-                  <a href="/shop/detail/${project.id }">HOT</a>
+                <div class="thisMonth-tag">
+                  <a style="border: 1.5px solid white; width:100px;  margin-bottom:10%; background-color:none" class="nowName" >진행중</a>
                 </div>
               </div>
               <!-- Product Info -->
-              <div class="product-info mt-15 text-center">
-                <a href="/shop/detail/${project.id }">
-                  <p>
-                  <h5>${project.name }</h5>
+              <div class="product-info mt-0 text-center" style="background-color:rgb(255, 111, 97); height:250px;padding-top: 20px;">
+                <div style="margin:0 15% 0 15%">
+                <a style="margin-top:5%" href="/shop/detail/${project.id }">
+                  
+                  <p class="nowName">
+                  ${project.name }
                   </p>
+                  <p class="nowNameSub" style="margin-top:30px;">
+                  ${project.title}
+                  </p>
+                  
                 </a>
-                <h6>${project.description }</h6>
+                </div>
               </div>
             </div>
           </div>
         </c:forEach>
-        <div class="col-12 text-center">
-          <a href="/shop/currentShop" class="btn alazea-btn">View All</a>
-        </div>
         </c:when>
         <c:otherwise>
           <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
@@ -156,19 +230,23 @@
         </c:otherwise>
         </c:choose>
       </div>
+        <div style="margin-bottom:5px">
+        <a style="font-weight: 100;" href="/shop/currentShop">전체 보기 <i class="glyphicon glyphicon-menu-right"></i></a>
+        </div>
     </div>
   </section>
   <!-- ##### Product Area End ##### -->
 
   <!-- ##### Blog Area Start ##### -->
-  <section class="alazea-blog-area section-padding-100-0">
+  <section class="alazea-blog-area section-padding-50-0">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2>등록 예정 사업</h2>
-            <p>다음 달 시작할 모금 사업을 미리 확인하시고 예비평가 해주세요</p>
+            <h2 class="mt-50" id="projecthead">
+            <p id="projectContext">다음 달 데뷔예정</p>
+            </h2>
           </div>
         </div>
       </div>
@@ -180,18 +258,21 @@
             <!-- Single Blog Post Area -->
             <div class="col-12 col-md-6 col-lg-4 text-center">
               <div class="single-blog-post mb-50">
-                <div class="product-img mb-30">
+                <div class="product-img mb-0">
                   <a href="/shop/detail/pre/${preProject.id }"><img
                     src="/resources/img/project-image/${preProject.fileName}"
                     alt=""></a>
                 </div>
-                <div class="post-content">
-                  <a href="/shop/detail/pre/${preProject.id }"
-                    class="post-title">
-                    <h5>${preProject.name }</h5>
-                  </a>
-                  <p class="post-excerpt">${preProject.description }</p>
+                
+               <div class="product-info mt-0 text-center" style="background-color:#C4C4C4; height:100px;padding-top: 20px;">
+                <div style="margin:0 15% 0 15%">
+                <a style="margin-top:5%" href="/shop/detail/pre/${preProject.id }">
+                  <p class="preName">
+                    ${preProject.name}
+                  </p>                  
+                </a>
                 </div>
+              </div>
               </div>
             </div>
           </c:forEach>
@@ -208,6 +289,8 @@
       </div>
     </div>
   </section>
+  </div>
+ </div> 
   <!-- ##### Blog Area End ##### -->
 
   <!-- ##### All Javascript Files ##### -->
@@ -227,35 +310,37 @@
   <script src="/resources/js/common.js"></script>
 
   <script type="text/javascript">
-			$(document).ready(function() {
+      $(document).ready(function() {
 
-				$('.single-item').slick({
-					autoplay : true,
-					autoplaySpeed : 3000,
-					pauseOnHover : true
-				});
+        $('.single-item').slick({
+          autoplay : true,
+          autoplaySpeed : 3000,
+          pauseOnHover : true,
+          arrows:false
+        });
 
-			});
+      });
 
-			$(window).load(function() {
-				function addShow(i) {
-					$("#li" + i).addClass('show');
-				}
-				test = function() {
-					for (i = 1; i < 6; i++) {
-						(function(x) {
-							setTimeout(function() {
-								addShow(x);
-								
-							}, 800 * x);
-						})(i);
-					}
-				}();
+      $(window).load(function() {
+        function addShow(i) {
+          $("#li" + i).addClass('show');
+        }
+        test = function() {
+          for (i = 1; i < 6; i++) {
+            (function(x) {
+              setTimeout(function() {
+                addShow(x);
+                
+              }, 800 * x);
+            })(i);
+          }
+        }();
 
-			});
-			
-		</script>
+      });
+      
+    </script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/views/includes/bottomBanner.jsp"></jsp:include>
 </body>
 
 </html>

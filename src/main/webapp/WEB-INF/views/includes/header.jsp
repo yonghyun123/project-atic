@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-
-
 <!-- Modal Area Start -->
 <%@ include file="/WEB-INF/views/modal/login.jsp"%>
 <%@ include file="/WEB-INF/views/modal/logout.jsp"%>
@@ -53,7 +51,7 @@
             <!-- Navbar Start -->
             <div class="classynav">
               <ul style="margin-top:10; margin-right: 70px;">
-                <li class="time-li"><span id="countTime"></span>&emsp;</li>
+                <li class="time-li">&emsp;</li>
                 <li><a href="/about" id="guide">이용가이드</a>
                 <li><a href="/shop" id="funding">펀딩</a>
                   
@@ -71,7 +69,7 @@
 
               <!-- Search Icon -->
               <div id="searchIcon" class="mr-15">
-                <div><input type="button" id="loanBtn" value="창업대출 신청"
+                <div><input type="button" id="loanBtn" value="스타트업 지원신청"
                     class="btn alazea-btn ml-15"></div>
               </div>
             </div>

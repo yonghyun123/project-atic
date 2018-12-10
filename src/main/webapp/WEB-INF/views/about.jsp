@@ -20,7 +20,6 @@
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>	
     
     <!-- ##### Breadcrumb Area Start ##### -->
-    <div style="height: 90px; border-bottom: 1px solid #ebebe0"></div>
     <div style="background-color: #f2f4f5;">
       <div style="padding-top: 50px;">
         <h2 class="text-center">이용가이드</h2>
