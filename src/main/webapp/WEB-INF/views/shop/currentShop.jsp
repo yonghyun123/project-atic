@@ -32,7 +32,6 @@
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
     
     <!-- ##### slide Area Start ##### -->
-    <div style="height: 90px;  border-bottom: 1px solid #ebebe0"></div>
     <section class="sector01" id="shop-sec">
       <nav id="investNav"style="height: 11% " >
         <ul>

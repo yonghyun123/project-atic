@@ -9,10 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
     <!-- Title -->
     <title>A-TiC</title>
-
     <!-- Favicon -->
 <link rel="icon" href="/resources/img/hanalogo.png">
 
@@ -29,9 +27,7 @@
 
 <body>
     <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
-    
     <!-- ##### slide Area Start ##### -->
-    <div style="height: 66px;  border-bottom: 1px solid #ebebe0"></div>
     <section class="sector01" id="shop-sec">
       <nav id="investNav">
         <ul>

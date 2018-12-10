@@ -46,7 +46,6 @@ pageContext.setAttribute("LF", "\n");
   <jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
 
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px; border-bottom: 1px solid #ebebe0"></div>
 
   <div class="breadcrumb-area">
     <nav id="investNav" style="height: 6%">
