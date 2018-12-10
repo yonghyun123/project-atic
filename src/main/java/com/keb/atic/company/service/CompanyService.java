@@ -23,4 +23,8 @@ public interface CompanyService {
 	public List<Company> getCompanyList();
 	
 	public CompanyCriteriaResult getEvalById(String id);
+	
+	//flag Update
+	public void updateFlag(String id);
+	
 }

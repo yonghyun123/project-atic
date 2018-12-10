@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
 
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -16,9 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.keb.atic.company.service.CompanyService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -28,6 +30,9 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/email")
 public class MailController {
+	
+	@Inject
+	private CompanyService companyService;
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/auth")
@@ -84,12 +89,15 @@ public class MailController {
 	public String sendFilelist(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("application/json; charset=utf-8");
 		String email = request.getParameter("email");
+		String id = request.getParameter("id");
 		
 		String host = "smtp.gmail.com";
 		String subject = "A-TiC 스타트업 대출 신청 준비 서류입니다.";
 		String fromName = "atic-Manager";
 		String from = "gmlwls008@gmail.com";
 		String to1 = email;
+		
+		companyService.updateFlag(id);
 		
 		String content = "<img src='http://localhost/resources/img/logoss.png'><h1>고객님께서 준비하셔야 할 서류 목록입니다.</h1><br>"
 				+"<h3>사업자등록증, 사업인증서, 특허인증서</h3><br>"
