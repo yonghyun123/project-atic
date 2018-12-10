@@ -25,7 +25,7 @@
        NVL(profile, 0) profile, 
        acc_num, 
        acc_pw, 
-       vt_acc_num, 
+       '115-910678-' || vt_acc_num as vt_acc_num, 
        phone
 	FROM   at_user
 	WHERE id = #{id}
@@ -39,7 +39,7 @@
        NVL(profile, 0) profile, 
        acc_num, 
        acc_pw, 
-       vt_acc_num, 
+       '115-910678-' || vt_acc_num as vt_acc_num,
        phone, 
        total_money
 	FROM   at_user
