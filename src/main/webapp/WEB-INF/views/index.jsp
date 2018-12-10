@@ -130,7 +130,7 @@ text-decoration:none;
       <div id="mainVisual">
         <div class="single-item">
           <div 
-            style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/index-slide1.png');">
+            style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/index-slide1.png'); background-size: 100% 100%">
             <p class="index-slider-text-title">
               A-TIC x 하나은행<br>
             </p>
@@ -139,7 +139,7 @@ text-decoration:none;
             </p>
           </div>
           <div
-           style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/index-slide2.png');">
+           style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/index-slide2.png'); background-size: 100% 100%">
             <p class="index-slider-text-title">
               함께할수록 올라가는 이율
               <br>
@@ -148,7 +148,7 @@ text-decoration:none;
               모금액 100% 달성 기업을 맞춰보세요!<br>
             </p>
           </div>
-           <div style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/index-slide3.png');">
+           <div style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/resources/img/slider-img/index-slide3.png'); background-size: 100% 100%">
              <p style="background-size:676px 329px" class="index-slider-text-cover"></p>
             <p class="index-slider-text-title">
               유망 스타트업 진흥 프로젝트
@@ -203,14 +203,9 @@ text-decoration:none;
                   src="/resources/img/project-image/${project.fileName}"
                   alt=""></a>
                 <!-- Product Tag -->
-                <c:choose>
-                  <c:when test="${project.progress >= 70}">
-                   <div class="product-tag">
-                  <a href="/shop/detail/${project.id }">HOT</a>
-
+                   <div class="thisMonth-tag">
+                  <a style="border: 1.5px solid white; width:100px; margin-bottom: 10%; background-color: none;" class="nowName">진행중</a>
                 </div>
-                  </c:when>
-                  </c:choose>
               </div>
               <!-- Product Info -->
               <div class="product-info mt-0 text-center" style="background-color:rgb(255, 111, 97); height:250px;padding-top: 20px;">
