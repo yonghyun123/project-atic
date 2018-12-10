@@ -75,7 +75,7 @@
 	order by month asc
 	</select>
 	
-		<select id="updateListByMonth" resultType="com.keb.atic.userStatus.domain.UserStatus">
+		<select id="updateListByMonth" parameterType="string" resultType="com.keb.atic.userStatus.domain.UserStatus">
 			SELECT up.user_id      AS "userId", 
 			       Sum(p.interest) AS "sumInterest", 
 			       Sum(up.deposit) AS "sumDeposit" 
@@ -84,9 +84,28 @@
 			         ON p.id = up.project_id 
 			WHERE  up.project_id IN (SELECT id 
 			                         FROM   at_project 
-			                         WHERE  goal <![CDATA[ <= ]]> cur_price 
+			                         WHERE  goal =  cur_price 
 			                                AND To_char(create_date, 'MM') = ( 
-			                                    To_char(sysdate, 'MM') - 1 )) 
+			                                   #{month}-1)) 
 			GROUP  BY up.user_id 
+	</select>
+	<select id="leftListByMonth" parameterType="string" resultType="com.keb.atic.userStatus.domain.UserStatus">
+	( select up.user_id  AS "userId", sum(deposit) AS "sumDeposit" 
+      from  at_user_project up join at_user_status us 
+      on up.user_id = us.user_id
+      where to_char(create_date,'MM')= #{month}-1
+      group by up.user_id)
+      minus
+    (SELECT up.user_id      AS "userId",
+    sum(deposit) AS "sumDeposit" 
+			FROM   at_project p 
+			       JOIN at_user_project up 
+			         ON p.id = up.project_id 
+			WHERE  up.project_id IN (SELECT id 
+			                         FROM   at_project 
+			                         WHERE  goal = cur_price 
+			                                AND To_char(create_date, 'MM') = ( 
+			                                    #{month}-1)) 
+			GROUP  BY up.user_id )
 	</select>
 </mapper>
