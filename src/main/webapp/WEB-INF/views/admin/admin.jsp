@@ -53,34 +53,19 @@
                                         <tbody id="comp-list-in">
                                         
                                         </tbody>
-
- 
                                     </table>
-                                    <div class="table-foot">
-                                        <ul class="pagination pagination-sm no-margin pull-right">
-                                        <li><a href="#">&laquo;</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">&raquo;</a></li>
-                                    </ul>
-                                    </div>
                                 </div><!-- /.panel-body -->
-
                             </div><!-- /.panel -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </section><!-- /.content -->
-                <div class="footer-main">
-                    Copyright &copy Director, 2014
-                </div>
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
         
 
  
-    <!-- ##### All Javascript Files ##### -->
-      <!-- ##### All Javascript Files ##### -->
+  <!-- ##### All Javascript Files ##### -->
+  <!-- ##### All Javascript Files ##### -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -112,23 +97,74 @@
 	<td><input type="button" value="메일 발송"></td>
 	</tr>
   </script>
-  
+
   <script type="my-template" id="comp-detail">
-<p class="preExplain"><strong>기업이름</strong>: {name}</p>
-<p class="preExplain"><strong>이메일</strong>: {email}</p>
-<p class="preExplain"><strong>설립일</strong>: {createDate}</p>
-<p class="preExplain"><strong>투자받은 날짜</strong>: {firstDate} <span class="ml-15" style="color:#70c745;">1차 투자액: {firstFund}원</span></p>
-<p class="preExplain"><strong>투자받은 날짜</strong>: {secondDate} <span class="ml-15" style="color:#70c745;">2차 투자액: {secondFund}원</span></p>
-<p class="preExplain"><strong>특허 보유</strong>: {hasPatent}</p> 			    
-<p class="preExplain">사업자등록증: <span class="selectFile"><a href="/user/download/{fileBusiRegistration}?suffix={suffix1}"&dir=사업자등록증>{fileBusiRegistration}</a></span></p>
-<p class="preExplain">기업 인증서: <span class="selectFile"><a href="/user/download/{fileCompCertification}?suffix={suffix2}"&dir=사업자인증서>{fileCompCertification}</a></span></p>
-<p class="preExplain">특허 인증서: <span class="selectFile"><a href="/user/download/{filePatentCertification}?suffix={suffix3}"&dir=특허인증서>{filePatentCertification}</a></span></p>
-<p class="preExplain">투자유치 인증서: <span class="selectFile"><a href="/user/download/{fileInvestCertification}?suffix={suffix4}"&dir=투자유치인증>{fileInvestCertification}</a></span></p>
- 			    
-<h1 style="color: #70c745;">총 평가 점수 : {totalResult}</h1>
+  <tr>
+	<th></th>
+    <th colspan="2" style="width: 25%;">기업명</th>
+    <td colspan="2" style="width: 25%;">{name}</td>
+    <th colspan="2" style="width: 25%;">이메일</th>
+    <td colspan="2" style="width: 25%;">{email}</td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="2" style="width: 25%;">설립일</th>
+    <td colspan="2" style="width: 25%;">{createDate}</td>
+    <th colspan="2" style="width: 25%;">특허 보유</th>
+    <td colspan="2" style="width: 25%;">{hasPatent}</td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="2" style="width: 25%;">1차 투자일</th>
+    <td colspan="2" style="width: 25%;">{firstDate}</td>
+    <th colspan="2" style="width: 25%;">1차 투자액</th>
+    <td colspan="2" style="width: 25%;">{firstFund}</td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="2" style="width: 25%;">2차 투자일</th>
+    <td colspan="2" style="width: 25%;">{secondDate}</td>
+    <th colspan="2" style="width: 25%;">2차 투자액</th>
+    <td colspan="2" style="width: 25%;">{secondFund}</td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="4" style="width: 25%;">사업자 등록증</th>
+    <td colspan="4" style="width: 25%;"><a href="/user/download/{fileBusiRegistration}?suffix={suffix1}"&dir=사업자등록증>{fileBusiRegistration}</a></td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="4" style="width: 25%;">기업 인증서</th>
+    <td colspan="4" style="width: 25%;"><a href="/user/download/{fileCompCertification}?suffix={suffix2}"&dir=기업인증서>{fileCompCertification}</a></td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="4" style="width: 25%;">특허 인증서</th>
+    <td colspan="4" style="width: 25%;"><span class="selectFile"><a href="/user/download/{filePatentCertification}?suffix={suffix3}"&dir=특허인증서>{filePatentCertification}</a></td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="4" style="width: 25%;">투자유치 인증서</th>
+    <td colspan="4" style="width: 25%;"><a href="/user/download/{fileInvestCertification}?suffix={suffix4}"&dir=투자유치인증>{fileInvestCertification}</a></td>
+	<th></th>
+  </tr>
+  <tr>
+	<th></th>
+    <th colspan="4" style="width: 25%;">총 평가 점수</th>
+    <td colspan="4" style="width: 25%;"><strong style="color: #70c745;">{totalResult}</strong></td>
+	<th></th>
+  </tr>
   </script>
+  
   <script type="my-template" id="detail-eval">
-	<h1 style="color: #70c745;">총 평가 점수 : {totalResult}</h1>
+	<h4 style="color: #70c745; border-top: 1px solid #dee2e6; padding-top: 10px;">총 평가 점수 : {totalResult}</h4>
   </script>
   
   <script>
