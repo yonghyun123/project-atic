@@ -152,7 +152,7 @@ text-decoration:none;
             <p class="index-slider-text-title">
               유망 스타트업 진흥 프로젝트
             </p>
-            <p class="index-slider-text-content">
+            <p class="index-slider-text-content"> 
               스타트업들의 성장을 목표로합니다.
             </p>
           </div>
