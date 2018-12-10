@@ -129,9 +129,13 @@
                   src="/resources/img/project-image/${project.fileName}"
                   alt=""></a>
                 <!-- Product Tag -->
-                <div class="product-tag">
+                <c:choose>
+                  <c:when test="${project.progress >= 70}">
+                   <div class="product-tag">
                   <a href="/shop/detail/${project.id }">HOT</a>
                 </div>
+                  </c:when>
+                  </c:choose>
               </div>
               <!-- Product Info -->
               <div class="product-info mt-15 text-center">
