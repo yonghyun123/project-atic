@@ -163,12 +163,14 @@
   /*메일 발송*/
   function sendInfo(value){
   	var email = $(value).closest("tr").find(".email").text();
+  	var id = $(value).closest("tr").find(".comp-id").text();
   	alert("메일수신을 완료하였습니다.");
   	$.ajax({
   		url:"/email/filelist",
   		type: "post",
   		data:{
-  			email:email
+  			email:email,
+  			id:id
   		},
   		dataType: "text",
   		success: function(data){
@@ -199,12 +201,18 @@
 				.replace("{email}", v.email)
 				.replace('{comType}',v.comType)
 				.replace('{flag}', '가입신청완료')
-		  } else if(v.flag == '0'){
+		  } else if(v.flag == '1'){
 			  newhtml += originHtml.replace("{id}", v.id)
 				.replace("{name}", v.name)
 				.replace("{email}", v.email)
 				.replace('{comType}',v.comType)
-				.replace('{flag}','서류제출완료')
+				.replace('{flag}','메일발신완료')
+		  } else if(v.flag == '2'){
+			  newhtml += originHtml.replace("{id}", v.id)
+				.replace("{name}", v.name)
+				.replace("{email}", v.email)
+				.replace('{comType}',v.comType)
+				.replace('{flag}','기업정보완료')
 		  }
 	  })
 	  document.querySelector('#comp-list-in').innerHTML = newhtml;
@@ -232,27 +240,66 @@
 	  var deHtml =  document.querySelector('#detail-eval').innerHTML;
 	  var newhtml = '';
 	  var detailHtml = '';
-	  newhtml = originHtml.replace("{id}", data.id)
-						   .replace("{name}", data.name)
-					       .replace("{email}", data.email)
-						   .replace('{createDate}',data.createDate)
-						   .replace('{firstDate}', data.firstDate)
-						   .replace('{firstFund}', data.firstFund.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-						   .replace('{hasPatent}', data.hasPatent)
-						   .replace('{secondDate}', data.secondDate)
-						   .replace('{secondFund}', data.secondFund.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-						   .replace('{totalResult}', data.totalResult)
-						   .replace(/{fileBusiRegistration}/gi, data.fileBusiRegistration)
-						   .replace('{suffix1}', data.fileBusiRegistration.split('.')[1])
-						   .replace(/{fileCompCertification}/gi, data.fileCompCertification)
-						   .replace('{suffix2}', data.fileCompCertification.split('.')[1])
-						   .replace(/{filePatentCertification}/gi, data.filePatentCertification)
-						   .replace('{suffix3}', data.filePatentCertification.split('.')[1])
-						   .replace(/{fileInvestCertification}/gi, data.fileInvestCertification)
-						   .replace('{suffix4}', data.fileInvestCertification.split('.')[1])
+	  if(data.firstDate == null || data.firstFund == 0){
+		  newhtml = originHtml.replace("{id}", data.id)
+		   .replace("{name}", data.name)
+	       .replace("{email}", data.email)
+		   .replace('{createDate}',data.createDate)
+		   .replace('{firstDate}', 0)
+		   .replace('{firstFund}', 0)
+		   .replace('{hasPatent}', data.hasPatent)
+		   .replace('{totalResult}', Number(data.totalResult).toFixed(3))
+		   .replace(/{fileBusiRegistration}/gi, data.fileBusiRegistration)
+		   .replace('{suffix1}', data.fileBusiRegistration.split('.')[1])
+		   .replace(/{fileCompCertification}/gi, data.fileCompCertification)
+		   .replace('{suffix2}', data.fileCompCertification.split('.')[1])
+		   .replace(/{filePatentCertification}/gi, data.filePatentCertification)
+		   .replace('{suffix3}', data.filePatentCertification.split('.')[1])
+		   .replace(/{fileInvestCertification}/gi, data.fileInvestCertification)
+		   .replace('{suffix4}', data.fileInvestCertification.split('.')[1])
+	  } else if(data.secondDate == null || data.secondFund == 0){
+		  newhtml = originHtml.replace("{id}", data.id)
+		   .replace("{name}", data.name)
+	       .replace("{email}", data.email)
+		   .replace('{createDate}',data.createDate)
+		   .replace('{firstDate}', data.firstDate)
+		   .replace('{firstFund}', data.firstFund.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+		   .replace('{secondDate}', 0)
+		   .replace('{secondFund}', 0)
+		   .replace('{hasPatent}', data.hasPatent)
+		   .replace('{totalResult}', Number(data.totalResult).toFixed(3))
+		   .replace(/{fileBusiRegistration}/gi, data.fileBusiRegistration)
+		   .replace('{suffix1}', data.fileBusiRegistration.split('.')[1])
+		   .replace(/{fileCompCertification}/gi, data.fileCompCertification)
+		   .replace('{suffix2}', data.fileCompCertification.split('.')[1])
+		   .replace(/{filePatentCertification}/gi, data.filePatentCertification)
+		   .replace('{suffix3}', data.filePatentCertification.split('.')[1])
+		   .replace(/{fileInvestCertification}/gi, data.fileInvestCertification)
+		   .replace('{suffix4}', data.fileInvestCertification.split('.')[1])
+	  } else {
+		  newhtml = originHtml.replace("{id}", data.id)
+		   .replace("{name}", data.name)
+	       .replace("{email}", data.email)
+		   .replace('{createDate}',data.createDate)
+		   .replace('{firstDate}', data.firstDate)
+		   .replace('{firstFund}', data.firstFund.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+		   .replace('{hasPatent}', data.hasPatent)
+		   .replace('{secondDate}', data.secondDate)
+		   .replace('{secondFund}', data.secondFund.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+		   .replace('{totalResult}', Number(data.totalResult).toFixed(3))
+		   .replace(/{fileBusiRegistration}/gi, data.fileBusiRegistration)
+		   .replace('{suffix1}', data.fileBusiRegistration.split('.')[1])
+		   .replace(/{fileCompCertification}/gi, data.fileCompCertification)
+		   .replace('{suffix2}', data.fileCompCertification.split('.')[1])
+		   .replace(/{filePatentCertification}/gi, data.filePatentCertification)
+		   .replace('{suffix3}', data.filePatentCertification.split('.')[1])
+		   .replace(/{fileInvestCertification}/gi, data.fileInvestCertification)
+		   .replace('{suffix4}', data.fileInvestCertification.split('.')[1])
+	  }
+
 	  document.querySelector('#company').innerHTML = newhtml;
 	  
-	  detailHtml = deHtml.replace('{totalResult}', data.totalResult);
+	  detailHtml = deHtml.replace('{totalResult}',Number(data.totalResult).toFixed(2));
 	  document.querySelector('#total-eval').innerHTML = detailHtml;
 	  
 	  var downList = document.querySelectorAll('.selectFile');

@@ -69,5 +69,10 @@ public class CompanyServiceImpl implements CompanyService {
 		return companyMapper.getEvalById(id);
 	}
 
+	@Override
+	public void updateFlag(String id) {
+		companyMapper.updateFlag(id);
+	}
+
 
 }

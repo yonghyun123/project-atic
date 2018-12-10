@@ -134,9 +134,13 @@
                                     <a href="/shop/detail/${project.id }">
                                     <img src="/resources/img/project-image/${project.fileName }" alt=""></a>
                                     <!-- Product Tag -->
-                                    <div class="product-tag">
+                                    <c:choose>
+                                      <c:when test="${project.progress >= 70 }">
+                                      <div class="product-tag">
                                         <a href="#">Hot</a>
                                     </div>
+                                      </c:when>
+                                    </c:choose>
                                 </div>
                                 <!-- Product Info -->
                                 <div class="product-info mt-15 text-center">
@@ -151,8 +155,7 @@
                           </c:forEach>
                           </c:when>
                           <c:otherwise>
-                                            <div class="col-12 col-md-12 col-lg-12 text-center"
-                    style="margin-bottom: 20px">
+                            <div class="col-12 col-md-12 col-lg-12 text-center" style="margin-bottom: 20px">
                     <div style="width: 100%">
                       <h1>진행중인 프로젝트가 존재하지 않습니다.</h1>
                     </div>
@@ -191,9 +194,7 @@
           <a href="/shop/detail/{id}">
           <img src="/resources/img/project-image/{fileName}" alt=""></a>
          <!-- Product Tag -->
-         <div class="product-tag">
-             <a href="#">Hot</a>
-         </div>
+			{tag}
      </div>
      <!-- Product Info -->
      <div class="product-info mt-15 text-center">
@@ -275,12 +276,24 @@ function searchTemplate(jsonModifyData) {
 				  .replace('{goal}', v.goal)
 				  .replace(/{progress}/gi,v.progress)
     	} else {
+    		if(v.progress < 70){
       newHtml += templateHtml.replace(/{id}/gi, v.id)
           				  .replace('{fileName}', v.fileName)
           				  .replace('{name}', v.name)
           				  .replace('{category}', v.category)
           				  .replace('{goal}', v.goal)
           				  .replace(/{progress}/gi,v.progress)
+          				  .replace('{tag}','')
+    		} else {
+      newHtml += templateHtml.replace(/{id}/gi, v.id)
+          				  .replace('{fileName}', v.fileName)
+          				  .replace('{name}', v.name)
+          				  .replace('{category}', v.category)
+          				  .replace('{goal}', v.goal)
+          				  .replace(/{progress}/gi,v.progress)
+          				  .replace('{tag}',' <div class="product-tag"> <a href="#">Hot</a> </div>')
+    			
+    		}
     	}
     });
     originHtml.innerHTML = newHtml;

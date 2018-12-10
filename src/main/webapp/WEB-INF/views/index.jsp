@@ -200,9 +200,14 @@ text-decoration:none;
                   src="/resources/img/project-image/${project.fileName}"
                   alt=""></a>
                 <!-- Product Tag -->
-                <div class="thisMonth-tag">
-                  <a style="border: 1.5px solid white; width:100px;  margin-bottom:10%; background-color:none" class="nowName" >진행중</a>
+                <c:choose>
+                  <c:when test="${project.progress >= 70}">
+                   <div class="product-tag">
+                  <a href="/shop/detail/${project.id }">HOT</a>
+
                 </div>
+                  </c:when>
+                  </c:choose>
               </div>
               <!-- Product Info -->
               <div class="product-info mt-0 text-center" style="background-color:rgb(255, 111, 97); height:250px;padding-top: 20px;">

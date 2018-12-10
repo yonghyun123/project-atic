@@ -54,8 +54,8 @@ public class UserProjectServiceImpl implements UserProjectService{
 	}
 
 	@Override
-	public List<UserProject> riseProject() {
-		return userProjectMapper.riseProject();
+	public List<UserProject> riseProject(String date) {
+		return userProjectMapper.riseProject(date);
 	}
 
 	@Override

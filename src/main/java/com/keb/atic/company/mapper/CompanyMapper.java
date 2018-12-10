@@ -26,4 +26,6 @@ public interface CompanyMapper {
 	public List<Company> getCompanyList();
 	//기업 평가 조회
 	public CompanyCriteriaResult getEvalById(String id);
+	//업데이트 플래그
+	public void updateFlag(String id);
 }

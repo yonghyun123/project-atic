@@ -58,7 +58,8 @@ public class CommonController {
 		
 		model.addAttribute("hotList",projectService.readProjectsByPercent(hotMap));
 		model.addAttribute("nextList",projectService.readMonthProjectByGoal(nextMap));
-		model.addAttribute("riseProject",userProjectService.riseProject());
+		// 형식 : MMDDHHMI
+		model.addAttribute("riseProject",userProjectService.riseProject("12100730"));
 		log.info("Welcome IndexPage");	
 		return "index";
 	}
