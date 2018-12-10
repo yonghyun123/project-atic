@@ -95,14 +95,15 @@ text-decoration:none;
 }
 
 #mainVisual {
-    float: left;
-    width: 63%;
-    margin: 0 0 0 0%;
+    display:inline-block;
+    width: 63.5%;
+    margin: 0 3.5% 0 0%;
 
 }
 #rankingSection {
-    float: right;
-    width: 32%;
+  float:none;
+    display:inline-block;
+    width: 30%;
     height: 100%;
     margin-right: 1%:;
 }
@@ -128,16 +129,16 @@ text-decoration:none;
     <div class="containerOne">
       <div id="mainVisual">
         <div class="single-item">
-          <a href="#"
-            style="background-image: url('/resources/img/slider-img/index-slide1.png'); background-size: contain">
+          <div 
+            style="background-image: url('/resources/img/slider-img/index-slide1.png'); background-size: 676px 329px ;">
             <p class="index-slider-text-title">
               A-TIC x 하나은행<br>
             </p>
             <p class="index-slider-text-content">
               기존과는 다른 새로운 개념의 적금 플랫폼!<br>
             </p>
-          </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/index-slide2.png'); background-size: contain">
+          </div>
+           <div style="background-image: url('/resources/img/slider-img/index-slide2.png'); background-size: 676px 329px">
             <p class="index-slider-text-title">
               함께할수록 올라가는 이율
               <br>
@@ -145,15 +146,16 @@ text-decoration:none;
             <p class="index-slider-text-content">
               모금액 100% 달성 기업을 맞춰보세요!<br>
             </p>
-          </a> <a href="#"
-            style="background-image: url('/resources/img/slider-img/index-slide3.png');background-size: contain ">
+          </div>
+           <div style="background-image: url('/resources/img/slider-img/index-slide3.png');background-size: 676px 329px ">
+             <p style="background-size:676px 329px" class="index-slider-text-cover"></p>
             <p class="index-slider-text-title">
               유망 스타트업 진흥 프로젝트
             </p>
             <p class="index-slider-text-content">
               스타트업들의 성장을 목표로합니다.
             </p>
-          </a>
+          </div>
         </div>
       </div>
       <div id="rankingSection">
@@ -345,7 +347,6 @@ text-decoration:none;
       
     </script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-  <jsp:include page="/WEB-INF/views/includes/bottomBanner.jsp"></jsp:include>
 </body>
 
 </html>
