@@ -36,25 +36,24 @@ public interface RegressionTestData {
 			{-1.58E-18f,	-4.70E-18f,	1.39E-17f,	2.18E-17f,	-1.35E-17f,	-1.00E-17f,	-1.58E-17f,	1.08E-17f,	3.22E-19f,	8.45E-18f,	8.02E-18f,	1.04E-17f,	1.68E-18f,	1.26E-17f,	1.39E-18f,	1.36E-18f,	-3.33E-17f,	-8.78E-18f,	-5.03E-18f,	-1.01E-17f,	-3.60E-18f,	2.33E-18f,	1.64E-17f,	-1.89E-17f,	-1.13E-17f,	8.71E-18f,	-1.26E-17f,	-1.75E-17f,	1.07E-17f,	-1.02E-17f,	-8.84E-18f,	5.76E-18f,	-5.99E-18f,	-5.76E-18f,	-2.45E-18f,	-1.74E-18f,	3.74E-18f,	-9.76E-18f,	1.51E-17f,	8.07E-18f,	-6.15E-18f,	-4.63E-18f,	5.79E-18f,	-1.29E-18f,	9.50E-18f,	-1.10E-17f,	-1.91E-17f,	1.90E-17f,	1.88E-17f,	-3.63E-17f,	-2.59E-18f,	1.03E-17f,	-3.02E-17f}
 	};
 	
-	public static float result13 = 98.8547306f;
-	public static float result15 = 98.8315399f;
-	public static float result10 = 98.8547307f;
-	public static float result27 = 99.036116f;
-	public static float result38 = 99.11000943f;
-	public static float result39 = 99.07500756f;
-	public static float result41 = 98.8547307f;
-	public static float result24 = 99.08227f;
-	public static float result25 = 98.9121046f;
-	public static float result18 = 99.2201453f;
-	public static float result1 = 97.92797192f;
-	public static float result35 = 99.12487644f;
-	public static float result40 = 99.049324f;
-	public static float result17 = 96.01090604f;
-	public static float result42 = 97.06087726f;
-	public static float result32 = 98.5771556f;
-	public static float result3 = 97.32120021f;
-	public static float result26 = 98.32553328f;
-	public static float result22 = 99.069323233f;
-	public static float result5 = 97.26700234f;
+	public static float result13 = 1.1452f;
+	public static float result10 = 1.1452f;
+	public static float result27 = 0.9638f;
+	public static float result38 = 0.8899f;
+	public static float result39 = 0.9249f;
+	public static float result41 = 1.3245f;
+	public static float result24 = 0.9177f;
+	public static float result25 = 1.0878f;
+	public static float result18 = 2.2313f;
+	public static float result1 = 1.8312f;
+	public static float result35 = 1.9402f;
+	public static float result40 = 1.1088f;
+	public static float result17 = 2.0231f;
+	public static float result42 = 1.9890f;
+	public static float result32 = 2.9391f;
+	public static float result3 = 1.4228f;
+	public static float result26 = 1.9423f;
+	public static float result22 = 2.1032f;
+	public static float result5 = 1.9323f;
 	
 }

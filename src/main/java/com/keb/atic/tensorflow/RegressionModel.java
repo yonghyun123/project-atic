@@ -40,7 +40,7 @@ public class RegressionModel {
 		case "1": succRate = RegressionTestData.result1; break;
 		case "10": succRate = RegressionTestData.result10; break;
 		case "13": succRate = RegressionTestData.result13; break;
-		case "15": succRate = RegressionTestData.result15; break;
+		case "15": succRate = RegressionTestData.result13; break;
 		case "17": succRate = RegressionTestData.result17; break;
 		case "18": succRate = RegressionTestData.result18; break;
 		case "22": succRate = RegressionTestData.result22; break;
