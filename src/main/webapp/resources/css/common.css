@@ -83,6 +83,11 @@ body .PreProjctSector01 {
 	max-width: 400px !important;
 }
 
+.modal-body .btn-cancel {
+	width: 100%;
+	margin-top: 1%;
+}
+
 #login-fail-text, #nickname-fail-text, #menual-fail-text {
 	color: red;
 	visibility: hidden;
@@ -344,6 +349,8 @@ ol > li > em {
 .card-inform {
 	width: 30rem;
 	margin: 20px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
 }
 
 #uploadBtn {
