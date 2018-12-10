@@ -158,7 +158,8 @@ pageContext.setAttribute("LF", "\n");
                 	 <span></span>
                 	</c:when>
                	   <c:otherwise>
-               	   <span id="succ-rate" class="btn"> 업종별 예측률: ${succRate}</span>
+               	   
+               	   <span id="succ-rate" class="btn"> 업종별 폐업률: <fmt:formatNumber value="${succRate}" pattern=".0000"/></span>
                	   </c:otherwise>
                 </c:choose>
                
