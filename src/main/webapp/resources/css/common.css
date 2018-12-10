@@ -18,9 +18,16 @@ body .PreProjctSector01 {
 	position: relative;
 }
 
+.classy-menu {
+	vertical-align: middle;
+}
+
 #investNav {
 	height: 11%;
+}
 
+.classynav > ul > li {
+	 margin: 0;
 }
 
 .index-slider-text-title {

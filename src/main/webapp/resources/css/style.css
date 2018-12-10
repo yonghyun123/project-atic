@@ -7,7 +7,7 @@ Text Domain: Alazea, Gardening & Landscaping
 Version: - v1.0
 */
 /* :: 1.0 Import Fonts */
-@import url("https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700");
 /* :: 2.0 Import All CSS */
 @import url(bootstrap.min.css);
 @import url(classy-nav.css);
@@ -22,7 +22,7 @@ Version: - v1.0
   padding: 0; }
 
 body {
-  font-family: "Dosis", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif !important;
   font-size: 16px;
   color: #707070; }
 
@@ -887,8 +887,6 @@ em{
     margin-bottom: 0;
     -webkit-transition-duration: 300ms;
     transition-duration: 300ms; }
-    .single-product-area .product-info a, .single-product-area .product-info a {
-      color: #70c745; }
   .single-product-area .product-info h6 {
     margin-bottom: 0;
     font-size: 18px; }
