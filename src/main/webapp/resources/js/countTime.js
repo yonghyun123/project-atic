@@ -80,10 +80,15 @@ if(month > 12){
 			now = sec(new Date());
 			result = date-now;
 			ele.empty();
-			if(result ==0){
+			if(result==0){
 				clearInterval(time);
 				ele.append('종료');
-			} else {
+				//location.reload();
+				window.location.href = 'http://localhost/';
+			} else if(result < 0){
+				clearInterval(time);
+				ele.append('종료');
+			}else{
 				ele.append(timeToStr(result));
 			}
 		}
