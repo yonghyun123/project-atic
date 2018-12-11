@@ -129,7 +129,8 @@
 	<select id="readProjectByCondition" parameterType="map" resultType="com.keb.atic.project.domain.Project">
 					SELECT p.id	  AS "id",
 				   round((p.CUR_PRICE/ p.goal)*100) AS "progress",
-				   p.NAME         AS "name", 
+				   p.NAME         AS "name",
+				   p.title 		  AS "title",
 			       p.goal         AS "goal", 
 			       p.company      AS "company", 
 			       c.NAME         AS "category", 
@@ -177,7 +178,8 @@
 	<select id="readFinishProject" resultType="com.keb.atic.project.domain.Project">
 	SELECT ap.id   AS "id",
 				   round((ap.CUR_PRICE/ ap.goal)*100) AS "progress",
-				   ap.NAME         AS "name", 
+				   ap.NAME         AS "name",
+				   ap.title		   AS "title", 
 			       ap.goal         AS "goal", 
 			       ap.company      AS "company", 
 			       ac.NAME         AS "category", 
