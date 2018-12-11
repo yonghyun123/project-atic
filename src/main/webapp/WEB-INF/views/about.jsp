@@ -88,6 +88,7 @@
                   또한 종료된 프로젝트는 마감 페이지에서 바로 확인하실 수 있습니다.
               </div>
             </div>
+          </div>
         </section>	
         <section class="our-services-area bg-gray account-section" style="margin-top: 30px;"> 
             <div class="col-md-10">
