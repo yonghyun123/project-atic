@@ -28,7 +28,9 @@
               <p>이메일:</p>
                <div>
               <input type="text" placeholder="이메일을 입력해주세요"
-                 id="eMail" name="email" class="regText">
+                 id="eMail" name="email" class="regText" style="display: inline-block;">
+                 <div style="display: inline-block;"><button type="button" id="dupleCheck" class="btn" >중복체크</button></div>
+                <p id="authStatus" style="color:blue"></p>
                 <p>고객님의 이메일로 대출 상세 절차가 전송됩니다.</p>
               </div>
             </div>

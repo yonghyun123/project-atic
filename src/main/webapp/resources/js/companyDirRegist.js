@@ -156,7 +156,6 @@ name : companyDirRegist.js
   					},
   					dataType: "text",
   					success:function(data){
-  						console.log(data);
   						if(data != ""){
   						var company = JSON.parse(data)
   						$('#comDirName').val(company.name);

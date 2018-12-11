@@ -27,11 +27,11 @@
       <div class="container">
         <!-- Menu -->
         <nav class="classy-navbar justify-content-between"
-          id="alazeaNav">
+          id="alazeaNav" style="height: 65px">
 
           <!-- Nav Brand -->
           <a href="/" class="nav-brand"><img
-            src="/resources/img/logoss.png" style="height: 90px; width: 200px"></a>
+            src="/resources/img/logoss.png" style="height: 50px; width: 150px"></a>
 
           <!-- Navbar Toggler -->
           <div class="classy-navbar-toggler">

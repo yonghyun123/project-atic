@@ -28,41 +28,7 @@
 <link href="/resources/css/slick.css" rel="stylesheet">
 <link href="/resources/css/slick-theme.css" rel="stylesheet">
 
-<style type="text/css">
-.titleRow {
-	margin: 3% 3% 3% 0;
-	line-height: 32px;
-	letter-spacing: 0;
-	color: rgba(0, 0, 0, .84);
-	font-size: 24px;
-	font-weight: 700;
-}
-
-  .thisMonth-tag{
-  border-radius: 2px;
-    display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    text-transform: uppercase;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 12px;
-    top: 20px;
-    left: 10px;
-    text-align:center;
-    z-index: 10;
-}
-
-.category, .targetAmount {
-    margin: 0 0 0 2%;
-    color: #1d2129;
-    font-weight: 500;
-}
-.category:after , .targetAmount:after{
-color: #e6eaed;
-content: " | ";
-}
-</style>
+<link href="/resources/css/shopPage.css" rel="stylesheet">
 </head>
 
 <body>
@@ -144,14 +110,14 @@ content: " | ";
                         </form>
                       </div>
                       <!-- Product Info -->
-                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 200px; padding:25px">
+                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 250px; padding:25px">
                         <div class="thisMonth-tag">
                           <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: #00bf99;" class="nowName">진행중</a>
                          </div>
                         <span class="category">업종</span><span> ${project.category }</span>
                          <span class="targetAmount" > 목표금액 </span><span><fmt:formatNumber value="${project.goal }" pattern="#,###"/>원</span>
                         <div>
-                          <div ><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></div>
+                          <div ><a href="/shop/detail/${project.id }"><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></a></div>
                           <p>${project.title}</p>
                         </div>
                       </div>
@@ -189,14 +155,14 @@ content: " | ";
                             alt="">
                           </a>
                         </div>
-                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 200px; padding:15px">
+                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 250px; padding:15px">
                         <div class="thisMonth-tag">
                           <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: orange;" class="nowName">등록예정</a>
                          </div>
                         <span class="category">업종</span><span> ${project.category }</span>
                          <span class="targetAmount" > 목표금액 </span><span><fmt:formatNumber value="${project.goal }" pattern="#,###"/>원</span>
                         <div>
-                          <div ><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></div>
+                          <div ><a href="/shop/detail/pre/${project.id }"><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></a></div>
                           <p>${project.title}</p>
                         </div>
                       </div>
@@ -235,10 +201,8 @@ content: " | ";
                                   </p>
                                   <p class="closeProject" >종료된 프로젝트 입니다.</p>
                                 </div>
-                       
-                       
                         <!-- Product Info -->
-                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 200px; padding:40px">
+                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 250px; padding:40px">
                         <div class="thisMonth-tag">
                           <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: rgb(255, 111, 97);" class="nowName">마감</a>
                          </div>

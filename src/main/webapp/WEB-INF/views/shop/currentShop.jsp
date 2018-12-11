@@ -22,7 +22,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/resources/css/common.css">
-    
+    <!-- shopCommon -->
+    <link href="/resources/css/shopPage.css" rel="stylesheet">
     <!-- slick -->
     <link href="/resources/css/slick.css" rel="stylesheet">
     <link href="/resources/css/slick-theme.css" rel="stylesheet">    
@@ -142,12 +143,21 @@
                                       </c:when>
                                     </c:choose>
                                 </div>
+                                
+                                
                                 <!-- Product Info -->
-                                <div class="product-info mt-15 text-center">
-                                    <a href="/shop/detail/${project.id }">
-                                        <h6> ${project.name }</h6>
-                                    <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
-                                </a></div>
+                       <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 250px; padding:25px">
+                        <div class="thisMonth-tag">
+                          <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: #00bf99;" class="nowName">진행중</a>
+                         </div>
+                          <span class="category">업종</span><span> ${project.category }</span>
+                          <span class="targetAmount" > 목표금액 </span><span><fmt:formatNumber value="${project.goal }" pattern="#,###"/>원</span>
+                          <div>
+                          <div ><a href="/shop/detail/${project.id }"><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></a></div>
+                          <p>${project.title}</p>
+                        </div>
+                      </div>
+                                
                               </div>
                             </div>
                           </c:otherwise>

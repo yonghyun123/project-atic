@@ -23,6 +23,8 @@
         <!-- slick -->
     <link href="/resources/css/slick.css" rel="stylesheet">
     <link href="/resources/css/slick-theme.css" rel="stylesheet">    
+
+    <link href="/resources/css/shopPage.css" rel="stylesheet">
 </head>
 
 <body>
@@ -98,10 +100,10 @@
                                 <div class="product-img" style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);  background-repeat: no-repeat; width: 100%; height: 300px; background-size: cover;">
                                   <p style="background-color: rgba(17, 17, 17, 0.5);height: 100%;margin: 0;">
                                   </p>
-                                  <h2 class="closeProject" >마감</h2>
+                                    <p class="closeProject" style="font-size:32px;">종료된 프로젝트 입니다.</p>
                                 </div>
                                 <!-- Product Info -->
-                                <div class="product-info mt-15 text-center finish-product">
+                                 <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 250px; padding:40px">
                                     <div class="progress">
                                     <c:choose>
                                     <c:when test="${project.progress >= 5}">
@@ -116,8 +118,15 @@
                                     </c:otherwise>
                                     </c:choose>
                                     </div>
-                                    <h6> ${project.name } </h6>
-                                    <h6>업종 : ${project.category } / 목표금액 : <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                                     <div class="thisMonth-tag">
+                                        <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: rgb(255, 111, 97);" class="nowName">마감</a>
+                                       </div>
+                                      <span class="category">업종</span><span> ${project.category }</span>
+                                       <span class="targetAmount" > 목표금액 </span><span><fmt:formatNumber value="${project.goal }" pattern="#,###"/>원</span>
+                                      <div>
+                                        <div ><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></div>
+                                        <p>${project.title}</p>
+                                      </div>
                                 </div>
                               </div>
                             </div>
@@ -151,7 +160,7 @@
     	  console.log(document.querySelector('.progress-bar').style.width);
     	  console.log(document.querySelector('.progress-bar'));
     	  console.log(document.querySelector('.progress-bar').style);
-    	  $('.closeProject').css("font-size","65px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
+    	  $('.closeProject').css("font-size","32px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
     	  $("#funding").addClass("active");
     	  $("#guide").removeClass("active");
     	  $("#my-page").removeClass("active");

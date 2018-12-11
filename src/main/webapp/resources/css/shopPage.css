@@ -1,0 +1,33 @@
+.titleRow {
+	margin: 3% 3% 3% 0;
+	line-height: 32px;
+	letter-spacing: 0;
+	color: rgba(0, 0, 0, .84);
+	font-size: 24px;
+	font-weight: 700;
+}
+
+  .thisMonth-tag{
+  border-radius: 2px;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+    top: 20px;
+    left: 10px;
+    text-align:center;
+    z-index: 10;
+}
+
+.category, .targetAmount {
+    margin: 0 0 0 2%;
+    color: #1d2129;
+    font-weight: 500;
+}
+.category:after , .targetAmount:after{
+color: #e6eaed;
+content: " | ";
+}

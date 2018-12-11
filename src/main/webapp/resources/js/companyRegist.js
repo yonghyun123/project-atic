@@ -88,4 +88,26 @@ name : companyRegist.js
 		x[n].className += " active";
 	} 
 	
-
+  	$(document).ready(function(){
+  		$('#dupleCheck').click(function(){
+  			var email = $('#eMail').val();
+  			$.ajax({
+  					url : "/company/checkMail",
+  					type:"post",
+  					async: false,
+  					data:{
+  						email:email
+  					},
+  					dataType: "text",
+  					success:function(data){
+  						if(data != ""){
+  						$('#authStatus').html('이미 존재하는 email입니다');
+  						document.getElementById("nextBtnReg").disabled = true;
+  						}else{
+  							$('#authStatus').html('');
+  							document.getElementById("nextBtnReg").disabled = false;
+  						}
+  					}
+  			});
+  		});
+  	});
