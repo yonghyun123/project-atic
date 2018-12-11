@@ -198,7 +198,7 @@
     <!-- projectCard 템플릿 -->
     <script id="templateList" type="text/template">
   	<div class="col-12 col-sm-6 col-lg-4">
-  	<div class="single-product-area mb-50">
+    <div class="single-product-area mb-50">
       <!-- Product Image -->  
       <div class="product-img">
           <a href="/shop/detail/{id}">
@@ -207,12 +207,17 @@
 			{tag}
      </div>
      <!-- Product Info -->
-     <div class="product-info mt-15 text-center">
-         <a href="/shop/detail/{id}">
-             <h6> {name}</h6>
-         </a>
-         <h6>업종 : {category} / 목표금액 : {goal}</h6>
-        </div>
+<div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 250px; padding:25px">
+                        <div class="thisMonth-tag">
+                          <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: #00bf99;" class="nowName">진행중</a>
+                         </div>
+                          <span class="category">업종</span><span> {category}</span>
+                          <span class="targetAmount" > 목표금액 </span><span>{goal}원</span>
+                          <div>
+                          <div ><a href="/shop/detail/{id}"><p style="font-weight:1000; font-size: 20px; color:black;">{name}</p></a></div>
+                          <p>{title}</p>
+                        </div>
+                      </div>
       </div>
    </div>
    </script>
@@ -225,10 +230,14 @@
                    	<h2 class="closeProject" >마감</h2>
                 </div>
             <!-- Product Info -->
-            	<div class="product-info mt-15 text-center finish-product">
-                	<h6> {name} </h6>
-                    <h6>업종 : {category} / 목표금액 : {goal}</h6>
-                </div>
+<div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 250px; padding:25px">
+                          <span class="category">업종</span><span> {category}</span>
+                          <span class="targetAmount" > 목표금액 </span><span>{goal}원</span>
+                          <div>
+                          <div ><a href="/shop/detail/{id}"><p style="font-weight:1000; font-size: 20px; color:black;">{name}</p></a></div>
+                          <p>{title}</p>
+                        </div>
+                      </div>
         </div>
    </div>
    </script>
@@ -285,6 +294,7 @@ function searchTemplate(jsonModifyData) {
 				  .replace('{category}', v.category)
 				  .replace('{goal}', v.goal)
 				  .replace(/{progress}/gi,v.progress)
+				  .replace('{title}',v.title)
     	} else {
     		if(v.progress < 70){
       newHtml += templateHtml.replace(/{id}/gi, v.id)
@@ -294,6 +304,7 @@ function searchTemplate(jsonModifyData) {
           				  .replace('{goal}', v.goal)
           				  .replace(/{progress}/gi,v.progress)
           				  .replace('{tag}','')
+  				  		  .replace('{title}',v.title)
     		} else {
       newHtml += templateHtml.replace(/{id}/gi, v.id)
           				  .replace('{fileName}', v.fileName)
@@ -302,6 +313,7 @@ function searchTemplate(jsonModifyData) {
           				  .replace('{goal}', v.goal)
           				  .replace(/{progress}/gi,v.progress)
           				  .replace('{tag}',' <div class="product-tag"> <a href="#">Hot</a> </div>')
+          				  .replace('{title}',v.title)
     			
     		}
     	}

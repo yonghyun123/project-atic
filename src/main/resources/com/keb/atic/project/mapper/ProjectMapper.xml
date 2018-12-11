@@ -135,11 +135,11 @@
 			       p.company      AS "company", 
 			       c.NAME         AS "category", 
 			       p.create_date  AS "createDate", 
+			       <choose>
+			       <when test='condition != null and condition.equals("goal")'>
 			       f.file_name    AS "fileName",
 			       (CASE WHEN ( round((p.CUR_PRICE/ p.goal)*100)>= '100' ) THEN 'end'
         			ELSE '0' END) AS "finish"
-			       <choose>
-			       <when test='condition != null and condition.equals("goal")'>
 			       From AT_project p join at_category c
 					on p.category_id = c.ID join AT_PROJECT_IMAGE pi
 					on p.id = pi.PROJECT_ID join AT_FILE_INFO f
@@ -148,28 +148,18 @@
 					and pi.IMAGE_TYPE = 'th'
 					order by p.goal desc
 			       </when>
-			       <when test='condition != null and condition.equals("percent")'>
-					FROM   at_project p 
-				       JOIN at_category c 
-				         ON p.category_id = c.id 
-				       JOIN at_project_image pi 
-				         ON p.id = pi.project_id 
-				       JOIN at_file_info f 
-				         ON pi.file_id = f.file_id 
-					WHERE  To_char(p.create_date, 'MM') = #{month} 
-				       AND pi.image_type = 'th' 
-					ORDER  BY ( p.cur_price / p.goal ) DESC
-			       </when>
 			       <when test='condition != null and condition.equals("eval")'>
+			       f.file_name    AS "fileName"
 						from AT_project p join at_category c
 						on p.category_id = c.ID join AT_PROJECT_IMAGE pi
 						on p.id = pi.PROJECT_ID join AT_FILE_INFO f
 						on pi.FILE_ID = f.FILE_ID left outer join AT_USER_EVAL e
 						on p.ID = e.PROJECT_ID
-						where  To_char(p.create_date, 'MM') = #{month} 
+						where  To_char(p.create_date, 'MM') = #{month}
 						and pi.IMAGE_TYPE = 'th'
-						group by p.id, p.CUR_PRICE/p.goal, p.NAME, p.goal, p.company, 
-						c.NAME, p.create_date, f.file_name
+						group by p.id, p.CUR_PRICE, round((p.CUR_PRICE/ p.goal)*100), p.NAME, 
+						p.goal, p.company, c.NAME, p.create_date, p.title, 
+						f.file_name
 						order by nvl(avg(STABLE_GRADE + FAVOR_GRADE + GROWTH_GRADE + MARKET_GRADE),0) desc
 			   		</when> 
 			       </choose>
