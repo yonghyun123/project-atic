@@ -22,10 +22,10 @@
             </div>
             <!-- One "tab" for each step in the form: -->
             <div class="regDirTab">
-              <h3 class="preExplainHead">대출 심사 & 기업평가를 위한 서류를 등록해
+              <h3 class="preExplainHead">심사 & 기업평가를 위한 서류를 등록해
                 주세요.</h3>
               <div>
-                <p class="preExplain">대출 심사 진행전,</p>
+                <p class="preExplain">심사 진행전,</p>
                 <p>서류를 심사하여 펀딩 여부를 결정하게됩니다.</p>
               </div>
               <p>이메일:</p>
@@ -38,7 +38,7 @@
               </div>
             </div>
             <div class="regDirTab" style="display: none">
-              <h3 class="preExplainHead">대출 심사 & 기업평가를 위한 서류를 등록해
+              <h3 class="preExplainHead">심사 & 기업평가를 위한 서류를 등록해
                 주세요.</h3>
               <h3 class="preExplain">
                 요구되는 모든 서류를 업로드 해주세요.<br> 아래의 내용이 맞으시면 다음 버튼을 눌러주세요
@@ -73,10 +73,10 @@
               
             </div>
             <div class="regDirTab" style="display: none">
-              <h3 class="preExplainHead">대출 심사 & 기업평가를 위한 기업정보를 입력해
+              <h3 class="preExplainHead">심사 & 기업평가를 위한 기업정보를 입력해
                 주세요.</h3>
               <h3 class="preExplain">
-                모든 항목을 정확하게 입력해 주세요.<br> 정확한 평가와 대출심사를 위해 필요합니다.
+                모든 항목을 정확하게 입력해 주세요.<br> 정확한 평가와 심사를 위해 필요합니다.
               </h3>
               <div>
                 <p>업종 분류</p>
@@ -317,10 +317,10 @@
             </div>
       </div>
             <div class="regDirTab" style="display: none">
-              <h3 class="preExplainHead">대출 심사 & 기업평가를 위한 서류를 등록해
+              <h3 class="preExplainHead">심사 & 기업평가를 위한 서류를 등록해
                 주세요.</h3>
               <h3 class="preExplain">
-                아래 항목중 보유한 모든 증명을 업로드 해주세요.<br> 정확한 평가와 대출심사를 위해
+                아래 항목중 보유한 모든 증명을 업로드 해주세요.<br> 정확한 평가와 심사를 위해
                 필요합니다.
               </h3>
               <div class="authList">

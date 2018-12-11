@@ -15,6 +15,7 @@ import javax.mail.internet.MimeUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import com.keb.atic.project.service.ProjectService;
 import com.keb.atic.userProject.service.UserProjectService;
@@ -23,6 +24,7 @@ import com.keb.atic.userReservation.service.UserReservationService;
 import com.keb.atic.userStatus.domain.UserStatus;
 import com.keb.atic.userStatus.service.UserStatusService;
 
+@Controller
 @Component
 public class SchedulerController {
 
@@ -35,26 +37,26 @@ public class SchedulerController {
 	@Autowired
 	private UserReservationService userReservationService;
 
-//	@Scheduled(cron = "*/30 * * * * *")
+	
+	//@Scheduled(cron = "*/10 * * * * *")
 	public void updateInterest() {
 		calProfit();
-//		
-//		List<UserReservation> list = userReservationService.userList();
-//		for (UserReservation userReservation : list) {
-//			String userId2 = userReservation.getUserId();
-//			String email = userReservation.getUserEmail();
-//			List<UserReservation> resList = userReservationService.reservationList(userId2);
-//			sendEmail(email, resList);
-//		}
-//
+		
+		List<UserReservation> list = userReservationService.userList();
+		for (UserReservation userReservation : list) {
+			String userId2 = userReservation.getUserId();
+			String  email = userReservation.getUserEmail();
+			List<UserReservation> resList = userReservationService.reservationList(userId2);
+			sendEmail(email, resList);
+		}
 	}
 
 	public void calProfit() {
 		// id별 각 달에 추가 되어야 할 interest 과 deposit
 		List<UserStatus> updateList= null;
-		updateList= userStatusService.updateListByMonth("11");
+		updateList= userStatusService.updateListByMonth("12");
 		List<UserStatus> leftupdateList= null;
-		leftupdateList= userStatusService.leftListByMonth("11");
+		leftupdateList= userStatusService.leftListByMonth("12");
 		// 변수
 		double totalMoney = 0.0, totalProfit = 0.0, curProfit = 0.0;
 		String userId, year, month, deposit, interest;
@@ -66,7 +68,7 @@ public class SchedulerController {
 //		}
 //		month = String.valueOf(cal.get(GregorianCalendar.MONTH));
 		year = "2018";
-		month = "11";
+		month = "12";
 		
 		UserStatus userStatus;
 		for (UserStatus userStatusList : updateList) {
@@ -111,13 +113,13 @@ public class SchedulerController {
 			userStatus.setUserId(userId);
 			userStatus.setYear(year);
 //			userStatus.setMonth(month); 나중에 바꿔줘야함
-			userStatus.setMonth("10");
+			userStatus.setMonth("11");
 			userStatus.setTotalProfit(String.valueOf(totalProfit));
 			userStatus.setCurProfit(interest);
 			userStatus.setTotalMoney(String.valueOf((int) totalMoney));
 			userStatus.setCurMoney(deposit);
 			System.out.println(userStatus.toString());
-//			userStatusService.createUserStatus(userStatus);
+			userStatusService.createUserStatus(userStatus);
 		}
 		
 		
@@ -163,65 +165,65 @@ public class SchedulerController {
 			leftUserStatus.setUserId(userId);
 			leftUserStatus.setYear(year);
 //			userStatus.setMonth(month); 나중에 바꿔줘야함
-			leftUserStatus.setMonth("10");
+			leftUserStatus.setMonth("11");
 			leftUserStatus.setTotalProfit(String.valueOf(totalProfit));
 			leftUserStatus.setCurProfit("0.0");
 			leftUserStatus.setTotalMoney(String.valueOf((int) totalMoney));
 			leftUserStatus.setCurMoney(deposit);
 			System.out.println(leftUserStatus.toString());
-//			userStatusService.createUserStatus(leftUserStatus);
+			userStatusService.createUserStatus(leftUserStatus);
 		}
 		
 	}
-//	private void sendEmail(String email, List<UserReservation> list) {
-//		String host = "smtp.gmail.com";
-//		String subject = "A-TiC 예약하신 프로젝트 투자가 곧 열립니다!";
-//		String fromName = "atic-Manager";
-//		String from = "gmlwls008@gmail.com";
-//		String to1 = email;
-//		
-//		
-//		String content = "<h1>예약하신 프로젝트 투자가 곧 시작됩니다! </h1>"+"<br>"
-//				+ "<h2>고객님께서 알림 신청하신 프로젝트 입니다.</h2>"+"<br>"
-//				+ "======================================================================"+"<br><br>";
-//		for (UserReservation userReservation : list) {
-//			String projectName = userReservation.getProjectName();
-//			String projectId = userReservation.getProjectId();
-//			content += "<h3><a href='http://localhost/shop/detail/"+projectId+"'>"+projectName+"</a></h3><br>";
-//		}
-//		
-//		
-//		try {
-//			Properties props = new Properties();
-//			
-//			props.put("mail.smtp.starttls.enable", "true");
-//			props.put("mail.transport.protocol", "smtp");
-//			props.put("mail.smtp.host", host);
-//			props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//			props.put("mail.smtp.port", "465");
-//			props.put("mail.smtp.user", from);
-//			props.put("mail.smtp.auth", "true");
-//			
-//			Session mailSession = Session.getInstance(props,
-//					new javax.mail.Authenticator() {
-//				protected PasswordAuthentication getPasswordAuthentication() {
-//					return new PasswordAuthentication("gmlwls008@gmail.com", "atic1111");
-//				}
-//			});
-//			
-//			Message msg = new MimeMessage(mailSession);
-//			msg.setFrom(new InternetAddress(from, MimeUtility.encodeText(fromName, "UTF-8", "B")));
-//			
-//			InternetAddress[] address1 = {new InternetAddress(to1)};
-//			msg.setRecipients(Message.RecipientType.TO, address1);
-//			msg.setSubject(subject);
-//			msg.setSentDate(new java.util.Date());
-//			msg.setContent(content, "text/html;charset=utf-8");
-//			
-//			Transport.send(msg);
-//		}catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//	}
+	private void sendEmail(String email, List<UserReservation> list) {
+		String host = "smtp.gmail.com";
+		String subject = "A-TiC 예약하신 프로젝트가 곧 열립니다!";
+		String fromName = "atic-Manager";
+		String from = "gmlwls008@gmail.com";
+		String to1 = email;
+		
+		
+		String content = "<h1>예약하신 프로젝트가 곧 시작됩니다! </h1>"+"<br>"
+				+ "<h2>고객님께서 알림 신청하신 프로젝트 입니다.</h2>"+"<br>"
+				+ "======================================================================"+"<br><br>";
+		for (UserReservation userReservation : list) {
+			String projectName = userReservation.getProjectName();
+			String projectId = userReservation.getProjectId();
+			content += "<h3><a href='http://localhost/shop/detail/"+projectId+"'>"+projectName+"</a></h3><br>";
+		}
+		
+		
+		try {
+			Properties props = new Properties();
+			
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.transport.protocol", "smtp");
+			props.put("mail.smtp.host", host);
+			props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.port", "465");
+			props.put("mail.smtp.user", from);
+			props.put("mail.smtp.auth", "true");
+			
+			Session mailSession = Session.getInstance(props,
+					new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("gmlwls008@gmail.com", "atic1111");
+				}
+			});
+			
+			Message msg = new MimeMessage(mailSession);
+			msg.setFrom(new InternetAddress(from, MimeUtility.encodeText(fromName, "UTF-8", "B")));
+			
+			InternetAddress[] address1 = {new InternetAddress(to1)};
+			msg.setRecipients(Message.RecipientType.TO, address1);
+			msg.setSubject(subject);
+			msg.setSentDate(new java.util.Date());
+			msg.setContent(content, "text/html;charset=utf-8");
+			
+			Transport.send(msg);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 
 }

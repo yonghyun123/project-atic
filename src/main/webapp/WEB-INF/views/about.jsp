@@ -48,7 +48,7 @@
                 </div>
                 <div class="dropdown-content dropdown-guide" id="answer1">
                   아래와 같이 10초만에 적금하실 수 있습니다.<br><br>
-                  로그인 -> 원하는 상품을 골라 '지금 투자하기' -> 투자진행<br>
+                  로그인 -> 원하는 상품을 골라 '지금 적금하기' -> 적금진행<br>
                   적금 전 아래사항을 꼭 확인해주세요.<br><br>
                   
                   <strong>&#60;적금 전 준비사항&#62;</strong><br>
@@ -84,7 +84,7 @@
                   <p id="question5">상품별 모금률은 어디서 확인할 수 있나요?</p>
                 </div>
                 <div class="dropdown-content dropdown-guide" id="answer5">
-                  공정하고 신중한 적금을 위해 상품에 투자한 후, 마이페이지에서 확인하실 수 있습니다.<br>
+                  공정하고 신중한 적금을 위해 상품에 적금한 후, 마이페이지에서 확인하실 수 있습니다.<br>
                   또한 종료된 프로젝트는 마감 페이지에서 바로 확인하실 수 있습니다.
               </div>
             </div>

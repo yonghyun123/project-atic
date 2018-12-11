@@ -79,7 +79,7 @@ public class ComInfoUploadController {
 			company.setFileBusiRegistration(uploadBiz.getOriginalFilename());
 			//사업증명서
 			company.setFileCompCertification(uploadBizAuth.getOriginalFilename());
-			//투자유치증명서
+			//적금유치증명서
 			company.setFileInvestCertification(uploadBInvest.getOriginalFilename());
 			//특허증명서
 			company.setFilePatentCertification(uploadPatent.getOriginalFilename());			

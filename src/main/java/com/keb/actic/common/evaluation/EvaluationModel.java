@@ -22,7 +22,7 @@ public class EvaluationModel {
 	@Inject
 	private CompanyMapper companyMapper;
 	
-	private int monthAvg = 20; //criteria1 평균투자 기간
+	private int monthAvg = 20; //criteria1 평균적금 기간
 	private float avgEmployee = 0.944f; //criteria2 월평균 임직원 수
 
 	
@@ -31,7 +31,7 @@ public class EvaluationModel {
 		float result = 0;
 		log.info(comp);
 
-		// 투자 받은 날짜가 있다면
+		// 적금 받은 날짜가 있다면
 		if (comp.getFirstDate().length() > 1) {
 			String create = comp.getCreateDate();
 			String first = comp.getFirstDate();
@@ -415,9 +415,9 @@ public class EvaluationModel {
 	}
 	/*6번째 기준 */
 	public int sixthCriteria(Company comp) {
-	      // 모기업들이 처음 받은 월별 평균 투자 금액
+	      // 모기업들이 처음 받은 월별 평균 적금 금액
 	      double avgFirstFund = 0.8748601932;
-	      // 모기업들이 두번째로 받은 월별 평균 투자 금액
+	      // 모기업들이 두번째로 받은 월별 평균 적금 금액
 	      double avgSecondFund = 1.061047619;
 	      
 	      int result=0;

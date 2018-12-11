@@ -92,7 +92,7 @@ public class MailController {
 		String id = request.getParameter("id");
 		
 		String host = "smtp.gmail.com";
-		String subject = "A-TiC 스타트업 대출 신청 준비 서류입니다.";
+		String subject = "A-TiC 스타트업 지원 신청 준비 서류입니다.";
 		String fromName = "atic-Manager";
 		String from = "gmlwls008@gmail.com";
 		String to1 = email;
@@ -102,7 +102,7 @@ public class MailController {
 		String content = "<img src='http://localhost/resources/img/logoss.png'><h1>고객님께서 준비하셔야 할 서류 목록입니다.</h1><br>"
 				+"<h3>사업자등록증, 사업인증서, 특허인증서</h3><br>"
 				+ "사업인증서와 특허인증서는 있으신 경우에만 구비해놓으시면 됩니다.<br>"
-				+ "그 외 설립년월, 회사의 업종, 초기 자본금, 투자유치 이력(2회까지) 등의 내용을 홈페이지에 들어오셔서 입력해주셔야 합니다.<br><br>"
+				+ "그 외 설립년월, 회사의 업종, 초기 자본금, 유치 이력(2회까지) 등의 내용을 홈페이지에 들어오셔서 입력해주셔야 합니다.<br><br>"
 				+ "<img src='http://localhost/resources/img/aply.png' style=\"width: 922px;\">";
 		
 		try {

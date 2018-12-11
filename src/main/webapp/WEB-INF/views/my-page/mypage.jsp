@@ -92,7 +92,7 @@
 
 				<div class="card card-inform">
                   <ul class="list-group list-group-flush mb-0">
-                    <li class="list-group-item mt-0"><h4>투자 정보</h4></li>
+                    <li class="list-group-item mt-0"><h4>적금 정보</h4></li>
                   </ul>
 				  <div class="card-body pt-0">
 				    <h4 class="card-title">총 이자율</h4>
@@ -151,7 +151,7 @@
     	                   <div class="section-heading">
     	                       <h2>나의 적금현황</h2>
     	                   </div>
-    	                   <p>당신의 적금현황을 보여드립니다. 여러 기업에 호감도와 적금을 투자하셔서 12개월 만기를 채우시면 기존 이율보다 높은 수익률을 느끼실 수 있습니다.</p>
+    	                   <p>당신의 적금현황을 보여드립니다. 여러 기업에 호감도와 적금을 적금하셔서 12개월 만기를 채우시면 기존 이율보다 높은 수익률을 느끼실 수 있습니다.</p>
     	
     	                   <!-- Progress Bar Content Area -->
                            <p>만기 도달 개월수(%)</p>
@@ -187,7 +187,7 @@
     				  </div>
     			    </div>
     			    
-    			    <!-- 투자한 기업 리스트 보여줘야 하는 부분 -->
+    			    <!-- 적금한 기업 리스트 보여줘야 하는 부분 -->
     			    <div id="comp-list" class="tab-pane fade">
     			      <div class="container">
       				    <h2>기간 검색</h2>
@@ -206,10 +206,10 @@
     				    <table class="table table-striped">
       				      <thead>
       				        <tr>
-      				          <th>투자한 날짜</th>
+      				          <th>적금한 날짜</th>
       				          <th>사업 주제</th>
-      				          <th>투자한 기업</th>
-      				          <th>투자한 적금 금액</th>
+      				          <th>적금한 기업</th>
+      				          <th>적금 금액</th>
       				          <th>모금 달성률</th>
       				        </tr>
       				      </thead>

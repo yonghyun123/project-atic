@@ -53,10 +53,10 @@ if(month > 12){
 			
 			if(d!=0) {
 				str = 'D'+(d*(-1)) ;
-				$('#countTime').css("color","black").css("font-size","28px").css("font-weight","bold").css("font-family","fantasy");
+				$('#countTime').css("color","black").css("font-size","28px").css("font-weight","bold");
 				} else if(d==0){
 				str = 'D-day';
-				$('#countTime').css("color","red").css("font-size","28px").css("font-weight","bold").css("font-family","fantasy");
+				$('#countTime').css("color","red").css("font-size","28px").css("font-weight","bold");
 			};
 			
 			if(h<0) h = addZero(h*(-1),2);
@@ -82,12 +82,14 @@ if(month > 12){
 			ele.empty();
 			if(result==0){
 				clearInterval(time);
-				ele.append('종료');
 				//location.reload();
+				document.getElementById('endDate').innerHTML='';
 				window.location.href = 'http://localhost/';
 			} else if(result < 0){
 				clearInterval(time);
+				document.getElementById('endDate').innerHTML='';
 				ele.append('종료');
+				$('#countTime').css("color","red").css("font-size","28px").css("font-weight","bold");
 			}else{
 				ele.append(timeToStr(result));
 			}

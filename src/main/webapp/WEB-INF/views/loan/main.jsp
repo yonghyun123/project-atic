@@ -118,17 +118,17 @@ p {
     <div
       class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
       style="background-image: url(/resources/img/hanabank2.jpg);">
-      <h2>기업 대출 신청</h2>
+      <h2>기업 지원 신청</h2>
     </div>
   </div>
   <div class="row"
-    style="margin-top: 3%; margin-left: 5%; background-color:">
-    <div id="registBar" class="col-12">
-      <div id=" registInfo" class="col-6" style="display: inline-block;">
-        <div class="col-7"
+    style="background-color:">
+    <div id="registBar" class="col-10" style="display: inherit; margin: 2% 0 0 10.5%;">
+      <div id=" registInfo" class="col-6" style="display: inline-block; padding: 0; padding-left: 50px;">
+        <div class="col-5"
           style="display: inline-block; margin-left: 5%">
           <p>
-            간단한 기업정보 등록 후,<br> 대출&펀딩 상담을 받고 싶으시다면?
+            간단한 기업정보 등록 후,<br> 상담을 받고 싶으시다면?
           </p>
         </div>
         <div class="col-2" style="display: inline-block;">
@@ -136,11 +136,11 @@ p {
             class="btn alazea-btn ml-15">
         </div>
       </div>
-      <div id=" registDir" class="col-5" style="display: inline-block;">
-        <div class="col-7"
-          style="display: inline-block; margin-left: 5%">
+      <div id=" registDir" class="col-6" style="display: inline-block; padding: 0; padding-right: 100px;">
+        <div class="col-6"
+          style="display: inline-block; margin-left: 5%; padding: 0;">
           <p>
-            서류 준비가 완료되어,<br> 바로 신청 가능 하다면?
+            서류 준비가 완료되어,<br> 지원 신청이 바로 가능 하다면?
           </p>
         </div>
         <div class="col-2" style="display: inline-block;">

@@ -10,7 +10,7 @@
       $("#login-modal").modal('show');
     });
     
-	// 로그인하지 않고 투자하기 눌렀을 경우의 이벤트
+	// 로그인하지 않고 적금하기 눌렀을 경우의 이벤트
 	$("#shop-login").on("click", function(e) {
 		$("#login-modal").modal('show');
 	})
@@ -23,6 +23,7 @@
     // Nav바 타이머 출력을 위한 스크립트
     $(function(){
       $('#countTime').countTime({
+//       	time: '2018-12-11 18:33:00'//기준시간
       	time: year.toString() + '-' + month.toString()+'-01 00:00:00'//기준시간
   	  });
     });
@@ -40,7 +41,7 @@
     <div id="popup-message-login-success">로그인 성공!</div>
     <div id="popup-message-logout-success">로그아웃 성공!</div>
     <div id="popup-message-create-deposit-success">가상계좌가 성공적으로 생성되었습니다.</div>
-    <div id="popup-message-deposit-success">투자에 성공하셨습니다.</div>
+    <div id="popup-message-deposit-success">적금에 성공하셨습니다.</div>
     <div id="popup-message-change-profile-success">프로필 사진이 변경되었습니다.</div>
     <!-- Main Footer Area -->
     <div class="main-footer-area">
@@ -54,7 +55,7 @@
                             <img src="/resources/img/aticLogo.png" alt="" style="width:200px; height: 160px; margin-top: -20px;">
                             <div class="widget-title" style="display: inline-block;">
                               <h5>A-TIC이란?</h5>
-                              <p class="pt-20">A-Tic는 스타트업 투자 활성화를 <br/>위한 적금 플랫폼입니다.</p>
+                              <p class="pt-20">A-Tic는 스타트업 활성화를 <br/>위한 적금 플랫폼입니다.</p>
                             </div>
                           </div>
                         </div>
@@ -70,7 +71,7 @@
                         <nav class="widget-nav">
                             <ul>
                                 <li class="mt-0"><a href="/about">A-Tic?</a></li>
-                                <li class="mt-0"><a href="/shop">투자 홈</a></li>
+                                <li class="mt-0"><a href="/shop">홈</a></li>
                                 <li><a href="/shop/preShop/">오픈 예정</a></li>
                                 <li><a href="/shop/currentShop">오픈한 상품</a></li>
                             </ul>
@@ -119,7 +120,6 @@
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/about">A-Tic?</a></li>
-                                <li><a href="/shop">투자 홈</a></li>
                             </ul>
                         </nav>
                     </div>

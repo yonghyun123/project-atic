@@ -162,7 +162,7 @@ p:hover, a:hover, a:focus, p:focus{
       <div id="rankingSection">
         <div class="hotClipWrapper">
           <div id="clipHeader" style="background-color: #efefef">
-            <p>실시간 Best 투자</p>
+            <p>실시간 Best</p>
           </div>
           <div id="clipBody">
             <div id="rankingList">
