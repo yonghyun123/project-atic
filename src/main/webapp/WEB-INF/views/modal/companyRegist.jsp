@@ -22,8 +22,8 @@
             <div class="regTab">
               <h3 class="preExplainHead">기업정보를 등록해 주세요.</h3>
               <div>
-              <p class="preExplain">대출 심사 진행전,</p>
-              <p>고객님의 기업정보를 입력하시면 대출 상담이 진행됩니다.</p>
+              <p class="preExplain">심사 진행전,</p>
+              <p>고객님의 기업정보를 입력하시면 상담이 진행됩니다.</p>
               </div>
               <p>이메일:</p>
                <div>
@@ -31,13 +31,13 @@
                  id="eMail" name="email" class="regText" style="display: inline-block;">
                  <div style="display: inline-block;"><button type="button" id="dupleCheck" class="btn" >중복체크</button></div>
                 <p id="authStatus" style="color:blue"></p>
-                <p>고객님의 이메일로 대출 상세 절차가 전송됩니다.</p>
+                <p>고객님의 이메일로 상세 절차가 전송됩니다.</p>
               </div>
             </div>
             <div class="regTab" style="display: none">
               <h3 class="preExplainHead">기업정보를 등록해 주세요.</h3>
               <h3 class="preExplain">
-                아래의 모든 항목에 응답해주세요<br> 정확한 기업분석과 대출진행을 위해 필요합니다.
+                아래의 모든 항목에 응답해주세요<br> 정확한 기업분석과 심사 진행을 위해 필요합니다.
               </h3>
               <div>
               <p>회사명:</p>
@@ -66,7 +66,7 @@
              <div class="regTab" style="display: none">
               <h3 class="preExplainHead">기업정보를 등록해 주세요.</h3>
               <h3 class="preExplain">
-                아래의 모든 항목에 응답해주세요<br> 정확한 기업분석과 대출진행을 위해 필요합니다.
+                아래의 모든 항목에 응답해주세요<br> 정확한 기업분석과 심사 진행을 위해 필요합니다.
               </h3>
               <div>
               <p>설립년월:</p>

@@ -244,9 +244,9 @@ pageContext.setAttribute("LF", "\n");
                   <table id="customers">
                     <tr>
                       <th>No</th>
-                      <th>투자자</th>
-                      <th>투자액</th>
-                      <th>투자 날짜</th>
+                      <th>고객명</th>
+                      <th>적금액</th>
+                      <th>적금 날짜</th>
                     </tr>
                     <c:choose>
                       <c:when test="${not empty userProject }">
