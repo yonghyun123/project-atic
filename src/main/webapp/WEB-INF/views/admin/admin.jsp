@@ -421,7 +421,7 @@
 	    options: {
 	      legend: { display: false },
 	      scales: {
-	    	   min:0,
+	    	   
 	    	   display: false
 		     },
 	      title: {
@@ -431,6 +431,8 @@
 	      },
 	      scale: {
 	          ticks: {
+	        	min:0,
+	        	max:10,
 	            beginAtZero: true
 	          }
 	      },
