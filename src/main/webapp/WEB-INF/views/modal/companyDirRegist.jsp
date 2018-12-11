@@ -24,17 +24,13 @@
             <div class="regDirTab">
               <h3 class="preExplainHead">심사 & 기업평가를 위한 서류를 등록해
                 주세요.</h3>
-              <div>
-                <p class="preExplain">심사 진행전,</p>
-                <p>서류를 심사하여 펀딩 여부를 결정하게됩니다.</p>
-              </div>
               <p>이메일:</p>
               <div>
                 <input type="text" placeholder="이메일을 입력해주세요" name="email"
                   id="eMailDir" class="regText" style="display: inline-block;">
                 <div style="display: inline-block;"><button type="button" id="emailAuth" class="btn" >인증</button></div>
                 <p id="authStatus" style="color:blue"></p>
-                <p>기업정보 입력시 사용한 eMail을 입력해주세요</p>
+                <p>기업정보 입력시 사용한 E-mail을 입력해주세요.</p>
               </div>
             </div>
             <div class="regDirTab" style="display: none">

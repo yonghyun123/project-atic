@@ -21,10 +21,6 @@
             <!-- One "tab" for each step in the form: -->
             <div class="regTab">
               <h3 class="preExplainHead">기업정보를 등록해 주세요.</h3>
-              <div>
-              <p class="preExplain">심사 진행전,</p>
-              <p>고객님의 기업정보를 입력하시면 상담이 진행됩니다.</p>
-              </div>
               <p>이메일:</p>
                <div>
               <input type="text" placeholder="이메일을 입력해주세요"
