@@ -35,7 +35,7 @@ public class SchedulerController {
 	@Autowired
 	private UserReservationService userReservationService;
 
-	//@Scheduled(cron = "*/30 * * * * *")
+//	@Scheduled(cron = "*/30 * * * * *")
 	public void updateInterest() {
 		calProfit();
 //		
@@ -52,9 +52,9 @@ public class SchedulerController {
 	public void calProfit() {
 		// id별 각 달에 추가 되어야 할 interest 과 deposit
 		List<UserStatus> updateList= null;
-		updateList= userStatusService.updateListByMonth("10");
+		updateList= userStatusService.updateListByMonth("11");
 		List<UserStatus> leftupdateList= null;
-		leftupdateList= userStatusService.leftListByMonth("10");
+		leftupdateList= userStatusService.leftListByMonth("11");
 		// 변수
 		double totalMoney = 0.0, totalProfit = 0.0, curProfit = 0.0;
 		String userId, year, month, deposit, interest;
@@ -99,6 +99,9 @@ public class SchedulerController {
 			}
 			totalProfit = totalProfit + curProfit;
 			totalProfit = Math.round(totalProfit * 100000) / 100000.0;
+			if(totalProfit >= 0.1) {
+				totalProfit = 0.1;
+			} 
 			System.out.println("month" + (endMonth - (Double.parseDouble(month)-1)));
 			totalMoney += (Double.parseDouble(deposit)) * (double) (Math.pow((totalProfit + 1), (endMonth - (Double.parseDouble(month)-1)) / 12));
 			System.out.println("final TotalMoney : "+ totalMoney);
@@ -146,6 +149,9 @@ public class SchedulerController {
 			}
 			totalProfit = totalProfit + curProfit;
 			totalProfit = Math.round(totalProfit * 100000) / 100000.0;
+			if(totalProfit >= 0.1) {
+				totalProfit = 0.1;
+			} 
 			System.out.println("month" + (Double.parseDouble(month)+1));
 			totalMoney += (Double.parseDouble(deposit)) * (double) (Math.pow((totalProfit + 1), (endMonth-((Double.parseDouble(month)-1))) / 12));
 			System.out.println("더해지는 돈 : "+ deposit+" *"+ " Math.pow"+(totalProfit + 1)+","+ (endMonth-((Double.parseDouble(month)-1)))+" / "+12);
