@@ -108,12 +108,12 @@
 }
 .slick-next:before
 {
-    content: '>';
+    content: '';
     color: black;
 }
 [dir='rtl'] .slick-next:before
 {
-    content: '<';
+    content: '';
 }
 
 /* Dots */

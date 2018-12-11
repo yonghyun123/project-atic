@@ -150,12 +150,13 @@ p {
       </div>
     </div>
   </div>
-  <div class="col-md-10" style="margin: 0 auto;">
+  <div class="col-md-8" style="margin: 20px auto 0 auto; border-radius:3px;
+   box-shadow:3px 3px 3px 3px #999; padding-bottom: 50px;">
     <section class="our-services-area bg-gray"> 
-        <div class="col-md-10">
-          <div class="container guide-box">
+        <div class="col-md-12">
+          <div class="container guide-box pb-0">
             <div class="guide-inform">
-              <p><strong style="margin-right: 5px;">기업정보 등록 절차</strong></p>
+              <p><strong style="margin-right: 5px; color: black;">기업정보 등록 절차</strong></p>
             </div>  
             <div class="qna-guide" style="border-bottom: 0;">
               <p class="qna-num">1</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>"기업정보 등록" 을 통해 사전 심사 서류를 제출합니다.</p><br>
@@ -169,10 +170,10 @@ p {
         </div>
     </section>
     <section class="our-services-area bg-gray"> 
-        <div class="col-md-10">
-          <div class="container guide-box">
+        <div class="col-md-12">
+          <div class="container guide-box pb-0">
             <div class="guide-inform">
-              <p><strong style="margin-right: 5px;">고객 사전평가/펀딩 절차</strong></p>
+              <p><strong style="margin-right: 5px; color: black;">고객 사전평가/펀딩 절차</strong></p>
             </div>  
             <div class="qna-guide" style="border-bottom: 0;">
               <p class="qna-num">1</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>1차심사를 통해 선발된 기업은 1차 심사 점수를 바탕으로 목표 모금액을 산정합니다.</p><br>
@@ -185,13 +186,13 @@ p {
         </div>
     </section>
     <section class="our-services-area bg-gray"> 
-        <div class="col-md-10">
-          <div class="container guide-box">
+        <div class="col-md-12">
+          <div class="container guide-box pb-0">
             <div class="guide-inform">
-              <p><strong style="margin-right: 5px;">평가 절차</strong></p>
+              <p><strong style="margin-right: 5px; color: black;">평가 절차</strong></p>
+              <p style="margin-top: 10px; font-size: 18px;">A-TIC 스타트업 지원은 총 3번의 심사를 거치게 됩니다.</p><br>
             </div>  
-            <div class="qna-guide" style="border-bottom: 0;">
-              <p>A-TIC 스타트업 지원은 총 3번의 심사를 거치게 됩니다.</p><br>
+            <div class="qna-guide" style="border-bottom: 0; margin-top: -30px;">
               <p class="qna-num">1</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>필요서류제출 후, 1차 심사를 통해 신청기업의 모금 참가여부를 결정합니다.</p><br>
               <p class="qna-num">2</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>고객 사전 평가와 펀딩 목표 달성여부를 통해 최종 심사여부를 결정합니다.</p><br>
               <p class="qna-num">3</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>펀딩 후, 최종 심사를 통해 최종 선발 여부를 결정합니다.</p><br>
@@ -202,7 +203,7 @@ p {
   </div>
     <!-- ##### Related Product Area Start ##### -->
   <div class="related-products-area"
-    style="border-bottom: 1px solid #ebebe0">
+    style="border-bottom: 1px solid #ebebe0; margin-top: 40px;">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -279,6 +280,7 @@ p {
   <script type="text/javascript">
 			$(document).ready(function() {
 				$('.responsive').slick({
+					arrow: false,
 					infinite : false,
 					speed : 300,
 					slidesToShow : 4,
@@ -289,7 +291,7 @@ p {
 							slidesToShow : 3,
 							slidesToScroll : 3,
 							infinite : true,
-							dots : true
+							dots : true,
 						}
 					}, {
 						breakpoint : 600,

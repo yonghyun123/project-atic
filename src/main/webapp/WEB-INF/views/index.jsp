@@ -192,7 +192,7 @@ p:hover, a:hover, a:focus, p:focus{
           <!-- Section Heading -->
           <div class="section-heading text-center">
             <h2 class="mt-15" id="projecthead">
-            <p id="projectContext">오픈 중인 프로젝트</p>
+            <p id="projectContext">진행 중인 프로젝트</p>
             </h2>
           </div>
         </div>

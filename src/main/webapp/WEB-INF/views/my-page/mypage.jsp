@@ -142,7 +142,7 @@
     			  <ul class="nav nav-tabs" style="width: 100%">
     			    <li class="active"><a data-toggle="tab" href="#deposit">적금현황</a></li>
     			    <li><a data-toggle="tab" href="#graph">수익률 그래프</a></li>
-    			    <li><a data-toggle="tab" href="#comp-list">투자 기업 리스트</a></li>
+    			    <li><a data-toggle="tab" href="#comp-list">적금 기업 리스트</a></li>
     			  </ul>
     			  <div class="tab-content" style="width: 100%">
     			    <div id="deposit" class="tab-pane fade in active">
@@ -432,7 +432,7 @@
 		 list.graphList.forEach(function(v) {
 			month.push(v.month+'월');
 		 	totalDepositMonth.push(v.totalMoney);
-		 	curDepositMonth.push(v.accumulateMoney);
+		 	curDepositMonth.push(v.curMoney);
 		 	v.totalProfit = Number(v.totalProfit) * 100;
 		 	profitMonth.push(v.totalProfit);
 		 });
@@ -502,7 +502,7 @@
 		     scales: {
 		       yAxes: [{
 		         ticks: {
-		           beginAtZero: false
+		           beginAtZero: true
 		         }
 		       }]
 		     },
