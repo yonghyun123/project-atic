@@ -52,6 +52,7 @@
 	<select id="readMonthProjectByGoal"  parameterType="map" resultType="com.keb.atic.project.domain.Project">
     SELECT "id",
     	   "name",
+    	   "title",
            "goal",
            "company",
            "category",
@@ -60,7 +61,8 @@
            "progress"
     FROM (
       SELECT p.id			AS "id", 
-      		 p.NAME         AS "name", 
+      		 p.NAME         AS "name",
+      		 p.title         AS "title",
 			 p.goal         AS "goal", 
 			 p.company      AS "company", 
 			 c.NAME         AS "category", 

@@ -108,7 +108,6 @@ max-width: 1000px !important;
   <%@ include file="/WEB-INF/views/modal/companyDirRegist.jsp"%>
   
   <!-- ##### Breadcrumb Area Start ##### -->
-  <div style="height: 90px; border-bottom: 1px solid #ebebe0"></div>
   <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
     <div

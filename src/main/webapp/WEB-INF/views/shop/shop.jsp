@@ -37,6 +37,31 @@
 	font-size: 24px;
 	font-weight: 700;
 }
+
+  .thisMonth-tag{
+  border-radius: 2px;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+    top: 20px;
+    left: 10px;
+    text-align:center;
+    z-index: 10;
+}
+
+.category, .targetAmount {
+    margin: 0 0 0 2%;
+    color: #1d2129;
+    font-weight: 500;
+}
+.category:after , .targetAmount:after{
+color: #e6eaed;
+content: " | ";
+}
 </style>
 </head>
 
@@ -94,8 +119,8 @@
 
   <!-- ##### Shop Area Start ##### -->
   <section class="shop-page section-padding-20-100">
-    <div class="col-md-10" style="margin: 0 auto;">
-      <div class="titleRow">현재 진행중인 프로젝트</div>
+    <div class="col-md-10" style="margin: 0 auto; ">
+      <div class="titleRow">진행 프로젝트</div>
       <div class="row">
         <!-- All Products Area -->
         <div class="col-12 col-md-12 col-lg-12">
@@ -106,9 +131,9 @@
                 <c:forEach var="project" items="${curList }"
                   varStatus="status">
                   <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-product-area mb-50">
+                    <div class="single-product-area mb-50" style="background-color: white;  ">
                       <!-- Product Image -->
-                      <div class="product-img">
+                      <div class="product-img" style="border-radius: 3px; " >
                         <form id="form${project.id}"
                           action="/shop/details" method="post">
                           <a href="/shop/detail/${project.id }"> <img
@@ -116,18 +141,19 @@
                             alt=""></a> <input type="hidden"
                             value="${project.id }">
                           <!-- Product Tag -->
-                          <div class="product-tag">
-                            <a href="#">Hot</a>
-                          </div>
                         </form>
                       </div>
                       <!-- Product Info -->
-                      <div class="product-info mt-15 text-center">
-                        <a href="/shop-details">
-                          <h6>${project.name }</h6>
-                        </a>
-                        <h6>업종 : ${project.category } / 목표금액 :
-                          <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 200px; padding:25px">
+                        <div class="thisMonth-tag">
+                          <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: #00bf99;" class="nowName">진행중</a>
+                         </div>
+                        <span class="category">업종</span><span> ${project.category }</span>
+                         <span class="targetAmount" > 목표금액 </span><span><fmt:formatNumber value="${project.goal }" pattern="#,###"/>원</span>
+                        <div>
+                          <div ><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></div>
+                          <p>${project.title}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -135,7 +161,7 @@
                  </c:when>
                   <c:otherwise>
                     <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
-                  <div style="width:100%"><h1 >진행중인 프로젝트가 존재하지 않습니다.</h1></div>
+                  <div style="width:100%"><h1>진행중인 프로젝트가 존재하지 않습니다.</h1></div>
               </div>
         </c:otherwise>
         </c:choose>
@@ -143,7 +169,7 @@
           </div>
         </div>
       </div>
-      <div class="titleRow">다음달 등록예정 프로젝트</div>
+      <div class="titleRow">등록예정 프로젝트</div>
       <div class="row">
         <!-- All Products Area -->
         <div class="col-12 col-md-12 col-lg-12">
@@ -163,14 +189,17 @@
                             alt="">
                           </a>
                         </div>
-                        <!-- Product Info -->
-                        <div class="product-info mt-15 text-center">
-                          <a href="/shop/detail/${project.id }">
-                            <h6>${project.name }</h6>
-                          </a>
-                          <h6>업종 : ${project.category } / 목표금액 :
-                            <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 200px; padding:15px">
+                        <div class="thisMonth-tag">
+                          <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: orange;" class="nowName">등록예정</a>
+                         </div>
+                        <span class="category">업종</span><span> ${project.category }</span>
+                         <span class="targetAmount" > 목표금액 </span><span><fmt:formatNumber value="${project.goal }" pattern="#,###"/>원</span>
+                        <div>
+                          <div ><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></div>
+                          <p>${project.title}</p>
                         </div>
+                      </div>
                       </div>
                     </div>
                   </c:forEach>
@@ -204,14 +233,24 @@
                         <div class="product-img" style="background-image: url(/resources/img/project-image/<c:out value='${project.fileName }'/>);  background-repeat: no-repeat; width: 100%; height: 300px; background-size: cover;">
                                   <p style="background-color: rgba(17, 17, 17, 0.5);height: 100%;margin: 0;">
                                   </p>
-                                  <h2 class="closeProject" >마감</h2>
+                                  <p class="closeProject" >종료된 프로젝트 입니다.</p>
                                 </div>
+                       
+                       
                         <!-- Product Info -->
-                        <div class="product-info mt-15 text-center">
-                            <h6>${project.name }</h6>
-                          <h6>업종 : ${project.category } / 목표금액 :
-                            <fmt:formatNumber value="${project.goal }" pattern="#,###"/></h6>
+                      <div class="product-info mt-15 text-center" style="border:2px solid #e4e4e4; height: 200px; padding:40px">
+                        <div class="thisMonth-tag">
+                          <a style="border: 2px solid white; width:100px; margin-bottom: 10%; background-color: rgb(255, 111, 97);" class="nowName">마감</a>
+                         </div>
+                        <span class="category">업종</span><span> ${project.category }</span>
+                         <span class="targetAmount" > 목표금액 </span><span><fmt:formatNumber value="${project.goal }" pattern="#,###"/>원</span>
+                        <div>
+                          <div ><p style="font-weight:1000; font-size: 20px; color:black;">${project.name}</p></div>
+                          <p>${project.title}</p>
                         </div>
+                      </div>
+                        
+                        
                       </div>
                     </div>
                   </c:forEach>
@@ -262,7 +301,8 @@
 					arrows : false,
 					pauseOnHover : true
 				});
-				$('.closeProject').css("font-size","65px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
+				
+				$('.closeProject').css("font-size","30px").css("color","#ffffff").css("margin-top","-195px").css("text-align","center");
 			});
 		</script>
   <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
