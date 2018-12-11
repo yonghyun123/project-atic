@@ -35,7 +35,7 @@ public class SchedulerController {
 	@Autowired
 	private UserReservationService userReservationService;
 
-//	@Scheduled(cron = "*/30 * * * * *")
+	//@Scheduled(cron = "*/30 * * * * *")
 	public void updateInterest() {
 		calProfit();
 //		
@@ -66,7 +66,7 @@ public class SchedulerController {
 //		}
 //		month = String.valueOf(cal.get(GregorianCalendar.MONTH));
 		year = "2018";
-		month = "09";
+		month = "11";
 		
 		UserStatus userStatus;
 		for (UserStatus userStatusList : updateList) {
@@ -75,30 +75,40 @@ public class SchedulerController {
 			userId = userStatusList.getUserId();
 			System.out.println("맞춤 : "+userId);
 			interest = userStatusList.getSumInterest();
+			System.out.println("interest : " + interest);
 			deposit = userStatusList.getSumDeposit();
+			System.out.println("deposit : " + deposit);
 			// 이자율 계산하기
 			
 			// id의 전체 이자율 리스트 : input = id
 			List<UserStatus> calInterestList = userStatusService.calInterest(userId);
 			// 최초 입금 달
 			Double endMonth = Double.parseDouble(calInterestList.get(0).getMonth()) + 12;
+			System.out.println("endMonth"+endMonth);
 			for (UserStatus interestList : calInterestList) {
 				totalProfit = Double.parseDouble(interestList.getTotalProfit());
+				System.out.println("totalProfit : " + totalProfit);
 				double curMoney = Double.parseDouble(interestList.getCurMoney());
+				System.out.println("curMoney : "+ curMoney);
 				double curMonth = Double.parseDouble(interestList.getMonth());
+				System.out.println("curMonth : " + curMonth);
 				totalMoney += (curMoney) * (double) (Math.pow((totalProfit + 1), (endMonth - curMonth) / 12));
-				System.out.println("totalMoney : "+totalMoney);
+				System.out.println("totalMoney : 중간 : "+totalMoney);
 				curProfit = Double.parseDouble(interestList.getCurProfit());
+				System.out.println("curProfit : " + curProfit);
 			}
 			totalProfit = totalProfit + curProfit;
 			totalProfit = Math.round(totalProfit * 100000) / 100000.0;
+			System.out.println("month" + (endMonth - (Double.parseDouble(month)-1)));
+			totalMoney += (Double.parseDouble(deposit)) * (double) (Math.pow((totalProfit + 1), (endMonth - (Double.parseDouble(month)-1)) / 12));
+			System.out.println("final TotalMoney : "+ totalMoney);
 			
 			// insert
 			userStatus = new UserStatus();
 			userStatus.setUserId(userId);
 			userStatus.setYear(year);
 //			userStatus.setMonth(month); 나중에 바꿔줘야함
-			userStatus.setMonth("09");
+			userStatus.setMonth("10");
 			userStatus.setTotalProfit(String.valueOf(totalProfit));
 			userStatus.setCurProfit(interest);
 			userStatus.setTotalMoney(String.valueOf((int) totalMoney));
@@ -106,6 +116,9 @@ public class SchedulerController {
 			System.out.println(userStatus.toString());
 //			userStatusService.createUserStatus(userStatus);
 		}
+		
+		
+		
 		UserStatus leftUserStatus;
 		for (UserStatus leftUserStatusList : leftupdateList) {
 			totalMoney = 0;
@@ -121,26 +134,36 @@ public class SchedulerController {
 			Double endMonth = Double.parseDouble(calInterestList.get(0).getMonth()) + 12;
 			for (UserStatus interestList : calInterestList) {
 				totalProfit = Double.parseDouble(interestList.getTotalProfit());
+				System.out.println("totalProfit : " + totalProfit);
 				double curMoney = Double.parseDouble(interestList.getCurMoney());
+				System.out.println("curMoney : "+ curMoney);
 				double curMonth = Double.parseDouble(interestList.getMonth());
+				System.out.println("curMonth : "+ curMonth);
 				totalMoney += (curMoney) * (double) (Math.pow((totalProfit + 1), (endMonth - curMonth) / 12));
+				System.out.println("중간 : totalMoney : "+ totalMoney);
 				curProfit = Double.parseDouble(interestList.getCurProfit());
+				System.out.println("curProfit : " + curProfit);
 			}
 			totalProfit = totalProfit + curProfit;
 			totalProfit = Math.round(totalProfit * 100000) / 100000.0;
+			System.out.println("month" + (Double.parseDouble(month)+1));
+			totalMoney += (Double.parseDouble(deposit)) * (double) (Math.pow((totalProfit + 1), (endMonth-((Double.parseDouble(month)-1))) / 12));
+			System.out.println("더해지는 돈 : "+ deposit+" *"+ " Math.pow"+(totalProfit + 1)+","+ (endMonth-((Double.parseDouble(month)-1)))+" / "+12);
+			System.out.println("더해지는 돈 : "+ deposit+" *"+ (double) (Math.pow((totalProfit + 1), (endMonth-((Double.parseDouble(month)-1))) / 12)));
+			System.out.println("final TotalMoney : "+ totalMoney);
 			
 			// insert
 			leftUserStatus = new UserStatus();
 			leftUserStatus.setUserId(userId);
 			leftUserStatus.setYear(year);
 //			userStatus.setMonth(month); 나중에 바꿔줘야함
-			leftUserStatus.setMonth("09");
+			leftUserStatus.setMonth("10");
 			leftUserStatus.setTotalProfit(String.valueOf(totalProfit));
 			leftUserStatus.setCurProfit("0.0");
 			leftUserStatus.setTotalMoney(String.valueOf((int) totalMoney));
 			leftUserStatus.setCurMoney(deposit);
 			System.out.println(leftUserStatus.toString());
-//			userStatusService.createUserStatus(userStatus);
+//			userStatusService.createUserStatus(leftUserStatus);
 		}
 		
 	}

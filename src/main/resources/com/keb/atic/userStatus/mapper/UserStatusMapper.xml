@@ -94,6 +94,7 @@
       from  at_user_project up join at_user_status us 
       on up.user_id = us.user_id
       where to_char(create_date,'MM')= #{month}-1
+      and us.month= #{month}-2
       group by up.user_id)
       minus
     (SELECT up.user_id      AS "userId",
