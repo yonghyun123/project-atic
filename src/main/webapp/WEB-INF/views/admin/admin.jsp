@@ -312,7 +312,25 @@
 		   .replace('{suffix3}', data.filePatentCertification.split('.')[1])
 		   .replace(/{fileInvestCertification}/gi, data.fileInvestCertification)
 		   .replace('{suffix4}', data.fileInvestCertification.split('.')[1])
-	  } else {
+	  } else if(data.filePatentCertification == null){
+		  newhtml = originHtml.replace("{id}", data.id)
+		   .replace("{name}", data.name)
+	       .replace("{email}", data.email)
+		   .replace('{createDate}',data.createDate)
+		   .replace('{firstDate}', data.firstDate)
+		   .replace('{firstFund}', data.firstFund.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+		   .replace('{secondDate}', 0)
+		   .replace('{secondFund}', 0)
+		   .replace('{hasPatent}', data.hasPatent)
+		   .replace('{totalResult}', Number(data.totalResult).toFixed(3))
+		   .replace(/{fileBusiRegistration}/gi, data.fileBusiRegistration)
+		   .replace('{suffix1}', data.fileBusiRegistration.split('.')[1])
+		   .replace(/{fileCompCertification}/gi, data.fileCompCertification)
+		   .replace('{suffix2}', data.fileCompCertification.split('.')[1])
+		   .replace(/{fileInvestCertification}/gi, data.fileInvestCertification)
+		   .replace('{suffix4}', data.fileInvestCertification.split('.')[1])
+	  }
+	  else {
 		  newhtml = originHtml.replace("{id}", data.id)
 		   .replace("{name}", data.name)
 	       .replace("{email}", data.email)
