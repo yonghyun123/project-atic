@@ -544,7 +544,7 @@
 		      scales: {
 			       xAxes:[{
 			    	 ticks:{
-			    		 min:2.9
+			    		 min:0
 			    	 }   
 			       }]
 			     },

@@ -150,7 +150,57 @@ p {
       </div>
     </div>
   </div>
-  <!-- ##### Related Product Area Start ##### -->
+  <div class="col-md-10" style="margin: 0 auto;">
+    <section class="our-services-area bg-gray"> 
+        <div class="col-md-10">
+          <div class="container guide-box">
+            <div class="guide-inform">
+              <p><strong style="margin-right: 5px;">기업정보 등록 절차</strong></p>
+            </div>  
+            <div class="qna-guide" style="border-bottom: 0;">
+              <p class="qna-num">1</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>"기업정보 등록" 을 통해 사전 심사 서류를 제출합니다.</p><br>
+              <p class="qna-num">2</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>등록 후, 인터뷰를 통해 본 심사 절차와 제출 서류를 안내받습니다.</p><br>
+              <p class="qna-num">3</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>안내 후, "바로 신청하기"를 통해 필요 서류를 제출합니다.</p><br>
+              <p class="qna-num">4</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>제출 후,  1차 심사를 진행합니다.</p><br>
+              <p class="qna-num">5</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>1차 심사 선발 기업은 플랫폼을 통해 고객 사전평가와 적금펀딩을 시작합니다.</p><br>
+              <p class="qna-num">6</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>펀딩 후, 본심사 결과와 평가/펀딩 결과를 종합하여 금융 지원 스타트업을 최종선발합니다.</p>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section class="our-services-area bg-gray"> 
+        <div class="col-md-10">
+          <div class="container guide-box">
+            <div class="guide-inform">
+              <p><strong style="margin-right: 5px;">고객 사전평가/펀딩 절차</strong></p>
+            </div>  
+            <div class="qna-guide" style="border-bottom: 0;">
+              <p class="qna-num">1</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>1차심사를 통해 선발된 기업은 1차 심사 점수를 바탕으로 목표 모금액을 산정합니다.</p><br>
+              <p class="qna-num">2</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>플랫폼을 통해 펀딩 전 고객 사전평가를 진행합니다.</p><br>
+              <p class="qna-num">3</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>사전평가 종료 후 , 약 20일간 펀딩을 진행합니다.</p><br>
+              <p class="qna-num">4</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>펀딩 종료 후, 목표 모금액을 달성한 기업을 대상으로 최종심사를 진행합니다.</p><br>
+              <p class="qna-num">5</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>선발된 기업은 향후 1년간 하나금융의 스타트업 금융지원을 받게됩니다.</p><br>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section class="our-services-area bg-gray"> 
+        <div class="col-md-10">
+          <div class="container guide-box">
+            <div class="guide-inform">
+              <p><strong style="margin-right: 5px;">평가 절차</strong></p>
+            </div>  
+            <div class="qna-guide" style="border-bottom: 0;">
+              <p>A-TIC 스타트업 지원은 총 3번의 심사를 거치게 됩니다.</p><br>
+              <p class="qna-num">1</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>필요서류제출 후, 1차 심사를 통해 신청기업의 모금 참가여부를 결정합니다.</p><br>
+              <p class="qna-num">2</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>고객 사전 평가와 펀딩 목표 달성여부를 통해 최종 심사여부를 결정합니다.</p><br>
+              <p class="qna-num">3</p><p class="qna-dot" style="margin-right: 5px !important;">. </p><p>펀딩 후, 최종 심사를 통해 최종 선발 여부를 결정합니다.</p><br>
+            </div>
+          </div>
+        </div>
+    </section>  
+  </div>
+    <!-- ##### Related Product Area Start ##### -->
   <div class="related-products-area"
     style="border-bottom: 1px solid #ebebe0">
     <div class="container">
@@ -158,7 +208,7 @@ p {
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2>하나금융의 스타트업 지원 사례</h2>
+            <h2>A-TIC의 스타트업 지원 사례</h2>
           </div>
         </div>
       </div>
@@ -169,10 +219,10 @@ p {
               <c:forEach var="projects" items="${successProjectList}"
                 varStatus="status">
                 <div class="col-12 col-sm-6 col-lg-3">
-                  <div class="single-product-area mb-100">
+                  <div class="single-product-area mb-50">
                     <!-- Product Image -->
                     <div class="product-img">
-                      <a href="/shop/detail/${projects.id }"> <img
+                      <a> <img
                         src="/resources/img/project-image/${projects.id }_th.png"
                         alt=""></a>
                     </div>
@@ -193,72 +243,7 @@ p {
       </div>
     </div>
   </div>
-
-  <div class="related-products-area"
-    style="border-bottom: 1px solid #ebebe0">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <!-- Section Heading -->
-          <div class="section-heading text-center">
-            <h2>하나금융 스타트업 금융지원 절차</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="responsive" style="width: 100%">
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="single-product-area mb-100">
-              <!-- Product Image -->
-              <div class="product-img" id="product-img">
-                <div class="introHeader">
-                  <p>지원 절차</p>
-                  <p>1. "기업정보 등록" 을 통해 사전 심사 서류를 제출합니다.</p>
-                  <p>2. 등록 후, 인터뷰를 통해 본 심사 절차와 제출 서류를 안내받습니다.</p>
-                  <p>3. 안내 후, "바로 신청하기"를 통해 필요 서류를 제출합니다.</p>
-                  <p>4. 제출 후,  1차 심사를 진행합니다.
-                  <p>5. 1차 심사 선발 기업은 플랫폼을 통해 고객 사전평가와 적금펀딩을 시작합니다.</p>
-                  <p>6. 펀딩 후, 본심사 결과와 평가/펀딩 결과를 종합하여 금융 지원 스타트업을 최종선발 합니다.</p>
-                  
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="single-product-area mb-100">
-              <!-- Product Image -->
-              <div class="product-img" id="product-img">
-                <div class="introHeader">
-                  <p>고객 사전평가/펀딩 절차</p>
-                  <p>1. 1차심사를 통해 선발된 기업은 1차 심사 점수를 바탕으로 목표 모금액을 산정합니다.</p>
-                  <p>2. 플랫폼을 통해 펀딩 전 고객 사전평가를 진행합니다.</p>
-                  <p>3. 사전평가 종료 후 , 약 20일간 펀딩을 진행합니다.</p>
-                  <p>4. 펀딩 종료 후, 목표 모금액을 달성한 기업을 대상으로 최종심사를 진행합니다.</p>
-                  <p>5. 선발된 기업은 향후 1년간 하나금융의 스타트업 금융지원을 받게됩니다.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="single-product-area mb-100">
-              <!-- Product Image -->
-              <div class="product-img" id="product-img">
-                <div class="introHeader">
-                  <p>평가 절차</p>
-                  <p>Atic 스타트업 지원은 총 3번의 심사를 거치게 됩니다.</p>
-                  <p>1. 필요서류제출 후, 1차 심사를 통해 신청기업의 모금 참가여부를 결정합니다.</p>
-                  <p>2. 고객 사전 평가와 펀딩 목표 달성여부를 통해 최종 심사여부를 결정합니다.</p>
-                  <p>3. 펀딩 후, 최종 심사를 통해 최종 선발 여부를 결정합니다.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  
   <!-- ##### All Javascript Files ##### -->
   <!-- jQuery-2.2.4 js -->
   <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
