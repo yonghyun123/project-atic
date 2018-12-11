@@ -76,37 +76,61 @@
 	</select>
 	
 		<select id="updateListByMonth" parameterType="string" resultType="com.keb.atic.userStatus.domain.UserStatus">
-			SELECT up.user_id      AS "userId", 
-			       Sum(p.interest) AS "sumInterest", 
-			       Sum(up.deposit) AS "sumDeposit" 
-			FROM   at_project p 
-			       JOIN at_user_project up 
-			         ON p.id = up.project_id 
-			WHERE  up.project_id IN (SELECT id 
-			                         FROM   at_project 
-			                         WHERE  goal =  cur_price 
-			                                AND To_char(create_date, 'MM') = ( 
-			                                   #{month}-1)) 
-			GROUP  BY up.user_id 
+			SELECT * 
+FROM   (SELECT up.user_id   AS "userId", 
+               SUM(deposit) AS "sumDeposit" 
+        FROM   at_user_project up 
+               join (SELECT user_id asd 
+                     FROM   at_user_project 
+                     WHERE  project_id IN (SELECT id 
+                                           FROM   at_project 
+                                           WHERE  goal = cur_price 
+                                                  AND To_char(create_date, 'MM') 
+                                                      = ( 
+                                                      #{month}-1 )) 
+                     GROUP  BY user_id) 
+                 ON up.user_id = asd 
+        WHERE  To_char(up.create_date, 'MM') = #{month}-1
+        GROUP  BY up.user_id) 
+       NATURAL join (SELECT up.user_id      AS "userId", 
+                            SUM(p.interest) AS "sumInterest" 
+                     FROM   at_project p 
+                            join at_user_project up 
+                              ON p.id = up.project_id 
+                     WHERE  up.project_id IN (SELECT id 
+                                              FROM   at_project 
+                                              WHERE  goal = cur_price 
+                                                     AND To_char(create_date, 
+                                                         'MM') = ( 
+                                                         #{month}-1 )) 
+                     GROUP  BY up.user_id) 
 	</select>
 	<select id="leftListByMonth" parameterType="string" resultType="com.keb.atic.userStatus.domain.UserStatus">
-	( select up.user_id  AS "userId", sum(deposit) AS "sumDeposit" 
-      from  at_user_project up join at_user_status us 
-      on up.user_id = us.user_id
-      where to_char(create_date,'MM')= #{month}-1
-      and us.month= #{month}-2
-      group by up.user_id)
-      minus
-    (SELECT up.user_id      AS "userId",
-    sum(deposit) AS "sumDeposit" 
-			FROM   at_project p 
-			       JOIN at_user_project up 
-			         ON p.id = up.project_id 
-			WHERE  up.project_id IN (SELECT id 
-			                         FROM   at_project 
-			                         WHERE  goal = cur_price 
-			                                AND To_char(create_date, 'MM') = ( 
-			                                    #{month}-1)) 
-			GROUP  BY up.user_id )
+	(SELECT up.user_id   AS "userId", 
+        Sum(deposit) AS "sumDeposit" 
+ FROM   at_user_project up 
+        JOIN at_user_status us 
+          ON up.user_id = us.user_id 
+ WHERE  To_char(create_date, 'MM') = #{month} - 1 
+        AND us.month = #{month} - 2 
+ GROUP  BY up.user_id) 
+minus 
+(SELECT * 
+ FROM   (SELECT up.user_id   AS "userId", 
+                Sum(deposit) AS "sumDeposit" 
+         FROM   at_user_project up 
+                JOIN (SELECT user_id asd 
+                      FROM   at_user_project 
+                      WHERE  project_id IN (SELECT id 
+                                            FROM   at_project 
+                                            WHERE  goal = cur_price 
+                                                   AND To_char(create_date, 'MM' 
+                                                       ) = ( 
+                                                       #{month} - 1 ) 
+                                           ) 
+                      GROUP  BY user_id) 
+                  ON up.user_id = asd 
+         WHERE  To_char(up.create_date, 'MM') = #{month} - 1 
+         GROUP  BY up.user_id)) 
 	</select>
 </mapper>
