@@ -11,7 +11,7 @@
       <div class="modal-content">
         <div class="modal-body">
         <div class="container">
-        <div class="col-10 my-deposit-inform">
+        <div class="col-12 my-deposit-inform">
 		<div class="container">
  			  <ul class="nav nav-tabs" style="border-bottom: 0;">
    			    <li class="active" onclick="changeActive('1')"><a data-toggle="tab" href="#company"><h4 style="display: inline-box; color: #70c745;" id="tab1">기업 정보</h4></a></li>
