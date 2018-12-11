@@ -130,9 +130,8 @@ pageContext.setAttribute("LF", "\n");
               <input type="hidden"
                 value="<c:out value="${project.id }"/>" id="projectId">
               <h4 class="price">
-
-                <c:out value="${project.createDate }" />
-                오픈예정
+<%--                 <c:out value="${project.createDate }" /> --%>
+               2018-12-24 오픈예정
               </h4>
               <div class="short_overview">
                 <p>
@@ -140,8 +139,8 @@ pageContext.setAttribute("LF", "\n");
                 </p>
                 <p>
                   이 프로젝트가 목표자금을 달성할 시
-                  <c:out value="${project.interest }" />
-                  %의 금리혜택을 받으실 수 있습니다.
+                <strong style="font-size: 18px; color:#70c745;"><c:out value="${project.interest*100 }"/>%</strong>
+                  의 금리혜택을 받으실 수 있습니다.
                 </p>
               </div>
 
