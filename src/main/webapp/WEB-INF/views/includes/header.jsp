@@ -27,7 +27,7 @@
       <div class="container">
         <!-- Menu -->
         <nav class="classy-navbar justify-content-between"
-          id="alazeaNav" style="height: 65px">
+          id="alazeaNav" style="height: 75px">
 
           <!-- Nav Brand -->
           <a href="/" class="nav-brand"><img
