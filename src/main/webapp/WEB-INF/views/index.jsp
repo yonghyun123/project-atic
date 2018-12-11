@@ -24,7 +24,6 @@
 <link href="/resources/css/slick.css" rel="stylesheet">
 <link href="/resources/css/slick-theme.css" rel="stylesheet">
 <link href="/resources/css/common.css" rel="stylesheet">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <style type="text/css">
 .slide-fade li {
@@ -44,6 +43,7 @@
   background: url("/resources/img/bg-img/bg_line_title.png") repeat-x 0 center;
   text-align: center
 }
+
 #projecthead #projectContext{
     padding: 0 20px;
     display: inline-block;
@@ -65,20 +65,20 @@
   font-weight: 1000;
 }
 
-  .thisMonth-tag{
+.thisMonth-tag{
   border-radius: 2px;
-    display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    text-transform: uppercase;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 12px;
-    position: absolute;
-    top: 20px;
-    left: 10px;
-    text-align:center;
-    z-index: 10;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  text-align:center;
+  z-index: 10;
 }
 
 .nowNameSub{
@@ -91,30 +91,30 @@ a{
 }
 
 p:hover, a:hover, a:focus, p:focus{
-text-decoration:none;
+  text-decoration:none;
 }
 
 #mainVisual {
-    display:inline-block;
-    width: 63.5%;
-    margin: 0 3.5% 0 0%;
-
+  display:inline-block;
+  width: 63.5%;
+  margin: 0 3.2% 0 0%;
 }
+
 #rankingSection {
   float:none;
-    display:inline-block;
-    width: 30%;
-    height: 100%;
-    margin-right: 1%:;
+  display:inline-block;
+  width: 30%;
+  height: 100%;
+  margin-right: 1%:;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 .new-arrivals-products-area {
-    padding-bottom: 0px;
+  padding-bottom: 0px;
 }
 .containerOne{
   margin-left: 1.5%;
   width:100%;
 }
-
 
 </style>
 </head>
@@ -170,7 +170,7 @@ text-decoration:none;
                 <c:choose>
                   <c:when test="${not empty riseProject }">
                     <c:forEach items="${riseProject}" var="project"
-                      varStatus="status" end="5">
+                      varStatus="status" end="4">
                       <li id="li${status.index+1 }"><em>${status.index+1 }</em><a
                         href="/shop/detail/${project.projectId }">${project.projectName }</a></li>
                     </c:forEach>
@@ -187,7 +187,16 @@ text-decoration:none;
   <!-- ##### Product Area Start ##### -->
   <section class="new-arrivals-products-area bg-gray section-padding-50" style="margin-top:50px;">
     <div class="container">
-
+      <div class="row">
+        <div class="col-12">
+          <!-- Section Heading -->
+          <div class="section-heading text-center">
+            <h2 class="mt-15" id="projecthead">
+            <p id="projectContext">오픈 중인 프로젝트</p>
+            </h2>
+          </div>
+        </div>
+      </div>
       <div class="row">
        <c:choose>
         <c:when test="${fn:length(hotList) != 0}">
@@ -234,7 +243,7 @@ text-decoration:none;
         </c:choose>
       </div>
         <div style="margin-bottom:5px">
-        <a style="font-weight: 100;" href="/shop/currentShop">전체 보기 <i class="glyphicon glyphicon-menu-right"></i></a>
+        <a style="font-weight: 100;" href="/shop/currentShop">전체 보기&gt &gt</a>
         </div>
     </div>
   </section>
@@ -247,7 +256,7 @@ text-decoration:none;
         <div class="col-12">
           <!-- Section Heading -->
           <div class="section-heading text-center">
-            <h2 class="mt-50" id="projecthead">
+            <h2 class="mt-15" id="projecthead">
             <p id="projectContext">다음 달 데뷔예정</p>
             </h2>
           </div>
@@ -260,7 +269,7 @@ text-decoration:none;
           <c:forEach items="${nextList}" var="preProject">
             <!-- Single Blog Post Area -->
             <div class="col-12 col-md-6 col-lg-4 text-center">
-              <div class="single-blog-post mb-50">
+              <div class="single-blog-post mb-30">
                 <div class="product-img mb-0">
                   <a href="/shop/detail/pre/${preProject.id }"><img
                     src="/resources/img/project-image/${preProject.fileName}"
@@ -279,9 +288,6 @@ text-decoration:none;
               </div>
             </div>
           </c:forEach>
-         <div class="col-12 text-center" style="margin-bottom: 50px">
-          <a href="/shop/preShop" class="btn alazea-btn">View All</a>
-        </div>
           </c:when>
           <c:otherwise>
             <div class="col-12 col-md-12 col-lg-12 text-center"  style="margin-bottom:20px">
@@ -289,6 +295,9 @@ text-decoration:none;
             </div>
           </c:otherwise>
         </c:choose>
+      </div>
+      <div style="padding-bottom:50px">
+         <a style="font-weight: 100;" href="/shop/preShop">전체 보기&gt &gt</a>
       </div>
     </div>
   </section>

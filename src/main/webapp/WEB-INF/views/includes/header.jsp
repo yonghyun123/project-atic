@@ -35,7 +35,7 @@
 
           <!-- Navbar Toggler -->
           <div class="classy-navbar-toggler">
-            <span class="navbarToggler"><span></span><span></span><span></span></span>
+            <span class="navbarToggler"><span></span><span></span></span>
           </div>
 
           <!-- Menu -->
@@ -50,8 +50,9 @@
 
             <!-- Navbar Start -->
             <div class="classynav">
-              <ul style="margin-top:10; margin-right: 70px;">
-                <li class="time-li"><span id="countTime"></span>&emsp;</li>
+              <ul style="margin: 0;">
+                <li class="mr-15" style="font-size: 22px; color: black; font-weight: 700;">마감까지 </li>
+                <li class="time-li" style="margin: 0; vertical-align: sub; width: 180px;"><span id="countTime"></span>&emsp;</li>
                 <li><a href="/about" id="guide">이용가이드</a>
                 <li><a href="/shop" id="funding">펀딩</a>
                   
@@ -62,7 +63,7 @@
                     <li><a id="logout">로그아웃</a></li>
                   </c:when>
                   <c:otherwise>
-                    <li><a id="login">로그인</a></li>
+                    <li><a id="login" style="margin-right: 100px; ">로그인</a></li>
                   </c:otherwise>
                 </c:choose>
               </ul>
