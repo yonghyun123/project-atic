@@ -27,7 +27,7 @@
       <div class="container">
         <!-- Menu -->
         <nav class="classy-navbar justify-content-between"
-          id="alazeaNav" style="height: 75px">
+          id="alazeaNav" style="height: 65px">
 
           <!-- Nav Brand -->
           <a href="/" class="nav-brand"><img
@@ -52,7 +52,7 @@
             <div class="classynav">
               <ul style="margin: 0;">
                 <li class="mr-15" style="font-size: 22px; color: black; font-weight: 700;">마감까지 </li>
-                <li class="time-li" style="margin: 0; vertical-align: sub; width: 180px;"><span id="countTime"></span>&emsp;</li>
+                <li class="time-li" style="margin: 0; vertical-align: sub; width: 190px;"><span id="countTime"></span>&emsp;</li>
                 <li><a href="/about" id="guide">이용가이드</a>
                 <li><a href="/shop" id="funding">펀딩</a>
                   
